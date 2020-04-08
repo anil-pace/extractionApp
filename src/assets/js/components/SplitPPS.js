@@ -224,6 +224,13 @@ var SplitPPS = React.createClass({
 			return (
 				<div className={customizeClassSplitPPS ? "splitPPSWrapper " + customizeClassSplitPPS : "splitPPSWrapper"} style={transformStyle}>
 					<div className="mapCont">
+					<div className={"col4 three"}>
+							{(mapStructure.centerCol).length >= 1 ?
+								<ul>
+									{mapStructure.centerCol}
+								</ul> : ""
+							}
+						</div>
 						<div className="msuSpace" style={textTransform}>&nbsp;</div>
 						<div className={"col1 three"}>
 							{(mapStructure.leftCol).length >= 1 ?
@@ -242,13 +249,7 @@ var SplitPPS = React.createClass({
 							}
 						</div>
 
-						<div className={"col4 three"}>
-							{(mapStructure.centerCol).length >= 1 ?
-								<ul>
-									{mapStructure.centerCol}
-								</ul> : ""
-							}
-						</div>
+						
 					</div>
 				</div>
 			);

@@ -14,6 +14,7 @@ var MobileSystemIdle = require('./MobileSystemIdle');
 
 
 function getState(){
+  console.log("=======> operator.js -> getState()");
   return {
       currentSeat: mainstore.getCurrentSeat(),
       isMobile:mainstore._getMobileFlag(),
@@ -69,6 +70,7 @@ var Operator = React.createClass({
   },
 
   render: function(data){ 
+    console.log("=======> operator.js -> render()");
      this.getSeatType(this.state.currentSeat);
       if(this.state.spinner === true){
        this._spinner = <Spinner />

@@ -6755,6 +6755,7 @@ AppDispatcher.register(function(payload) {
       mainstore.emit(CHANGE_EVENT)
       break
     case appConstants.SET_CURRENT_SEAT:
+      console.log("=======> mainstore.js -> case appConstants.SET_CURRENT_SEAT");
       mainstore.setCurrentSeat(action.data)
       mainstore.emit(CHANGE_EVENT)
       break
@@ -6788,6 +6789,7 @@ AppDispatcher.register(function(payload) {
       mainstore.emit(CHANGE_EVENT)
       break
     case appConstants.SET_SERVER_MESSAGES:
+      console.log("=======> mainstore.js -> case appConstants.SET_SERVER_MESSAGES");
       mainstore.setServerMessages()
       mainstore.emit(CHANGE_EVENT)
       break
