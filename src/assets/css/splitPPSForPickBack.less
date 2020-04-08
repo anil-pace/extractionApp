@@ -1,0 +1,531 @@
+
+.splitPPSWrapperForPickBack{
+	box-sizing:border-box;
+    max-height: 350px;
+    width: 40%;
+    margin:0;
+	padding: 12px;
+	margin-right: 15%;
+	&.rightAligned{
+		right: -25px;
+		width:35%;
+		top:13%;
+		margin-top: 0px;
+	}
+	&.centerAlignSplitPPS{
+		margin-left: 0px;
+		margin-top: 0px;
+	}
+  .mapCont{
+    text-align: center;
+   	.msuSpace{
+   		font-size:24px;
+   		font-weight:600;
+   		margin: auto;
+   		margin-bottom:20px;
+    	width: 70%;
+    	color:#F2F2F2;
+	  	background:#F2F2F2;
+		  ;
+   	}
+    
+	.col1{
+		display: inline-block;
+		vertical-align:top;
+		float: left;
+    	margin-left: 15%;
+		
+		ul{
+			margin: 0;
+		    padding: 0;
+		    border: 0;
+		    outline: 0;
+		    position:relative;
+		    font-size: 100%;
+		    vertical-align: baseline;
+		    background: transparent;
+		    height:350px;
+		}
+		.withBorderLeft{
+			 border-top: 5px solid #F9BAB9;
+			// height:auto;
+		}
+		li{
+		    display: block;
+		    position:relative;
+		    height: 38px;
+		    width: 100px;
+		    margin-top: 10%;
+			background:#D6D7D7;
+			border: 1px solid #D6D7D7;
+			&.noBackGround{
+				outline: 1px dashed #D6D7D7;
+				outline-offset: -10px;
+				background: transparent;
+			}
+		    
+		    .undock{
+		    	display:inline-block;
+		    	background:#518FFC url('../images/icon_whitearrow.svg') no-repeat center;
+		    	width:100%;
+		    	height:100%;
+		    	position: relative;
+			     &.right{
+			    	-webkit-animation: undockRight 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockRight 1s infinite;
+				    animation-timing-function: step-in;
+				    /* Safari */
+					-webkit-transform: rotate(-180deg);
+					/* Firefox */
+					-moz-transform: rotate(-180deg);
+					/* IE */
+					-ms-transform: rotate(-180deg);
+					/* Opera */
+					-o-transform: rotate(-180deg);
+			    }
+			     &.left{
+			    	-webkit-animation: undockLeft 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockLeft 1s infinite;
+				    animation-timing-function: step-in;
+			    }
+			}
+			.printReady{
+		    	display:inline-block;
+		    	background:#FFC003 url('../images/icon_whitearrow.svg') no-repeat center;
+		    	width:100%;
+		    	height:100%;
+		    	position: relative;
+			     &.right{
+			    	-webkit-animation: undockRight 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockRight 1s infinite;
+				    animation-timing-function: step-in;
+				    /* Safari */
+					-webkit-transform: rotate(-180deg);
+					/* Firefox */
+					-moz-transform: rotate(-180deg);
+					/* IE */
+					-ms-transform: rotate(-180deg);
+					/* Opera */
+					-o-transform: rotate(-180deg);
+			    }
+			     &.left{
+			    	-webkit-animation: undockLeft 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockLeft 1s infinite;
+				    animation-timing-function: step-in;
+			    }
+		    }
+		    
+		}
+		.bottomBorderLeft{
+			border-bottom: 4px solid #F9BAB9;
+			margin-top: 0;
+			border-left: 4px solid #F9BAB9;
+			border-right: 4px solid #F9BAB9;
+			&.padding{
+				padding: 10%;
+			}	
+		}
+
+		&.one{
+			li{
+				height: 100px;
+			}
+		}
+		&.two{
+			li{
+				height: 58px;
+			}
+		}
+		&.three{
+			li{
+				height: 100px;
+				&.dockedCont{
+					background:#444F54;
+					padding:10%;
+				}
+				&.padding{
+					padding: 10%;
+				}
+				.docked{
+		    	//background: url('../images/icon_whitetick.svg') no-repeat center;
+		    	display:inline-block;
+		    	height:100%;
+		    	width:70%;
+				margin:auto;
+		    }
+		    &.wrongUndockCont{
+				background:#CB212F;
+				padding:10%;
+		    }
+				.wrongUndock {
+					background: url('../images/icon_whitecross.svg') no-repeat center;
+					display: inline-block;
+					height:100%;
+					width:70%;
+					margin:auto;
+				}
+			&.selectedbinCont{
+				background:#0390FF;
+				padding: 10%;
+			}	
+			}
+
+		}
+		&.four{
+			li{
+				height: 27px;
+			}
+		}
+	}
+	.col2{
+		display: inline-block;
+		width:55%;
+		height:200px;
+		width: 150px;
+	    background-position: -225px 1px;
+		vertical-align:middle;
+		zoom: 80%;
+		margin-top: 10%;
+	}
+	.col3{
+		display: inline-block;
+		vertical-align:top;
+		float: right;
+    	margin-right: 15%;
+		ul{
+			margin: 0;
+		    padding: 0;
+		    border: 0;
+		    outline: 0;
+		    font-size: 100%;
+		    vertical-align: baseline;
+		    background: transparent;
+		    height:350px;
+		}
+		.withBorder{
+			border-top: 5px solid #FEEFAE;
+			//height:auto;
+		}
+		li{
+			
+		    display: block;
+		    background:#D6D7D7;
+		    height: 38px;
+		    width: 100px;
+		    margin-top: 10%;
+			background:#D6D7D7;
+			border: 1px solid #D6D7D7;
+		    &.noBackGround{
+				outline: 1px dashed #D6D7D7;
+				outline-offset: -10px;
+				background: transparent;
+			}
+		    .undock{
+		    	display:inline-block;
+		    	background:#518FFC url('../images/icon_whitearrow.svg') no-repeat center;
+		    	height:100%;
+		    	width:100%;
+		    	position: relative;
+			    &.right{
+			    	-webkit-animation: undockRight 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockRight 1s infinite;
+				    animation-timing-function: step-in;
+				    /* Safari */
+					-webkit-transform: rotate(-180deg);
+					/* Firefox */
+					-moz-transform: rotate(-180deg);
+					/* IE */
+					-ms-transform: rotate(-180deg);
+					/* Opera */
+					-o-transform: rotate(-180deg);
+			    }
+			     &.left{
+					
+			    	-webkit-animation: undockLeft 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockLeft 1s infinite;
+				    animation-timing-function: step-in;
+			    }
+			}
+			.printReady{
+		    	display:inline-block;
+		    	background: #FFC003 url('../images/icon_whitearrow.svg') no-repeat center;
+		    	height:100%;
+		    	width:100%;
+		    	position: relative;
+			    &.right{
+			    	-webkit-animation: undockRight 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockRight 1s infinite;
+				    animation-timing-function: step-in;
+				    /* Safari */
+					-webkit-transform: rotate(-180deg);
+					/* Firefox */
+					-moz-transform: rotate(-180deg);
+					/* IE */
+					-ms-transform: rotate(-180deg);
+					/* Opera */
+					-o-transform: rotate(-180deg);
+			    }
+			     &.left{
+					
+			    	-webkit-animation: undockLeft 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockLeft 1s infinite;
+				    animation-timing-function: step-in;
+			    }
+		    }
+		    
+		}
+		.bottomBorderRight{
+			border-bottom: 4px solid #FEEFAE;
+			margin-top: 0;
+			border-left: 4px solid #FEEFAE;
+			border-right: 4px solid #FEEFAE;
+		&.padding{
+			padding: 10%;
+		}	
+		}
+
+		&.one{
+			li{
+				height: 100px;
+			}
+		}
+		&.two{
+			li{
+				height: 58px;
+			}
+		}
+		&.three{
+			li{
+				height: 100px;
+				&.dockedCont{
+					background:#444F54;
+					padding: 10%;
+				}
+				&.padding{
+					padding: 10%;
+				}
+				.docked{
+		    	//background: url('../images/icon_whitetick.svg') no-repeat center;
+		    	display:inline-block;
+		    	height:100%;
+		    	width:70%;
+				margin:auto;
+		    }
+		    &.wrongUndockCont{
+				background:#CB212F;
+				padding: 10%;
+		    }
+				.wrongUndock {
+					background: url('../images/icon_whitecross.svg') no-repeat center;
+					display: inline-block;
+					height:100%;
+					width:70%;
+					margin:auto;
+				}
+			&.selectedbinCont{
+					background:#0390FF;
+					padding: 10%;
+				}	
+			}
+		}
+		&.four{
+			li{
+				height: 27px;
+			}
+		}
+	}
+	.col4{
+		display: block;
+		vertical-align:top;
+		ul{
+			margin: 0;
+		    padding: 0;
+		    border: 0;
+		    outline: 0;
+		    font-size: 100%;
+		    vertical-align: baseline;
+		    background: transparent;
+		}
+		li{
+			display: inline-block;
+			border: 1px solid #D6D7D7;
+		    background:#D6D7D7;
+		    height: 38px;
+		    width: 100px;
+		    margin-left: 1%;
+			position: relative;
+			&.noBackGround{
+				outline: 1px dashed #D6D7D7;
+				outline-offset: -10px;
+				background: transparent;
+			}
+			.undock{
+		    	display:inline-block;
+		    	background:#518FFC url('../images/icon_whitearrow.svg') no-repeat center;
+		    	height:100%;
+				width: 100%;
+				position: absolute;
+				left:0px;
+				zoom: 50%;
+			     &.below{
+			    	-webkit-animation: undockBelow 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockBelow 1s infinite;
+					animation-timing-function: step-in;
+					-webkit-transform: rotate(-90deg);
+					/* Firefox */
+					-moz-transform: rotate(-90deg);
+					/* IE */
+					-ms-transform: rotate(-90deg);
+					/* Opera */
+					-o-transform: rotate(-90deg);
+					
+				}
+				
+			}	  
+			.printReady{
+		    	display:inline-block;
+		    	background:#FFC003 url('../images/icon_whitearrow.svg') no-repeat center;
+		    	height:100%;
+				width: 100%;
+				position: absolute;
+				left:0px;
+				zoom: 50%;
+			     &.below{
+			    	-webkit-animation: undockBelow 1s infinite; /* Safari 4.0 - 8.0 */
+				    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+				    animation: undockBelow 1s infinite;
+					animation-timing-function: step-in;
+					-webkit-transform: rotate(-90deg);
+					/* Firefox */
+					-moz-transform: rotate(-90deg);
+					/* IE */
+					-ms-transform: rotate(-90deg);
+					/* Opera */
+					-o-transform: rotate(-90deg);
+					
+				}
+				
+		    }  
+		}
+		&.three{
+			li{
+				height: 100px;
+				&.dockedCont{
+					background:#444F54;
+				}
+				.docked{
+		    	display:inline-block;
+		    	height:100%;
+				margin:auto;
+		    }
+		    &.wrongUndockCont{
+		    	background:#CB212F;
+		    }
+				.wrongUndock {
+					background: url('../images/icon_whitecross.svg') no-repeat center;
+					display: inline-block;
+					height:100%;
+					width:70%;
+					margin:auto;
+				}
+			
+			&.selectedbinCont{
+					background:#0390FF;
+
+					;
+				}
+					
+			}
+
+		}
+	}
+	ul{
+		list-style:none;
+	}
+  }	
+}
+
+@-webkit-keyframes undockLeft {
+    from {right: 0px;}
+    to {right: 60px;}
+}
+
+@keyframes undockLeft {
+    from {right: 0px;}
+    to {right: 40%;}
+}
+@-webkit-keyframes undockBelow {
+    from {bottom: 0px;}
+    to {bottom: -60px;}
+}
+
+@keyframes undockBelow {
+    from {bottom: 0px;}
+    to {bottom: -40%;}
+}
+@-webkit-keyframes undockRight {
+    from {left: 0px;}
+    to {left: 40%;}
+}
+
+@keyframes undockRight {
+    from {left: 0px;}
+    to {left: 40%;}
+}
+
+.gor-invoice-wrap {
+	    background-color: #4d5055;
+}
+
+.gor-invoice-input-wrap {
+	width: 850px;
+	height: 300px;
+	background-color: #ffffff;
+	box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
+	font-size: 36px;
+	color: #4d5055;
+}
+
+.gor-invoice-h1-wrap {
+	width: 850px;
+	height: 105px;
+	background-color: #efefef;
+	padding-top: 28px;
+    padding-left: 40px;
+    border-bottom: solid 2px #aaaaaa;
+}
+
+.gor-invoice-input-box-wrap{
+	width: 676px;
+    height: 60px;
+    background-color: #ffffff;
+    border: solid 1px #aaaaaa;
+    font-size: 24px;
+    color: #aaaaaa;
+    
+}
+
+.gor-invoice-input-keyboard-wrap {
+	padding-top: 40px;
+    padding-left: 87px;
+}
+
+.gor-invoice-put-back {
+	font-size: 28px;
+    color: #4d5055;
+    text-align: right;
+    width: 100%;
+}
+
+.gor-invoice-put-back-h2 {
+	font-weight: bold;
+}

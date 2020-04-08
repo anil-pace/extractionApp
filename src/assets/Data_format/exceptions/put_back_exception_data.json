@@ -1,0 +1,356 @@
+..///.....Extra Entities in Bin...................//......................
+
+{
+	"state_data": {
+		"exception_type": "extra_items",
+		"seat_name": "back_10",
+		"screen_id": "put_back_extra_item_bin_select",
+		"screen_version": "1",
+		"notification_list": [],
+		"all_peripheral_status": "true",
+		"api_version": "1",
+		"peripheral_data": [],
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PtB004",
+			"exception_name": "Extra Items In Bin",
+			"event": "extra_items"
+		}, {
+			"exception_id": "PtB003",
+			"exception_name": "Item Damaged",
+			"event": "item_damaged"
+		}, {
+			"exception_id": "PtB002",
+			"exception_name": "Item Over Sized",
+			"event": "item_oversized"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1455628652",
+		"ppsbin_list": [{
+			"bin_info": [],
+			"ppsbin_id": "4",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 4]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "3",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 3]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "2",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 2]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "1",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 1]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "8",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 4]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "7",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 3]
+		}, {
+			"bin_info": [{
+				"product_sku": "2001",
+				"type": "item",
+				"quantity": 5216
+			}, {
+				"product_sku": "2001",
+				"type": "item",
+				"quantity": 5562
+			}],
+			"ppsbin_id": "6",
+			"selected_state": false,
+			"ppsbin_state": "staged",
+			"ppsbin_count": "5216",
+			"coordinate": [2, 2]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "5",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 1]
+		}],
+		"header_msge_list": [{
+			"level": "info",
+			"code": "PtB.H.009",
+			"details": [],
+			"description": "Please Select The Bin With Excess Entity"
+		}],
+		"structure": [2, 4]
+	}
+}
+
+//... EXTRA ENTITY IN BIN ... After selection of bin
+
+
+{
+	"state_data": {
+		"exception_type": "extra_items",
+		"seat_name": "back_10",
+		"screen_id": "put_back_extra_item_quantity_update",
+		"screen_version": "1",
+		"notification_list": [],
+		"all_peripheral_status": "true",
+		"peripheral_data": [],
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PtB004",
+			"exception_name": "Extra Items In Bin",
+			"event": "extra_items"
+		}, {
+			"exception_id": "PtB003",
+			"exception_name": "Item Damaged",
+			"event": "item_damaged"
+		}, {
+			"exception_id": "PtB002",
+			"exception_name": "Item Over Sized",
+			"event": "item_oversized"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1456483001",
+		"header_msge_list": [{
+			"level": "info",
+			"code": "PtB.H.010",
+			"details": [],
+			"description": "Enter Excess Entity Quantity"
+		}],
+		"api_version": "1"
+	}
+}
+///...... ENTITY UNSCANNABLE.../////////.....................................
+
+
+{
+	"state_data": {
+		"exception_type": "item_damaged",
+		"seat_name": "back_10",
+		"screen_id": "put_back_item_damaged",
+		"screen_version": "1",
+		"notification_list": [],
+		"all_peripheral_status": "true",
+		"peripheral_data": [],
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PtB004",
+			"exception_name": "Extra Items In Bin",
+			"event": "extra_items"
+		}, {
+			"exception_id": "PtB003",
+			"exception_name": "Item Damaged",
+			"event": "item_damaged"
+		}, {
+			"exception_id": "PtB002",
+			"exception_name": "Item Over Sized",
+			"event": "item_oversized"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1455628723",
+		"header_msge_list": [{
+			"level": "info",
+			"code": "PtB.H.007",
+			"details": [],
+			"description": "Enter Damaged Entity Quantity"
+		}],
+		"api_version": "1"
+	}
+}
+
+{
+	"state_data": {
+		"exception_type": "item_oversized",
+		"seat_name": "back_10",
+		"screen_id": "put_back_item_oversized",
+		"screen_version": "1",
+		"notification_list": [],
+		"all_peripheral_status": "true",
+		"peripheral_data": [],
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PtB004",
+			"exception_name": "Extra Items In Bin",
+			"event": "extra_items"
+		}, {
+			"exception_id": "PtB003",
+			"exception_name": "Item Damaged",
+			"event": "item_damaged"
+		}, {
+			"exception_id": "PtB002",
+			"exception_name": "Item Over Sized",
+			"event": "item_oversized"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1455711041",
+		"header_msge_list": [{
+			"level": "info",
+			"code": "PtB.H.008",
+			"details": [],
+			"description": "Scan Oversized Entity Quantity"
+		}],
+		"api_version": "1"
+	}
+}
+
+{
+	"state_data": {
+		"peripheral_data": [],
+		"seat_name": "back_10",
+		"screen_id": "put_back_put_extra_item_in_irt_bin",
+		"screen_version": "1",
+		"notification_list": [{
+			"details": [1, "6"],
+			"code": "PtB.I.011",
+			"description": "1 extra entity recorder in bin 6.WMS Notified",
+			"level": "info"
+		}],
+		"all_peripheral_status": "true",
+		"exception_type": "extra_items",
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PtB004",
+			"exception_name": "Extra Items In Bin",
+			"event": "extra_items"
+		}, {
+			"exception_id": "PtB003",
+			"exception_name": "Item Damaged",
+			"event": "item_damaged"
+		}, {
+			"exception_id": "PtB002",
+			"exception_name": "Item Over Sized",
+			"event": "item_oversized"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1455792285",
+		"header_msge_list": [{
+			"details": [],
+			"code": "PtB.H.011",
+			"description": "Please put it in IRT bin and confirm",
+			"level": "error"
+		}],
+		"api_version": "1"
+	}
+}
+
+
+{
+	"state_data": {
+		"peripheral_data": [],
+		"seat_name": "back_10",
+		"screen_id": "put_back_item_oversized",
+		"screen_version": "1",
+		"notification_list": [],
+		"scan_details": {
+			"current_qty": "1",
+			"total_qty": "0",
+			"kq_allowed": false
+		},
+		"all_peripheral_status": "true",
+		"exception_type": "item_oversized",
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PtB004",
+			"exception_name": "Extra Items In Bin",
+			"event": "extra_items"
+		}, {
+			"exception_id": "PtB003",
+			"exception_name": "Item Damaged",
+			"event": "item_damaged"
+		}, {
+			"exception_id": "PtB002",
+			"exception_name": "Item Over Sized",
+			"event": "item_oversized"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1455792506",
+		"header_msge_list": [{
+			"details": [],
+			"code": "PtB.H.008",
+			"description": "Scan Oversized Entity Quantity",
+			"level": "info"
+		}],
+		"api_version": "1"
+	}
+}
+
+-----After Scan ---- Entity Oversized -----
+
+{
+	"state_data": {
+		"peripheral_data": [],
+		"seat_name": "back_10",
+		"screen_id": "put_back_item_oversized",
+		"screen_version": "1",
+		"notification_list": [{
+			"details": [],
+			"code": "PtB.I.006",
+			"description": "Entity scan successful.",
+			"level": "info"
+		}],
+		"scan_details": {
+			"current_qty": "1",
+			"total_qty": "0",
+			"kq_allowed": false
+		},
+		"item_uid": "9f89bae1-fa74-4eab-b3a7-17f573bf87bc",
+		"exception_type": "item_oversized",
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PtB004",
+			"exception_name": "Extra Items In Bin",
+			"event": "extra_items"
+		}, {
+			"exception_id": "PtB003",
+			"exception_name": "Item Damaged",
+			"event": "item_damaged"
+		}, {
+			"exception_id": "PtB002",
+			"exception_name": "Item Over Sized",
+			"event": "item_oversized"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"product_info": [],
+		"time_stamp": "1455793202",
+		"all_peripheral_status": "true",
+		"header_msge_list": [{
+			"details": [],
+			"code": "PtB.H.008",
+			"description": "Scan Oversized Entity Quantity",
+			"level": "info"
+		}],
+		"api_version": "1"
+	}
+}

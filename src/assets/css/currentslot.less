@@ -1,0 +1,38 @@
+.currentSlotWrapper{
+	position:absolute;
+  left:0;
+  top:-3px;
+	width:158px;
+	height:20%;
+	display: -webkit-flex;
+    display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   -webkit-justify-content: center;
+   justify-content: center;
+   -webkit-align-items: center;
+   align-items: center;
+   .slotRange{
+   		background-color:rgb(109,109,109);
+   		color:white;
+   		font-size:3.5rem; //43t(semibold)
+   		font-weight:@font-weight-semi-bold;
+   		height:70%; //105px;
+   		width:100%;   		
+       text-align:center;
+        white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    padding-top: 20px;
+   }
+   .slotFooter{
+   		background-color:white;
+   		color:black;
+   		font-size:@font-size-body-small; //22pt
+   		width:100%;   		
+        display:flex;
+        justify-content:center;
+        align-items:center;
+   }
+}

@@ -1,0 +1,80 @@
+//.... Audit loose item damaged exception...///
+{
+    "state_data": {
+        "all_peripheral_status": "true", 
+        "api_version": "1", 
+        "exception_allowed": [
+            {
+                "event": "loose_item_damage", 
+                "exception_id": "AdF003", 
+                "exception_name": "Loose Item Barcode Damaged"
+            }, 
+            {
+                "event": "box_damage", 
+                "exception_id": "AdF002", 
+                "exception_name": "Damaged Box Barcode"
+            }
+        ], 
+        "exception_type": "loose_item_damage", 
+        "header_msge_list": [
+            {
+                "code": "AdF.H.001", 
+                "description": "Scan Box/Items from Slot", 
+                "details": [], 
+                "level": "info"
+            }
+        ], 
+        "is_idle": false, 
+        "logout_allowed": true, 
+        "mode": "audit", 
+        "notification_list": [], 
+        "peripheral_data": [], 
+        "screen_id": "audit_loose_item_damage_exception", 
+        "screen_version": "1", 
+        "seat_name": "front_10", 
+        "seat_type": "front", 
+        "time_stamp": "1456122400"
+    }
+}
+
+
+//....... Audit box damage exception...////...........
+
+{
+    "state_data": {
+        "all_peripheral_status": "true", 
+        "api_version": "1", 
+        "exception_allowed": [
+            {
+                "event": "loose_item_damage", 
+                "exception_id": "AdF003", 
+                "exception_name": "Loose Item Barcode Damaged"
+            }, 
+            {
+                "event": "box_damage", 
+                "exception_id": "AdF002", 
+                "exception_name": "Damaged Box Barcode"
+            }
+        ], 
+        "exception_type": "box_damage", 
+        "header_msge_list": [
+            {
+                "code": "AdF.H.001", 
+                "description": "Scan Box/Items from Slot", 
+                "details": [], 
+                "level": "info"
+            }
+        ], 
+        "is_idle": false, 
+        "logout_allowed": true, 
+        "mode": "audit", 
+        "notification_list": [], 
+        "peripheral_data": [], 
+        "screen_id": "audit_box_damage_exception", 
+        "screen_version": "1", 
+        "seat_name": "front_10", 
+        "seat_type": "front", 
+        "time_stamp": "1456122455"
+    }
+}
+

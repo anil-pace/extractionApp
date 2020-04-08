@@ -1,0 +1,98 @@
+.head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    font-family: @font-family-sans-serif;
+    height: 8vh;
+    .logo {
+        order: 1;
+        margin-left: 2.5em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        img {
+            width: 142px;
+        }
+    }
+    .ppsMode{
+        order:2;
+        margin: 0 55% 0 2%;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .keyboard-actions {
+        order: 3;
+        margin: 0 70px 0 auto; //0 6% 0 auto;
+        input[type='text'] {
+            display: none;
+        }
+        span {
+            font-size: 2em;
+            color: @passive-nav-bck;
+        }
+        &.hide-manual-barcode {
+            display: none;
+        }
+    }
+    .header-actions {
+        order: 4;
+        padding-right: 2.5em;
+        cursor: pointer;
+    }
+}
+ .actionMenu{
+            display: none;
+            background: #fff none repeat scroll 0 0;
+            //border: 1px solid #ccc;
+            box-shadow: 0px 5px 7px #ccc;
+            //bottom: 0;
+            right: 0;
+            color: rgba(0, 0, 0, 0.66);
+            font-size: 2rem;
+            padding: 12px 22px 14px;
+            position: absolute;
+            width: 17vw;
+            z-index: 50;
+            cursor: pointer;
+            .actionItem{
+                padding:12px 0;
+                border-bottom: 1px solid #ccc;
+                cursor: pointer;
+            }
+            .actionItem.disable{
+                opacity:0.3;
+                pointer-events: none;
+                cursor:none;
+            }
+            .actionItem:last-child {
+                 border-bottom: unset;
+            }
+            .subMenu{
+                font-size: 0.9em;
+                padding: 5px 30px;
+                display:none;
+            }
+
+        }
+
+@media all and (max-width: 769px) {
+    .head {
+        .logo {
+            img {
+                width:200px;
+            }
+        }
+        .ppsMode{
+            font-size: 3.5rem;
+            margin:4px 15% 0 2%;
+        }
+    }
+    .actionMenu{
+        font-size: 4rem;
+        width: 35vw;
+        .actionItem {
+            word-wrap: break-word;
+        }
+    }
+}

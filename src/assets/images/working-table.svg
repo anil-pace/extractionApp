@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="489" height="461" viewBox="0 0 489 461">
+    <defs>
+        <path id="a" d="M2.835 170.928L.475 9.388 17.5 2l2.526 158.97z"/>
+        <path id="b" d="M17.61 170.995L20 10.115 36.307.819l-1.321 160.233z"/>
+        <path id="c" d="M312.235 280.065l-.893 20.723 174.989-100.93-.102-20.125z"/>
+        <path id="d" d="M18.347 170.563L17.995 8.101 37.5 19.37l-1.89 141.239z"/>
+        <path id="e" d="M.915 170.56L1.25 9.255 16.752.305l1.596 160.16z"/>
+        <path id="f" d="M17.953 171.047L19.307 10.78 37.65.221l-2.548 160.916z"/>
+        <path id="g" d="M1.922 171.072L.516 10.74 16.89 1l2.483 159.994z"/>
+        <path id="h" d="M1.465 42.314l69.308 39.91-.722 80.24L.984 122.516z"/>
+        <path id="i" d="M70.048 41.95l69.956 40.248.729 80.255-70.597-40.19z"/>
+        <path id="j" d="M71.193 0l69.537 41.723-69.745 40.543L1 41.952z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="matrix(-1 0 0 1 472.501 199)">
+            <use fill="#D2CECB" xlink:href="#a"/>
+            <path stroke="#D2CECB" d="M3.322 170.068l16.2-9.383L17.013 2.757.98 9.714l2.343 160.354z"/>
+        </g>
+        <g transform="translate(452 199)">
+            <use fill="#DCD6D0" xlink:href="#b"/>
+            <path stroke="#DCD6D0" d="M18.124 170.125l16.364-9.364L35.8 1.683l-15.304 8.725-2.372 159.717z"/>
+        </g>
+        <path fill="#D2CECB" d="M3.241 100.717l-.735 20.588 310.838 179.474.894-20.724z"/>
+        <g transform="translate(2)">
+            <use fill="#DCD6D0" xlink:href="#c"/>
+            <path stroke="#DCD6D0" d="M312.723 280.36l-.842 19.54L485.83 199.57l-.096-18.974-173.011 99.765z"/>
+        </g>
+        <path fill="#E8E3DE" d="M3.248 100.724L314.44 280.358l173.79-100.623L177.366.225z"/>
+        <g>
+            <g transform="translate(0 121)">
+                <use fill="#DCD6D0" xlink:href="#d"/>
+                <path stroke="#DCD6D0" d="M18.845 169.699l16.27-9.381 1.882-140.662-18.5-10.688.348 160.73z"/>
+            </g>
+            <g transform="matrix(-1 0 0 1 19.263 121)">
+                <use fill="#D2CECB" xlink:href="#e"/>
+                <path stroke="#D2CECB" d="M1.416 169.692l16.43-9.513L16.26 1.167 1.75 9.544l-.335 160.148z"/>
+            </g>
+        </g>
+        <g>
+            <g transform="translate(294 290)">
+                <use fill="#DCD6D0" xlink:href="#f"/>
+                <path stroke="#DCD6D0" d="M18.46 170.176l16.147-9.33 2.53-159.753-17.332 9.978-1.345 159.105z"/>
+            </g>
+            <g transform="matrix(-1 0 0 1 313.89 290)">
+                <use fill="#D2CECB" xlink:href="#g"/>
+                <path stroke="#D2CECB" d="M2.415 170.21l16.454-9.503L16.403 1.871 1.02 11.023 2.415 170.21z"/>
+            </g>
+        </g>
+        <g>
+            <g transform="translate(174 49)">
+                <use fill="#C19C80" xlink:href="#h"/>
+                <path stroke="#C8A389" d="M1.96 43.176l-.474 79.052 68.073 39.374.711-79.09L1.96 43.176z"/>
+            </g>
+            <g transform="matrix(-1 0 0 1 384.781 49)">
+                <use fill="#CEA889" xlink:href="#i"/>
+                <path stroke="#D4AE91" d="M70.55 42.815l.086 79.156 69.589 39.617-.719-79.1L70.55 42.815z"/>
+            </g>
+            <g transform="matrix(-1 0 0 1 315.73 49)">
+                <use fill="#E7C6AC" xlink:href="#j"/>
+                <path stroke="#EBCAB3" d="M71.192.583L1.988 41.943l68.996 39.745 68.763-39.972L71.192.583z"/>
+            </g>
+        </g>
+    </g>
+</svg>

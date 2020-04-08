@@ -1,0 +1,125 @@
+.notify {
+    height: 2em;
+    padding-right: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    background: @notification-light-bck;
+    color: white;
+    font-size: @font-size-body-medium;
+    background: @notification-light-bck;
+    z-index: 1;
+    .success-icon {
+        margin-right: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        background: @notification-dark-bck;
+        .border-glyp {
+        	width: 40px;
+        	height: 40px;
+            border-radius: 50%;
+            background: white;
+            text-align: center;
+            .glyphicon {
+                color: @notification-dark-bck;
+                font-size:.7em;
+                top:-8px;
+            }
+        }
+    }
+}
+
+.notify-warning {
+    height: 2em;
+    padding-right: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    background: red;
+    color: white;
+    font-size: @font-size-body-medium;
+    background: #F7A74A none repeat scroll 0 0;
+    z-index: 1;
+    .warning-icon {
+        margin-right: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        background: #F99405 none repeat scroll 0 0 ; // #8A0808
+        .border-glyp {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #F99405 ;
+            text-align: center;
+            .glyphicon-alert {
+                padding-top: 8px;
+                font-size:.9em;
+                top:-4px;   
+            }
+        }
+    }
+}
+
+
+
+.notify-error {
+    height: 2em;
+    padding-right: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    background: red;
+    color: white;
+    font-size: @font-size-body-medium;
+    background: #fa5882 none repeat scroll 0 0;
+    z-index: 1;
+    .error-icon {
+        margin-right: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        background: red none repeat scroll 0 0 ; // #8A0808
+        .border-glyp {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            text-align: center;
+            .glyphicon {
+                padding-top: 8px;
+                color: #8A0808;
+                font-size:.7em;
+                top:-8px;
+            }
+        }
+    }
+}
+.notification-error{
+    .glyphicon-exclamation-sign{
+        margin-right:10px;
+        color:red;
+    }
+    .modal-dialog .modal-content .modal-header{
+        background-color: white;
+    }
+}

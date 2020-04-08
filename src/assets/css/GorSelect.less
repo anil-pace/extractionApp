@@ -1,0 +1,99 @@
+.gor-dropdown{
+    cursor: pointer;
+    position:relative;
+    &.gor-enabled{
+        color: initial;
+    }
+}
+
+.gor-white-background{
+  background-color: #FFFFFF;
+}
+.gor-dropdown-wrapper{
+    border: 1px solid;
+    border-radius: 0.1875rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    padding: 0.5rem 2.25rem 0.5rem 0.625rem;
+    transition: all 200ms ease;
+    border-color: #aaaaaa;
+    font-size: 14px;
+    font-weight: 100;
+    color: #aaaaaa;
+    position: relative;
+    float:left;
+    .gor-dropdown-arrow{
+        border-top: 0.5rem solid #A6A7A9;
+        border-left:0.3125rem solid transparent ;
+        border-right:0.3125rem solid transparent ;
+        border-bottom:0.125rem solid transparent ;
+        content: ' ';
+        display: block;
+        height: 0;
+        margin-top: -ceil(2.5);
+        position: absolute;
+        right: 0.9375rem;
+        top: 0.6875rem;
+        &.up{
+            width: 0px;
+            height: 0px;
+            border-width: 0;
+            border-top: 0.125rem solid transparent;
+            border-left: 0.3125rem solid transparent;
+            border-right: 0.3125rem solid transparent;
+            border-bottom: 0.5rem solid #A6A7A9;
+            border-color: none; 
+            border-style: solid; 
+             
+        }
+    }
+    .gor-edit-icon{
+            float: left;
+            width: 1rem;
+            height: 1.25rem;
+            margin-right:0.5rem;
+    }
+    .gor-action-audit-icon{
+            background-position: -358px -77px ;
+            
+    }
+    .gor-action-pps-icon{
+            background-position: -239px -77px ;
+    }
+    .gor-tick-icon{
+        background-position: -164px -94px ;
+        float:right;
+        width:1rem;
+        height:1rem;
+    }
+    .gor-action-icon-none{
+    display:none;
+    }
+}
+.gor-dropdown-option{
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    box-sizing: border-box;
+    color: #535354;
+    cursor: pointer;
+    padding: 0.5rem 0.625rem;
+    &.disabled{
+        cursor: default;
+        color: #C8C8C8;
+    }
+}
+.gor-option-wrapper{
+    position: absolute;
+    z-index: 2;
+    left: -0.0625rem;
+    top: 40px;
+    background: #fff;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 3px;
+    box-shadow: 0 0.0625rem 0 rgba(0, 0, 0, 0.06);
+}

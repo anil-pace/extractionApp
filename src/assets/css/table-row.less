@@ -1,0 +1,125 @@
+.table-row {
+    background: @msu-slots-border;
+    display: flex;
+    flex-flow: row;
+    color: @btn-default-bck;
+
+    //border-bottom: 1px solid #ccc;
+    input[type="text"]{
+        background: #0090ff;
+        color: #fff;
+    }
+
+    flex-basis:0;
+
+    .table-col {
+        padding: 0.3em;
+        padding-left: 0.6em;
+        padding-right: 0.6em;
+        color: #1a252d;
+        min-width: 18%;
+        justify-content: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+         border-bottom: 1px solid #bcbcbc;
+        &.border-left {
+            border-left: 1px solid @bin-staged-bck;
+        }
+        &.flex-grow {
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+        &.selected {
+            background: @bin-selected-bck;
+            color: white;
+        }
+        &.large {
+            font-size: @font-size-body-medium;
+        }
+        &.small {
+            font-size: @font-size-body-small;
+            border-left: solid 1px #979797;
+        }
+        &.bold {
+            font-weight: bold;
+        }
+        &.disabled {
+            color: #979c9f;
+        }
+        &.remove-border{
+            border-bottom: none;
+        }
+        &.heading {
+            color: @passive-nav-bck;
+        }
+        &.center-align {
+            text-align: center;
+        }
+        &.vertical-align{
+            display: flex;
+            align-items: center;
+        }
+        &.complete {
+            color: green;
+        }
+        &.missing {
+            background: red;
+            color: white;
+            min-width: 30%;
+        }
+        &.extra {
+            background: @bin-staged-bck;
+            color: white;
+            border-left: 1px solid white;
+            min-width: 30%;
+        }
+        &.extraqt {
+            background: @bin-staged-bck;
+            color: white;
+            border-left: 1px solid white;
+        }
+         &.actualqty{
+        background: @bin-staged-bck;
+            color: white;
+            border-left: 1px solid white;
+        }
+        .success-icon {
+            color: green;
+            cursor: pointer;
+            &.disabled {
+                opacity: 0.3;
+                cursor: none;
+            }
+        }
+        .edit-icon {
+            color: @bin-staged-bck;
+            cursor: pointer;
+        }
+    }
+    .table-col-peripheral {
+        min-width: 25%;
+    }
+    .table-col-peripheral-min-width {
+        min-width: 12%;
+    }
+    .table-col-peripheral-scanner-id {
+        min-width: 82%;
+    }
+    .table-col-peripheral-scanner-action {
+        min-width: 18%;
+    }
+    .blue{
+        color: #0f96fe;
+    }
+    .totalWidth{
+        width: 100%;
+    }
+    .text_decoration{
+        text-decoration: underline;
+    }
+    .uomDropDownListWrapper{
+        position: absolute;
+        background: white;
+    }
+}

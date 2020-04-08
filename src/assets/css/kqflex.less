@@ -1,0 +1,270 @@
+@media screen and (max-width: 1366px) {
+    .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // flex:9 0 auto;
+        flex-grow: 9;
+        width: 100%;
+        background: #fff;
+        img {
+            //max-width:100%;
+            //width:100%;
+            max-height: 140px;
+        }
+    }
+}
+
+@media screen and (min-width: 1367px) {
+    .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // flex:9 0 auto;
+        flex-grow: 9;
+        width: 100%;
+        background: #fff;
+        img {
+            //max-width:100%;
+            //width:100%;
+            max-height: 200px;
+        }
+    }
+}
+
+.centerAlign {
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.rightWrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 14%;
+    align-items: center;
+    margin-right: 5%;
+    margin-left: 3%;
+    .product-details-wrapper {
+        border: 1px solid @kq-border-color;
+        margin-bottom: 25px;
+        .view-more-link {
+            //flex:1.5 0 0;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: @view-more-background; // @passive-nav-bck;
+            font-size: 1.8rem;
+            span {
+                color: #fff;
+                margin-right: 10px;
+            }
+            i {
+                color: #fff;
+            }
+        }
+    }
+    .product-details-wrapper,
+    .kq-wrapper {
+        flex: 1 0 0;
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+    }
+}
+
+
+div.ui-keyboard,
+div.ui-widget-content,
+.ui-widget {
+    background: @keyboard-bcolor;
+    padding: 3px;
+    border-radius: 0;
+    .ui-keyboard-preview-wrapper {
+        border: 2px solid @keyboard-bcolor;
+        input {
+            text-align: center;
+        }
+        .ui-widget-content,
+        .ui-corner-all,
+        .ui-keyboard-preview {
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
+            height: 6vh;
+            background: #fff;
+            font-size: 1.6rem;
+            //color:@kq-number;
+        }
+    }
+    .ui-keyboard-keyset,
+    .ui-keyboard-keyset-normal {
+        text-align: center;
+        .ui-keyboard-button,
+        .ui-state-default,
+        .ui-corner-all {
+            background-color: #fff;
+            color: @kq-number;
+            border: 3px solid @keyboard-bcolor;
+            border-radius: 5px;
+            margin: 0;
+            width: 70px;
+            height: 60px;
+            font-weight: normal;
+            span {
+                font-size: @font-size-body-small;
+            }
+        }
+        .ui-keyboard-accept {
+            width: 50%;
+            font-weight: bold;
+            background-color: #4EB648;
+            color: #fff;
+        }
+        .ui-keyboard-cancel {
+            width: 50%;
+            font-weight: bold;
+            background-color: #E93033;
+            color: #fff;
+        }
+    }
+}
+
+.ui-keyboard.custom-keypad {
+    .ui-keyboard-preview-wrapper {
+        input {
+            color: @kq-number;
+        }
+        input:focus {
+            outline: none;
+        }
+    }
+    .ui-keyboard-keyset {
+        button {
+            width: 60px;
+            height: 50px;
+            span {
+                font-size: 1.8rem;
+            }
+            &.ui-keyboard-accept,
+            &.ui-keyboard-cancel {
+                width: 50%;
+                font-weight: 400;
+            }
+            &.ui-keyboard-shift {
+                width: 100px;
+            }
+            &.ui-keyboard-space {
+                width: 100%;
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+.kq-wrapper {
+    background: white;
+    //max-width: 350px;
+    max-width: 250px;
+    display: flex;
+    flex-flow: column;
+    flex-grow: 1;
+    font-family: @font-family-sans-serif;
+    flex-basis: 0;
+    -webkit-box-shadow: 0px 6px 11px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 6px 11px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 6px 11px 3px rgba(0, 0, 0, 0.3);
+    a {
+        flex: 1.5 0 0;
+        //flex-grow:1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid @kq-border-color;
+        font-size: @font-size-body-medium;
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+        &.enable {
+            color: @btn-default-bck;
+        }
+        &.disable {
+            color: @kq-arrow-disabled;
+        }
+    }
+    #textbox {
+        flex: 4 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 3px solid @kq-border-color;
+        border-right: 3px solid @kq-border-color;
+        font-size: @font-size-body-kq;
+        #keyboard {
+            background: #fff;
+            border: none;
+            color: @kq-number;
+            width: 100%;
+            border-radius: 0;
+            padding: 0;
+            text-align: center;
+            &.current-quantity {
+                text-align: right;
+                width: 44%;
+            }
+        }
+        #missing_keyboard {
+            background: #fff;
+            border: none;
+            color: @kq-number;
+            width: 100%;
+            border-radius: 0;
+            padding: 0;
+            text-align: center;
+            &.current-quantity {
+                text-align: right;
+                width: 44%;
+            }
+        }
+        #damaged_keyboard {
+            background: #fff;
+            border: none;
+            color: @kq-number;
+            width: 100%;
+            border-radius: 0;
+            padding: 0;
+            text-align: center;
+            &.current-quantity {
+                text-align: right;
+                width: 44%;
+            }
+        }
+        #good_keyboard {
+            background: #fff;
+            border: none;
+            color: @kq-number;
+            width: 100%;
+            border-radius: 0;
+            padding: 0;
+            text-align: center;
+            &.current-quantity {
+                text-align: right;
+                width: 44%;
+            }
+        }
+        .separator {
+            width: 10%;
+        }
+        .total-quantity {
+            width: 44%;
+        }
+    }
+    box-shadow: 0px 7px 7px 1px @kq-box-shadow;
+}

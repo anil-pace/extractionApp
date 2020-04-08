@@ -1,0 +1,384 @@
+    .main {
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    .disableScanClass {
+        display: none;
+    }
+    .grid-container {
+        position: relative;
+        padding: 100px;
+        display: flex;
+        order: 1;
+        flex-flow: column;
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: 100%;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        .exception-right {
+            width: 100%;
+            padding-left: 20%;
+            display: flex;
+            flex-flow: column;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: center;
+                .gor-exception-align{
+                margin-top:auto;
+                margin-bottom:auto;
+                        .gor-exceptionConfirm-text {
+                            width: 900px;
+                            height: 124px;
+                            font-family: SourceSansPro;
+                            font-size: 56px;
+                            line-height: 1.11;
+                            text-align: center;
+                            color: #f36f36;
+                            margin-top:auto;
+                            margin-bottom:auto;
+                        }
+                        .finish-damaged-barcode {
+                            padding-top: 4em;
+                                &.padding{
+                                    padding:0px;
+                            }
+                            &.align-button{
+                                margin-right:auto;
+                                margin-left:auto;
+                                    width: 25%
+                }
+                        }
+
+                }
+
+            .finish-damaged-barcode {
+                padding-top: 4em;
+                &.padding{
+                padding:0px;
+                }
+            }
+
+        }
+        &.exception {
+            border-top: 1px solid #d1d1d1;
+            background: #f9f9f9;
+        }
+        .exception-head {
+            color: orange;
+            font-size: 5rem;
+            padding-bottom: 1em;
+        }
+        .single-bin {
+            position: absolute;
+            left: 0px;
+            &.udp-flow{
+                top:0;
+            }
+            .bins {
+                height: 200px;
+                width: 200px;
+                  .bin {
+                        animation: blinkborder 2s step-end infinite;
+                        background-image: none;
+                        .pptl {
+                            background-image: none;
+                        }
+                    }
+            }
+            .text {
+                width: 200px;
+                text-align: center;
+                padding-top: 5px;
+                font-size: 1.5em;
+                color: #000;
+            }
+        }
+        .fix-top{
+            top:0;
+        }
+        .gor-fixed-position{
+            position:absolute;
+            top: 15em;
+        }
+        &.audit-reconcilation {
+            padding-left: 250px;
+            padding-right: 250px;
+            .scannerHeader{
+                width: 100%;
+                padding: 18px;
+                .ppsMode{
+                    float: left;
+                    color: #1a252d;
+                    font-size: 2.2rem;
+                    font-weight: 600;
+                }
+                .seatType{
+                    float: right;
+                    color: #1a252d;
+                    font-size: 2.2rem;
+                    font-weight: 600;
+                }
+            }
+        }
+        &.audit-reconcilation-sr{
+                padding-left: 300px;
+                padding-right: 300px;
+                padding-top:70px;
+                }
+        .reconcilation-message {
+            font-size: 4.5rem;
+            &.large {
+                font-size: 7.5rem;
+            }
+        }
+        .main-container {
+            position: relative;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            flex-grow: 1;
+            flex-wrap: nowrap;
+            box-sizing: border-box;
+            width: 100%;
+            overflow: hidden;
+            padding-left: 60px;
+            &.leftJustify{
+                margin-left: 12em;
+            }
+            &.adjust-main-container{
+                padding-left: 160px;
+            }
+            .kq-exception {
+                display: flex;
+                flex-grow: 1;
+                flex-flow: column;
+                align-items: center;
+
+                .kq-header {
+                    color: orange;
+                    font-size: 5rem;
+                    padding-bottom: 1em;
+                }
+            }
+            &.leftJustify{
+                justify-content: left;
+                padding-left: 120px;
+            }
+            &.space-left {
+                padding-left: 80px;
+            }
+            &.exception1 {
+                flex-basis: 40vh;
+                flex-grow: 0;
+                background: #f9f9f9;
+                .productImage,
+                .kq-wrappper,
+                .tabular-data {
+                    margin-right: 20px;
+                }
+
+            }
+            &.displayBlocked{
+                display:block;
+                flex-basis:55vh;
+            }
+             &.exception2 {
+                flex-basis: 15vh;
+                flex-grow: 0;
+                background: #f9f9f9;
+                .productImage,
+                .kq-wrappper,
+                .tabular-data {
+                    margin-right: 20px;
+                }
+            }
+            .over{                              //Fix issue T1561
+                 flex-grow: 1;
+                 flex-basis: 0;
+                 display: flex;
+                 width: 100%;
+                 font-weight:bold;
+                 margin-bottom:-10px;
+                 .table-row {
+                 padding:10.5px;
+                }
+            }
+            .gor-NI-wrapper
+            {
+            width: 69%;
+            margin-left: auto;
+            margin-right: auto;
+            }
+
+            .exception-qty-title{
+                height: 50px;
+                font-family: SourceSansPro;
+                font-size: 40px;
+                text-align: left;
+                color: #4d5055;
+                display:inline;
+                width:53%;
+                float:left
+    }
+    .workingTable{
+    width:600px;
+    background: url(../images/working-table.svg) no-repeat center;
+    }
+    .printImage{
+    width:600px;
+    margin-left:160px;
+    background: url(../images/printer.svg) no-repeat center;
+    }
+
+        }
+        .kq-exception {
+                display: flex;
+                flex-grow: 1;
+                flex-flow: column;
+                align-items: center;
+                .kq-header {
+                    color: orange;
+                    font-size: 5rem;
+                    padding-bottom: 1em;
+                }
+                 .gor-info-text {
+                        color:#4d5055;
+                        font-size: 5rem;
+                        margin-top:auto;
+                        margin-bottom:auto;
+                        text-align: center;
+                        width: 700px
+                    }
+
+
+            }
+
+        .staging-action {
+            margin-top: 50px;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+            flex: 0 0 auto;
+            width: 100%;
+            max-height: 100%;
+        }
+        .packing-Data{
+           
+            .packingData-Text
+            {
+                display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+    line-height: 70px;
+    color: #4D5055;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: left;
+    .textLine1{
+        border-top: 2px solid #1212134f;
+        border-bottom: 1px solid #1212134f;
+        padding-left: 20px;
+    padding-right: 20px;
+    .header{
+        display: inline-block;
+        width:270px;
+    }
+        .textValue{
+            font-weight: 400;
+           
+        }
+    }
+    .textLine2{
+        border-bottom: 2px solid #1212134f;
+        padding-left: 20px;
+    padding-right: 20px;
+    .header{
+        display: inline-block;
+        width:270px;
+    }
+        .textValue{
+            font-weight: 400;
+          
+        }
+    }
+            }
+            .packingData-Button
+            {
+                display: flex;
+
+    justify-content: center;
+            }
+        }
+        
+
+    }
+}
+
+//Scaffolding
+@media screen and (max-width:@container-x-lg-max) {
+    html {
+        font-size: 8px;
+    }
+    .main {
+        .navigation {
+            .active-navigation {
+                .nav-detail {
+                    max-width: 75px;
+                }
+            }
+            .passive-navigation {
+                .nav-detail {
+                    .image {
+                        max-width: 45px;
+                    }
+                }
+            }
+            .sub-message{
+                font-size:20px;
+            }
+        }
+        .grid-container {
+            padding: 50px;
+            //padding: 95px;
+            .single-bin {
+                .bins {
+                    height: 191px;
+                    width: 158px;
+                      .bin {
+                        animation: blinkborder 2s step-end infinite;
+                        background-image: none;
+                        .pptl {
+                            background-image: none;
+                        }
+                    }
+                }
+                .text {
+                    width: 150px;
+                    text-align: center;
+                    padding-top: 3px;
+                    font-size: 1.5em;
+                }
+            }
+            &.audit-reconcilation {
+                padding-left: 100px;
+                padding-right: 100px;
+            .displayStyle{
+            display:none;
+            }
+            }
+            .productTableInfo {
+                .table-wrapper {
+                    td {
+                        padding: .45em 1.5em;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+	"state_data": {
+		"peripheral_data": [],
+		"seat_name": "front_20",
+		"screen_id": "pick_front_missing_or_damaged_item",
+		"screen_version": "1",
+		"notification_list": [],
+		"all_peripheral_status": "true",
+		"exception_type": "missing_or_damaged_item",
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PkF001",
+			"exception_name": "Item Missing/Damaged",
+			"event": "missing_or_damaged_item"
+		}],
+		"pick_quantity": 1,
+		"mode": "pick",
+		"is_idle": false,
+		"seat_type": "front",
+		"time_stamp": "1455795693",
+		"header_msge_list": [],
+		"api_version": "1"
+	}
+}

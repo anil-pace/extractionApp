@@ -1,0 +1,242 @@
+{
+	"state_data": {
+		"peripheral_data": [],
+		"seat_name": "back_20",
+		"screen_id": "pick_back_skip_print",
+		"screen_version": "1",
+		"structure": [2, 4],
+		"notification_list": [],
+		"all_peripheral_status": "true",
+		"exception_type": "skip_print",
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PkB010",
+			"exception_name": "Skip Print",
+			"event": "skip_print"
+		}, {
+			"exception_id": "PkB008",
+			"exception_name": "Override Tote Required",
+			"event": "override_tote_required"
+		}, {
+			"exception_id": "PkB007",
+			"exception_name": "Tote Disassociate",
+			"event": "tote_deassociation"
+		}],
+		"mode": "pick",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1455796184",
+		"ppsbin_list": [{
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "4",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 4],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "3",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 3],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "2",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 2],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [{
+				"product_sku": null,
+				"type": "item",
+				"quantity": 1
+			}],
+			"ppsbin_id": "1",
+			"ppsbin_blue_state": "true",
+			"selected_state": false,
+			"ppsbin_state": "pick_processed",
+			"ppsbin_count": "1",
+			"coordinate": [1, 1],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "8",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 4],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "7",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 3],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "6",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 2],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "5",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 1],
+			"totes_associated": "false"
+		}],
+		"header_msge_list": [{
+			"details": [],
+			"code": "PkB.H.006",
+			"description": "Select Bin to skip print",
+			"level": "info"
+		}],
+		"api_version": "1"
+	}
+}
+
+
+
+------Re-Print -------
+
+
+{
+	"state_data": {
+		"peripheral_data": [],
+		"seat_name": "back_20",
+		"screen_id": "pick_back_reprint_required",
+		"screen_version": "1",
+		"structure": [2, 4],
+		"notification_list": [],
+		"all_peripheral_status": "true",
+		"exception_type": "reprint_required",
+		"logout_allowed": false,
+		"exception_allowed": [{
+			"exception_id": "PkB009",
+			"exception_name": "Reprint Required",
+			"event": "reprint_required"
+		}],
+		"mode": "pick",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1455796315",
+		"ppsbin_list": [{
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "4",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 4],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "3",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 3],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "2",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 2],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "true",
+			"bin_info": [{
+				"product_sku": null,
+				"type": "item",
+				"quantity": 1
+			}],
+			"ppsbin_id": "1",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "pick_allowed",
+			"ppsbin_count": "1",
+			"coordinate": [1, 1],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "8",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 4],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "7",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 3],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "6",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 2],
+			"totes_associated": "false"
+		}, {
+			"ppsbin_blink_state": "false",
+			"bin_info": [],
+			"ppsbin_id": "5",
+			"ppsbin_blue_state": "false",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 1],
+			"totes_associated": "false"
+		}],
+		"header_msge_list": [{
+			"details": [],
+			"code": "PkB.H.005",
+			"description": "Press print button to proceed",
+			"level": "info"
+		}],
+		"api_version": "1"
+	}
+}

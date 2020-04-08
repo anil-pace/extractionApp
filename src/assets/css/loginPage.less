@@ -1,0 +1,515 @@
+// For desktop screen
+.containerLogin {
+    padding:20px;
+    display: grid;    
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(14, 1fr);
+    height: 100vh;
+    header {
+        grid-column: 1 / span 12;
+        grid-row: 1 /span 1;
+        display: flex;
+        .logo{
+            width: 70%;
+            .imgLogo{
+                width:30%;
+            }
+        }
+        .languageDropDown{
+            margin-left:auto;
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+            align-items:center;
+            .selectWrapper{
+                position:relative;
+                width: 100%;
+            .selectLang{
+                width:100%;
+                background:transparent;
+            border:1px solid #6C6C6C;
+            -webkit-appearance: none;
+            padding: 10px;
+            border-radius: 0; 
+            font-size:  3vh; 
+            }
+            .tiltButton{
+                position: absolute;
+                content:" ";
+                right:15px;
+                top:23px;
+                width: 0;
+                height: 0;
+                border: 6px solid transparent;
+                border-color: black transparent transparent transparent;
+            }
+        }
+            .langText{
+                color: #6C6C6C;
+                font-size: 4vh;
+                font-weight: 400;
+                text-align: left;
+                padding: 3%;
+                
+               
+            }
+        }
+        
+    }
+    
+    .subHeading {
+        grid-column: 1 / span 12;
+        grid-row: 2 / span 4;
+        place-self:start center;
+        
+
+        .selectWrapper{
+            position:relative;
+        .selectPPS{
+            width:100%;
+            background:transparent;
+            border:1px solid #6C6C6C;
+            -webkit-appearance: none;
+            padding: 10px;
+            border-radius: 0;
+            position: absolute;  
+            font-size:  3vh;  
+            &.error{
+                border:1px solid red;
+            }
+    }
+    .tiltButton{
+        position: absolute;
+        content:" ";
+        right:15px;
+        top:23px;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-color: black transparent transparent transparent;
+
+    }
+}
+
+
+.langText{
+    color: #000000;
+    font-size: 5vh;
+    font-weight: 400;
+   margin-bottom:5%;
+}
+.ErrorMsg{
+    border:1px solid red;
+    opacity:0.4;            
+    display:none;
+    word-wrap: break-word;
+    span{
+        font-size:2em;
+        color:black;
+        padding-left:1%;
+    }
+    .showErr{
+        display:block;
+    }
+}
+  
+}
+
+
+main {
+    grid-column: 1 / span 12;
+    grid-row: 6 / span 8;
+    display: flex;
+    justify-content: space-between;
+    .keyboardLogin {
+        width:50%;
+        &.alignCenter{
+            margin-left: 12.5%;
+        }
+    .unameContainer{
+        float: right;
+        clear: both;
+        width: 50%;
+       height: 30%;
+        .usernmeText{
+            color: #6C6C6C;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.1px;
+            text-align: left;
+        }
+        .textboxContainer{
+            width: 100%;
+            border: 1px solid #6C6C6C;
+            height: 65px;
+            display: flex;
+            align-items: center; 
+            height: 45%;
+            &.error{
+                border:1px solid red;
+            }
+        .iconPlace{
+            background: url(../images/boi_icons.svg) no-repeat;
+            background-position: -271px -474px;
+            width: 24px;
+            height: 21px;
+            display: inline-block;
+            margin-left: 10px;
+        }   
+
+       
+        input{
+            width: 90%;
+            display: inline-block;
+            background: 0 0;
+            border-radius: unset;
+            border: none;
+            box-shadow: none;
+            color: #A6A6A6;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: left;
+
+        } 
+        }
+    }
+    .passContainer{
+        float: right;
+        clear: both;
+        width: 50%;
+        height: 30%;
+        .usernmeText{
+            color: #6C6C6C;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.1px;
+            text-align: left;
+        }
+        .textboxContainer{
+            width: 100%;
+            border: 1px solid #6C6C6C;
+            height: 65px;
+            display: flex;
+            align-items: center; 
+            height: 45%;
+            &.error{
+                border:1px solid red;
+            }
+        .iconPlace{
+            background: url(../images/boi_icons.svg) no-repeat;
+           background-position: -303px -471px;
+           width: 21px;
+           height: 24px;
+           display: inline-block;
+           margin-left: 10px;
+        }   
+        input{
+            width: 90%;
+            display: inline-block;
+            background: 0 0;
+            border-radius: unset;
+            border: none;
+            box-shadow: none;
+            color: #A6A6A6;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: left;
+
+        } 
+        }
+        .ErrorMsg{    
+            display:none;
+            word-wrap: break-word;
+            span{
+                color: #FF0000;
+                font-size: 2vh;
+                font-weight: 400;
+                text-align: left;
+            }
+        }
+        .showErr{
+            display:block;
+        }
+    }
+    
+    .buttonContainer{
+        float: right;
+        clear: both;
+        width: 50%;
+        height: 25%;
+        display: flex;
+        .loginButton{
+            width: 100%;
+            height: 45%;
+            color: #FFFFFF;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.34px;
+            line-height: 29px;
+            text-align: center;
+            background-color: #D34700;
+            align-self: flex-end;
+        }
+    }
+    }
+    .divider{
+        width:10%;
+        text-align: center;
+
+        .dividerUpper{
+            height: 40%;
+            border: 2px solid #6C6C6C;
+            display: inline-block;
+        }
+        .dividerText{
+            height: 20px;
+    width: auto;
+    text-align: center;
+        }
+        .dividerBelow{
+            height: 40%;
+            border: 2px solid #6C6C6C;
+            display: inline-block;
+        }
+    }
+    
+    .scanIdLogin{
+        width:50%;
+       .outerDiv{
+        height: 85%;
+        width: 55%;
+        position: relative;
+        text-align: center;
+        .rightUpper{
+            height: 23px;
+            width: 23px;
+            position: absolute;
+            border-top-color: #1E95FF;
+            border-right-color: #1E95FF;
+            border-style: solid;
+            border-width: 4px;
+            border-bottom: none;
+            border-left: none;
+            right: 0;
+            &.showErr{
+                border-top-color: red;
+                border-right-color: red;
+            }
+        }
+        
+        .leftUpper{
+            height: 23px;
+            width: 23px;
+            position:absolute;
+            border-top-color: #1E95FF;
+            border-left-color: #1E95FF;
+            border-style: solid;
+            border-width: 4px;
+            border-right:none;
+            border-bottom: none;
+            &.showErr{
+                border-top-color: red;
+                border-left-color:red;
+            }
+        }
+        .rightBelow{
+            height: 23px;
+            width: 23px;
+            bottom: 0;
+            position: absolute;
+            right: 0;
+            border-right-color: #1E95FF;
+            border-bottom-color: #1E95FF;
+            border-style: solid;
+            border-width: 4px;
+            border-left: none;
+            border-top:none;
+            &.showErr{
+                border-right-color: red;
+                border-bottom-color: red;
+            }
+        }
+        .leftBelow{
+            height: 23px;
+            width: 23px;
+            bottom: 0;
+            position: absolute;
+            border-style: solid;
+            border-width: 4px;
+            border-bottom-color: #1E95FF;;
+            border-left-color: #1E95FF;
+            border-top:none;
+            border-right:none;
+            &.showErr{
+                border-bottom-color: red;
+                border-left-color: red;
+            }
+        }
+        .scanLogo{
+            background: url(../images/boi_icons.svg) no-repeat;
+           background-position: -206px -596px;
+           width: 89px;
+           height: 135px;
+           display: inline-block;
+           margin-top: 30%;
+        }
+        
+        .plusIcon{
+                position: absolute;
+                top: 42%;
+                right: 48%;
+                font-size: 40px;
+                color: #1E95FF;
+                &.showErr{
+                    color: red;
+                }
+        }
+
+        .scannerErrorMsg{
+            display:none;
+            word-wrap: break-word;
+            span{
+                font-size:2vh;
+                font-weight: 400;
+                color:red;
+            }
+            &.showErr{
+                display:block;
+            }
+        }
+
+       }
+
+    }
+}
+
+
+    footer {
+        grid-column: 1/ span 12;
+        grid-row: 14 / span 1;
+        place-self: center;
+    }
+
+}
+
+// For mobile screen
+
+@media all and (max-width: 768px) {
+    .containerLogin {
+        grid-template-rows: repeat(15, 1fr);
+        padding: 45px;
+        header {
+            .logo{
+                width: 30%;
+                .imgLogo{
+                    padding-top:20px;
+                    width:100%;
+                }
+            }
+            .languageDropDown{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items:center;
+                .selectWrapper{
+                    .selectLang{
+                        width:100%; 
+                        font-size:  2vh; 
+                        option{
+                            font-size: 2vh;
+                        }
+                    }
+            }
+                .langText{
+                    padding: 3%; 
+                    font-size: 3vh;
+                }
+            }
+            
+        }
+        
+        .subHeading {
+            grid-column: 1 / span 12;
+            grid-row: 2 / span 4;
+            place-self:start center;
+            
+        .selectWrapper{
+            .selectPPS{
+                font-size:  2vh;  
+                option {
+                    width: 50%;
+                }
+            }
+        }
+    
+        .langText{
+            font-size: 3vh;
+            margin-top:5%;
+        } 
+    }
+    
+    main {
+        display: block;
+        grid-row: 5 / span 8;
+        .keyboardLogin {
+            width:100%;
+        .unameContainer{
+           float: none;
+           width: 100%;
+           margin-bottom: 25px;
+           .textboxContainer {
+               padding: 15px;
+           }
+        }
+        .passContainer{
+            float: none;
+            width: 100%;
+            margin-bottom: 40px;
+            .textboxContainer {
+                padding: 15px;
+            }
+        
+        }
+        .buttonContainer{
+            float: none;
+            width: 100%;
+            .loginButton {
+                padding: 15px;
+            }
+        }
+    }
+        .divider{
+            width:100%;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            .dividerUpper{
+                width: 100%;
+            }
+            .dividerText{
+               padding: 0 10px 10px 10px;
+               margin-top: -15px;
+               font-size: 2vh;
+            }
+            .dividerBelow{
+                width: 100%;
+            }
+        }
+        
+        .scanIdLogin{
+            width:100%;
+            display: flex;
+            justify-content: center;
+           .outerDiv{
+               width: 35%;
+           }
+    
+        }
+    }  
+    footer {
+        grid-row: 16 / span 1;
+    }  
+    }
+}

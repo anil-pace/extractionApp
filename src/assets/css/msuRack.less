@@ -1,0 +1,204 @@
+// 1px = 0.92 vh for height
+//1px =  0.520 vw for width
+
+.drawRack {
+  display: flex;
+  flex-flow: column;
+  border-top: 0.625vw solid #939598;
+  margin-bottom: 20px;
+  max-width: 22vw; //25vw;
+  width: 420px;
+
+  .rackRow {
+    //border: 0.15vw solid #939598;
+    //height: 7.2vh;
+    display: flex;
+    flex-basis: 0;
+    //flex: 0 1 auto;
+    //flex-grow:1;
+    flex-direction: row;
+    /* &:first-child {
+                border-top: 0.625vw solid #939598;
+            }*/
+    border-left: 0.625vw solid #939598;
+    border-right: 0.625vw solid #939598;
+    border-bottom: 0.312vw solid #939598;
+    border-top: none;
+
+    .rackSlot {
+      &:first-child {
+        border-left: none;
+      }
+      &:last-child {
+        border-right: none;
+      }
+      border: 0.16vw solid #939598;
+      border-bottom: none;
+      border-top: none;
+      //width: 3.66vw;
+      height: auto; //6.9vh
+      display: flex;
+      background: #ebebeb;
+      .singleslot {
+        font-size: 2rem;
+        font-weight: bold;
+        //width: 4.2vw;
+        height: inherit - 0.5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .activeSlot {
+        background: #6d6d6d;
+        color: #ffffff;
+        //font-size: 3em;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        // padding: 0.5rem 1rem;
+      }
+    }
+    &:last-child {
+      border-bottom: 0.16vw solid #939598;
+    }
+  }
+  .lastRow {
+    //height: 15%;
+    flex: 0 1 10vh;
+    border: 0.625vw solid #939598;
+    border-top: none;
+    border-bottom: none;
+  }
+  &.drawers {
+    margin-left: 5%;
+    width: 20%;
+    border: 3px solid #979797;
+    height: 120px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+
+    .rackRow {
+      border: none;
+      border-top: 3px solid #979797;
+      &:first-child {
+        border-top: none;
+      }
+    }
+  }
+}
+.specialContainer {
+  margin-left: 25%;
+  margin-top: 2%;
+  overflow: auto;
+  display: table;
+  width: 350px;
+  .orientation {
+    width: 350px;
+    height: 330px;
+    display: table-row;
+    float: left;
+  }
+  .stackSize {
+    border: solid 2px #cccccc;
+    width: 350px;
+    height: 76px;
+    padding: 13px;
+    font-family: SourceSansPro;
+    font-size: 28px;
+    font-weight: bold;
+    color: #666666;
+    box-sizing: border-box;
+    float: left;
+    display: table-row;
+    .stackicons {
+      width: 40px;
+      height: 50px;
+      display: inline-block;
+      background: url(../images/boi_icons.svg) no-repeat;
+      float: left;
+      &.nestingicon {
+        background-position: -10px -608px;
+      }
+      &.stackingicon {
+        background-position: -61px -608px;
+      }
+      &.nonstackingicon {
+        background-position: -109px -608px;
+      }
+    }
+
+    .stackText {
+      display: inline-block;
+      margin-left: 40px;
+    }
+    .stackCount {
+      float: right;
+    }
+  }
+  .fragile {
+    width: 350px;
+    height: 76px;
+    float: left;
+    background-color: #ec6520;
+    padding: 15px;
+    box-sizing: border-box;
+
+    display: table-row;
+
+    .fragileicons {
+      width: 44px;
+      height: 44px;
+      display: inline-block;
+      background: url(../images/boi_icons.svg);
+      background-position: -167px -608px;
+      float: left;
+    }
+    .fragileText {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: left;
+      color: #ffffff;
+      display: inline-block;
+      margin-left: 40px;
+      line-height: 1.6;
+    }
+  }
+  .heavyItemContainer {
+    border: 2px solid #cccccc;
+    position: absolute;
+    width: 350px;
+    height: 80px;
+    margin-top: 6em;
+    z-index: -1;
+    .itemLogo {
+      padding-left: 5px;
+    }
+
+    .itemInfo {
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: bolder;
+      font-size: 24px;
+      color: #575757;
+      padding: 15px 10px 10px 45px;
+    }
+  }
+  .containerHide {
+    display: none;
+  }
+}
+
+.slot-text {
+  margin-left: auto;
+}
+.slot-icon {
+  align-self: flex-start;
+  margin-left: auto;
+  background: url(../images/boi_icons.svg) no-repeat;
+  &.hanger-icon {
+    background-position: -54px -576px;
+    width: 40px;
+    height: 21px;
+  }
+}

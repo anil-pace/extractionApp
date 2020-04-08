@@ -1,0 +1,419 @@
+{
+	"state_data": {
+		"seat_name": "back_10",
+		"screen_id": "put_back_stage",
+		"screen_version": "1",
+		"notification_list": [{
+			"level": "info",
+			"code": "PtB.I.013",
+			"details": [],
+			"description": "Exception cancelled successfully"
+		}],
+		"all_peripheral_status": "true",
+		"api_version": "1",
+		"peripheral_data": [],
+		"logout_allowed": true,
+		"exception_allowed": [{
+			"exception_id": "PtB004",
+			"exception_name": "Extra Items In Bin",
+			"event": "extra_items"
+		}, {
+			"exception_id": "PtB003",
+			"exception_name": "Item Damaged",
+			"event": "item_damaged"
+		}, {
+			"exception_id": "PtB002",
+			"exception_name": "Item Over Sized",
+			"event": "item_oversized"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1455628394",
+		"ppsbin_list": [{
+			"bin_info": [],
+			"ppsbin_id": "4",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 4]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "3",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 3]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "2",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 2]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "1",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 1]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "8",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 4]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "7",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 3]
+		}, {
+			"bin_info": [{
+				"product_sku": "2001",
+				"type": "item",
+				"quantity": 5216
+			}, {
+				"product_sku": "2001",
+				"type": "item",
+				"quantity": 5562
+			}],
+			"ppsbin_id": "6",
+			"selected_state": false,
+			"ppsbin_state": "staged",
+			"ppsbin_count": "5216",
+			"coordinate": [2, 2]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "5",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 1]
+		}],
+		"header_msge_list": [{
+			"level": "info",
+			"code": "PtB.H.001",
+			"details": [],
+			"description": "Stage Bin or Scan Entity"
+		}],
+		"structure": [2, 4]
+	}
+}
+
+{
+	"state_data": {
+		"seat_name": "back_10",
+		"screen_id": "put_back_scan_tote",
+		"screen_version": "1",
+		"structure": [2, 4],
+		"notification_list": [{
+			"details": [],
+			"code": "Common.000",
+			"description": "Test",
+			"level": "info"
+		}],
+		"logout_allowed": "false",
+		"exception_allowed": [{
+			"exception_id": "Common000",
+			"exception_name": "Reset Scanner"
+		}],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"time_stamp": "1449827300",
+		"ppsbin_list": [{
+			"bin_info": [],
+			"ppsbin_id": "4",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 1]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "3",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 2]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "2",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 3]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "1",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 4]
+		},
+		{
+			"bin_info": [],
+			"ppsbin_id": "4",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 5]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "3",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 6]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "2",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 7]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "1",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 8]
+		},
+		 {
+			"bin_info": [],
+			"ppsbin_id": "8",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 1]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "7",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 2]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "6",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 3]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "5",
+			"selected_state": "false",
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 4]
+		}],
+		"header_msge_list": [{
+			"details": [],
+			"code": "Common.000",
+			"description": "test",
+			"level": "info"
+		}],
+		"api_version": "1"
+	}
+}
+
+
+
+
+{
+	"state_data": {
+		"seat_name": "back_10",
+		"screen_id": "put_back_scan",
+		"screen_version": "1",
+		"notification_list": [{
+			"level": "info",
+			"code": "PtB.I.006",
+			"details": [],
+			"description": "Entity scan successful."
+		}],
+		"scan_details": {
+			"current_qty": "1",
+			"total_qty": "0",
+			"kq_allowed": true
+		},
+		"item_uid": "176f1f8d-f3eb-48bc-a725-e51dd1a9f6c7",
+		"api_version": "1",
+		"peripheral_data": [],
+		"logout_allowed": false,
+		"exception_allowed": [],
+		"mode": "put",
+		"is_idle": false,
+		"seat_type": "back",
+		"product_info": [
+			[{
+				"product_sku": "2001",
+				"display_data": [{
+					"locale": "en-US",
+					"display_name": "product_sku"
+				}]
+			}],
+			[{
+				"display_data": [{
+					"locale": "en-US",
+					"display_name": "product_local_image_url"
+				}],
+				"product_local_image_url": "https://139.162.56.251/product_images/176f1f8d-f3eb-48bc-a725-e51dd1a9f6c7.png"
+			}],
+			[{
+				"display_data": [{
+					"locale": "en-US",
+					"display_name": "product_barcodes"
+				}],
+				"product_barcodes": ["2001"]
+			}]
+		],
+		"time_stamp": "1455630674",
+		"ppsbin_list": [{
+			"bin_info": [],
+			"ppsbin_id": "4",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 4]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "3",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 3]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "2",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 2]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "1",
+			"selected_state": true,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [1, 1]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "8",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 4]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "7",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 3]
+		}, {
+			"bin_info": [{
+				"product_sku": "2001",
+				"type": "item",
+				"quantity": 5216
+			}, {
+				"product_sku": "2001",
+				"type": "item",
+				"quantity": 5562
+			}],
+			"ppsbin_id": "6",
+			"selected_state": false,
+			"ppsbin_state": "staged",
+			"ppsbin_count": "5216",
+			"coordinate": [2, 2]
+		}, {
+			"bin_info": [],
+			"ppsbin_id": "5",
+			"selected_state": false,
+			"ppsbin_state": "empty",
+			"ppsbin_count": "0",
+			"coordinate": [2, 1]
+		}],
+		"all_peripheral_status": "true",
+		"header_msge_list": [{
+			"level": "info",
+			"code": "PtB.H.002",
+			"details": [],
+			"description": "Place Entity in Bin and Press PPTL"
+		}],
+		"structure": [2, 4]
+	}
+}
+
+ {
+ 	"state_data": {
+ 		"reconciliation": [{
+ 			"product_sku": "2001",
+ 			"actual_quantity": 2,
+ 			"expected_quantity": 3
+ 		}, {
+ 			"product_sku": "2002",
+ 			"actual_quantity": 0,
+ 			"expected_quantity": 5
+ 		}],
+ 		"exception_allowed": [],
+ 		"notification_list": [],
+ 		"seat_name": "back_10",
+ 		"screen_id": "put_back_tote_close",
+ 		"screen_version ": "1",
+ 		"mode": "put",
+ 		"is_idle": false,
+ 		"logout_allowed": "false",
+ 		"seat_type": "back",
+ 		"time_stamp": "1452370620",
+ 		"header_msge_list": [{
+ 			"details": [],
+ 			"code": "PtB.H.003",
+ 			"description": "Are you sure you want to close Tote",
+ 			"level": "info"
+ 		}],
+ 		"api_version": "1",
+ 		"tote_id": "TOTEAB"
+ 	}
+ }
+
+ {
+	"state_data": {
+		"seat_name": "back_10",
+		"screen_id": "put_back_invalid_tote_item",
+		"screen_version": "1",
+		"notification_list": [{
+			"details": [],
+			"code": "PtB.E.015",
+			"description": "Please put it in IRT bin and confirm",
+			"level": "error"
+		}],
+		"exception_allowed": [],
+		"all_peripheral_status": "true",
+		"item_uid": "973b2132-b682-45f4-aac9-a3d01ec594d8",
+		"mode": "put",
+		"is_idle": false,
+		"logout_allowed": "false",
+		"seat_type": "back",
+		"time_stamp": "1452534790",
+		"header_msge_list": [{
+			"details": [51],
+			"code": "PtB.H.006",
+			"description": "3 excess quantity of item found in tote",
+			"level": "error"
+		}],
+		"api_version": "1",
+		"exception_msg" :[{
+			"details": [51],
+			"code": "PtB.H.006",
+			"description": "3 excess quantity of item found in tote",
+			"level": "info"
+
+		}]
+	}
+}

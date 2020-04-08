@@ -1,0 +1,62 @@
+.binsFlexWrapperContainer {
+  position: relative;
+  top: 8%;
+  margin-left: 15%;
+  width: 85%;
+
+  .workingTableFlex {
+    width: 600px;
+    float: left;
+    height: 500px;
+    background: url(../images/working-table.svg) no-repeat center;
+  }
+}
+
+.reprintIcon {
+  position: absolute;
+  left: 0;
+  top: 320px;
+  height: 150px;
+  width: 150px;
+  box-sizing: border-box;
+  border: 4px solid #9d9fa2;
+}
+
+.palletWrapper {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-right: 5%;
+  .palletHeader {
+    font-size: 30px;
+    font-weight: bold;
+    color: #515151;
+    line-break: break-all;
+    display: flex;
+    flex-flow: row;
+    width: 80%;
+    margin-left: 10%;
+    align-items: center;
+    .iconPlaceHolder {
+      background: url(../images/infoIcon.svg) no-repeat;
+      width: 52px;
+      height: 52px;
+      min-width: 18%;
+    }
+    .textPlaceHolder {
+      margin-left: 5%;
+    }
+  }
+}
+
+.ara-pick-loader {
+  z-index: -1;
+}
+.palletWrapper .palletImage {
+  height: 100%;
+  width: 100%;
+}
