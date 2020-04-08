@@ -460,6 +460,7 @@ var serverMessages = {
     "Search.H.001": "Scan entity in slot and confirm",
     "Search.H.002": "Move {0} excess item to IRT bin and confirm",
     "Search.H.003": "Move {0} excess item to IRT bin and scan IRT bin",
+    "x.y.z": "Wait for MTU",
 
     //location_required
     "PkF.S.001": {

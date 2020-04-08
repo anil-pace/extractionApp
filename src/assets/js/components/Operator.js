@@ -11,6 +11,7 @@ var appConstants = require('../constants/appConstants');
 var Spinner = require('./Spinner/Overlay');
 var SystemIdle = require('./SystemIdle');
 var MobileSystemIdle = require('./MobileSystemIdle');
+var MtuSubsystem = require('./MtuSubsystem');
 
 
 function getState(){
@@ -61,9 +62,12 @@ var Operator = React.createClass({
       case appConstants.PRE_PUT:
           this._currentSeat = <PrePut navMessagesJson={this.state.navMessages}/>;   
           break;
-          case appConstants.SEARCH:
+      case appConstants.SEARCH:
           this._currentSeat = <Search navMessagesJson={this.state.navMessages}/>;   
-          break;             
+          break; 
+      case appConstants.MTU_SUBSYSTEM:
+            this._currentSeat = <MtuSubsystem navMessagesJson={this.state.navMessages}/>;   
+            break;            
       default:
         return true; 
       }

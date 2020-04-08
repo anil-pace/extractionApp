@@ -23,6 +23,7 @@ var appConstants = {
   PICK_BACK: "pick_back",
   PICK_FRONT: "pick_front",
   PUT_BACK: "put_back",
+  MTU_SUBSYSTEM: "mtu_subsytem",
   PUT_FRONT: "put_front",
   PICK: "pick",
   CLOSE_MODAL: "CLOSE_MODAL",
