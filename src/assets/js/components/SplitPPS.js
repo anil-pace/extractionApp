@@ -128,39 +128,39 @@ var SplitPPS = React.createClass({
 
 				}
 				else if (data[k] === allresourceConstants.BIN_GROUP_CENTER || data[k] === allresourceConstants.BIN_GROUP_CENTER_TOP) {
-					if (dockedGroup.indexOf(k) >= 0) {
-						centerCol.push(<li key={k} style={style} className="dockedCont">
-							<span className={this.props.ruleset === 'withBorder' ? "" : "docked"}>{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
-					else if (undockAwaited.indexOf(k) >= 0) {
-						centerCol.push(<li key={k} style={style} className="undockedCont">
-							<span >{this.props.displayBinId ? k : null}</span>
-							<span style={{ backgroundColor: binColors[k] }} className="undock below">
-							</span>
-						</li>);
-					}
-					else if (printReady.indexOf(k) >= 0) {
-						centerCol.push(<li key={k} style={style} className="printReadyCont">
-							<span >{this.props.displayBinId ? k : null}</span>
-							<span className="printReady below">
-							</span>
-						</li>);
-					}
-					else if (wrongUndock.indexOf(k) >= 0) {
-						centerCol.push(<li key={k} style={style} className={"wrongUndockCont"}>
-							<span className="wrongUndock left">{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
-					else if (selectedBin.indexOf(k) >= 0) {
-						centerCol.push(<li key={k} style={style} className={"selectedbinCont"}>
-							<span className="selectedbin">{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
+					// if (dockedGroup.indexOf(k) >= 0) {
+					// 	centerCol.push(<li key={k} style={style} className="dockedCont">
+					// 		<span className={this.props.ruleset === 'withBorder' ? "" : "docked"}>{this.props.displayBinId ? k : null}</span>
+					// 	</li>);
+					// }
+					// else if (undockAwaited.indexOf(k) >= 0) {
+					// 	centerCol.push(<li key={k} style={style} className="undockedCont">
+					// 		<span >{this.props.displayBinId ? k : null}</span>
+					// 		<span style={{ backgroundColor: binColors[k] }} className="undock below">
+					// 		</span>
+					// 	</li>);
+					// }
+					// else if (printReady.indexOf(k) >= 0) {
+					// 	centerCol.push(<li key={k} style={style} className="printReadyCont">
+					// 		<span >{this.props.displayBinId ? k : null}</span>
+					// 		<span className="printReady below">
+					// 		</span>
+					// 	</li>);
+					// }
+					// else if (wrongUndock.indexOf(k) >= 0) {
+					// 	centerCol.push(<li key={k} style={style} className={"wrongUndockCont"}>
+					// 		<span className="wrongUndock left">{this.props.displayBinId ? k : null}</span>
+					// 	</li>);
+					// }
+					// else if (selectedBin.indexOf(k) >= 0) {
+					// 	centerCol.push(<li key={k} style={style} className={"selectedbinCont"}>
+					// 		<span className="selectedbin">{this.props.displayBinId ? k : null}</span>
+					// 	</li>);
+					// }
 					
-					else {
-						centerCol.push(<li className="noBackGround" key={k} style={style}><span>{this.props.displayBinId ? k : null}</span></li>);
-					}
+					// else {
+						centerCol.push(<li key={k} style={{"backgroundColor": binColors[k], ...style}}><span>{this.props.displayBinId ? k : null}</span></li>);
+					//}
 
 				}
 
