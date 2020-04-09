@@ -570,103 +570,35 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 })
 
 var putSeatData = function(data) {
+
+  /* working data for waiting for MTU / select MTU point */
   data.state_data = {
     "seat_name": "back_10_A",
-    "notification_list": [{
-      "level": "info",
-      "code": "UdpF.I.005",
-      "details": ["Rollcage"],
-      "description": "Tote docked successfully"
-    }],
-    "dock_index": 0,
-    "exception_allowed": [{
-      "event": "reprint_packlist",
-      "exception_id": "PkC001",
-      "details": [],
-      "exception_name": "Reprint Packlist"
-    }],
-    "roll_cage_flow": true,
-    "printer_info": {
-      "printer_visible": true,
-      "printer_border_color": "yellow"
-    },
-    "bin_coordinate_plotting": true,
-    "event": "undefined",
+    "exception_allowed": [],
     "screen_id": "pick_front_one_step_scan",
     "dock_station_list": [{
       "status": "idle",
       "dock_station_label": "2",
-      "direction": "center-top"
+      "direction": "top",
+      "ppsbin_light_color": "blue"
     }, {
       "status": "idle",
       "dock_station_label": "4",
-      "direction": "center-top"
+      "direction": "top",
+      "ppsbin_light_color": "green"
     }, {
       "status": "print_ready",
       "dock_station_label": "3",
-      "direction": "center-top"
+      "direction": "top",
+      "ppsbin_light_color": "green"
     }, {
       "status": "docked",
       "dock_station_label": "1",
-      "direction": "center-top"
+      "direction": "top",
+      "ppsbin_light_color": "orange"
     }],
-    "wrong_undock": [],
-    "logout_allowed": true,
     "seat_type": "front",
-    "time_stamp": "2019-11-15T06:31:13Z",
-    "api_version": "1",
-    "group_info": {
-      "1": "left",
-      "2": "left",
-      "3": "left",
-      "4": "left",
-      "5": "right",
-      "6": "right",
-      "7": "right",
-      "8": "right"
-    },
-    "undock_awaited": {
-      "3": "left"
-    },
-    "operator_orientation": "0",
-    "undock_header": {
-      "level": "info",
-      "code": "Common.H.003",
-      "details": ["rollcage"],
-      "description": "Undock Load Unit"
-    },
-    "undock_actions": [{
-      "level": "info",
-      "code": "Common.A.003",
-      "details": [],
-      "description": "Scan location/Press PPTL"
-    }],
-    "error_popup_disabled": false,
-    "user_loggedin": "admin",
-    "dock_actions": [{
-      "level": "info",
-      "code": "Common.A.001",
-      "details": ["rollcage"],
-      "description": "Scan Tote"
-    }, {
-      "level": "info",
-      "code": "Common.A.003",
-      "details": [],
-      "description": "Scan location/Press PPTL"
-    }],
-    "screen_version": "1",
-    "undock_index": 0,
-    "docked": {
-      "1": "left"
-    },
     "mode": "pick",
-    "is_idle": false,
-    "dock_header": {
-      "level": "info",
-      "code": "Common.H.002",
-      "details": ["rollcage"],
-      "description": "Dock Load Unit"
-    },
     "header_msge_list": [{
       "level": "info",
       "code": "Mtu.E.000",
@@ -674,6 +606,10 @@ var putSeatData = function(data) {
       "description": "Dock/Undock Load Unit"
     }]
   }
+
+  /*            EENN DD    */
+
+  
   // data.state_data = {
   //   "seat_name": "front_2",
   //   "notification_list": [],

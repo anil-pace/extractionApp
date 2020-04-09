@@ -5427,7 +5427,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
           rightBins.push(bin)
         } else if (bin["direction"] === "center") {
           centerBins.push(bin)
-        } else if (bin["direction"] === "center-top") {
+        } else if (bin["direction"] === "top") {
           centerTopBins.push(bin)
         }
       })
@@ -6049,19 +6049,19 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
         break
 
       case appConstants.PICK_FRONT_ONE_STEP_SCAN:
-        data["PickFrontExceptionData"] = this.getExceptionData()
-        data["PickFrontExceptionStatus"] = this.getExceptionStatus()
+       // data["PickFrontExceptionData"] = this.getExceptionData()
+       // data["PickFrontExceptionStatus"] = this.getExceptionStatus()
         data["PickFrontNavData"] = this.getNavData()
         data["PickFrontServerNavData"] = this.getServerNavData()
         //data["PickFrontNotification"] = this.getNotificationData()
         data["PickFrontScreenId"] = this.getScreenId()
-        data["groupOrientation"] = this._getBinMapOrientation()
+        //data["groupOrientation"] = this._getBinMapOrientation()
 
         data["udpBinMapDetails"] = this.getDockStationList()
-        data["DockedGroup"] = this.getDockedList()
-        data["UndockAwaited"] = this.getUndockAwaitedList()
-        data["PrintReady"] = this.getPrintReadyList()
-        data["WrongUndock"] = this.getWrongUndockList()
+        // data["DockedGroup"] = this.getDockedList()
+        // data["UndockAwaited"] = this.getUndockAwaitedList()
+        // data["PrintReady"] = this.getPrintReadyList()
+        // data["WrongUndock"] = this.getWrongUndockList()
         // data["selectedTotes"] = this.getSelectedTotes()
         // data["PickCurrentBin"] = this._getSelectedBinID()
         // data["PreviousDetails"] = this.getPreviousPickDetails()

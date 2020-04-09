@@ -1981,13 +1981,14 @@ var PickFront = React.createClass({
                     QLCodeDetails={true}
                   /> */}
                   <SplitPPS
-                    orientation={this.state.groupOrientation}
                     displayBinId={true}
                     groupInfo={this.state.udpBinMapDetails}
-                    docked={this.state.DockedGroup}
-                    printReady={this.state.PrintReady}
-                    wrongUndock={this.state.WrongUndock}
-                    undockAwaited={this.state.UndockAwaited}
+                    //orientation={this.state.groupOrientation}
+                    
+                    // docked={this.state.DockedGroup}
+                    // printReady={this.state.PrintReady}
+                    // wrongUndock={this.state.WrongUndock}
+                    // undockAwaited={this.state.UndockAwaited}
                   />
                 </div>
               </div>

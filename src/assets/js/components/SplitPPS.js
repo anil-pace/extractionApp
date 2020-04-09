@@ -8,13 +8,13 @@ var SplitPPS = React.createClass({
 		var data = Object.assign({}, (groupInfo || {}));
 		var binColors = Object.assign({}, (this.props.groupInfo.ppsBinIdColors || {}));
 		var leftCol = [],
-			dockedGroup = this.props.docked || [],
-			undockAwaited = this.props.undockAwaited || [],
-			printReady = this.props.printReady || [],
-			wrongUndock = this.props.wrongUndock || [],
-			selectedBin = this.props.selectedbin || [],
+			// dockedGroup = this.props.docked || [],
+			// undockAwaited = this.props.undockAwaited || [],
+			// printReady = this.props.printReady || [],
+			// wrongUndock = this.props.wrongUndock || [],
+			// selectedBin = this.props.selectedbin || [],
 			rightCol = [], centerCol = [], maxBlockCount = 0, maxLeftCount = 0, maxRightCount = 0, maxBlockHeight = 0, maxCenterCount = 0, style = null, maxWidth = 0;
-		dockedGroup = dockedGroup.filter(val => !selectedBin.includes(val));
+		//dockedGroup = dockedGroup.filter(val => !selectedBin.includes(val));
 		for (var key in data) {
 			if (data[key] === allresourceConstants.BIN_GROUP_LEFT) {
 				maxLeftCount++;
@@ -50,84 +50,85 @@ var SplitPPS = React.createClass({
 				'padding': padding
 			})
 		}
-		var dockedclassName = this.props.ruleset === 'withBorder' ? "dockedCont bottomBorderLeft" : "dockedCont";
-		var undockclassName = this.props.ruleset === 'withBorder' ? "undockedCont bottomBorderLeft" : "undockedCont";
-		var printReadyclassName = this.props.ruleset === 'withBorder' ? "printReadyCont bottomBorderLeft" : "printReadyCont";
-		var wrongUndockclassName = this.props.ruleset === 'withBorder' ? "wrongUndockCont bottomBorderLeft" : "wrongUndockCont";
-		var selectedbinclassName = this.props.ruleset === 'withBorder' ? "selectedbinCont bottomBorderLeft" : "selectedbin";
+		// var dockedclassName = this.props.ruleset === 'withBorder' ? "dockedCont bottomBorderLeft" : "dockedCont";
+		// var undockclassName = this.props.ruleset === 'withBorder' ? "undockedCont bottomBorderLeft" : "undockedCont";
+		// var printReadyclassName = this.props.ruleset === 'withBorder' ? "printReadyCont bottomBorderLeft" : "printReadyCont";
+		// var wrongUndockclassName = this.props.ruleset === 'withBorder' ? "wrongUndockCont bottomBorderLeft" : "wrongUndockCont";
+		// var selectedbinclassName = this.props.ruleset === 'withBorder' ? "selectedbinCont bottomBorderLeft" : "selectedbin";
 
-		var dockedRightclassName = this.props.ruleset === 'withBorder' ? "dockedCont bottomBorderRight" : "dockedCont";
-		var undockRigtclassName = this.props.ruleset === 'withBorder' ? "undockedCont bottomBorderRight" : "undockedCont";
-		var printReadyRigtclassName = this.props.ruleset === 'withBorder' ? "printReadyCont bottomBorderRight" : "printReadyCont";
-		var wrongUndockRightclassName = this.props.ruleset === 'withBorder' ? "wrongUndockCont bottomBorderRight" : "wrongUndockCont";
-		var selectedbinRightclassName = this.props.ruleset === 'withBorder' ? "selectedbinCont bottomBorderRight" : "selectedbin";
+		// var dockedRightclassName = this.props.ruleset === 'withBorder' ? "dockedCont bottomBorderRight" : "dockedCont";
+		// var undockRigtclassName = this.props.ruleset === 'withBorder' ? "undockedCont bottomBorderRight" : "undockedCont";
+		// var printReadyRigtclassName = this.props.ruleset === 'withBorder' ? "printReadyCont bottomBorderRight" : "printReadyCont";
+		// var wrongUndockRightclassName = this.props.ruleset === 'withBorder' ? "wrongUndockCont bottomBorderRight" : "wrongUndockCont";
+		// var selectedbinRightclassName = this.props.ruleset === 'withBorder' ? "selectedbinCont bottomBorderRight" : "selectedbin";
 
 		for (var k in data) {
 			if (data.hasOwnProperty(k)) {
 
-				if (data[k] === allresourceConstants.BIN_GROUP_LEFT) {
+				// if (data[k] === allresourceConstants.BIN_GROUP_LEFT) {
 
-					if (dockedGroup.indexOf(k) >= 0) {
-						leftCol.push(<li key={k} style={style} className={dockedclassName}>
-							<span className={this.props.ruleset === 'withBorder' ? "" : "docked"}>{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
-					else if (undockAwaited.indexOf(k) >= 0) {
-						leftCol.push(<li key={k} style={style} className={undockclassName}>
-							<span style={{ backgroundColor: binColors[k] }} className="undock left">&nbsp;</span>
-						</li>);
-					}
-					else if (printReady.indexOf(k) >= 0) {
-						leftCol.push(<li key={k} style={style} className={printReadyclassName}>
-							<span className="printReady left">&nbsp;</span>
-						</li>);
-					}
-					else if (wrongUndock.indexOf(k) >= 0) {
-						leftCol.push(<li key={k} style={style} className={wrongUndockclassName}>
-							<span className="wrongUndock left">{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
-					else if (selectedBin.indexOf(k) >= 0) {
-						leftCol.push(<li key={k} style={style} className={selectedbinclassName}>
-							<span className="selectedbin">{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
-					else {
-						leftCol.push(<li key={k} style={style} className={this.props.ruleset === 'withBorder' ? "bottomBorderLeft padding noBackGround" : "padding noBackGround"} ><span>{this.props.displayBinId ? k : null}</span></li>);
-					}
+				// 	if (dockedGroup.indexOf(k) >= 0) {
+				// 		leftCol.push(<li key={k} style={style} className={dockedclassName}>
+				// 			<span className={this.props.ruleset === 'withBorder' ? "" : "docked"}>{this.props.displayBinId ? k : null}</span>
+				// 		</li>);
+				// 	}
+				// 	else if (undockAwaited.indexOf(k) >= 0) {
+				// 		leftCol.push(<li key={k} style={style} className={undockclassName}>
+				// 			<span style={{ backgroundColor: binColors[k] }} className="undock left">&nbsp;</span>
+				// 		</li>);
+				// 	}
+				// 	else if (printReady.indexOf(k) >= 0) {
+				// 		leftCol.push(<li key={k} style={style} className={printReadyclassName}>
+				// 			<span className="printReady left">&nbsp;</span>
+				// 		</li>);
+				// 	}
+				// 	else if (wrongUndock.indexOf(k) >= 0) {
+				// 		leftCol.push(<li key={k} style={style} className={wrongUndockclassName}>
+				// 			<span className="wrongUndock left">{this.props.displayBinId ? k : null}</span>
+				// 		</li>);
+				// 	}
+				// 	else if (selectedBin.indexOf(k) >= 0) {
+				// 		leftCol.push(<li key={k} style={style} className={selectedbinclassName}>
+				// 			<span className="selectedbin">{this.props.displayBinId ? k : null}</span>
+				// 		</li>);
+				// 	}
+				// 	else {
+				// 		leftCol.push(<li key={k} style={style} className={this.props.ruleset === 'withBorder' ? "bottomBorderLeft padding noBackGround" : "padding noBackGround"} ><span>{this.props.displayBinId ? k : null}</span></li>);
+				// 	}
 
-				}
-				else if (data[k] === allresourceConstants.BIN_GROUP_RIGHT) {
-					if (dockedGroup.indexOf(k) >= 0) {
-						rightCol.push(<li key={k} style={style} className={dockedRightclassName}>
-							<span className={this.props.ruleset === 'withBorder' ? "" : "docked"}>{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
-					else if (undockAwaited.indexOf(k) >= 0) {
-						rightCol.push(<li key={k} style={style} className={undockRigtclassName}>
-							<span style={{ backgroundColor: binColors[k] }} className="undock right">&nbsp;</span>
-						</li>);
-					}
-					else if (printReady.indexOf(k) >= 0) {
-						rightCol.push(<li key={k} style={style} className={printReadyRigtclassName}>
-							<span className="printReady right">&nbsp;</span>
-						</li>);
-					} else if (wrongUndock.indexOf(k) >= 0) {
-						rightCol.push(<li key={k} style={style} className={wrongUndockRightclassName}>
-							<span className="wrongUndock right">{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
-					else if (selectedBin.indexOf(k) >= 0) {
-						rightCol.push(<li key={k} style={style} className={selectedbinRightclassName}>
-							<span className="selectedbin">{this.props.displayBinId ? k : null}</span>
-						</li>);
-					}
-					else {
-						rightCol.push(<li key={k} style={style} className={this.props.ruleset === 'withBorder' ? "bottomBorderRight padding noBackGround" : "padding noBackGround"} ><span>{this.props.displayBinId ? k : null}</span></li>);
-					}
+				// }
+				// else if (data[k] === allresourceConstants.BIN_GROUP_RIGHT) {
+				// 	if (dockedGroup.indexOf(k) >= 0) {
+				// 		rightCol.push(<li key={k} style={style} className={dockedRightclassName}>
+				// 			<span className={this.props.ruleset === 'withBorder' ? "" : "docked"}>{this.props.displayBinId ? k : null}</span>
+				// 		</li>);
+				// 	}
+				// 	else if (undockAwaited.indexOf(k) >= 0) {
+				// 		rightCol.push(<li key={k} style={style} className={undockRigtclassName}>
+				// 			<span style={{ backgroundColor: binColors[k] }} className="undock right">&nbsp;</span>
+				// 		</li>);
+				// 	}
+				// 	else if (printReady.indexOf(k) >= 0) {
+				// 		rightCol.push(<li key={k} style={style} className={printReadyRigtclassName}>
+				// 			<span className="printReady right">&nbsp;</span>
+				// 		</li>);
+				// 	} else if (wrongUndock.indexOf(k) >= 0) {
+				// 		rightCol.push(<li key={k} style={style} className={wrongUndockRightclassName}>
+				// 			<span className="wrongUndock right">{this.props.displayBinId ? k : null}</span>
+				// 		</li>);
+				// 	}
+				// 	else if (selectedBin.indexOf(k) >= 0) {
+				// 		rightCol.push(<li key={k} style={style} className={selectedbinRightclassName}>
+				// 			<span className="selectedbin">{this.props.displayBinId ? k : null}</span>
+				// 		</li>);
+				// 	}
+				// 	else {
+				// 		rightCol.push(<li key={k} style={style} className={this.props.ruleset === 'withBorder' ? "bottomBorderRight padding noBackGround" : "padding noBackGround"} ><span>{this.props.displayBinId ? k : null}</span></li>);
+				// 	}
 
-				}
-				else if (data[k] === allresourceConstants.BIN_GROUP_CENTER || data[k] === allresourceConstants.BIN_GROUP_CENTER_TOP) {
+				// }
+				//else 
+				if (data[k] === allresourceConstants.BIN_GROUP_CENTER || data[k] === allresourceConstants.BIN_GROUP_CENTER_TOP) {
 					// if (dockedGroup.indexOf(k) >= 0) {
 					// 	centerCol.push(<li key={k} style={style} className="dockedCont">
 					// 		<span className={this.props.ruleset === 'withBorder' ? "" : "docked"}>{this.props.displayBinId ? k : null}</span>

@@ -16,7 +16,7 @@ var resourceConstants = {
 	PASSWORD: 'Password',
 	BIN_GROUP_LEFT: "left",
 	BIN_GROUP_RIGHT: "right",
-	BIN_GROUP_CENTER: "center",
+	BIN_GROUP_CENTER: "top",
 	BIN_GROUP_CENTER_TOP: "center-top",
 	order_id: "Order ID",
 	rem_qty: "Quantity",
