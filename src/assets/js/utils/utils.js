@@ -767,7 +767,7 @@ var putSeatData = function(data) {
       "packing_box": "false",
       "height": "300",
       "length": "200",
-      "selected_state": false,
+      "selected_state": true,
       "ppsbin_state": "empty",
       "ppsbin_count": "0",
       "coordinate": [1, 1],
@@ -831,7 +831,7 @@ var putSeatData = function(data) {
       "totes_associated": false
     }, {
       "breadth": "200",
-      "direction": "right",
+      "direction": "center1",
       "bin_info": [],
       "ppsbin_id": "10",
       "packing_box": "false",
@@ -845,7 +845,7 @@ var putSeatData = function(data) {
       "totes_associated": false
     }, {
       "breadth": "200",
-      "direction": "right",
+      "direction": "center1",
       "bin_info": [],
       "ppsbin_id": "9",
       "packing_box": "false",
@@ -859,7 +859,7 @@ var putSeatData = function(data) {
       "totes_associated": false
     }, {
       "breadth": "200",
-      "direction": "right",
+      "direction": "center1",
       "bin_info": [{
         "service_request_id": ["654321"],
         "load_unit_id": ["tote20"],
@@ -875,7 +875,7 @@ var putSeatData = function(data) {
       "ppsbin_light_color": "blue",
       "height": "300",
       "length": "200",
-      "selected_state": true,
+      "selected_state": false,
       "ppsbin_state": "IN USE",
       "ppsbin_count": "0",
       "coordinate": [2, 3],
@@ -883,7 +883,7 @@ var putSeatData = function(data) {
       "totes_associated": true
     }, {
       "breadth": "200",
-      "direction": "right",
+      "direction": "center1",
       "bin_info": [{
         "service_request_id": ["654321"],
         "load_unit_id": ["tote20"],
@@ -907,7 +907,7 @@ var putSeatData = function(data) {
       "totes_associated": true
     }, {
       "breadth": "200",
-      "direction": "right",
+      "direction": "center1",
       "bin_info": [{
         "service_request_id": [],
         "load_unit_id": ["tote19"],
@@ -948,9 +948,9 @@ var putSeatData = function(data) {
     "is_idle": false,
     "header_msge_list": [{
       "level": "info",
-      "code": "PkF.H.029",
-      "details": [1, "Item", "tote"],
-      "description": "Scan item or dock Tote"
+      "code": "Mtu.E.001",
+      "details": [],
+      "description": "Scan MTU point"
     }]
   }
   console.log("=======> UTitls.js -> putSeatData()");

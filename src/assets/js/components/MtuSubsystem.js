@@ -314,7 +314,7 @@ var MtuSubsytem = React.createClass({
                 customizeClass={'customize_WaitingForMsu'}
                 type='pick'
               /> */}
-              <div className='main-container leftJustify'>
+              <div className='main-container'>
                 {/* <Rack
                   isDrawer={this.state.isDrawer}
                   slotType={this.state.SlotType}

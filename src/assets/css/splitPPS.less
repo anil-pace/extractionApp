@@ -1,11 +1,9 @@
 
 .splitPPSWrapper{
-	
 	box-sizing:border-box;
     max-height: 350px;
-    width: 40%;
-    margin:auto;
-    padding: 12px;
+    width: 45%;
+	margin:auto;
 	&.rightAligned{
 		right: -25px;
 		width:35%;
@@ -16,17 +14,40 @@
 		margin-left: 0px;
 		margin-top: 0px;
 	}
-  .mapCont{
-    text-align: center;
-   	.msuSpace{
-   		font-size:24px;
-   		font-weight:600;
-   		margin: auto;
-   		margin-bottom:20px;
-    	width: 70%;
-    	color:#F2F2F2;
-	  	background:#F2F2F2;
-		  ;
+	.color-conventions {
+		text-align: center;
+		margin-top: 5vh;
+		.colorBox{
+			height: 20px;
+			width: 20px;
+			display: inline-block;
+			&.blue{
+				background: #0390FF;
+			}
+			&.green{
+				background:#4CAF50;
+			}
+			&.orange{
+				background: #FF9501;
+			}
+		}
+		.colorText{
+			margin: 0 1%;
+			font-size: 1.5em;
+			color: #373737;
+		}
+	}
+  	.mapCont{
+    	text-align: center;
+   		.msuSpace{
+			font-size:24px;
+			font-weight:600;
+			margin: auto;
+			margin-bottom:20px;
+			width: 50%;
+			color:#F2F2F2;
+			background:#F2F2F2;
+			border: 3px solid #979797 ;
    	}
     
 	.col1{
@@ -278,6 +299,7 @@
 	.col4{
 		display: block;
 		vertical-align:top;
+		margin-bottom: 3vh;
 		ul{
 			margin: 0;
 		    padding: 0;
