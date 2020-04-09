@@ -1,12 +1,13 @@
 var React = require('react');
 var allresourceConstants = require('../constants/resourceConstants');
+var mainstore = require('../stores/mainstore');
 
 var SplitPPS = React.createClass({
 
 	processData: function () {
 		let groupInfo = this.props.groupInfo && this.props.groupInfo.ppsBinIds ? this.props.groupInfo.ppsBinIds : this.props.groupInfo;
 		var data = Object.assign({}, (groupInfo || {}));
-		var binColors = Object.assign({}, (this.props.groupInfo.ppsBinIdColors || {}));
+		var binColors = Object.assign({}, (groupInfo.ppsBinIdColors || {}));
 		var leftCol = [],
 			dockedGroup = this.props.docked || [],
 			undockAwaited = this.props.undockAwaited || [],
@@ -157,7 +158,6 @@ var SplitPPS = React.createClass({
 							<span className="selectedbin">{this.props.displayBinId ? k : null}</span>
 						</li>);
 					}
-					
 					else {
 						centerCol.push(<li className="noBackGround" key={k} style={style}><span>{this.props.displayBinId ? k : null}</span></li>);
 					}
@@ -166,15 +166,16 @@ var SplitPPS = React.createClass({
 
 			}
 		}
-		
+
+
 		return {
 			leftCol: leftCol,
 			rightCol: rightCol,
 			centerCol: centerCol
 		}
 	},
-
 	render: function () {
+
 		var mapStructure = this.processData();
 		var orientation = Number(this.props.orientation || 0);
 		var transformStyle = {
@@ -183,45 +184,75 @@ var SplitPPS = React.createClass({
 		var textTransform = {
 			transform: 'rotate(' + (((orientation > 90 ? 180 : 0) + 'deg)'))
 		}
+		var customizeClassSplitPPS = this.props.customizeClassSplitPPS;
 
-		console.log("========= SplitPPS => seatType => else");
-		return (
-			<div className="splitPPSWrapper"col2 spriteIcons style={transformStyle}>
-				<div className="mapCont">
-					<div className={"col4 three"}>
-						{(mapStructure.centerCol).length >= 1 ?
-							<ul>
-								{mapStructure.centerCol}
-							</ul> : ""
-						}
-					</div>
-					<div className="msuSpace" style={textTransform}>&nbsp;</div>
-					<div className={"col1 three"}>
-						{(mapStructure.leftCol).length >= 1 ?
-							<ul className={this.props.ruleset === 'withBorder' ? 'withBorderLeft' : ''}>
-								{mapStructure.leftCol}
-							</ul> : ""
-						}
-					</div>
-					<div className="col2 spriteIcons"></div>
-					<div className={"col3 three"}>
-						{(mapStructure.rightCol).length >= 1 ?
-							<ul className={this.props.ruleset === 'withBorder' ? 'withBorder' : ''}>
-								{mapStructure.rightCol}
-							</ul> : ""
-						}
+		const seatType = mainstore.getSeatType();
+		if (seatType === "back") {
+			return (
+				<div className={customizeClassSplitPPS ? "splitPPSWrapperForPickBack " + customizeClassSplitPPS : "splitPPSWrapperForPickBack"} style={transformStyle}>
+					<div className="mapCont">
+						<div className={"col4 three"}>
+							{(mapStructure.centerCol).length >= 1 ?
+								<ul>
+									{mapStructure.centerCol}
+								</ul> : ""
+							}
+						</div>
+
+						<div className={"col1 three"}>
+							{(mapStructure.leftCol).length >= 1 ?
+								<ul className={this.props.ruleset === 'withBorder' ? 'withBorderLeft' : ''}>
+									{mapStructure.leftCol}
+								</ul> : ""
+							}
+						</div>
+
+						<div className="col2 spriteIcons">
+						</div>
+						<div className={"col3 three"}>
+							{(mapStructure.rightCol).length >= 1 ?
+								<ul className={this.props.ruleset === 'withBorder' ? 'withBorder' : ''}>
+									{mapStructure.rightCol}
+								</ul> : ""
+							}
+						</div>
 					</div>
 				</div>
-				<div className="color-conventions">
-					<span className="colorBox blue">  </span>
-					<span className="colorText"> MTU docked  </span>
-					<span className="colorBox orange">  </span>
-					<span className="colorText"> Action overdue </span>
-					<span className="colorBox green">  </span>
-					<span className="colorText"> MTU waiting for bot </span>
+			);
+		}
+		else {
+			return (
+				<div className={customizeClassSplitPPS ? "splitPPSWrapper " + customizeClassSplitPPS : "splitPPSWrapper"} style={transformStyle}>
+					<div className="mapCont">
+						<div className="msuSpace" style={textTransform}>&nbsp;</div>
+						<div className={"col1 three"}>
+							{(mapStructure.leftCol).length >= 1 ?
+								<ul className={this.props.ruleset === 'withBorder' ? 'withBorderLeft' : ''}>
+									{mapStructure.leftCol}
+								</ul> : ""
+							}
+						</div>
+						<div className="col2 spriteIcons">
+						</div>
+						<div className={"col3 three"}>
+							{(mapStructure.rightCol).length >= 1 ?
+								<ul className={this.props.ruleset === 'withBorder' ? 'withBorder' : ''}>
+									{mapStructure.rightCol}
+								</ul> : ""
+							}
+						</div>
+
+						<div className={"col4 three"}>
+							{(mapStructure.centerCol).length >= 1 ?
+								<ul>
+									{mapStructure.centerCol}
+								</ul> : ""
+							}
+						</div>
+					</div>
 				</div>
-			</div>
-		);
+			);
+		}
 	}
 });
 

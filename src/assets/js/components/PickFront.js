@@ -1953,50 +1953,94 @@ var PickFront = React.createClass({
         }
         break
 
-      case appConstants.PICK_FRONT_ONE_STEP_SCAN:
-        var rackType = ''
-        if (!this.state.PickFrontExceptionStatus) {
-          this._navigation = (
-            <Navigation
-              navData={this.state.PickFrontNavData}
-              serverNavData={this.state.PickFrontServerNavData}
-              navMessagesJson={this.props.navMessagesJson}
-            />
-          )
-
-          this._component = (
-            <div className='grid-container'>
-              <Modal />
-              <PreviousDetails
-                previousDetails={this.state.PreviousDetails}
-                customizeClass={'customize_WaitingForMsu'}
-                type='pick'
+        case appConstants.PICK_FRONT_ONE_STEP_SCAN:
+          var rackType = ''
+          //if (!this.state.PickFrontExceptionStatus) {
+            this._navigation = (
+              <Navigation
+                navData={this.state.PickFrontNavData}
+                serverNavData={this.state.PickFrontServerNavData}
+                navMessagesJson={this.props.navMessagesJson}
               />
-              <div className='main-container leftJustify'>
-                <Rack
-                  isDrawer={this.state.isDrawer}
-                  slotType={this.state.SlotType}
-                  PickFrontProductDetails={this.state.PickFrontProductDetails}
-                  rackData={this.state.PickFrontRackDetails}
-                  QLCodeDetails={true}
-                />
-                <SplitPPS
-                  orientation={this.state.groupOrientation}
-                  customizeClassSplitPPS='rightAligned'
-                  displayBinId={true}
-                  groupInfo={this.state.udpBinMapDetails}
-                  undockAwaited={null}
-                  docked={this.state.selectedTotes}
-                  ruleset={'withBorder'}
-                  selectedbin={this.state.PickCurrentBin}
-                />
+            )
+  
+            this._component = (
+              <div className='grid-container'>
+                {/* <Modal />
+                <PreviousDetails
+                  previousDetails={this.state.PreviousDetails}
+                  customizeClass={'customize_WaitingForMsu'}
+                  type='pick'
+                /> */}
+                <div className='main-container'>
+                  {/* <Rack
+                    isDrawer={this.state.isDrawer}
+                    slotType={this.state.SlotType}
+                    PickFrontProductDetails={this.state.PickFrontProductDetails}
+                    rackData={this.state.PickFrontRackDetails}
+                    QLCodeDetails={true}
+                  /> */}
+                  <SplitPPS
+                    orientation={this.state.groupOrientation}
+                    displayBinId={true}
+                    groupInfo={this.state.udpBinMapDetails}
+                    docked={this.state.DockedGroup}
+                    printReady={this.state.PrintReady}
+                    wrongUndock={this.state.WrongUndock}
+                    undockAwaited={this.state.UndockAwaited}
+                  />
+                </div>
               </div>
-            </div>
-          )
-        } else {
-          this._component = this.getExceptionComponent()
-        }
-        break
+            )
+          // } else {
+          //   this._component = this.getExceptionComponent()
+          // }
+          break
+
+      // case appConstants.PICK_FRONT_ONE_STEP_SCAN_XXX:
+      //   var rackType = ''
+      //   if (!this.state.PickFrontExceptionStatus) {
+      //     this._navigation = (
+      //       <Navigation
+      //         navData={this.state.PickFrontNavData}
+      //         serverNavData={this.state.PickFrontServerNavData}
+      //         navMessagesJson={this.props.navMessagesJson}
+      //       />
+      //     )
+
+      //     this._component = (
+      //       <div className='grid-container'>
+      //         <Modal />
+      //         <PreviousDetails
+      //           previousDetails={this.state.PreviousDetails}
+      //           customizeClass={'customize_WaitingForMsu'}
+      //           type='pick'
+      //         />
+      //         <div className='main-container leftJustify'>
+      //           <Rack
+      //             isDrawer={this.state.isDrawer}
+      //             slotType={this.state.SlotType}
+      //             PickFrontProductDetails={this.state.PickFrontProductDetails}
+      //             rackData={this.state.PickFrontRackDetails}
+      //             QLCodeDetails={true}
+      //           />
+      //           <SplitPPS
+      //             orientation={this.state.groupOrientation}
+      //             customizeClassSplitPPS='rightAligned'
+      //             displayBinId={true}
+      //             groupInfo={this.state.udpBinMapDetails}
+      //             undockAwaited={null}
+      //             docked={this.state.selectedTotes}
+      //             ruleset={'withBorder'}
+      //             selectedbin={this.state.PickCurrentBin}
+      //           />
+      //         </div>
+      //       </div>
+      //     )
+      //   } else {
+      //     this._component = this.getExceptionComponent()
+      //   }
+      //   break
 
       case appConstants.PICK_FRONT_UNDOCK_TOTE:
         if (!this.state.PickFrontExceptionStatus) {
