@@ -643,7 +643,7 @@ var putSeatData = function(data) {
     //   "current_qty": "1",
     //   "total_qty": "1",
     //   "kq_allowed": false
-   // },
+    //},
     "current_bin_widget": false,
     "rack_details": {
       "slot_barcodes": ["023.0.D.01", "023.0.D.02"],

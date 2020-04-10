@@ -438,6 +438,9 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
           if (
             _seatData.screen_id === appConstants.PICK_FRONT_WAITING_FOR_MSU ||
             _seatData.screen_id === appConstants.PICK_FRONT_ONE_STEP_SCAN ||
+            _seatData.screen_id === appConstants.WAIT_FOR_MTU ||
+            _seatData.screen_id === appConstants.SELECT_MTU_POINT ||
+            _seatData.screen_id === appConstants.REMOVE_ALL_TOTES ||
             _seatData.screen_id === appConstants.PICK_FRONT_DOCK_TOTE ||
             _seatData.screen_id === appConstants.PICK_FRONT_UNDOCK_TOTE ||
             _seatData.screen_id === appConstants.PICK_FRONT_SLOT_SCAN
