@@ -462,6 +462,10 @@ var serverMessages = {
     "Search.H.003": "Move {0} excess item to IRT bin and scan IRT bin",
     "Mtu.E.000": " Wait for MTU",
     "Mtu.E.001": "Select MTU point",
+    "Mtu.E.002": "Remove all Totes from the MTU",
+    "Mtu.E.003": "Scan Empty tote",
+    "Mtu.E.004": "Put Tote in MTU and scan slot",
+    "Mtu.E.005": "Select MTU to proceed",
 
     //location_required
     "PkF.S.001": {

@@ -386,7 +386,13 @@ var appConstants = {
   IN: "in ",
   QL_CODE: "QL Code",
   SLOT_ID: "Slot ID",
-  PREV_LOCATION: "Location"
+  PREV_LOCATION: "Location",
+  WAIT_FOR_MTU: "wait_for_mtu",
+  SELECT_MTU_POINT: "select_mtu_point",
+  REMOVE_ALL_TOTES: "remove_all_totes",
+  SCAN_EMPTY_TOTE: "scan_empty_tote",
+  PUT_TOTE_IN_MTU: "put_tote_in_mtu",
+  SELECT_MTU_TO_PROCEED: "select_mtu_to_proceed"
 }
 
 module.exports = appConstants

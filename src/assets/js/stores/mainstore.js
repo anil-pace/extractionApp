@@ -6048,7 +6048,8 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
         data["PickBackSelectedBin"] = this.getSelectedBin()
         break
 
-      case appConstants.PICK_FRONT_ONE_STEP_SCAN:
+        case appConstants.WAIT_FOR_MTU:
+        case appConstants.SELECT_MTU_POINT:
        // data["PickFrontExceptionData"] = this.getExceptionData()
        // data["PickFrontExceptionStatus"] = this.getExceptionStatus()
         data["PickFrontNavData"] = this.getNavData()
@@ -6070,7 +6071,29 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
         // data["PickFrontRackDetails"] = this.getRackDetails()
         // data["PickFrontProductDetails"] = this.productDetails()
         // data["undockAwaited"] = this._getUndockAwaitedGroup()
-        break
+        break;
+        
+      case appConstants.REMOVE_ALL_TOTES:
+          data["PickFrontNavData"] = this.getNavData()
+          data["PickFrontServerNavData"] = this.getServerNavData()
+          data["PickFrontScreenId"] = this.getScreenId()
+          //data["PutFrontCurrentBin"] = this.getCurrentSelectedBin()
+          data["PickFrontRackDetails"] = this.getRackDetails()
+          data["udpBinMapDetails"] = this.getDockStationList()
+          //data["PutFrontIsCrossDockEnabled"] = this.IsCrossDockEnabled()
+          //data["isDrawer"] = this.getDrawerFlag()
+          //data["SlotType"] = this.getSlotType()
+          // data["SplitScreenFlag"] = this._getSplitScreenFlag()
+          // data["BinMapGroupDetails"] = this.getSelectedBinGroup()
+          // data["PutFrontScanDetails"] = this.scanDetails()
+          // data["PutFrontProductDetails"] = this.productDetails()
+          // data["PutFrontExceptionData"] = this.getExceptionData()
+          // data["PutFrontNotification"] = this.getNotificationData()
+          // data["PutFrontExceptionStatus"] = this.getExceptionStatus()
+          // data["PutFrontItemUid"] = this.getItemUid()
+          // data["PutFrontPutDirection"] = this.getDirectionDetails()
+          // data["PutFrontHeavyItemsFlag"] = this.getHeavyItemsFlag()
+          break
 
       case appConstants.PICK_FRONT_SLOT_SCAN:
         data["PickFrontNavData"] = this.getNavData()

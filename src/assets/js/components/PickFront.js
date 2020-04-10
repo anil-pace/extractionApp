@@ -1955,31 +1955,48 @@ var PickFront = React.createClass({
         }
         break
 
-        // case appConstants.PICK_FRONT_ONE_STEP_SCAN:
-        //     this._navigation = (
-        //       <Navigation
-        //         navData={this.state.PickFrontNavData}
-        //         serverNavData={this.state.PickFrontServerNavData}
-        //         navMessagesJson={this.props.navMessagesJson}
-        //       />
-        //     )
+        case appConstants.REMOVE_ALL_TOTES:
+            this._navigation = (
+              <Navigation
+                navData={this.state.PickFrontNavData}
+                serverNavData={this.state.PickFrontServerNavData}
+                navMessagesJson={this.props.navMessagesJson}
+              />
+            )
   
-        //     this._component = (
-        //       <div className='grid-container'>
-        //           <CurrentMtu />
-        //           <div className="splitPps-zoomed-out">
-        //             <SplitPPS
-        //               displayBinId={true}
-        //               groupInfo={this.state.udpBinMapDetails}
-        //             />
+            this._component = (
+              <div className='grid-container'>
+                  <CurrentMtu />
+                  <div className="splitPps-zoomed-out">
+                    <SplitPPS
+                      displayBinId={true}
+                      groupInfo={this.state.udpBinMapDetails}
+                    />
                     
-        //           </div>
+                  </div>
+                  <div className='main-container'>
+                  <Rack
+                      isDrawer={this.state.isDrawer}
+                      slotType={this.state.SlotType}
+                      rackData={this.state.PickFrontRackDetails}
+                    /> 
+                  </div>
+                  <div className='cancel-scan'>
+                      <Button1 
+                        disabled={false} 
+                        text={_("Cancel Scan")} 
+                        module={appConstants.PUT_FRONT} 
+                        action={appConstants.CANCEL_SCAN} 
+                        barcode={this.state.PutFrontItemUid} 
+                        color={"black"} />
+                  </div>
                   
-        //         </div>
-        //     )
-        //   break
+                </div>
+            )
+          break
 
-        case appConstants.PICK_FRONT_ONE_STEP_SCAN:
+        case appConstants.WAIT_FOR_MTU:
+        case appConstants.SELECT_MTU_POINT:
           var rackType = ''
             this._navigation = (
               <Navigation
@@ -1991,12 +2008,14 @@ var PickFront = React.createClass({
   
             this._component = (
               <div className='grid-container'>
-                <div className='main-container'>
-                  <SplitPPS
-                    displayBinId={true}
-                    groupInfo={this.state.udpBinMapDetails}
-                  />
-                  <ColorCodeMtu />
+                <div className='main-container'> 
+                  <div style={{"display": "flex", "flexFlow": "column", "width":"70%"}}>
+                    <SplitPPS
+                      displayBinId={true}
+                      groupInfo={this.state.udpBinMapDetails}
+                    />
+                    <ColorCodeMtu />
+                  </div>
                 </div>
               </div>
             )
