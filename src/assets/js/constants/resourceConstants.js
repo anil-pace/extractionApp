@@ -44,7 +44,8 @@ var resourceConstants = {
 	CLIENTCODE_400: "CLIENTCODE_400",
 	SERVERMSGCODE_007: "PtF.E.007",
 	CLIENTCODE_MODE_CHANGED: "CLIENTCODE_MODE_CHANGED",
-	PUSH_TOTE_AWAY: "Scan load unit and gently push it away"
+	PUSH_TOTE_AWAY: "Scan load unit and gently push it away",
+	CURRENT_MTU: "CURRENT MTU"
 
 
 

@@ -596,7 +596,16 @@ var putSeatData = function(data) {
       "dock_station_label": "1",
       "direction": "top",
       "ppsbin_light_color": "orange"
-    }],
+    },{
+       "status": "idle",
+    "dock_station_label": "5",
+    "direction": "top",
+    "ppsbin_light_color": "blue"
+  },{ "status": "idle",
+  "dock_station_label": "6",
+  "direction": "top",
+  "ppsbin_light_color": "blue"
+}],
     "seat_type": "front",
     "mode": "pick",
     "header_msge_list": [{
@@ -611,110 +620,121 @@ var putSeatData = function(data) {
 
   
   // data.state_data = {
-  //   "seat_name": "front_2",
-  //   "notification_list": [],
+  //   "seat_name": "front_6",
+  //   "notification_list": [{
+  //     "level": "info",
+  //     "code": "PtF.I.001",
+  //     "details": [],
+  //     "description": "Entity scan successful"
+  //   }],
+  //   "scan_details": {
+  //     "current_qty": "1",
+  //     "total_qty": "1",
+  //     "kq_allowed": false
+  //   },
+  //   "current_bin_widget": false,
   //   "rack_details": {
-  //     "slot_barcodes": ["003.1.A.01", "003.1.A.02"],
+  //     "slot_barcodes": ["023.0.D.01", "023.0.D.02"],
   //     "rack_type_rec": [{
-  //       "slot_ref": [49, 46, 65, 46, 48, 49, 45, 48, 50],
+  //       "slot_ref": [48, 46, 65, 46, 48, 49, 45, 65, 46, 48, 50],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [0, 5],
   //       "type": "slot",
   //       "barcodes": ["A.01", "A.02"]
   //     }, {
-  //       "slot_ref": [49, 46, 65, 46, 48, 51, 45, 48, 52],
+  //       "slot_ref": [48, 46, 65, 46, 48, 51, 45, 65, 46, 48, 52],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [32, 5],
   //       "type": "slot",
   //       "barcodes": ["A.03", "A.04"]
   //     }, {
-  //       "slot_ref": [49, 46, 65, 46, 48, 53, 45, 48, 54],
+  //       "slot_ref": [48, 46, 65, 46, 48, 53, 45, 65, 46, 48, 54],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [64, 5],
   //       "type": "slot",
   //       "barcodes": ["A.05", "A.06"]
   //     }, {
-  //       "slot_ref": [49, 46, 66, 46, 48, 49, 45, 48, 50],
+  //       "slot_ref": [48, 46, 66, 46, 48, 49, 45, 66, 46, 48, 50],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [0, 43],
   //       "type": "slot",
   //       "barcodes": ["B.01", "B.02"]
   //     }, {
-  //       "slot_ref": [49, 46, 66, 46, 48, 51, 45, 48, 52],
+  //       "slot_ref": [48, 46, 66, 46, 48, 51, 45, 66, 46, 48, 52],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [32, 43],
   //       "type": "slot",
   //       "barcodes": ["B.03", "B.04"]
   //     }, {
-  //       "slot_ref": [49, 46, 66, 46, 48, 53, 45, 48, 54],
+  //       "slot_ref": [48, 46, 66, 46, 48, 53, 45, 66, 46, 48, 54],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [64, 43],
   //       "type": "slot",
   //       "barcodes": ["B.05", "B.06"]
   //     }, {
-  //       "slot_ref": [49, 46, 67, 46, 48, 49, 45, 48, 50],
+  //       "slot_ref": [48, 46, 67, 46, 48, 49, 45, 67, 46, 48, 50],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [0, 81],
   //       "type": "slot",
   //       "barcodes": ["C.01", "C.02"]
   //     }, {
-  //       "slot_ref": [49, 46, 67, 46, 48, 51, 45, 48, 52],
+  //       "slot_ref": [48, 46, 67, 46, 48, 51, 45, 67, 46, 48, 52],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [32, 81],
   //       "type": "slot",
   //       "barcodes": ["C.03", "C.04"]
   //     }, {
-  //       "slot_ref": [49, 46, 67, 46, 48, 53, 45, 48, 54],
+  //       "slot_ref": [48, 46, 67, 46, 48, 53, 45, 67, 46, 48, 54],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [64, 81],
   //       "type": "slot",
   //       "barcodes": ["C.05", "C.06"]
   //     }, {
-  //       "slot_ref": [49, 46, 68, 46, 48, 49, 45, 48, 50],
+  //       "slot_ref": [48, 46, 68, 46, 48, 49, 45, 68, 46, 48, 50],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [0, 119],
   //       "type": "slot",
   //       "barcodes": ["D.01", "D.02"]
   //     }, {
-  //       "slot_ref": [49, 46, 68, 46, 48, 51, 45, 48, 52],
+  //       "slot_ref": [48, 46, 68, 46, 48, 51, 45, 68, 46, 48, 52],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [32, 119],
   //       "type": "slot",
   //       "barcodes": ["D.03", "D.04"]
   //     }, {
-  //       "slot_ref": [49, 46, 68, 46, 48, 53, 45, 48, 54],
+  //       "slot_ref": [48, 46, 68, 46, 48, 53, 45, 68, 46, 48, 54],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [64, 119],
   //       "type": "slot",
   //       "barcodes": ["D.05", "D.06"]
   //     }, {
-  //       "slot_ref": [49, 46, 69, 46, 48, 49, 45, 48, 50],
+  //       "slot_ref": [48, 46, 69, 46, 48, 49, 45, 69, 46, 48, 50],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [0, 157],
   //       "type": "slot",
   //       "barcodes": ["E.01", "E.02"]
   //     }, {
-  //       "slot_ref": [49, 46, 69, 46, 48, 51, 45, 48, 52],
+  //       "slot_ref": [48, 46, 69, 46, 48, 51, 45, 69, 46, 48, 52],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [32, 157],
   //       "type": "slot",
   //       "barcodes": ["E.03", "E.04"]
   //     }, {
-  //       "slot_ref": [49, 46, 69, 46, 48, 53, 45, 48, 54],
+  //       "slot_ref": [48, 46, 69, 46, 48, 53, 45, 69, 46, 48, 54],
   //       "height": 33,
   //       "length": 32,
   //       "orig_coordinates": [64, 157],
@@ -726,271 +746,148 @@ var putSeatData = function(data) {
   //     "slot_type": "slot"
   //   },
   //   "exception_allowed": [{
-  //     "event": "missing_or_unscannable_damaged_item",
-  //     "exception_id": "PkF001",
-  //     "details": ["Item"],
-  //     "exception_name": "Item Missing/Bad Barcode"
+  //     "event": "space_unavailable",
+  //     "exception_id": "PtF002",
+  //     "details": [],
+  //     "exception_name": "Space Unavailable To Put"
   //   }],
-  //   "roll_cage_flow": false,
-  //   "previous_pick_details": [
-  //     [{
-  //       "display_data": [{
-  //         "locale": "en-US",
-  //         "display_name": "QL Code"
-  //       }],
-  //       "ql_code": ""
-  //     }],
-  //     [{
-  //       "display_data": [{
-  //         "locale": "en-US",
-  //         "display_name": "Slot ID"
-  //       }],
-  //       "slot_barcode": [
-  //         [""]
-  //       ]
-  //     }],
-  //     [{
-  //       "bin_station": "",
-  //       "display_data": []
-  //     }]
-  //   ],
-  //   "bin_coordinate_plotting": false,
-  //   "event": "first_item_pick",
-  //   "screen_id": "pick_front_one_step_scan",
-  //   "logout_allowed": true,
-  //   "seat_type": "front",
+  //   "roll_cage_flow": true,
+  //   "bin_coordinate_plotting": true,
+  //   "event": "rack_scan",
+  //   "pps_profile": "default",
+  //   "pps_requested_status": "undefined",
+  //   "screen_id": "put_front_place_items_in_rack",
+  //   "wrong_undock": [],
+  //   "logout_allowed": false,
+  //   "scan_allowed": true,
+  //   "pps_requested_mode": "undefined",
+  //   "operator_orientation": "0",
   //   "product_info": [
   //     [{
-  //       "product_sku": "d6",
   //       "display_data": [{
-  //         "locale": "ja-JP",
-  //         "display_name": "製品SKU"
-  //       }, {
   //         "locale": "en-US",
-  //         "display_name": "Product SKU"
+  //         "display_name": "Scan"
+  //       }],
+  //       "uom": "Container"
+  //     }],
+  //     [{
+  //       "product_sku": "a2",
+  //       "display_data": [{
+  //         "locale": "en-US",
+  //         "display_name": "SKU ID"
   //       }]
   //     }],
   //     [{
+  //       "product_sku": "Carrier003",
   //       "display_data": [{
   //         "locale": "en-US",
-  //         "display_name": "product_local_image_url"
-  //       }],
-  //       "product_local_image_url": null
-  //     }],
-  //     [{
-  //       "display_data": [{
-  //         "locale": "ja-JP",
-  //         "display_name": "製品バーコード"
-  //       }, {
-  //         "locale": "en-US",
-  //         "display_name": "Product Barcodes"
-  //       }],
-  //       "product_barcodes": ["d6"]
-  //     }],
-  //     [{
-  //       "display_data": [{
-  //         "locale": "ja-JP",
-  //         "display_name": "商品の寸法"
-  //       }, {
-  //         "locale": "en-US",
-  //         "display_name": "Product Dimensions"
-  //       }],
-  //       "product_dimensions": [4, 2, 8]
+  //         "display_name": "QL Code"
+  //       }]
   //     }]
   //   ],
-  //   "time_stamp": "2019-11-28T11:23:30Z",
+  //   "time_stamp": "2020-04-06T09:53:37Z",
+  //   "api_version": "1",
+  //   "mode": "put",
+  //   "group_info": {
+  //     "1": "left",
+  //     "2": "left",
+  //     "3": "left",
+  //     "4": "right",
+  //     "5": "right",
+  //     "6": "right"
+  //   },
+  //   "undock_awaited": [],
+  //   "special_handling": [],
+  //   "seat_type": "front",
+  //   "item_uid": "Carrier003",
+  //   "structure": [3, 2],
+  //   "error_popup_disabled": false,
+  //   "user_loggedin": "default_user_name",
+  //   "screen_version": "1",
+  //   "is_heavy": false,
+  //   "docked": {
+  //     "3": "left"
+  //   },
   //   "ppsbin_list": [{
-  //     "breadth": "200",
-  //     "direction": "center",
+  //     "breadth": "100",
+  //     "direction": "left",
   //     "bin_info": [],
-  //     "ppsbin_id": "5",
-  //     "packing_box": "false",
-  //     "height": "300",
-  //     "length": "200",
-  //     "selected_state": true,
-  //     "ppsbin_state": "empty",
-  //     "ppsbin_count": "0",
-  //     "coordinate": [1, 1],
-  //     "group_id": "1",
-  //     "totes_associated": false
-  //   }, {
-  //     "breadth": "200",
-  //     "direction": "center",
-  //     "bin_info": [],
-  //     "ppsbin_id": "4",
-  //     "packing_box": "false",
-  //     "height": "300",
+  //     "ppsbin_id": "12",
+  //     "orig_coordinate": [0, 200],
+  //     "back_drawing_start": "left",
+  //     "height": "100",
+  //     "front_drawing_start": "left",
   //     "length": "200",
   //     "selected_state": false,
   //     "ppsbin_state": "empty",
   //     "ppsbin_count": "0",
-  //     "coordinate": [1, 2],
-  //     "group_id": "1",
+  //     "coordinate": [3, 2],
+  //     "group_id": "3",
   //     "totes_associated": false
   //   }, {
-  //     "breadth": "200",
-  //     "direction": "center",
-  //     "bin_info": [],
-  //     "ppsbin_id": "3",
-  //     "packing_box": "false",
-  //     "height": "300",
-  //     "length": "200",
-  //     "selected_state": false,
-  //     "ppsbin_state": "empty",
-  //     "ppsbin_count": "0",
-  //     "coordinate": [1, 3],
-  //     "group_id": "1",
-  //     "totes_associated": false
-  //   }, {
-  //     "breadth": "200",
-  //     "direction": "center",
-  //     "bin_info": [],
-  //     "ppsbin_id": "2",
-  //     "packing_box": "false",
-  //     "height": "300",
-  //     "length": "200",
-  //     "selected_state": true,
-  //     "ppsbin_state": "IN USE",
-  //     "ppsbin_count": "0",
-  //     "coordinate": [1, 4],
-  //     "group_id": "1",
-  //     "totes_associated": false
-  //   }, {
-  //     "breadth": "200",
-  //     "direction": "center",
-  //     "bin_info": [],
-  //     "ppsbin_id": "1",
-  //     "packing_box": "false",
-  //     "height": "300",
-  //     "length": "200",
-  //     "selected_state": true,
-  //     "ppsbin_state": "empty",
-  //     "ppsbin_count": "0",
-  //     "coordinate": [1, 5],
-  //     "group_id": "1",
-  //     "totes_associated": false
-  //   }, {
-  //     "breadth": "200",
-  //     "direction": "center1",
+  //     "breadth": "100",
+  //     "direction": "left",
   //     "bin_info": [],
   //     "ppsbin_id": "10",
-  //     "packing_box": "false",
-  //     "height": "300",
-  //     "length": "200",
-  //     "selected_state": false,
-  //     "ppsbin_state": "empty",
-  //     "ppsbin_count": "0",
-  //     "coordinate": [2, 1],
-  //     "group_id": "1",
-  //     "totes_associated": false
-  //   }, {
-  //     "breadth": "200",
-  //     "direction": "center1",
-  //     "bin_info": [],
-  //     "ppsbin_id": "9",
-  //     "packing_box": "false",
-  //     "height": "300",
-  //     "length": "200",
+  //     "orig_coordinate": [0, 100],
+  //     "back_drawing_start": "left",
+  //     "height": "100",
+  //     "front_drawing_start": "left",
+  //     "length": "100",
   //     "selected_state": false,
   //     "ppsbin_state": "empty",
   //     "ppsbin_count": "0",
   //     "coordinate": [2, 2],
-  //     "group_id": "1",
+  //     "group_id": "3",
   //     "totes_associated": false
   //   }, {
-  //     "breadth": "200",
-  //     "direction": "center1",
+  //     "breadth": "100",
+  //     "direction": "left",
   //     "bin_info": [{
-  //       "service_request_id": ["654321"],
-  //       "load_unit_id": ["tote20"],
-  //       "product_sku": "d6",
-  //       "load_unit_label": "Tote",
+  //       "service_request_id": ["PUT-0003"],
+  //       "load_unit_id": ["9"],
+  //       "product_sku": [],
+  //       "load_unit_label": "Bin",
   //       "serial": [],
-  //       "type": "Item",
+  //       "type": [],
   //       "quantity": 0
   //     }],
-  //     "ppsbin_blink_state": false,
-  //     "packing_box": "false",
-  //     "ppsbin_id": "8",
-  //     "ppsbin_light_color": "blue",
-  //     "height": "300",
+  //     "ppsbin_id": "9",
+  //     "orig_coordinate": [0, 0],
+  //     "back_drawing_start": "left",
+  //     "height": "100",
+  //     "front_drawing_start": "left",
   //     "length": "200",
-  //     "selected_state": false,
+  //     "selected_state": true,
   //     "ppsbin_state": "IN USE",
   //     "ppsbin_count": "0",
-  //     "coordinate": [2, 3],
-  //     "group_id": "1",
+  //     "coordinate": [1, 2],
+  //     "group_id": "3",
   //     "totes_associated": true
   //   }, {
-  //     "breadth": "200",
-  //     "direction": "center1",
-  //     "bin_info": [{
-  //       "service_request_id": ["654321"],
-  //       "load_unit_id": ["tote20"],
-  //       "product_sku": "d6",
-  //       "load_unit_label": "Tote",
-  //       "serial": [],
-  //       "type": "Item",
-  //       "quantity": 2
-  //     }],
-  //     "ppsbin_blink_state": false,
-  //     "packing_box": "false",
-  //     "ppsbin_id": "7",
-  //     "ppsbin_light_color": "green",
-  //     "height": "300",
-  //     "length": "200",
+  //     "breadth": "100",
+  //     "direction": "left",
+  //     "bin_info": [],
+  //     "ppsbin_id": "11",
+  //     "orig_coordinate": [100, 100],
+  //     "back_drawing_start": "left",
+  //     "height": "100",
+  //     "front_drawing_start": "left",
+  //     "length": "100",
   //     "selected_state": false,
-  //     "ppsbin_state": "pick_processed",
-  //     "ppsbin_count": "2",
-  //     "coordinate": [2, 4],
-  //     "group_id": "1",
-  //     "totes_associated": true
-  //   }, {
-  //     "breadth": "200",
-  //     "direction": "center1",
-  //     "bin_info": [{
-  //       "service_request_id": [],
-  //       "load_unit_id": ["tote19"],
-  //       "product_sku": null,
-  //       "load_unit_label": "Tote",
-  //       "serial": [],
-  //       "type": null,
-  //       "quantity": 0
-  //     }],
-  //     "ppsbin_id": "6",
-  //     "packing_box": "false",
-  //     "height": "300",
-  //     "length": "200",
-  //     "selected_state": false,
-  //     "ppsbin_state": "IN USE",
+  //     "ppsbin_state": "empty",
   //     "ppsbin_count": "0",
-  //     "coordinate": [2, 5],
-  //     "group_id": "1",
-  //     "totes_associated": true
+  //     "coordinate": [2, 1],
+  //     "group_id": "3",
+  //     "totes_associated": false
   //   }],
-  //   "mode": "pick",
-  //   "group_info": {
-  //     "1": "center"
-  //   },
-  //   "scan_allowed": true,
-  //   "special_handling": [],
-  //   "operator_orientation": "0",
-  //   "button_press_allowed": false,
-  //   "item_uid": "73",
-  //   "button_press_id": "bin_full",
-  //   "structure": [2, 5],
-  //   "error_popup_disabled": true,
-  //   "user_loggedin": "default_user_name",
-  //   "screen_version": "1",
-  //   "is_heavy": false,
-  //   "docked": [],
-  //   "api_version": "1",
   //   "is_idle": false,
+  //   "uph_count": 0,
   //   "header_msge_list": [{
   //     "level": "info",
-  //     "code": "Mtu.E.001",
+  //     "code": "PtF.H.002",
   //     "details": [],
-  //     "description": "Scan MTU point"
+  //     "description": "Scan Slot to Confirm"
   //   }]
   // }
   console.log("=======> UTitls.js -> putSeatData()");

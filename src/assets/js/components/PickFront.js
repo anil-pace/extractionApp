@@ -36,6 +36,8 @@ var SplitPPS = require('./SplitPPS')
 var PreviousDetails = require('./PreviousDetails')
 var TextEditor = require('./ProductDetails/textEditor')
 var ItemTable = require('./itemTable')
+var CurrentMtu = require('./CurrentMtu')
+var ColorCodeMtu = require("./colorCodeMtu")
 
 var checkListOpen = false
 
@@ -1953,9 +1955,32 @@ var PickFront = React.createClass({
         }
         break
 
+        // case appConstants.PICK_FRONT_ONE_STEP_SCAN:
+        //     this._navigation = (
+        //       <Navigation
+        //         navData={this.state.PickFrontNavData}
+        //         serverNavData={this.state.PickFrontServerNavData}
+        //         navMessagesJson={this.props.navMessagesJson}
+        //       />
+        //     )
+  
+        //     this._component = (
+        //       <div className='grid-container'>
+        //           <CurrentMtu />
+        //           <div className="splitPps-zoomed-out">
+        //             <SplitPPS
+        //               displayBinId={true}
+        //               groupInfo={this.state.udpBinMapDetails}
+        //             />
+                    
+        //           </div>
+                  
+        //         </div>
+        //     )
+        //   break
+
         case appConstants.PICK_FRONT_ONE_STEP_SCAN:
           var rackType = ''
-          //if (!this.state.PickFrontExceptionStatus) {
             this._navigation = (
               <Navigation
                 navData={this.state.PickFrontNavData}
@@ -1966,36 +1991,15 @@ var PickFront = React.createClass({
   
             this._component = (
               <div className='grid-container'>
-                {/* <Modal />
-                <PreviousDetails
-                  previousDetails={this.state.PreviousDetails}
-                  customizeClass={'customize_WaitingForMsu'}
-                  type='pick'
-                /> */}
                 <div className='main-container'>
-                  {/* <Rack
-                    isDrawer={this.state.isDrawer}
-                    slotType={this.state.SlotType}
-                    PickFrontProductDetails={this.state.PickFrontProductDetails}
-                    rackData={this.state.PickFrontRackDetails}
-                    QLCodeDetails={true}
-                  /> */}
                   <SplitPPS
                     displayBinId={true}
                     groupInfo={this.state.udpBinMapDetails}
-                    //orientation={this.state.groupOrientation}
-                    
-                    // docked={this.state.DockedGroup}
-                    // printReady={this.state.PrintReady}
-                    // wrongUndock={this.state.WrongUndock}
-                    // undockAwaited={this.state.UndockAwaited}
                   />
+                  <ColorCodeMtu />
                 </div>
               </div>
             )
-          // } else {
-          //   this._component = this.getExceptionComponent()
-          // }
           break
 
       // case appConstants.PICK_FRONT_ONE_STEP_SCAN_XXX:

@@ -187,7 +187,7 @@ var SplitPPS = React.createClass({
 
 		console.log("========= SplitPPS => seatType => else");
 		return (
-			<div className="splitPPSWrapper"col2 spriteIcons style={transformStyle}>
+			<div className="splitPPSWrapper">
 				<div className="mapCont">
 					<div className={"col4 three"}>
 						{(mapStructure.centerCol).length >= 1 ?
@@ -212,14 +212,6 @@ var SplitPPS = React.createClass({
 							</ul> : ""
 						}
 					</div>
-				</div>
-				<div className="color-conventions">
-					<span className="colorBox blue">  </span>
-					<span className="colorText"> MTU docked  </span>
-					<span className="colorBox orange">  </span>
-					<span className="colorText"> Action overdue </span>
-					<span className="colorBox green">  </span>
-					<span className="colorText"> MTU waiting for bot </span>
 				</div>
 			</div>
 		);
