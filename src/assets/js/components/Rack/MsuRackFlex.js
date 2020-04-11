@@ -17,23 +17,23 @@ var MsuRackFlex = React.createClass({
           drawerLineDrawn is set true once the line is created
        */
 
-    var lines = document.getElementsByClassName('connectingLine')
+    // var lines = document.getElementsByClassName('connectingLine')
 
-    if (lines.length === 0) {
-      var strEl = document.querySelectorAll('#selectedSlot')[0]
-      strEl = strEl ? strEl.parentNode : null
-      var endEl = document.querySelectorAll('#slotDisplayArea')[0]
-      if (strEl && endEl) {
-        this.connect(strEl, endEl, '#626262', 3)
-      }
-    }
+    // if (lines.length === 0) {
+    //   var strEl = document.querySelectorAll('#selectedSlot')[0]
+    //   strEl = strEl ? strEl.parentNode : null
+    //   var endEl = document.querySelectorAll('#slotDisplayArea')[0]
+    //   if (strEl && endEl) {
+    //     this.connect(strEl, endEl, '#626262', 3)
+    //   }
+    // }
   },
 
   componentWillUnmount: function() {
-    var lines = document.getElementsByClassName('connectingLine')
-    if (lines.length) {
-      lines[0].remove()
-    }
+    // var lines = document.getElementsByClassName('connectingLine')
+    // if (lines.length) {
+    //   lines[0].remove()
+    // }
   },
 
   _getMaxXMaxYCoords: function(vSlots) {
@@ -351,7 +351,7 @@ var MsuRackFlex = React.createClass({
     return (
       <div className='parent-container'>
         <div className='slotsFlexContainer'>{vHTMLSlots}</div>
-        <div className='right-container'>
+        {/* <div className='right-container'>
           {this.state.selectedSlotIds && !this.props.hideSlotDetails && (
             <div id='slotDisplayArea' className='slotDisplayArea'>
               <img
@@ -363,41 +363,7 @@ var MsuRackFlex = React.createClass({
               </span>
             </div>
           )}
-          {(putDirection || heavyItemFlag)  ? (
-            <div className='specialContainer'>
-              <img className={orientation} src={orientationClass} />
-              <div className={stackClass}>
-                <span className={stackicon} />
-                <span className='stackText'>{stackText}</span>
-                <span className='stackCount'>{count}</span>
-              </div>
-              <div className={fragileClass}>
-                <span className='fragileicons' />
-                <span className='fragileText'>{_('FRAGILE')}</span>
-              </div>
-              {heavyItemFlag && <div className="heavyItemContainer">
-              <img
-                    className='itemLogo'
-                    src={'./assets/images/ic-heavy.svg'}
-                    height='50px'
-                    width='50px'
-                  />
-                <span className='itemInfo'>{_('HEAVY')}</span>
-              </div>}
-              
-            </div>
-          ) : (
-            ''
-          )}
-        </div>
-        {QLCodeDetails ? (
-          <PrdtDetails
-            productInfo={this.props.PickFrontProductDetails}
-            QLCodeDetails={this.props.QLCodeDetails}
-          />
-        ) : (
-          ''
-        )}
+        </div> */}
       </div>
     )
   }

@@ -1984,20 +1984,48 @@ var PickFront = React.createClass({
                   <div className='cancel-scan'>
                       <Button1 
                         disabled={false} 
-                        text={_("Cancel Scan")} 
+                        text={_("Cancel")} 
                         module={appConstants.PUT_FRONT} 
                         action={appConstants.CANCEL_SCAN} 
                         barcode={this.state.PutFrontItemUid} 
                         color={"black"} />
                   </div>
+                  <Button1
+                disabled={false}
+                text={_('Remove All')}
+                module={appConstants.PICK_FRONT}
+                action={appConstants.EDIT_DETAILS}
+                color={'orange'}
+              />
                   
                 </div>
             )
           break
 
         case appConstants.WAIT_FOR_MTU:
+          this._navigation = (
+            <Navigation
+              navData={this.state.PickFrontNavData}
+              serverNavData={this.state.PickFrontServerNavData}
+              navMessagesJson={this.props.navMessagesJson}
+            />
+          )
+
+          this._component = (
+            <div style={{"opacity": "0.2"}} className='grid-container'>
+              <div className='main-container'> 
+                <div style={{"display": "flex", "flexFlow": "column", "width":"70%"}}>
+                  <SplitPPS
+                    displayBinId={true}
+                    groupInfo={this.state.udpBinMapDetails}
+                  />
+                  <ColorCodeMtu />
+                </div>
+              </div>
+            </div>
+          )
+        break
         case appConstants.SELECT_MTU_POINT:
-          var rackType = ''
             this._navigation = (
               <Navigation
                 navData={this.state.PickFrontNavData}
