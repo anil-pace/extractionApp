@@ -1,6 +1,4 @@
 var React = require('react')
-var PrdtDetails = require('../PrdtDetails/ProductDetails')
-var appConstants = require('../../constants/appConstants')
 
 var MsuRackFlex = React.createClass({
   getInitialState: function() {
@@ -10,41 +8,12 @@ var MsuRackFlex = React.createClass({
     this.setState(this._getMaxXMaxYCoords(nextProps.rackDetails))
   },
 
-  componentDidUpdate: function() {
-    /*
-          Calling the line function only if the drawerLineDrawn is false 
-          and the slot type is drawer.
-          drawerLineDrawn is set true once the line is created
-       */
-
-    // var lines = document.getElementsByClassName('connectingLine')
-
-    // if (lines.length === 0) {
-    //   var strEl = document.querySelectorAll('#selectedSlot')[0]
-    //   strEl = strEl ? strEl.parentNode : null
-    //   var endEl = document.querySelectorAll('#slotDisplayArea')[0]
-    //   if (strEl && endEl) {
-    //     this.connect(strEl, endEl, '#626262', 3)
-    //   }
-    // }
-  },
-
-  componentWillUnmount: function() {
-    // var lines = document.getElementsByClassName('connectingLine')
-    // if (lines.length) {
-    //   lines[0].remove()
-    // }
-  },
-
   _getMaxXMaxYCoords: function(vSlots) {
     if (!vSlots || (vSlots.constructor !== Array && vSlots.length < 1)) {
       //no slots found
       return
     }
 
-    var totalSlots = vSlots.length
-    var totalWidth = 0,
-      totalHeight = 0
     var lastHSlot = {},
       lastVSlot = {}
     var selectedSlotIndex
@@ -119,58 +88,6 @@ var MsuRackFlex = React.createClass({
     }
   },
 
-  connect: function(startEl, endEl, color, thickness) {
-    var off1 = this.getOffset(startEl)
-    var off2 = this.getOffset(endEl)
-    // bottom right
-    var x1 = off1.left + off1.width
-    var y1 = off1.top + off1.height / 2
-    // top right
-    var x2 = off2.left
-    var y2 = off2.top + off2.height / 2
-    // distance
-    var length = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
-    // center
-    var cx = (x1 + x2) / 2 - length / 2
-    var cy = (y1 + y2) / 2 - thickness / 2
-    // angle
-    var angle = Math.atan2(y1 - y2, x1 - x2) * (180 / Math.PI)
-    // make hr
-
-    var htmlLine =
-      "<div class='connectingLine' style='padding:0px; margin:0px; height:" +
-      thickness +
-      'px; background-color:' +
-      color +
-      '; line-height:1px; position:absolute; left:' +
-      cx +
-      'px; top:' +
-      cy +
-      'px; width:' +
-      length +
-      'px; -moz-transform:rotate(' +
-      angle +
-      'deg); -webkit-transform:rotate(' +
-      angle +
-      'deg); -o-transform:rotate(' +
-      angle +
-      'deg); -ms-transform:rotate(' +
-      angle +
-      'deg); transform:rotate(' +
-      angle +
-      "deg);' />"
-    document.getElementById('app').innerHTML += htmlLine
-  },
-
-  getOffset(el) {
-    var rect = el.getBoundingClientRect()
-    return {
-      left: rect.left + window.pageXOffset,
-      top: rect.top + window.pageYOffset,
-      width: rect.width || el.offsetWidth,
-      height: rect.height || el.offsetHeight
-    }
-  },
   _createSlotLayouts: function(
     vSlots,
     lastHSlot,
@@ -203,7 +120,7 @@ var MsuRackFlex = React.createClass({
     var borderLeft, borderTop, borderRight
 
     for (var i = 0; i < vSlots.length; i++) {
-      var hangerIcon = ''
+      var toteIcon = ''
       var binWidth = vSlots[i].length * horFactor + '%'
       var binHeight = vSlots[i].height * vertFactor + '%'
       var ileft = 0
@@ -243,8 +160,8 @@ var MsuRackFlex = React.createClass({
 
       /* Show hanger icon when slot-type is hanger */
 
-      if (vSlots[i].type === 'hanger') {
-        hangerIcon = <div className='hanger-icon' />
+      if (vSlots[i].tote_status === true) {
+        toteIcon = <div className="bin-icon tote-icon"/>
       }
 
       vHTMLSlots.push(
@@ -262,8 +179,7 @@ var MsuRackFlex = React.createClass({
             background: setSlotBackground
           }}
         >
-          {drawALine}
-          {hangerIcon}
+          {toteIcon}
         </div>
       )
     }

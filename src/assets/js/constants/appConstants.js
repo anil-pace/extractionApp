@@ -1,6 +1,7 @@
 var appConstants = {
   WEBSOCKET_CONNECT: "Websocket connection",
   LIST_SEATS: "LIST_SEATS",
+  
   LOGIN: "LOGIN",
   API: "/api",
   AUTH: "/auth",
@@ -353,7 +354,6 @@ var appConstants = {
   PICK_FRONT_CHECKLIST: "pick_front_checklist",
   /*Constants for Audit*/
   OPEN_AUDIT_MODAL: "OPEN_AUDIT_MODAL",
-  API_GATEWAY: "/api-gateway",
   SR_SERVICE: "/sr-service",
   PLATFORM_SRMS: "/platform-srms",
   SERVICE_REQUEST: "/service-request",
@@ -392,7 +392,17 @@ var appConstants = {
   REMOVE_ALL_TOTES: "remove_all_totes",
   SCAN_EMPTY_TOTE: "scan_empty_tote",
   PUT_TOTE_IN_MTU: "put_tote_in_mtu",
-  SELECT_MTU_TO_PROCEED: "select_mtu_to_proceed"
+  SELECT_MTU_TO_PROCEED: "select_mtu_to_proceed",
+
+
+  //MTU
+  API_GATEWAY: "/api-gateway",
+  PROCESS_SERVICE: "/process-service",
+  WMS_PROCESS: "/wms-process",
+  EXTRACTION_APP:"/extraction-app",
+  EXTRACTION_UI:"Extraction UI",
+  PPS: "/pps",
+  LIST_STATIONS: "LIST_STATIONS",
 }
 
 module.exports = appConstants

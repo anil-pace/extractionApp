@@ -77,17 +77,18 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           evt.data == "CLIENTCODE_401" ||
           evt.data == "CLIENTCODE_400" ||
           evt.data == "CLIENTCODE_503" ||
-          evt.data == "CLIENTCODE_403"
-        ) {
-          var msgCode = evt.data
-          CommonActions.showErrorMessage(serverMessages[msgCode])
-          sessionStorage.setItem("sessionData", null)
-          CommonActions.loginSeat(false)
-          utils.enableKeyboard()
-        } else if (evt.data === resourceConstants.CLIENTCODE_MODE_CHANGED) {
+          evt.data == "CLIENTCODE_403"){
+              var msgCode = evt.data
+              CommonActions.showErrorMessage(serverMessages[msgCode])
+              sessionStorage.setItem("sessionData", null)
+              CommonActions.loginSeat(false)
+              utils.enableKeyboard()
+          }
+        else if (evt.data === resourceConstants.CLIENTCODE_MODE_CHANGED) {
           utils.sessionLogout()
           return false
-        } else {
+        } 
+        else {
           var received_msg = evt.data
           var data
           try {
@@ -215,6 +216,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
 
   checkSessionStorage: function() {
+    console.log(" ===>  utils.js ===> checkSessionStorage ()");
+
     var sessionData = JSON.parse(sessionStorage.getItem("sessionData"))
     if (sessionData === null) {
     } else {
@@ -229,11 +232,13 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     }
   },
   postDataToWebsockets: function(data) {
+    console.log(" ===>  utils.js ===> postDataToWebsockets ()");
     console.log(JSON.stringify(data))
     ws.send(JSON.stringify(data))
     setTimeout(CommonActions.operatorSeat, 0, true)
   },
   storeSession: function(data) {
+    console.log(" ===>  utils.js ===> storeSession ()");
     // Put the object into storage
     sessionStorage.setItem("sessionData", JSON.stringify(data))
   },
@@ -349,6 +354,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       })
   },
   postDataToInterface: function(data, seat_name) {
+    console.log("===== > utils.js ===> postDataToInterface()");
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     $.ajax({
@@ -392,6 +398,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     localStorage.setItem("session", text)
   },
   getPeripheralData: function(type, seat_name, status, method) {
+    console.log("===== > utils.js ===> getPeripheralData()");
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     $.ajax({
@@ -460,6 +467,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       })
   },
   updatePeripherals: function(data, method, seat_name) {
+    console.log("===== > utils.js ===> updatePeripherals()");
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     var url
@@ -603,105 +611,120 @@ var putSeatData = function(data) {
         "length": 32,
         "orig_coordinates": [0, 5],
         "type": "slot",
-        "barcodes": ["A.01", "A.02"]
+        "barcodes": ["A.01", "A.02"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 65, 46, 48, 51, 45, 65, 46, 48, 52],
         "height": 33,
         "length": 32,
         "orig_coordinates": [32, 5],
         "type": "slot",
-        "barcodes": ["A.03", "A.04"]
+        "barcodes": ["A.03", "A.04"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 65, 46, 48, 53, 45, 65, 46, 48, 54],
         "height": 33,
         "length": 32,
         "orig_coordinates": [64, 5],
         "type": "slot",
-        "barcodes": ["A.05", "A.06"]
+        "barcodes": ["A.05", "A.06"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 66, 46, 48, 49, 45, 66, 46, 48, 50],
         "height": 33,
         "length": 32,
         "orig_coordinates": [0, 43],
         "type": "slot",
-        "barcodes": ["B.01", "B.02"]
+        "barcodes": ["B.01", "B.02"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 66, 46, 48, 51, 45, 66, 46, 48, 52],
         "height": 33,
         "length": 32,
         "orig_coordinates": [32, 43],
         "type": "slot",
-        "barcodes": ["B.03", "B.04"]
+        "barcodes": ["B.03", "B.04"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 66, 46, 48, 53, 45, 66, 46, 48, 54],
         "height": 33,
         "length": 32,
         "orig_coordinates": [64, 43],
         "type": "slot",
-        "barcodes": ["B.05", "B.06"]
+        "barcodes": ["B.05", "B.06"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 67, 46, 48, 49, 45, 67, 46, 48, 50],
         "height": 33,
         "length": 32,
         "orig_coordinates": [0, 81],
         "type": "slot",
-        "barcodes": ["C.01", "C.02"]
+        "barcodes": ["C.01", "C.02"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 67, 46, 48, 51, 45, 67, 46, 48, 52],
         "height": 33,
         "length": 32,
         "orig_coordinates": [32, 81],
         "type": "slot",
-        "barcodes": ["C.03", "C.04"]
+        "barcodes": ["C.03", "C.04"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 67, 46, 48, 53, 45, 67, 46, 48, 54],
         "height": 33,
         "length": 32,
         "orig_coordinates": [64, 81],
         "type": "slot",
-        "barcodes": ["C.05", "C.06"]
+        "barcodes": ["C.05", "C.06"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 68, 46, 48, 49, 45, 68, 46, 48, 50],
         "height": 33,
         "length": 32,
         "orig_coordinates": [0, 119],
         "type": "slot",
-        "barcodes": ["D.01", "D.02"]
+        "barcodes": ["D.01", "D.02"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 68, 46, 48, 51, 45, 68, 46, 48, 52],
         "height": 33,
         "length": 32,
         "orig_coordinates": [32, 119],
         "type": "slot",
-        "barcodes": ["D.03", "D.04"]
+        "barcodes": ["D.03", "D.04"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 68, 46, 48, 53, 45, 68, 46, 48, 54],
         "height": 33,
         "length": 32,
         "orig_coordinates": [64, 119],
         "type": "slot",
-        "barcodes": ["D.05", "D.06"]
+        "barcodes": ["D.05", "D.06"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 69, 46, 48, 49, 45, 69, 46, 48, 50],
         "height": 33,
         "length": 32,
         "orig_coordinates": [0, 157],
         "type": "slot",
-        "barcodes": ["E.01", "E.02"]
+        "barcodes": ["E.01", "E.02"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 69, 46, 48, 51, 45, 69, 46, 48, 52],
         "height": 33,
         "length": 32,
         "orig_coordinates": [32, 157],
         "type": "slot",
-        "barcodes": ["E.03", "E.04"]
+        "barcodes": ["E.03", "E.04"],
+        "tote_status": true
       }, {
         "slot_ref": [48, 46, 69, 46, 48, 53, 45, 69, 46, 48, 54],
         "height": 33,
         "length": 32,
         "orig_coordinates": [64, 157],
         "type": "slot",
-        "barcodes": ["E.05", "E.06"]
+        "barcodes": ["E.05", "E.06"],
+        "tote_status": true
       }],
       "rack_type": "msu",
       "rack_width": 96,

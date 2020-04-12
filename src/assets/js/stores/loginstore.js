@@ -10,10 +10,12 @@ var utils  = require('../utils/utils.js');
 var CHANGE_EVENT = 'change';
 var flag = false;
 var currentSeat = [];
+var currentStation = [];
 var currentLang = '';
 var _errMsg = null;
 
 function getParameterByName(){
+    console.log("=====> loginStore.js => getParameterByName ()" );
     var l = document.createElement("a");
     l.href = window.location.href;
     var url_exist = window.location.href.split('=');
@@ -39,6 +41,7 @@ function getCurrentLang(){
   return localeLang
 }
 function listPpsSeat(seat){
+  console.log("=====> loginStore.js => listPpsSeat ()" );
     if(seat === null){
       currentSeat.length = 0; 
       $.ajax({
@@ -48,6 +51,32 @@ function listPpsSeat(seat){
         beforeSend : xhrConfig 
         }).done(function(response) {
           currentSeat = response.pps_seats;
+          loginstore.emit(CHANGE_EVENT); 
+        }).fail(function(jqXhr) {
+                     
+      }).success(function(data){
+        console.log("success");
+      });
+    }else{
+      loginstore.emit(CHANGE_EVENT); 
+    }
+}
+
+function listStationIds(seat){
+  //platform-ip:8080/api-gateway/process-service/wms-process/extraction-app/pps
+    if(seat === null){
+      currentStation.length = 0; 
+      $.ajax({
+        type: 'GET',
+        url: configConstants.PLATFORM_IP + 
+              appConstants.API_GATEWAY + 
+              appConstants.PROCESS_SERVICE + 
+              appConstants.WMS_PROCESS +
+              appConstants.EXTRACTION_APP + appConstants.PPS,
+        dataType : "json",
+        beforeSend : xhrConfig 
+        }).done(function(response) {
+          currentStation = response;
           loginstore.emit(CHANGE_EVENT); 
         }).fail(function(jqXhr) {
                      
@@ -97,6 +126,9 @@ var loginstore = objectAssign({}, EventEmitter.prototype, {
   seatList : function(){ 
     return currentSeat;
   },
+  stationList : function(){ 
+    return currentStation;
+  },
   getLang : function(){            //get language
     return currentLang;
   },
@@ -121,11 +153,13 @@ var loginstore = objectAssign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch(action.actionType){
-   // case appConstants.HIDE_SPINNER:
 
     case appConstants.LIST_SEATS:
       getParameterByName();
       break;
+    case appConstants.LIST_STATIONS:
+        getParameterByName();
+        break;
     case appConstants.SET_LANGUAGE:             // Register callback for SET_LANGUAGE action
       checkLang();
       break;

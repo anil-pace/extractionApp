@@ -13,7 +13,6 @@ var SystemIdle = require('./SystemIdle');
 var MobileSystemIdle = require('./MobileSystemIdle');
 var MtuSubsystem = require('./MtuSubsystem');
 
-
 function getState(){
   console.log("=======> operator.js -> getState()");
   return {
@@ -43,6 +42,8 @@ var Operator = React.createClass({
    this.setState(getState());
   },
   getSeatType:function(seat){
+  console.log("=======> operator.js -> getSeatType ()");
+
      switch(seat){
       case appConstants.PUT_BACK:
           this._currentSeat = <PutBack navMessagesJson={this.state.navMessages}/>;
@@ -74,7 +75,7 @@ var Operator = React.createClass({
   },
 
   render: function(data){ 
-    console.log("=======> operator.js -> render()");
+    console.log("=======> operator.js -> render ()");
      this.getSeatType(this.state.currentSeat);
       if(this.state.spinner === true){
        this._spinner = <Spinner />

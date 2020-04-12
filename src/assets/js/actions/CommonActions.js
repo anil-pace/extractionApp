@@ -14,6 +14,12 @@ var commonActions = {
       data: data
     });
   },
+  listStations: function(data) {
+    AppDispatcher.handleAction({
+      actionType: appConstants.LIST_STATIONS,
+      data: data
+    });
+  },
   login: function(data) {
     AppDispatcher.handleAction({
       actionType: appConstants.LOGIN,
