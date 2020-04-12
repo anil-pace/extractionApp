@@ -2,8 +2,6 @@ var React = require("react")
 var allSvgConstants = require("../constants/svgConstants")
 var CommonActions = require("../actions/CommonActions")
 var mainstore = require("../stores/mainstore")
-var virtualkeyboard = require("virtual-keyboard")
-var jqueryPosition = require("jquery-ui/position")
 var virtualKeyBoard_header = null
 var appConstants = require("../constants/appConstants")
 
@@ -186,26 +184,26 @@ var Header = React.createClass({
     var disableScanClass
     var invoiceFlow =
       mainstore.getScreenId() === appConstants.PUT_BACK_INVOICE ? true : false
-    this.getExceptionMenu()
-    this.getSearchItemMenu()
-    if (this.state.spinner || this.state.systemIsIdle || invoiceFlow) {
-      cssClass = "keyboard-actions hide-manual-barcode"
-    } else {
-      cssClass = "keyboard-actions"
-    }
-    if (
-      mainstore.getLogoutState() === "false" ||
-      mainstore.getLogoutState() === false
-    ) {
-      logoutClass = "actionItem disable"
-    } else {
-      logoutClass = "actionItem"
-    }
-    if (this.state.scanAllowed == true) {
-      disableScanClass = ""
-    } else {
-      disableScanClass = "disableScanClass"
-    }
+    //this.getExceptionMenu()
+    //this.getSearchItemMenu()
+    // if (this.state.spinner || this.state.systemIsIdle || invoiceFlow) {
+    //   cssClass = "keyboard-actions hide-manual-barcode"
+    // } else {
+    //   cssClass = "keyboard-actions"
+    // }
+    // if (
+    //   mainstore.getLogoutState() === "false" ||
+    //   mainstore.getLogoutState() === false
+    // ) {
+    //   logoutClass = "actionItem disable"
+    // } else {
+    //   logoutClass = "actionItem"
+    // }
+    // if (this.state.scanAllowed == true) {
+    //   disableScanClass = ""
+    // } else {
+    //   disableScanClass = "disableScanClass"
+    // }
     return (
       <div>
         <div className="head">
@@ -228,7 +226,7 @@ var Header = React.createClass({
           </div>
         </div>
         <div className="actionMenu" id="actionMenu">
-          {this.exceptionMenu}
+          {/* {this.exceptionMenu}
           <div className="actionItem" onClick={this.utilityMenu}>
             {_("Utility")}
             <div
@@ -247,7 +245,7 @@ var Header = React.createClass({
           {this.searchMenu}
           <div className={logoutClass} onClick={this.notifyTower}>
             {_("Call for Help")}
-          </div>
+          </div> */}
           <div className={logoutClass} onClick={this.logoutSession}>
             {_("Logout")}
           </div>

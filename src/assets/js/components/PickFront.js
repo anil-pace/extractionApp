@@ -59,16 +59,16 @@ var PickFront = React.createClass({
     return getStateData()
   },
   componentWillMount: function () {
-    if (
-      this.state.PickFrontScreenId === appConstants.PICK_FRONT_MORE_ITEM_SCAN ||
-      this.state.PickFrontScreenId === appConstants.PICK_FRONT_PPTL_PRESS ||
-      this.state.PickFrontScreenId === appConstants.PICK_FRONT_PACKING_BOX
-    ) {
-      this.showModal(
-        this.state.PickFrontChecklistDetails,
-        this.state.PickFrontChecklistIndex
-      )
-    }
+    // if (
+    //   this.state.PickFrontScreenId === appConstants.PICK_FRONT_MORE_ITEM_SCAN ||
+    //   this.state.PickFrontScreenId === appConstants.PICK_FRONT_PPTL_PRESS ||
+    //   this.state.PickFrontScreenId === appConstants.PICK_FRONT_PACKING_BOX
+    // ) {
+    //   this.showModal(
+    //     this.state.PickFrontChecklistDetails,
+    //     this.state.PickFrontChecklistIndex
+    //   )
+    // }
     mainstore.addChangeListener(this.onChange)
   },
   componentWillUnmount: function () {
@@ -76,16 +76,16 @@ var PickFront = React.createClass({
   },
   onChange: function () {
     this.setState(getStateData())
-    if (
-      this.state.PickFrontScreenId === appConstants.PICK_FRONT_MORE_ITEM_SCAN ||
-      this.state.PickFrontScreenId === appConstants.PICK_FRONT_PPTL_PRESS ||
-      this.state.PickFrontScreenId === appConstants.PICK_FRONT_PACKING_BOX
-    ) {
-      this.showModal(
-        this.state.PickFrontChecklistDetails,
-        this.state.PickFrontChecklistIndex
-      )
-    }
+    // if (
+    //   this.state.PickFrontScreenId === appConstants.PICK_FRONT_MORE_ITEM_SCAN ||
+    //   this.state.PickFrontScreenId === appConstants.PICK_FRONT_PPTL_PRESS ||
+    //   this.state.PickFrontScreenId === appConstants.PICK_FRONT_PACKING_BOX
+    // ) {
+    //   this.showModal(
+    //     this.state.PickFrontChecklistDetails,
+    //     this.state.PickFrontChecklistIndex
+    //   )
+    // }
   },
 
   getNotificationComponent: function () {
@@ -127,45 +127,45 @@ var PickFront = React.createClass({
       this._notification = ''
     }
   },
-  showModal: function (data, index, manual) {
-    if (manual == true) checkListOpen = false
-    var data = {
-      checklist_data: data,
-      checklist_index: index,
-      product_details: this.state.PickFrontProductDetails
-    }
-    console.log(this.state.PickFrontChecklistOverlayStatus, checkListOpen)
-    if (
-      this.state.PickFrontChecklistOverlayStatus === true &&
-      checkListOpen == false
-    ) {
-      checkListOpen = true
-      setTimeout(function () {
-        CommonActions.showModal({
-          data: data,
-          type: 'pick_checklist'
-        })
-        $('.modal').modal()
-        //$('.modal').data('bs.modal').escape(); // reset keyboard
-        $('.modal').data('bs.modal').options.backdrop = 'static'
-        return false
-      }, 0)
-    } else if (
-      this.state.PickFrontChecklistOverlayStatus === false &&
-      checkListOpen == true
-    ) {
-      setTimeout(function () {
-        $('.modal').modal('hide')
+  // showModal: function (data, index, manual) {
+  //   if (manual == true) checkListOpen = false
+  //   var data = {
+  //     checklist_data: data,
+  //     checklist_index: index,
+  //     product_details: this.state.PickFrontProductDetails
+  //   }
+  //   console.log(this.state.PickFrontChecklistOverlayStatus, checkListOpen)
+  //   if (
+  //     this.state.PickFrontChecklistOverlayStatus === true &&
+  //     checkListOpen == false
+  //   ) {
+  //     checkListOpen = true
+  //     setTimeout(function () {
+  //       CommonActions.showModal({
+  //         data: data,
+  //         type: 'pick_checklist'
+  //       })
+  //       $('.modal').modal()
+  //       //$('.modal').data('bs.modal').escape(); // reset keyboard
+  //       $('.modal').data('bs.modal').options.backdrop = 'static'
+  //       return false
+  //     }, 0)
+  //   } else if (
+  //     this.state.PickFrontChecklistOverlayStatus === false &&
+  //     checkListOpen == true
+  //   ) {
+  //     setTimeout(function () {
+  //       $('.modal').modal('hide')
 
-        $('.modal')
-          .data('bs.modal')
-          .escape() // reset keyboard
-        $('.modal').data('bs.modal').options.backdrop = true
-        $('button.close', $('.modal')).show()
-      }, 0)
-      checkListOpen = false
-    }
-  },
+  //       $('.modal')
+  //         .data('bs.modal')
+  //         .escape() // reset keyboard
+  //       $('.modal').data('bs.modal').options.backdrop = true
+  //       $('button.close', $('.modal')).show()
+  //     }, 0)
+  //     checkListOpen = false
+  //   }
+  // },
   getExceptionComponent: function () {
     var _rightComponent = ''
     this._navigation = ''
@@ -2003,6 +2003,7 @@ var PickFront = React.createClass({
           break
 
         case appConstants.WAIT_FOR_MTU:
+          console.log("%c     => wait for mtu =? screen", "color: green")
           this._navigation = (
             <Navigation
               navData={this.state.PickFrontNavData}
@@ -2026,6 +2027,7 @@ var PickFront = React.createClass({
           )
         break
         case appConstants.SELECT_MTU_POINT:
+          console.log("%c     => select mtu point =? screen", "color: green")
             this._navigation = (
               <Navigation
                 navData={this.state.PickFrontNavData}

@@ -1,6 +1,6 @@
 var React = require('react');
 var Bin = require('./Bin.react');
-var PutBackStore = require('../../stores/PutBackStore');
+//var PutBackStore = require('../../stores/PutBackStore');
 
 var Bins = React.createClass({
     componentDidMount: function() {

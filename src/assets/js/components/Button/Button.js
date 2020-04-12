@@ -2,7 +2,7 @@ var React = require('react');
 var ActionCreators = require('../../actions/CommonActions');
 var appConstants = require('../../constants/appConstants');
 var PickFrontStore = require('../../stores/PickFrontStore');
-var PutBackStore = require('../../stores/PutBackStore');
+//var PutBackStore = require('../../stores/PutBackStore');
 var mainstore = require('../../stores/mainstore');
 
 function closeModalBox() {
