@@ -1985,19 +1985,17 @@ var PickFront = React.createClass({
                       <Button1 
                         disabled={false} 
                         text={_("Cancel")} 
-                        module={appConstants.PUT_FRONT} 
+                        module={appConstants.PICK_FRONT} 
                         action={appConstants.CANCEL_SCAN} 
-                        barcode={this.state.PutFrontItemUid} 
                         color={"black"} />
                   </div>
                   <Button1
-                disabled={false}
-                text={_('Remove All')}
-                module={appConstants.PICK_FRONT}
-                action={appConstants.EDIT_DETAILS}
-                color={'orange'}
-              />
-                  
+                      disabled={false}
+                      text={_('Remove All')}
+                      module={appConstants.PICK_FRONT}
+                      action={appConstants.REMOVE_ALL_BUTTON}
+                      color={'orange'}
+                  />
                 </div>
             )
           break

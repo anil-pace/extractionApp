@@ -184,8 +184,13 @@ var Header = React.createClass({
     var disableScanClass
     var invoiceFlow =
       mainstore.getScreenId() === appConstants.PUT_BACK_INVOICE ? true : false
-      cssClass = "keyboard-actions";
-      //cssClass = "keyboard-actions hide-manual-barcode"
+      if (this.state.scanAllowed == true) {
+        cssClass = "keyboard-actions";
+        disableScanClass = "";
+      } else {
+        cssClass = "keyboard-actions hide-manual-barcode";
+        disableScanClass = "disableScanClass";
+      }
     //this.getExceptionMenu()
     //this.getSearchItemMenu()
     // if (this.state.spinner || this.state.systemIsIdle || invoiceFlow) {
@@ -201,11 +206,7 @@ var Header = React.createClass({
     // } else {
     //   logoutClass = "actionItem"
     // }
-    // if (this.state.scanAllowed == true) {
-    //   disableScanClass = ""
-    // } else {
-    //   disableScanClass = "disableScanClass"
-    // }
+    
     return (
       <div>
         <div className="head">

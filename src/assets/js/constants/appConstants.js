@@ -403,6 +403,7 @@ var appConstants = {
   EXTRACTION_UI:"Extraction UI",
   PPS: "/pps",
   LIST_STATIONS: "LIST_STATIONS",
+  REMOVE_ALL_BUTTON: "REMOVE_ALL_BUTTON"
 }
 
 module.exports = appConstants

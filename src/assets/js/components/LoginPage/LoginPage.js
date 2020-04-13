@@ -1,6 +1,5 @@
 var React = require('react');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
-var Router = require('react-router');
 var mainstore = require('../../stores/mainstore');
 var loginstore = require('../../stores/loginstore');
 var CommonActions = require('../../actions/CommonActions');
@@ -11,8 +10,8 @@ var utils = require('../../utils/utils.js');
 var appConstants = require('../../constants/appConstants');
 var configConstants = require('../../constants/configConstants');
 
-var virtualKeyBoard_login,
-  _seat_name = null;
+
+var _seat_name = null;
 var _mode = null;
 var _role = null;
 
@@ -25,7 +24,8 @@ function getState() {
     password: '',
     showError: loginstore.getErrorMessage(),
     getLang: loginstore.getLang(),
-    getCurrentLang: loginstore.getCurrentLang()
+    getCurrentLang: loginstore.getCurrentLang(),
+    stationId: "Select Station Id"
   };
 }
 
@@ -115,8 +115,8 @@ var LoginPage = React.createClass({
     mainstore.addChangeListener(this.onChange);
     loginstore.addChangeListener(this.onChange);
 
-    CommonActions.webSocketConnection();
-    CommonActions.listSeats();
+     CommonActions.webSocketConnection();
+     CommonActions.listSeats();
     
     // CommonActions.setLanguage(); //Dispatch setLanguage action
     // if (this.state.getLang) {
@@ -246,6 +246,15 @@ var LoginPage = React.createClass({
   removeNotify: function() {
     $('.errorNotify').css('display', 'none');
   },
+
+  connectToWebSocket: function(){
+    CommonActions.webSocketConnection(this.state.stationId);
+  },
+
+  ChangeStationId: function(e){
+    this.setState({stationId: e.target.value}, this.connectToWebSocket);
+  },
+
   render: function() {
     console.log("====> + LoginPage.js ==> render () ");
 
@@ -254,6 +263,20 @@ var LoginPage = React.createClass({
     var currentYear = currentDate.getFullYear();
     if (this.state.seatList.length > 0) {
       var parseSeatID, ppsOption, showTiltButton;
+      
+      /******** list of stations **********/
+          // var stationList = [1,2,3,4];
+          // seatData = stationList.map(function(eachItem, index){
+          //   return(
+          //     <option key={'station' + index} value={eachItem}>
+          //     Station Id {eachItem}
+          //   </option>
+          //   );
+          // })
+          // seatData.unshift(<option key={'station'} value={0}>Select Station Id:</option>);
+       /***********************/
+       
+
       seatData = this.state.seatList.map(function(data, index) {
         if (data.hasOwnProperty('seat_type')) {
           parseSeatID = null;
@@ -280,6 +303,7 @@ var LoginPage = React.createClass({
           );
         }
       });
+
       if (parseSeatID != null) {
         ppsOption = (
           <span style={{ 'font-size': '24px', 'font-weight': '400' }}>
@@ -291,6 +315,8 @@ var LoginPage = React.createClass({
         _seat_name = null;
         ppsOption = (
           <select
+            value={this.state.stationId}
+            onChange={this.ChangeStationId}
             className={false ? 'selectPPS error' : 'selectPPS'}
             ref='seat_name'
           >
