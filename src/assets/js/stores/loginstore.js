@@ -40,6 +40,29 @@ function getCurrentLang(){
   localeLang = (localeObj && localeObj.data) ? localeObj.data.locale : null;
   return localeLang
 }
+
+function listPpsSeat_mtu(seat){
+  console.log("=====> loginStore.js => listPpsSeat ()" );
+    if(seat === null){
+      currentSeat.length = 0; 
+      $.ajax({
+        type: 'GET',
+        url: configConstants.INTERFACE_IP+ ":8080/wms-process/extraction-app-ws?pps=3",
+        //url: configConstants.INTERFACE_IP+appConstants.PPS_SEATS,
+        dataType : "json",
+        beforeSend : xhrConfig 
+        }).done(function(response) {
+          currentSeat = response.pps_seats;
+          loginstore.emit(CHANGE_EVENT); 
+        }).fail(function(jqXhr) {
+      }).success(function(data){
+        console.log("success");
+      });
+    }else{
+      loginstore.emit(CHANGE_EVENT); 
+    }
+}
+
 function listPpsSeat(seat){
   console.log("=====> loginStore.js => listPpsSeat ()" );
     if(seat === null){
@@ -157,9 +180,9 @@ AppDispatcher.register(function(payload){
     case appConstants.LIST_SEATS:
       getParameterByName();
       break;
-    case appConstants.LIST_STATIONS:
-        getParameterByName();
-        break;
+    // case appConstants.LIST_STATIONS:
+    //     getParameterByName();
+    //     break;
     case appConstants.SET_LANGUAGE:             // Register callback for SET_LANGUAGE action
       checkLang();
       break;

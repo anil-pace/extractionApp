@@ -59,6 +59,74 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
     })
   },
+  connectToWebSocket_FOR_MTU: function(stationId) {
+    // platform-ip:8080/wms-process/extraction-app-ws?pps=3
+    var url = "wss://192.168.9.65" + ":8080/wms-process/extraction-app-ws?pps=" + stationId
+    console.log(url);
+    self = this
+    ws = new WebSocket(url)
+    if ("WebSocket" in window) {
+      ws.onopen = function() {
+        $("#username, #password").prop("disabled", false)
+        console.log("websocket connected")
+        utils.checkSessionStorage()
+        clearTimeout(utils.connectToWebSocket)
+      }
+      ws.onmessage = function(evt) {
+        if (
+          evt.data == "CLIENTCODE_409" ||
+          evt.data == "CLIENTCODE_412" ||
+          evt.data == "CLIENTCODE_401" ||
+          evt.data == "CLIENTCODE_400" ||
+          evt.data == "CLIENTCODE_503" ||
+          evt.data == "CLIENTCODE_403"){
+              var msgCode = evt.data
+              CommonActions.showErrorMessage(serverMessages[msgCode])
+              sessionStorage.setItem("sessionData", null)
+              CommonActions.loginSeat(false)
+              utils.enableKeyboard()
+          }
+        else if (evt.data === resourceConstants.CLIENTCODE_MODE_CHANGED) {
+          utils.sessionLogout()
+          return false
+        } 
+        else {
+          var received_msg = evt.data
+          var data
+          try {
+            data = JSON.parse(evt.data)
+            if (data.hasOwnProperty("data")) {
+              if (data.data == "disconnect") {
+                utils.sessionLogout()
+                return false
+              }
+            }
+            readStateData(data)
+            CommonActions.setCurrentSeat(data.state_data)
+          } catch (err) {
+            //intentionally left blank
+          }
+
+          CommonActions.setServerMessages()
+        }
+      }
+      ws.onclose = function() {
+        //serverMessages.CLIENTCODE_003;
+        /* alert(JSON.stringify(evt));
+                 if(evt == "CLIENTCODE_409" || evt == "CLIENTCODE_503"){
+                     var msgCode = evt;
+                     console.log(serverMessages[msgCode]);
+                     CommonActions.showErrorMessage(serverMessages[msgCode]);
+                     CommonActions.logoutSession(true);
+                 }*/
+        //$("#username, #password").prop('disabled', true);
+        //alert("Connection is closed...");
+        setTimeout(utils.connectToWebSocket, 100)
+      }
+    } else {
+      alert("WebSocket NOT supported by your Browser!")
+    }
+  },
   connectToWebSocket: function(data) {
     console.log("=======> utils.js -> connectToWebSocket()");
     self = this
@@ -66,7 +134,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     if ("WebSocket" in window) {
       ws.onopen = function() {
         $("#username, #password").prop("disabled", false)
-        console.log("connected")
+        console.log("websocket connected")
         utils.checkSessionStorage()
         clearTimeout(utils.connectToWebSocket)
       }

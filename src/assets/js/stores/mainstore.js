@@ -5814,7 +5814,7 @@ AppDispatcher.register(function(payload) {
       mainstore.emitChange()
       break
     case appConstants.WEBSOCKET_CONNECT:
-      utils.connectToWebSocket()
+      utils.connectToWebSocket(action.data)
       mainstore.emit(CHANGE_EVENT)
       break
     case appConstants.SET_CURRENT_SEAT:
