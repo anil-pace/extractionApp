@@ -57,6 +57,7 @@ var PickFrontStore = assign({}, EventEmitter.prototype, {
     },
     setPickFrontData: function(data) {
         _PickFrontData = data;
+        console.log("%c  ===> PIckFrontStore.js => setPickFrontData ()", "color:red" + data)
     },
 
     getStateData: function() {

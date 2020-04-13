@@ -99,7 +99,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
                 return false
               }
             }
-            putSeatData(data)
+            readStateData(data)
             CommonActions.setCurrentSeat(data.state_data)
           } catch (err) {
             //intentionally left blank
@@ -577,72 +577,179 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   }
 })
 
-var putSeatData = function(data) {
+var readStateData = function(data) {
 
   data.state_data = {
-    "seat_name": "back_10_A",
-    "seat_type": "front",
-    
-    "screen_id": "wait_for_mtu",
-    
-    "mode": "pick",
-    
-    "dock_station_list": [{
-    "status": "idle",
-    "dock_station_label": "2",
-    "direction": "top",
-    "ppsbin_light_color": "blue"
-    }, {
-    "status": "idle",
-    "dock_station_label": "4",
-    "direction": "top",
-    "ppsbin_light_color": "green"
-    }, {
-    "status": "print_ready",
-    "dock_station_label": "3",
-    "direction": "top",
-    "ppsbin_light_color": "green"
-    }, {
-    "status": "docked",
-    "dock_station_label": "1",
-    "direction": "top",
-    "ppsbin_light_color": "orange"
-    }],
-    
-    "scan_allowed": false,
-    
-    "header_msge_list": [{
-    "level": "info",
-    "code": "Mtu.E.000",
-    "details": [],
-    "description": "Wait for MTU"
-    }]
-    }
-  console.log("=======> UTitls.js -> putSeatData()");
-  console.log(data)
-  switch (data.state_data.mode + "_" + data.state_data.seat_type) {
-    case appConstants.PUT_BACK:
-      CommonActions.setPutBackData(data.state_data)
-      break
-    case appConstants.PUT_FRONT:
-      CommonActions.setPutFrontData(data.state_data)
-      break
-    case appConstants.PICK_BACK:
-      CommonActions.setPickBackData(data.state_data)
-      break
-    case appConstants.PICK_FRONT:
-      CommonActions.setPickFrontData(data.state_data)
-      break
-    case appConstants.AUDIT:
-      CommonActions.setAuditData(data.state_data)
-      break
-    case appConstants.SEARCH:
-      CommonActions.setSearchData(data.state_data)
-      break
+"screen_id": "remove_all_totes",
+"dock_station_list": [{
+"status": "idle",
+"dock_station_label": "2",
+"direction": "top",
+"ppsbin_light_color": "blue"
+}, {
+"status": "idle",
+"dock_station_label": "4",
+"direction": "top",
+"ppsbin_light_color": "green"
+}, {
+"status": "print_ready",
+"dock_station_label": "3",
+"direction": "top",
+"ppsbin_light_color": "green"
+}, {
+"status": "docked",
+"dock_station_label": "1",
+"direction": "top",
+"ppsbin_light_color": "orange"
+}],
+"current_bin_widget": false,
+"rack_details": {
+"slot_barcodes": ["023.0.D.01", "023.0.D.02"],
+"rack_type_rec": [{
+"slot_ref": [48, 46, 65, 46, 48, 49, 45, 65, 46, 48, 50],
+"height": 33,
+"length": 32,
+"orig_coordinates": [0, 5],
+"type": "slot",
+"barcodes": ["A.01", "A.02"]
+}, {
+"slot_ref": [48, 46, 65, 46, 48, 51, 45, 65, 46, 48, 52],
+"height": 33,
+"length": 32,
+"orig_coordinates": [32, 5],
+"type": "slot",
+"barcodes": ["A.03", "A.04"]
+}, {
+"slot_ref": [48, 46, 65, 46, 48, 53, 45, 65, 46, 48, 54],
+"height": 33,
+"length": 32,
+"orig_coordinates": [64, 5],
+"type": "slot",
+"barcodes": ["A.05", "A.06"]
+}, {
+"slot_ref": [48, 46, 66, 46, 48, 49, 45, 66, 46, 48, 50],
+"height": 33,
+"length": 32,
+"orig_coordinates": [0, 43],
+"type": "slot",
+"barcodes": ["B.01", "B.02"]
+}, {
+"slot_ref": [48, 46, 66, 46, 48, 51, 45, 66, 46, 48, 52],
+"height": 33,
+"length": 32,
+"orig_coordinates": [32, 43],
+"type": "slot",
+"barcodes": ["B.03", "B.04"]
+}, {
+"slot_ref": [48, 46, 66, 46, 48, 53, 45, 66, 46, 48, 54],
+"height": 33,
+"length": 32,
+"orig_coordinates": [64, 43],
+"type": "slot",
+"barcodes": ["B.05", "B.06"]
+}, {
+"slot_ref": [48, 46, 67, 46, 48, 49, 45, 67, 46, 48, 50],
+"height": 33,
+"length": 32,
+"orig_coordinates": [0, 81],
+"type": "slot",
+"barcodes": ["C.01", "C.02"]
+}, {
+"slot_ref": [48, 46, 67, 46, 48, 51, 45, 67, 46, 48, 52],
+"height": 33,
+"length": 32,
+"orig_coordinates": [32, 81],
+"type": "slot",
+"barcodes": ["C.03", "C.04"]
+}, {
+"slot_ref": [48, 46, 67, 46, 48, 53, 45, 67, 46, 48, 54],
+"height": 33,
+"length": 32,
+"orig_coordinates": [64, 81],
+"type": "slot",
+"barcodes": ["C.05", "C.06"]
+}, {
+"slot_ref": [48, 46, 68, 46, 48, 49, 45, 68, 46, 48, 50],
+"height": 33,
+"length": 32,
+"orig_coordinates": [0, 119],
+"type": "slot",
+"barcodes": ["D.01", "D.02"]
+}, {
+"slot_ref": [48, 46, 68, 46, 48, 51, 45, 68, 46, 48, 52],
+"height": 33,
+"length": 32,
+"orig_coordinates": [32, 119],
+"type": "slot",
+"barcodes": ["D.03", "D.04"]
+}, {
+"slot_ref": [48, 46, 68, 46, 48, 53, 45, 68, 46, 48, 54],
+"height": 33,
+"length": 32,
+"orig_coordinates": [64, 119],
+"type": "slot",
+"barcodes": ["D.05", "D.06"]
+}, {
+"slot_ref": [48, 46, 69, 46, 48, 49, 45, 69, 46, 48, 50],
+"height": 33,
+"length": 32,
+"orig_coordinates": [0, 157],
+"type": "slot",
+"barcodes": ["E.01", "E.02"]
+}, {
+"slot_ref": [48, 46, 69, 46, 48, 51, 45, 69, 46, 48, 52],
+"height": 33,
+"length": 32,
+"orig_coordinates": [32, 157],
+"type": "slot",
+"barcodes": ["E.03", "E.04"]
+}, {
+"slot_ref": [48, 46, 69, 46, 48, 53, 45, 69, 46, 48, 54],
+"height": 33,
+"length": 32,
+"orig_coordinates": [64, 157],
+"type": "slot",
+"barcodes": ["E.05", "E.06"]
+}],
+"rack_type": "msu",
+"rack_width": 96,
+"slot_type": "slot"
+},
 
-    default:
-      return true
-  }
+"scan_allowed": true,
+
+"header_msge_list": [{
+"level": "info",
+"code": "Mtu.E.002",
+"details": [],
+"description": "Remove all Totes from the MTU"
+}]
+}
+  console.log("=======> UTitls.js -> readStateData()");
+  console.log(data)
+  CommonActions.setPickFrontData(data.state_data);
+  // switch (data.state_data.mode + "_" + data.state_data.seat_type) {
+  //   case appConstants.PUT_BACK:
+  //     CommonActions.setPutBackData(data.state_data)
+  //     break
+  //   case appConstants.PUT_FRONT:
+  //     CommonActions.setPutFrontData(data.state_data)
+  //     break
+  //   case appConstants.PICK_BACK:
+  //     CommonActions.setPickBackData(data.state_data)
+  //     break
+  //   case appConstants.PICK_FRONT:
+  //     CommonActions.setPickFrontData(data.state_data)
+  //     break
+  //   case appConstants.AUDIT:
+  //     CommonActions.setAuditData(data.state_data)
+  //     break
+  //   case appConstants.SEARCH:
+  //     CommonActions.setSearchData(data.state_data)
+  //     break
+  //   default:
+  //     return true
+  // }
 }
 
 module.exports = utils

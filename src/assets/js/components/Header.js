@@ -184,6 +184,8 @@ var Header = React.createClass({
     var disableScanClass
     var invoiceFlow =
       mainstore.getScreenId() === appConstants.PUT_BACK_INVOICE ? true : false
+      cssClass = "keyboard-actions";
+      //cssClass = "keyboard-actions hide-manual-barcode"
     //this.getExceptionMenu()
     //this.getSearchItemMenu()
     // if (this.state.spinner || this.state.systemIsIdle || invoiceFlow) {
@@ -210,10 +212,10 @@ var Header = React.createClass({
           <div className="logo">
             <img src={allSvgConstants.logo} style={{ width: "142px" }} />
           </div>
-          <div className="ppsMode">
+          {/* <div className="ppsMode">
             {" "}
             PPS Mode : {this.state.ppsMode.toUpperCase()}{" "}
-          </div>
+          </div> */}
           <div className={cssClass} onClick={this.openKeyboard}>
             <img
               src={allSvgConstants.scanHeader}
@@ -226,8 +228,8 @@ var Header = React.createClass({
           </div>
         </div>
         <div className="actionMenu" id="actionMenu">
-          {/* {this.exceptionMenu}
-          <div className="actionItem" onClick={this.utilityMenu}>
+          {/* {this.exceptionMenu} */}
+          {/* <div className="actionItem" onClick={this.utilityMenu}>
             {_("Utility")}
             <div
               className="subMenu"
@@ -241,8 +243,8 @@ var Header = React.createClass({
             >
               {_("Scanner Management")}
             </div>
-          </div>
-          {this.searchMenu}
+          </div> */}
+          {/* {this.searchMenu}
           <div className={logoutClass} onClick={this.notifyTower}>
             {_("Call for Help")}
           </div> */}
