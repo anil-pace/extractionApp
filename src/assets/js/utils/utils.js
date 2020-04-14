@@ -313,33 +313,34 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   getAuthToken: function(data) {
     sessionStorage.setItem("sessionData", null)
 
-    if (data.data.barcode) {
-      // if barcode key is present its login via scanner mode
-      var loginData = {
-        username: "d_____", // post discussion with platform (rahul.s)
-        password: "d_____", // d+(5 times _)
-        grant_type: "password",
-        action: "LOGIN",
-        role: [data.data.role],
-        context: {
-          entity_id: "1",
-          barcode: data.data.barcode,
-          app_name: "boi_ui"
-        }
-      }
-    } else {
+    // if (data.data.barcode) {
+    //   // if barcode key is present its login via scanner mode
+    //   var loginData = {
+    //     username: "d_____", // post discussion with platform (rahul.s)
+    //     password: "d_____", // d+(5 times _)
+    //     grant_type: "password",
+    //     action: "LOGIN",
+    //     role: [data.data.role],
+    //     context: {
+    //       entity_id: "1",
+    //       barcode: data.data.barcode,
+    //       app_name: "boi_ui"
+    //     }
+    //   }
+    // } 
+    //else {
       var loginData = {
         username: data.data.username,
         password: data.data.password,
         grant_type: "password",
-        role: [data.data.role],
+        role: ["ROLE_PICK"],
         action: "LOGIN",
         context: {
           entity_id: "1",
           app_name: "boi_ui"
         }
       }
-    }
+    //}
     $.ajax({
       type: "POST",
       url:
@@ -649,40 +650,161 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 var readStateData = function(data) {
 
   data.state_data = {
-    "screen_id": "select_mtu_point",
+    "screen_id": "remove_all_totes",
     "dock_station_list": [{
-    "status": "idle",
     "dock_station_label": "2",
     "direction": "top",
-    "ppsbin_light_color": "blue"
+    "ppsbin_light_color": "#0390FF"
     }, {
-    "status": "idle",
     "dock_station_label": "4",
     "direction": "top",
-    "ppsbin_light_color": "green"
+    "ppsbin_light_color": "#D8D8D8"
     }, {
-    "status": "print_ready",
     "dock_station_label": "3",
     "direction": "top",
-    "ppsbin_light_color": "green"
+    "ppsbin_light_color": "#D8D8D8"
     }, {
-    "status": "docked",
     "dock_station_label": "1",
     "direction": "top",
-    "ppsbin_light_color": "orange"
+    "ppsbin_light_color": "#D8D8D8"
     }],
-    
-    "scan_allowed": true,
-    
-    "header_msge_list": [{
+    "current_bin_widget": false,
+    "rack_details": {
+    "slot_barcodes": ["023.0.D.01", "023.0.D.02"],
+    "rack_type_rec": [{
+    "slot_ref": [48, 46, 65, 46, 48, 49, 45, 65, 46, 48, 50],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [0, 5],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["A.01", "A.02"]
+    }, {
+    "slot_ref": [48, 46, 65, 46, 48, 51, 45, 65, 46, 48, 52],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [32, 5],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["A.03", "A.04"]
+    }, {
+    "slot_ref": [48, 46, 65, 46, 48, 53, 45, 65, 46, 48, 54],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [64, 5],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["A.05", "A.06"]
+    }, {
+    "slot_ref": [48, 46, 66, 46, 48, 49, 45, 66, 46, 48, 50],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [0, 43],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["B.01", "B.02"]
+    }, {
+    "slot_ref": [48, 46, 66, 46, 48, 51, 45, 66, 46, 48, 52],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [32, 43],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["B.03", "B.04"]
+    }, {
+    "slot_ref": [48, 46, 66, 46, 48, 53, 45, 66, 46, 48, 54],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [64, 43],
+    "type": "slot",
+    "tote_status": false,
+    "barcodes": ["B.05", "B.06"]
+    }, {
+    "slot_ref": [48, 46, 67, 46, 48, 49, 45, 67, 46, 48, 50],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [0, 81],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["C.01", "C.02"]
+    }, {
+    "slot_ref": [48, 46, 67, 46, 48, 51, 45, 67, 46, 48, 52],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [32, 81],
+    "type": "slot",
+    "tote_status": false,
+    "barcodes": ["C.03", "C.04"]
+    }, {
+    "slot_ref": [48, 46, 67, 46, 48, 53, 45, 67, 46, 48, 54],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [64, 81],
+    "type": "slot",
+    "tote_status": false,
+    "barcodes": ["C.05", "C.06"]
+    }, {
+    "slot_ref": [48, 46, 68, 46, 48, 49, 45, 68, 46, 48, 50],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [0, 119],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["D.01", "D.02"]
+    }, {
+    "slot_ref": [48, 46, 68, 46, 48, 51, 45, 68, 46, 48, 52],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [32, 119],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["D.03", "D.04"]
+    }, {
+    "slot_ref": [48, 46, 68, 46, 48, 53, 45, 68, 46, 48, 54],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [64, 119],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["D.05", "D.06"]
+    }, {
+    "slot_ref": [48, 46, 69, 46, 48, 49, 45, 69, 46, 48, 50],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [0, 157],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["E.01", "E.02"]
+    }, {
+    "slot_ref": [48, 46, 69, 46, 48, 51, 45, 69, 46, 48, 52],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [32, 157],
+    "type": "slot",
+    "barcodes": ["E.03", "E.04"]
+    }, {
+    "slot_ref": [48, 46, 69, 46, 48, 53, 45, 69, 46, 48, 54],
+    "height": 33,
+    "length": 32,
+    "orig_coordinates": [64, 157],
+    "type": "slot",
+    "tote_status": true,
+    "barcodes": ["E.05", "E.06"]
+    }],
+    "rack_type": "msu",
+    "rack_width": 96,
+    "slot_type": "slot"
+    },
+   "scan_allowed": true,
+   
+   "header_msge_list": [{
     "level": "info",
-    "code": "Mtu.E.001",
+    "code": "Mtu.E.002",
     "details": [],
-    "description": "Select MTU point"
+    "description": "Remove all Totes from the MTU"
     }]
-    }
-    
-    
+   }
+
   console.log("=======> UTitls.js -> readStateData()");
   console.log(data)
   CommonActions.setPickFrontData(data.state_data);
