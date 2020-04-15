@@ -135,11 +135,13 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     if ("WebSocket" in window) {
       ws.onopen = function() {
         $("#username, #password").prop("disabled", false)
-        console.log("websocket connected")
+        console.log("=====================> websocket connected established...")
+        
         utils.checkSessionStorage()
         clearTimeout(utils.connectToWebSocket)
       }
       ws.onmessage = function(evt) {
+        console.log("=====================> onMessage");
         if (
           evt.data == "CLIENTCODE_409" ||
           evt.data == "CLIENTCODE_412" ||
@@ -147,17 +149,21 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           evt.data == "CLIENTCODE_400" ||
           evt.data == "CLIENTCODE_503" ||
           evt.data == "CLIENTCODE_403"){
-              var msgCode = evt.data
+              var msgCode = evt.data;
+
               CommonActions.showErrorMessage(serverMessages[msgCode])
-              sessionStorage.setItem("sessionData", null)
+              sessionStorage.setItem("sessionData", null);
+
               CommonActions.loginSeat(false)
               utils.enableKeyboard()
           }
         else if (evt.data === resourceConstants.CLIENTCODE_MODE_CHANGED) {
+          console.log(" else if =====================> sessionLogout");
           utils.sessionLogout()
           return false
         } 
         else {
+          console.log(" else  =====================> sessionLogout");
           var received_msg = evt.data
           var data
           try {
@@ -202,12 +208,16 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
   get3dotTrailedText: function(){},
   displayData: function() {},
+
+
   checkSessionStorage: function() {
     console.log(" ===>  utils.js ===> checkSessionStorage ()");
 
     var sessionData = JSON.parse(sessionStorage.getItem("sessionData"))
     if (sessionData === null) {
+      console.log("=====================> inside if");
     } else {
+      console.log("=====================> inside else");
       var webSocketData = {
         data_type: "auth",
         data: {
@@ -261,7 +271,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           data_type: "auth",
           data: {
             "auth-token": response.auth_token,
-            seat_name: data.data.seat_name
+            seat_name: data.data.seat_name,
+            //stationId: data
           }
         }
         utils.storeSession(webSocketData)
@@ -559,162 +570,37 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
 var readStateData = function(data) {
 
-  data.state_data = {
-    "screen_id": "remove_all_totes",
-    "dock_station_list": [{
-    "dock_station_label": "2",
-    "direction": "top",
-    "ppsbin_light_color": "#0390FF"
-    }, {
-    "dock_station_label": "4",
-    "direction": "top",
-    "ppsbin_light_color": "#D8D8D8"
-    }, {
-    "dock_station_label": "3",
-    "direction": "top",
-    "ppsbin_light_color": "#D8D8D8"
-    }, {
-    "dock_station_label": "1",
-    "direction": "top",
-    "ppsbin_light_color": "#D8D8D8"
-    }],
-    "current_bin_widget": false,
-    "rack_details": {
-    "slot_barcodes": ["023.0.D.01", "023.0.D.02"],
-    "rack_type_rec": [{
-    "slot_ref": [48, 46, 65, 46, 48, 49, 45, 65, 46, 48, 50],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [0, 5],
-    "type": "slot",
-    "tote_status": null,
-    "barcodes": ["A.01", "A.02"]
-    }, {
-    "slot_ref": [48, 46, 65, 46, 48, 51, 45, 65, 46, 48, 52],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [32, 5],
-    "type": "slot",
-    "tote_status": null,
-    "barcodes": ["A.03", "A.04"]
-    }, {
-    "slot_ref": [48, 46, 65, 46, 48, 53, 45, 65, 46, 48, 54],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [64, 5],
-    "type": "slot",
-    "tote_status": null,
-    "barcodes": ["A.05", "A.06"]
-    }, {
-    "slot_ref": [48, 46, 66, 46, 48, 49, 45, 66, 46, 48, 50],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [0, 43],
-    "type": "slot",
-    "tote_status": null,
-    "barcodes": ["B.01", "B.02"]
-    }, {
-    "slot_ref": [48, 46, 66, 46, 48, 51, 45, 66, 46, 48, 52],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [32, 43],
-    "type": "slot",
-    "tote_status": "empty",
-    "barcodes": ["B.03", "B.04"]
-    }, {
-    "slot_ref": [48, 46, 66, 46, 48, 53, 45, 66, 46, 48, 54],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [64, 43],
-    "type": "slot",
-    "tote_status": "empty",
-    "barcodes": ["B.05", "B.06"]
-    }, {
-    "slot_ref": [48, 46, 67, 46, 48, 49, 45, 67, 46, 48, 50],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [0, 81],
-    "type": "slot",
-    "tote_status": "empty",
-    "barcodes": ["C.01", "C.02"]
-    }, {
-    "slot_ref": [48, 46, 67, 46, 48, 51, 45, 67, 46, 48, 52],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [32, 81],
-    "type": "slot",
-    "tote_status": "scanned_empty",
-    "barcodes": ["C.03", "C.04"]
-    }, {
-    "slot_ref": [48, 46, 67, 46, 48, 53, 45, 67, 46, 48, 54],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [64, 81],
-    "type": "slot",
-    "tote_status": "scanned_empty",
-    "barcodes": ["C.05", "C.06"]
-    }, {
-    "slot_ref": [48, 46, 68, 46, 48, 49, 45, 68, 46, 48, 50],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [0, 119],
-    "type": "slot",
-    "tote_status": "scanned_empty",
-    "barcodes": ["D.01", "D.02"]
-    }, {
-    "slot_ref": [48, 46, 68, 46, 48, 51, 45, 68, 46, 48, 52],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [32, 119],
-    "type": "slot",
-    "tote_status": "scanned_empty",
-    "barcodes": ["D.03", "D.04"]
-    }, {
-    "slot_ref": [48, 46, 68, 46, 48, 53, 45, 68, 46, 48, 54],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [64, 119],
-    "type": "slot",
-    "tote_status": "inventoryItems",
-    "barcodes": ["D.05", "D.06"]
-    }, {
-    "slot_ref": [48, 46, 69, 46, 48, 49, 45, 69, 46, 48, 50],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [0, 157],
-    "type": "slot",
-    "tote_status": "inventoryItems",
-    "barcodes": ["E.01", "E.02"]
-    }, {
-    "slot_ref": [48, 46, 69, 46, 48, 51, 45, 69, 46, 48, 52],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [32, 157],
-    "type": "slot",
-    "tote_status": "inventoryItems",
-    "barcodes": ["E.03", "E.04"]
-    }, {
-    "slot_ref": [48, 46, 69, 46, 48, 53, 45, 69, 46, 48, 54],
-    "height": 33,
-    "length": 32,
-    "orig_coordinates": [64, 157],
-    "type": "slot",
-    "tote_status": "inventoryItems",
-    "barcodes": ["E.05", "E.06"]
-    }],
-    "rack_type": "msu",
-    "rack_width": 96,
-    "slot_type": "slot"
-    },
-   "scan_allowed": true,
-   
-   "header_msge_list": [{
-    "level": "info",
-    "code": "Mtu.E.002",
-    "details": [],
-    "description": "Remove all Totes from the MTU"
-    }]
-   }
+  data.state_data = {"screen_id": "wait_for_mtu",
+"dock_station_list": [{
+
+"dock_station_label": "2",
+"direction": "top",
+"ppsbin_light_color": "#D8D8D8"
+}, {
+"dock_station_label": "4",
+"direction": "top",
+"ppsbin_light_color": "#D8D8D8"
+}, {
+"dock_station_label": "3",
+"direction": "top",
+"ppsbin_light_color": "#D8D8D8"
+}, {
+"dock_station_label": "1",
+"direction": "top",
+"ppsbin_light_color": "#D8D8D8"
+}],
+
+"scan_allowed": false,
+
+"header_msge_list": [{
+"level": "info",
+"code": "Mtu.E.000",
+"details": [],
+"description": "Wait for MTU"
+}]
+}
+
+
 
   console.log("=======> UTitls.js -> readStateData()");
   console.log(data)
