@@ -114,7 +114,7 @@ var LoginPage = React.createClass({
     mainstore.addChangeListener(this.onChange);
     loginstore.addChangeListener(this.onChange);
 
-     CommonActions.webSocketConnection();
+     //CommonActions.webSocketConnection();
      CommonActions.listSeats();
     
     // CommonActions.setLanguage(); //Dispatch setLanguage action
@@ -196,28 +196,38 @@ var LoginPage = React.createClass({
     if (_seat_name == null) {
       _seat_name = this.refs.seat_name.value;
     }
-    $.ajax({
-      type: 'GET',
-      url:
-        configConstants.INTERFACE_IP +
-        appConstants.API +
-        appConstants.PPS_SEATS +
-        _seat_name +
-        appConstants.MODE,
-      dataType: 'json'
-    }).done(function(response) {
-      _role = ('ROLE_' + response.mode).toUpperCase();
-      // if (mode === appConstants.KEYBOARD) {
-        var data = {
-          data_type: 'auth',
-          data: {
-            username: _self.refs.username.value,
-            password: _self.refs.password.value,
-            seat_name: _seat_name,
-            role: _role
-          }
-        };
-        _mode = appConstants.KEYBOARD;
+    var data = {
+      data_type: 'auth',
+      data: {
+        username: _self.refs.username.value,
+        password: _self.refs.password.value,
+        //stationId: this.state.stationId
+        seat_name: _seat_name,
+        role: _role
+      }
+    };
+    // $.ajax({
+    //   type: 'GET',
+    //   url:
+    //     configConstants.INTERFACE_IP +
+    //     appConstants.API +
+    //     appConstants.PPS_SEATS +
+    //     _seat_name +
+    //     appConstants.MODE,
+    //   dataType: 'json'
+    // }).done(function(response) {
+    //   _role = ('ROLE_' + response.mode).toUpperCase();
+    //   // if (mode === appConstants.KEYBOARD) {
+    //     var data = {
+    //       data_type: 'auth',
+    //       data: {
+    //         username: _self.refs.username.value,
+    //         password: _self.refs.password.value,
+    //         seat_name: _seat_name,
+    //         role: _role
+    //       }
+    //     };
+    //     _mode = appConstants.KEYBOARD;
       //} 
       // else {
       //   var data = {
@@ -232,7 +242,7 @@ var LoginPage = React.createClass({
       // }
       utils.generateSessionId();
       CommonActions.login(data);
-    });
+   // });
   },
 
   disableLoginButton: function() {
@@ -247,17 +257,17 @@ var LoginPage = React.createClass({
   },
 
   onStationIdChange: function(){
+    console.log("inside onStationIdChanges")
+    CommonActions.webSocketConnection();
 
     //save the current station id
-    CommonActions.setCurrentStationId(this.state.stationId);
+    //CommonActions.setCurrentStationId(this.state.stationId);
 
     // create a web-socket connection for current station id
-    CommonActions.webSocketConnection(this.state.stationId); 
-
-    //Enable the LOGIN button here when user changes from Select Station Id to others
     if (
-      this.state.stationId !== "Select Station Id"
+      this.state.stationId !== "0"  // select station id
     ) {
+      CommonActions.webSocketConnection(this.state.stationId); 
       $('#loginBtn').prop('disabled', false);
     } else {
       $('#loginBtn').prop('disabled', true);
@@ -289,7 +299,7 @@ var LoginPage = React.createClass({
           // seatData.unshift(<option key={'station'} value={0}>Select Station Id</option>);
        /***********************/
        
-
+      /******************************* */
       seatData = this.state.seatList.map(function(data, index) {
         if (data.hasOwnProperty('seat_type')) {
           parseSeatID = null;
@@ -316,6 +326,7 @@ var LoginPage = React.createClass({
           );
         }
       });
+      /*********************/
 
       if (parseSeatID != null) {
         ppsOption = (
@@ -328,7 +339,7 @@ var LoginPage = React.createClass({
         _seat_name = null;
         ppsOption = (
           <select
-            value={this.state.stationId}
+            value={_seat_name}
             onChange={this.ChangeStationId}
             className={false ? 'selectPPS error' : 'selectPPS'}
             ref='seat_name'
@@ -360,13 +371,7 @@ var LoginPage = React.createClass({
     //   </div>
     // );
 
-    // var _dividerWrapper = (
-    //   <div className='divider'>
-    //     <span className='dividerUpper' />
-    //     <div className='dividerText'>OR</div>
-    //     <span className='dividerBelow' />
-    //   </div>
-    // );
+    
 
     if (this.state.flag === false) {
       if (this.state.showError != null) {
