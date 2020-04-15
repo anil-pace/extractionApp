@@ -402,8 +402,11 @@ var appConstants = {
   EXTRACTION_APP:"/extraction-app",
   EXTRACTION_UI:"Extraction UI",
   PPS: "/pps",
+  NOTIFY: "/notify",
+  UI_EVENT: "/ui-event",
   LIST_STATIONS: "LIST_STATIONS",
-  REMOVE_ALL_BUTTON: "REMOVE_ALL_BUTTON"
+  REMOVE_ALL_BUTTON: "REMOVE_ALL_BUTTON",
+  SET_CURRENT_STATION_ID: "SET_CURRENT_STATION_ID"
 }
 
 module.exports = appConstants

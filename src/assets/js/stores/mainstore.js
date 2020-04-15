@@ -19,6 +19,7 @@ var CommonActions = require("../actions/CommonActions")
 var CHANGE_EVENT = "change"
 var _seatData,
   _currentSeat,
+  _currentStationId,
   _peripheralScreen = false,
   _seatMode,
   _username,
@@ -3492,87 +3493,13 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
   hideSpinner: function() {
     _showSpinner = false
   },
+  setCurrentStationId: function(data){
+    _currentStationId = data;
+  },
   setCurrentSeat: function(data) {
-    //showModal = false;
-    // _action = undefined
-    // _binId = undefined
-    // _enableException = false
-    // _putFrontExceptionScreen = "good"
-    // _goodQuantity = 0
-    // _damagedQuantity = 0
-    // _unscannableQuantity = 0
-    // _missingQuantity = 0
-    // _activeException = null
-    // _showSpinner = false
-    // _enableException = false
     _seatData = data
-    // if (
-    //   _seatData.screen_id !== appConstants.PICK_FRONT_MORE_ITEM_SCAN &&
-    //   _seatData.screen_id !== appConstants.PICK_FRONT_PPTL_PRESS &&
-    //   _seatData.screen_id !== appConstants.PICK_FRONT_PACKING_ITEM_SCAN
-    // ) {
-    //   _KQQty = _seatData.hasOwnProperty("quantity") ? _seatData["quantity"] : 0
-    // }
-    // _seatName = data.seat_name
-    // _seatMode = data.mode
-    // _username = data.user_loggedin ? data.user_loggedin : ""
-    // _seatType = data.seat_type
-    //_currentSeat = data.mode + "_" + data.seat_type
     _currentSeat = "pick_front";
-    // _itemUid = data["item_uid"] != undefined ? data["item_uid"] : ""
-    // _exceptionType =
-    //   data["exception_type"] != undefined ? data["exception_type"] : ""
     _screenId = data.screen_id
-    // _unmarkedContainer = data.unmarked_container
-    //   ? data.unmarked_container
-    //   : false
-    //this.setServerMessages()
-    // if (_seatData.hasOwnProperty("utility")) {
-    //   _utility = _seatData.utility
-    // }
-    // if (_screenId == appConstants.PUT_FRONT_EXCEPTION_SPACE_NOT_AVAILABLE)
-    //   _putFrontExceptionScreen = "revised_quantity"
-    // else if (_screenId == appConstants.PICK_FRONT_EXCEPTION_MISSING_BOX)
-    //   _pickFrontExceptionScreen = "box_serial"
-    // else if (_screenId == appConstants.PUT_BACK_EXCEPTION_DAMAGED_BARCODE)
-    //   _putBackExceptionScreen = "damaged"
-    // else if (_screenId == appConstants.PUT_BACK_PHYSICALLY_DAMAGED_ITEMS)
-    //   _putBackExceptionScreen = "entity_damaged"
-    // else if (_screenId == appConstants.PUT_BACK_EXCEPTION_OVERSIZED_ITEMS)
-    //   _putBackExceptionScreen = "oversized"
-    // else if (
-    //   _screenId == appConstants.PUT_BACK_EXCEPTION_EXTRA_ITEM_QUANTITY_UPDATE
-    // )
-    //   _putBackExceptionScreen = "extra_quantity"
-    // else if (
-    //   _screenId == appConstants.AUDIT_EACH_UNSCANNABLE_EXCEPTION ||
-    //   _screenId == appConstants.AUDIT_EXCEPTION_BOX_DAMAGED_BARCODE ||
-    //   _screenId == appConstants.AUDIT_EXCEPTION_ITEM_IN_BOX_EXCEPTION ||
-    //   _screenId == appConstants.AUDIT_EXCEPTION_LOOSE_ITEMS_DAMAGED_EXCEPTION ||
-    //   _screenId == appConstants.AUDIT_PACK_UNSCANNABLE_EXCEPTION ||
-    //   _screenId == appConstants.AUDIT_SUB_PACK_UNSCANNABLE_EXCEPTION ||
-    //   _screenId == appConstants.AUDIT_DAMAGED_ENTITY_EXCEPTION
-    // )
-    //   _auditExceptionScreen = "first_screen"
-    // if (
-    //   (_seatData["last_finished_box"] != undefined &&
-    //     _seatData["last_finished_box"].length > 0 &&
-    //     _seatData["last_finished_box"][0]["Actual_qty"] >
-    //       _seatData["last_finished_box"][0]["Expected_qty"]) ||
-    //   (_seatData["Current_box_details"] != undefined &&
-    //     _seatData["Current_box_details"].length > 0 &&
-    //     (_seatData["Current_box_details"][0]["Actual_qty"] -
-    //       _seatData["Current_box_details"][0]["Expected_qty"] >
-    //       0 ||
-    //       _seatData["Current_box_details"][0]["Box_Actual_Qty"] -
-    //         _seatData["Current_box_details"][0]["Box_Expected_Qty"] >
-    //         0))
-    // )
-    //   showModal = true
-    // else showModal = false
-
-    /* $('.modal').hide();
-        $('.modal-backdrop').remove();*/
   },
   getModalContent: function() {
     return modalContent.data
@@ -3621,6 +3548,9 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
   },
   getCurrentSeat: function() {
     return _currentSeat
+  },
+  getCurrentStationId: function() {
+    return _currentStationId
   },
   setServerMessages: function(data) {
     _messageJson = serverMessages
@@ -5667,6 +5597,10 @@ AppDispatcher.register(function(payload) {
     case appConstants.SET_CURRENT_SEAT:
       console.log("=======> mainstore.js -> case appConstants.SET_CURRENT_SEAT");
       mainstore.setCurrentSeat(action.data)
+      mainstore.emit(CHANGE_EVENT)
+      break
+    case appConstants.SET_CURRENT_STATION_ID:
+      mainstore.setCurrentStationId(action.data)
       mainstore.emit(CHANGE_EVENT)
       break
     case appConstants.POPUP_VISIBLE:

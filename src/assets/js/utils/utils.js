@@ -68,7 +68,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     if ("WebSocket" in window) {
       ws.onopen = function() {
         $("#username, #password").prop("disabled", false)
-        console.log("websocket connected")
+        console.log("websocket connection established.")
         utils.checkSessionStorage()
         clearTimeout(utils.connectToWebSocket)
       }
@@ -111,6 +111,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         }
       }
       ws.onclose = function() {
+        console.log("%c WSS CONNECTION CLOSED", "color:red");
         //serverMessages.CLIENTCODE_003;
         /* alert(JSON.stringify(evt));
                  if(evt == "CLIENTCODE_409" || evt == "CLIENTCODE_503"){
@@ -199,90 +200,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       localeLang = localeObj && localeObj.data ? localeObj.data.locale : null
     return localeLang
   },
-  get3dotTrailedText: function(
-    serial,
-    frontlimit = 5,
-    rearLimit = 5,
-    stringLength
-  ) {
-    let trailedText = ""
-    if (serial.length > stringLength) {
-      trailedText =
-        serial.slice(0, frontlimit) + "..." + serial.slice(-rearLimit)
-    } else {
-      trailedText = serial
-    }
-    return trailedText
-  },
-  displayData: function(
-    data,
-    serial,
-    uomConversionFactor = 1,
-    uomDisplayUnit = ""
-  ) {
-    product_info_locale = {}
-    image_url = {}
-    var language_locale = sessionStorage.getItem("localeData")
-    var locale
-    if (language_locale == "null" || language_locale == null) {
-      locale = "en-US"
-    } else {
-      locale = JSON.parse(language_locale)["data"]["locale"]
-    }
-    data.map(function(value, index) {
-      var keyValue = ""
-      var imageKey
-      for (var key in value[0]) {
-        if (key === "product_dimensions") {
-          var dimension = value[0][key]
-          for (var i = 0; i < dimension.length; i++) {
-            if (i === 0) {
-              keyValue =
-                Math.round(dimension[i] * uomConversionFactor * 10) / 10 + ""
-            } else {
-              keyValue =
-                keyValue +
-                " X " +
-                Math.round(dimension[i] * uomConversionFactor * 10) / 10
-            }
-          }
-          uomDisplayUnit !== ""
-            ? (keyValue =
-                keyValue + " (" + appConstants.IN + uomDisplayUnit + ")")
-            : (keyValue = keyValue)
-        } else if (key != "display_data" && key != "product_local_image_url") {
-          keyValue = value[0][key] + " "
-        } else if (key != "display_data" && key == "product_local_image_url") {
-          imageKey = value[0][key]
-        }
-      }
-      value[0].display_data.map(function(data_locale, index1) {
-        if (data_locale.locale == locale) {
-          if (data_locale.display_name != "product_local_image_url") {
-            product_info_locale[data_locale.display_name] = keyValue
-          }
-        }
-        if (data_locale.display_name == "product_local_image_url") {
-          if (
-            imageKey === "outer_each" ||
-            imageKey === "inner_each" ||
-            imageKey === "outer_inner"
-          ) {
-            product_info_locale[data_locale.display_name] =
-              "assets/images/" + imageKey + ".gif"
-          } else if (imageKey === "outer" || imageKey === "inner") {
-            product_info_locale[data_locale.display_name] =
-              "assets/images/" + imageKey + ".png"
-          } else product_info_locale[data_locale.display_name] = imageKey
-        }
-      })
-    })
-    if (serial) {
-      product_info_locale[_("Serial")] = serial
-    }
-    return product_info_locale
-  },
-
+  get3dotTrailedText: function(){},
+  displayData: function() {},
   checkSessionStorage: function() {
     console.log(" ===>  utils.js ===> checkSessionStorage ()");
 
@@ -312,23 +231,6 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
   getAuthToken: function(data) {
     sessionStorage.setItem("sessionData", null)
-
-    // if (data.data.barcode) {
-    //   // if barcode key is present its login via scanner mode
-    //   var loginData = {
-    //     username: "d_____", // post discussion with platform (rahul.s)
-    //     password: "d_____", // d+(5 times _)
-    //     grant_type: "password",
-    //     action: "LOGIN",
-    //     role: [data.data.role],
-    //     context: {
-    //       entity_id: "1",
-    //       barcode: data.data.barcode,
-    //       app_name: "boi_ui"
-    //     }
-    //   }
-    // } 
-    //else {
       var loginData = {
         username: data.data.username,
         password: data.data.password,
@@ -340,7 +242,6 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           app_name: "boi_ui"
         }
       }
-    //}
     $.ajax({
       type: "POST",
       url:
@@ -422,19 +323,28 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         CommonActions.hideSpinner()
       })
   },
-  postDataToInterface: function(data, seat_name) {
+  postDataToInterface: function(data, stationId) {
     //platform-ip:8080/api-gateway/process-service/wms-process/extraction-app/notify/ui-event?pps=3
     console.log("===== > utils.js ===> postDataToInterface()");
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     $.ajax({
       type: "POST",
+      // url:
+      //   configConstants.INTERFACE_IP +
+      //   appConstants.API +
+      //   appConstants.PPS_SEATS +
+      //   seat_name +
+      //   appConstants.SEND_DATA,
       url:
         configConstants.INTERFACE_IP +
-        appConstants.API +
-        appConstants.PPS_SEATS +
-        seat_name +
-        appConstants.SEND_DATA,
+        appConstants.API_GATEWAY +
+        appConstants.PROCESS_SERVICE +
+        appConstants.WMS_PROCESS +
+        appConstants.EXTRACTION_APP +
+        appConstants.NOTIFY + 
+        appConstants.UI_EVENT + 
+        "?pps=" +  stationId,
       data: JSON.stringify(data),
       dataType: "json",
       headers: {
@@ -677,7 +587,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [0, 5],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": null,
     "barcodes": ["A.01", "A.02"]
     }, {
     "slot_ref": [48, 46, 65, 46, 48, 51, 45, 65, 46, 48, 52],
@@ -685,7 +595,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [32, 5],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": null,
     "barcodes": ["A.03", "A.04"]
     }, {
     "slot_ref": [48, 46, 65, 46, 48, 53, 45, 65, 46, 48, 54],
@@ -693,7 +603,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [64, 5],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": null,
     "barcodes": ["A.05", "A.06"]
     }, {
     "slot_ref": [48, 46, 66, 46, 48, 49, 45, 66, 46, 48, 50],
@@ -701,7 +611,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [0, 43],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": null,
     "barcodes": ["B.01", "B.02"]
     }, {
     "slot_ref": [48, 46, 66, 46, 48, 51, 45, 66, 46, 48, 52],
@@ -709,7 +619,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [32, 43],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": "empty",
     "barcodes": ["B.03", "B.04"]
     }, {
     "slot_ref": [48, 46, 66, 46, 48, 53, 45, 66, 46, 48, 54],
@@ -717,7 +627,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [64, 43],
     "type": "slot",
-    "tote_status": false,
+    "tote_status": "empty",
     "barcodes": ["B.05", "B.06"]
     }, {
     "slot_ref": [48, 46, 67, 46, 48, 49, 45, 67, 46, 48, 50],
@@ -725,7 +635,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [0, 81],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": "empty",
     "barcodes": ["C.01", "C.02"]
     }, {
     "slot_ref": [48, 46, 67, 46, 48, 51, 45, 67, 46, 48, 52],
@@ -733,7 +643,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [32, 81],
     "type": "slot",
-    "tote_status": false,
+    "tote_status": "scanned_empty",
     "barcodes": ["C.03", "C.04"]
     }, {
     "slot_ref": [48, 46, 67, 46, 48, 53, 45, 67, 46, 48, 54],
@@ -741,7 +651,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [64, 81],
     "type": "slot",
-    "tote_status": false,
+    "tote_status": "scanned_empty",
     "barcodes": ["C.05", "C.06"]
     }, {
     "slot_ref": [48, 46, 68, 46, 48, 49, 45, 68, 46, 48, 50],
@@ -749,7 +659,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [0, 119],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": "scanned_empty",
     "barcodes": ["D.01", "D.02"]
     }, {
     "slot_ref": [48, 46, 68, 46, 48, 51, 45, 68, 46, 48, 52],
@@ -757,7 +667,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [32, 119],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": "scanned_empty",
     "barcodes": ["D.03", "D.04"]
     }, {
     "slot_ref": [48, 46, 68, 46, 48, 53, 45, 68, 46, 48, 54],
@@ -765,7 +675,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [64, 119],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": "inventoryItems",
     "barcodes": ["D.05", "D.06"]
     }, {
     "slot_ref": [48, 46, 69, 46, 48, 49, 45, 69, 46, 48, 50],
@@ -773,7 +683,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [0, 157],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": "inventoryItems",
     "barcodes": ["E.01", "E.02"]
     }, {
     "slot_ref": [48, 46, 69, 46, 48, 51, 45, 69, 46, 48, 52],
@@ -781,6 +691,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [32, 157],
     "type": "slot",
+    "tote_status": "inventoryItems",
     "barcodes": ["E.03", "E.04"]
     }, {
     "slot_ref": [48, 46, 69, 46, 48, 53, 45, 69, 46, 48, 54],
@@ -788,7 +699,7 @@ var readStateData = function(data) {
     "length": 32,
     "orig_coordinates": [64, 157],
     "type": "slot",
-    "tote_status": true,
+    "tote_status": "inventoryItems",
     "barcodes": ["E.05", "E.06"]
     }],
     "rack_type": "msu",

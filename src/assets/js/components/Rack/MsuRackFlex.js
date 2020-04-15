@@ -117,7 +117,7 @@ var MsuRackFlex = React.createClass({
 
     var totalRackHeight =
       Number(lastVSlot.orig_coordinates[1]) + Number(lastVSlot.height)
-    var borderLeft, borderTop, borderRight
+    var borderLeft, borderTop, borderRight, setSlotBackground;
 
     for (var i = 0; i < vSlots.length; i++) {
       var toteIcon = ''
@@ -151,18 +151,31 @@ var MsuRackFlex = React.createClass({
 
       /* END **********************************/
 
-      if (i === selectedSlotIndex) {
-        var setSlotBackground = '#bbbbbb'
-        var drawALine = <div id='selectedSlot' />
-      } else {
-        var setSlotBackground = vSlots[i].occupancy_color || '#e8e8e8'
-      }
+      // if (i === selectedSlotIndex) {
+      //   var setSlotBackground = '#bbbbbb'
+      //   var drawALine = <div id='selectedSlot' />
+      // } else {
+      //   var setSlotBackground = vSlots[i].occupancy_color || '#e8e8e8'
+      // }
 
-      /* Show hanger icon when slot-type is hanger */
 
-      if (vSlots[i].tote_status === true) {
+      if (vSlots[i].tote_status === "inventoryItems") {
+        setSlotBackground = '#ffffff'
         toteIcon = <div className="bin-icon tote-icon"/>
+
       }
+      else if(vSlots[i].tote_status === "empty"){
+        setSlotBackground = '#ffffff'
+        toteIcon = <div className="bin-icon light-tote-icon"/>
+      }
+      else if(vSlots[i].tote_status === "scanned_empty"){
+        setSlotBackground = '#D6D6D6;';
+        toteIcon = <div className="bin-icon light-tote-icon"/>
+      }
+      else{
+        setSlotBackground = '#ffffff'
+      }
+      
 
       vHTMLSlots.push(
         <div

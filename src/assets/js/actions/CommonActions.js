@@ -58,6 +58,12 @@ var commonActions = {
       data: seat
     });
   },
+  setCurrentStationId: function(data) {
+    AppDispatcher.handleAction({
+      actionType: appConstants.SET_CURRENT_STATION_ID,
+      data: data
+    });
+  },
   hideSpinner: function(data) {
     AppDispatcher.handleAction({
       actionType: appConstants.HIDE_SPINNER,

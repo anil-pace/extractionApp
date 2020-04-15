@@ -25,7 +25,6 @@ function getState() {
     showError: loginstore.getErrorMessage(),
     getLang: loginstore.getLang(),
     getCurrentLang: loginstore.getCurrentLang(),
-    stationId: "Select Station Id"
   };
 }
 
@@ -247,12 +246,26 @@ var LoginPage = React.createClass({
     $('.errorNotify').css('display', 'none');
   },
 
-  connectToWebSocket: function(){
-    CommonActions.webSocketConnection(this.state.stationId);
+  onStationIdChange: function(){
+
+    //save the current station id
+    CommonActions.setCurrentStationId(this.state.stationId);
+
+    // create a web-socket connection for current station id
+    CommonActions.webSocketConnection(this.state.stationId); 
+
+    //Enable the LOGIN button here when user changes from Select Station Id to others
+    if (
+      this.state.stationId !== "Select Station Id"
+    ) {
+      $('#loginBtn').prop('disabled', false);
+    } else {
+      $('#loginBtn').prop('disabled', true);
+    }
   },
 
   ChangeStationId: function(e){
-    this.setState({stationId: e.target.value}, this.connectToWebSocket);
+    this.setState({stationId: e.target.value}, this.onStationIdChange);
   },
 
   render: function() {
@@ -273,7 +286,7 @@ var LoginPage = React.createClass({
           //   </option>
           //   );
           // })
-          // seatData.unshift(<option key={'station'} value={0}>Select Station Id:</option>);
+          // seatData.unshift(<option key={'station'} value={0}>Select Station Id</option>);
        /***********************/
        
 

@@ -23,6 +23,7 @@ var Header = React.createClass({
     return getState()
   },
   openKeyboard: function() {
+    var currentStationId = mainstore.getCurrentStationId();
     $("#actionMenu").hide()
     $(".form-control").blur()
     virtualKeyBoard_header = $("#barcode").keyboard({
@@ -72,7 +73,7 @@ var Header = React.createClass({
             },
             source: "ui"
           }
-          CommonActions.postDataToInterface(data)
+          CommonActions.postDataToInterface(data, currentStationId)
         }
       }
     })
