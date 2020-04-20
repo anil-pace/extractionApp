@@ -5332,24 +5332,20 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
           data["PickFrontNavData"] = this.getNavData()
           data["PickFrontServerNavData"] = this.getServerNavData()
           data["PickFrontScreenId"] = this.getScreenId()
-          //data["PutFrontCurrentBin"] = this.getCurrentSelectedBin()
           data["PickFrontRackDetails"] = this.getRackDetails()
           data["udpBinMapDetails"] = this.getDockStationList()
-          //data["PutFrontIsCrossDockEnabled"] = this.IsCrossDockEnabled()
-          //data["isDrawer"] = this.getDrawerFlag()
-          //data["SlotType"] = this.getSlotType()
-          // data["SplitScreenFlag"] = this._getSplitScreenFlag()
-          // data["BinMapGroupDetails"] = this.getSelectedBinGroup()
-          // data["PutFrontScanDetails"] = this.scanDetails()
-          // data["PutFrontProductDetails"] = this.productDetails()
-          // data["PutFrontExceptionData"] = this.getExceptionData()
-          // data["PutFrontNotification"] = this.getNotificationData()
-          // data["PutFrontExceptionStatus"] = this.getExceptionStatus()
-          // data["PutFrontItemUid"] = this.getItemUid()
-          // data["PutFrontPutDirection"] = this.getDirectionDetails()
-          // data["PutFrontHeavyItemsFlag"] = this.getHeavyItemsFlag()
-          break
+           data["PickFrontNotification"] = this.getNotificationData()
+          break;
 
+      case appConstants.SCAN_EMPTY_TOTE:
+        data["PickFrontNavData"] = this.getNavData()
+        data["PickFrontServerNavData"] = this.getServerNavData()
+        data["PickFrontScreenId"] = this.getScreenId()
+        data["PickFrontRackDetails"] = this.getRackDetails()
+        data["udpBinMapDetails"] = this.getDockStationList()
+        data["PickFrontNotification"] = this.getNotificationData()
+        break;
+        
       case appConstants.PICK_FRONT_SLOT_SCAN:
         data["PickFrontNavData"] = this.getNavData()
         data["PickFrontServerNavData"] = this.getServerNavData()

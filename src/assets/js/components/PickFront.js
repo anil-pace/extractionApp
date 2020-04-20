@@ -1955,7 +1955,59 @@ var PickFront = React.createClass({
         }
         break
 
-        case appConstants.REMOVE_ALL_TOTES:
+        
+
+        case appConstants.WAIT_FOR_MTU:
+          console.log("%c     => wait for mtu =? screen", "color: green")
+          this._navigation = (
+            <Navigation
+              navData={this.state.PickFrontNavData}
+              serverNavData={this.state.PickFrontServerNavData}
+              navMessagesJson={this.props.navMessagesJson}
+            />
+          )
+
+          this._component = (
+            <div style={{"opacity": "0.2"}} className='grid-container'>
+              <div className='main-container'> 
+                <div style={{"display": "flex", "flexFlow": "column", "width":"70%"}}>
+                  <SplitPPS
+                    displayBinId={true}
+                    groupInfo={this.state.udpBinMapDetails}
+                  />
+                  <ColorCodeMtu />
+                </div>
+              </div>
+            </div>
+          )
+        break;
+
+        case appConstants.SELECT_MTU_POINT:
+          console.log("%c     => select mtu point =? screen", "color: green")
+            this._navigation = (
+              <Navigation
+                navData={this.state.PickFrontNavData}
+                serverNavData={this.state.PickFrontServerNavData}
+                navMessagesJson={this.props.navMessagesJson}
+              />
+            )
+  
+            this._component = (
+              <div className='grid-container'>
+                <div className='main-container'> 
+                  <div style={{"display": "flex", "flexFlow": "column", "width":"70%"}}>
+                    <SplitPPS
+                      displayBinId={true}
+                      groupInfo={this.state.udpBinMapDetails}
+                    />
+                    <ColorCodeMtu />
+                  </div>
+                </div>
+              </div>
+            )
+          break;
+
+          case appConstants.REMOVE_ALL_TOTES:
             this._navigation = (
               <Navigation
                 navData={this.state.PickFrontNavData}
@@ -2000,34 +2052,9 @@ var PickFront = React.createClass({
                   />
                 </div>
             )
-          break
+          break;
 
-        case appConstants.WAIT_FOR_MTU:
-          console.log("%c     => wait for mtu =? screen", "color: green")
-          this._navigation = (
-            <Navigation
-              navData={this.state.PickFrontNavData}
-              serverNavData={this.state.PickFrontServerNavData}
-              navMessagesJson={this.props.navMessagesJson}
-            />
-          )
-
-          this._component = (
-            <div style={{"opacity": "0.2"}} className='grid-container'>
-              <div className='main-container'> 
-                <div style={{"display": "flex", "flexFlow": "column", "width":"70%"}}>
-                  <SplitPPS
-                    displayBinId={true}
-                    groupInfo={this.state.udpBinMapDetails}
-                  />
-                  <ColorCodeMtu />
-                </div>
-              </div>
-            </div>
-          )
-        break
-        case appConstants.SELECT_MTU_POINT:
-          console.log("%c     => select mtu point =? screen", "color: green")
+          case appConstants.SCAN_EMPTY_TOTE:
             this._navigation = (
               <Navigation
                 navData={this.state.PickFrontNavData}
@@ -2038,18 +2065,63 @@ var PickFront = React.createClass({
   
             this._component = (
               <div className='grid-container'>
-                <div className='main-container'> 
-                  <div style={{"display": "flex", "flexFlow": "column", "width":"70%"}}>
+                  <CurrentMtu />
+                  <div className="splitPps-zoomed-out">
                     <SplitPPS
                       displayBinId={true}
                       groupInfo={this.state.udpBinMapDetails}
                     />
-                    <ColorCodeMtu />
+                    
+                  </div>
+                  <div className='main-container'>
+                  <Rack
+                      isDrawer={this.state.isDrawer}
+                      slotType={this.state.SlotType}
+                      rackData={this.state.PickFrontRackDetails}
+                    /> 
                   </div>
                 </div>
-              </div>
             )
-          break
+          break;
+          case appConstants.PUT_TOTE_IN_MTU:
+            this._navigation = (
+              <Navigation
+                navData={this.state.PickFrontNavData}
+                serverNavData={this.state.PickFrontServerNavData}
+                navMessagesJson={this.props.navMessagesJson}
+              />
+            )
+  
+            this._component = (
+              <div className='grid-container'>
+                  <CurrentMtu />
+                  <div className="splitPps-zoomed-out">
+                    <SplitPPS
+                      displayBinId={true}
+                      groupInfo={this.state.udpBinMapDetails}
+                    />
+                    
+                  </div>
+                  <div className='main-container'>
+                    <Rack
+                      isDrawer={this.state.isDrawer}
+                      slotType={this.state.SlotType}
+                      rackData={this.state.PickFrontRackDetails}
+                    /> 
+                  </div>
+                  <div className='cancel-scan'>
+                      <Button1 
+                        disabled={false} 
+                        text={_("Cancel")} 
+                        module={appConstants.PICK_FRONT} 
+                        action={appConstants.CANCEL_SCAN} 
+                        screenId={mainstore.getScreenId()}
+                        color={"black"} />
+                  </div>
+                </div>
+            )
+          break;
+
 
       case appConstants.PICK_FRONT_ONE_STEP_SCAN:
         var rackType = ''
