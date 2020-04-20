@@ -1987,6 +1987,7 @@ var PickFront = React.createClass({
                         text={_("Cancel")} 
                         module={appConstants.PICK_FRONT} 
                         action={appConstants.CANCEL_SCAN} 
+                        screenId={mainstore.getScreenId()}
                         color={"black"} />
                   </div>
                   <Button1
@@ -1994,6 +1995,7 @@ var PickFront = React.createClass({
                       text={_('Remove All')}
                       module={appConstants.PICK_FRONT}
                       action={appConstants.REMOVE_ALL_BUTTON}
+                      screenId={mainstore.getScreenId()}
                       color={'orange'}
                   />
                 </div>

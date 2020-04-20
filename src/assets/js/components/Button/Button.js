@@ -15,7 +15,7 @@ var Button1 = React.createClass({
       .val('');
   },
 
-  performAction: function (module, action) {
+  performAction: function (module, action, screenId) {
     var peripheralId;
     var data = {
       event_name: '',
@@ -65,27 +65,13 @@ var Button1 = React.createClass({
         switch (action) {
           case appConstants.CANCEL_SCAN:
             alert("cancel scan button clickecd");
-            data['event_name'] = appConstants.CANCEL_SCAN;
+            //data['event_name'] = appConstants.CANCEL_SCAN;
+            data["event_name"] = "cancel_clicked";
+            data["event_data"] = null;
+            data["screen_id"] = screenId;
             ActionCreators.postDataToInterface(data);
             break;
-
-
-          case appConstants.NEW_CARRYING_UNIT:
-            data['event_name'] = appConstants.NEW_CARRYING_UNIT;
-            ActionCreators.postDataToInterface(data);
-            this.showModal(
-              appConstants.PICK_FRONT,
-              appConstants.NEW_CARRYING_UNIT
-            );
-            break;
-
-          case appConstants.CANCEL_SCAN_MODAL:
-            this.showModal(
-              appConstants.PICK_FRONT,
-              appConstants.CANCEL_SCAN_ALL
-            );
-            break;
-
+          
           case appConstants.CONFIRM_FROM_USER:
             ActionCreators.changePickFrontExceptionScreen('confirm_from_user');
             break;
@@ -96,7 +82,9 @@ var Button1 = React.createClass({
 
           case appConstants.REMOVE_ALL_BUTTON:
             alert("Remove all buttons clicked");
-            data['event_name'] = 'remove_all_totes';
+            data['event_name'] = 'all_totes_removed';
+            data["event_data"] = null;
+            data["screen_id"] = screenId;
             ActionCreators.postDataToInterface(data);
             break;
 
@@ -136,7 +124,8 @@ var Button1 = React.createClass({
           onClick={this.performAction.bind(
             this,
             this.props.module,
-            this.props.action
+            this.props.action,
+            this.props.screenId
           )}
         >
           {' '}
