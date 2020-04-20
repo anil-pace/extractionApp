@@ -24,6 +24,7 @@ var Header = React.createClass({
   },
   openKeyboard: function() {
     var currentStationId = mainstore.getCurrentStationId();
+    var screenId = mainstore.getScreenId();
     $("#actionMenu").hide()
     $(".form-control").blur()
     virtualKeyBoard_header = $("#barcode").keyboard({
@@ -67,11 +68,14 @@ var Header = React.createClass({
         if (e.target.value === "") {
         } else {
           var data = {
-            event_name: "process_barcode",
-            event_data: {
-              barcode: e.target.value.trim()
-            },
-            source: "ui"
+            // event_name: "process_barcode",
+            // event_data: {
+            //   barcode: e.target.value.trim()
+            // },
+            // source: "ui"
+            event_name: "scanned",
+            event_data: e.target.value.trim(),
+            screen_id: screenId
           }
           CommonActions.postDataToInterface(data, currentStationId)
         }
