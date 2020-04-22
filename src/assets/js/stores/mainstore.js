@@ -5334,7 +5334,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
           data["PickFrontScreenId"] = this.getScreenId()
           data["PickFrontRackDetails"] = this.getRackDetails()
           data["udpBinMapDetails"] = this.getDockStationList()
-           data["PickFrontNotification"] = this.getNotificationData()
+          // data["PickFrontNotification"] = this.getNotificationData()
           break;
 
       case appConstants.SCAN_EMPTY_TOTE:

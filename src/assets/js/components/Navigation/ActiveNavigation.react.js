@@ -5,7 +5,7 @@ var ActiveNavigation = React.createClass({
         var server_message = this.props.serverNavData.description;
         var navMessagesJson = this.props.navMessagesJson;
         var compData = this.props.data;
-        var message_args  = this.props.serverNavData.details.slice(0);
+        var message_args  = this.props.serverNavData.details ? this.props.serverNavData.details.slice(0) : [];
         var errorCode = this.props.serverNavData.code;
         var navId = this.props.navId;
         var level;

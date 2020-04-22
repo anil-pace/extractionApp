@@ -41,71 +41,24 @@ function getCurrentLang(){
   return localeLang
 }
 
-function listPpsSeat_mtu(seat){
-  console.log("=====> loginStore.js => listPpsSeat ()" );
-    if(seat === null){
-      currentSeat.length = 0; 
-      $.ajax({
-        type: 'GET',
-        url: configConstants.INTERFACE_IP+ ":8080/wms-process/extraction-app-ws?pps=3",
-        //url: configConstants.INTERFACE_IP+appConstants.PPS_SEATS,
-        dataType : "json",
-        beforeSend : xhrConfig 
-        }).done(function(response) {
-          currentSeat = response.pps_seats;
-          loginstore.emit(CHANGE_EVENT); 
-        }).fail(function(jqXhr) {
-      }).success(function(data){
-        console.log("success");
-      });
-    }else{
-      loginstore.emit(CHANGE_EVENT); 
-    }
-}
 
 function listPpsSeat(seat){
-  console.log("=====> loginStore.js => listPpsSeat ()" );
+  console.log("=====> get list of station ids" );
     if(seat === null){
       currentSeat.length = 0; 
       $.ajax({
         type: 'GET',
+        //url: "http://192.168.8.193:8080/wms-extraction/extraction-app/pps-extraction-stns"
         url: configConstants.INTERFACE_IP+appConstants.PPS_SEATS,
         dataType : "json",
         beforeSend : xhrConfig 
         }).done(function(response) {
-          currentSeat = response.pps_seats;
+          currentSeat = response.pps_seats; // [1,2,3,4]
           loginstore.emit(CHANGE_EVENT); 
         }).fail(function(jqXhr) {
-                     
-      }).success(function(data){
-        console.log("success");
-      });
-    }else{
-      loginstore.emit(CHANGE_EVENT); 
-    }
-}
-
-function listStationIds(seat){
-  //platform-ip:8080/api-gateway/process-service/wms-process/extraction-app/pps
-    if(seat === null){
-      currentStation.length = 0; 
-      $.ajax({
-        type: 'GET',
-        url: configConstants.PLATFORM_IP + 
-              appConstants.API_GATEWAY + 
-              appConstants.PROCESS_SERVICE + 
-              appConstants.WMS_PROCESS +
-              appConstants.EXTRACTION_APP + appConstants.PPS,
-        dataType : "json",
-        beforeSend : xhrConfig 
-        }).done(function(response) {
-          currentStation = response;
-          loginstore.emit(CHANGE_EVENT); 
-        }).fail(function(jqXhr) {
-                     
-      }).success(function(data){
-        console.log("success");
-      });
+        }).success(function(data){
+          console.log("success");
+        });
     }else{
       loginstore.emit(CHANGE_EVENT); 
     }
@@ -146,11 +99,8 @@ var loginstore = objectAssign({}, EventEmitter.prototype, {
   setFlag:function(val){
     flag = val;
   },
-  seatList : function(){ 
-    return currentSeat;
-  },
   stationList : function(){ 
-    return currentStation;
+    return currentSeat;
   },
   getLang : function(){            //get language
     return currentLang;
@@ -180,9 +130,6 @@ AppDispatcher.register(function(payload){
     case appConstants.LIST_SEATS:
       getParameterByName();
       break;
-    // case appConstants.LIST_STATIONS:
-    //     getParameterByName();
-    //     break;
     case appConstants.SET_LANGUAGE:             // Register callback for SET_LANGUAGE action
       checkLang();
       break;

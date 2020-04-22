@@ -68,14 +68,9 @@ var Header = React.createClass({
         if (e.target.value === "") {
         } else {
           var data = {
-            // event_name: "process_barcode",
-            // event_data: {
-            //   barcode: e.target.value.trim()
-            // },
-            // source: "ui"
-            event_name: "scanned",
-            event_data: e.target.value.trim(),
-            screen_id: screenId
+            "name": "scanned",
+            "data": e.target.value.trim(),
+            "screen_id": "select_mtu_point"
           }
           CommonActions.postDataToInterface(data, currentStationId)
         }

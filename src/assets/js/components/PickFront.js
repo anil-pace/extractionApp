@@ -2018,7 +2018,7 @@ var PickFront = React.createClass({
   
             this._component = (
               <div className='grid-container'>
-                  <CurrentMtu />
+                  {/* <CurrentMtu /> */}
                   <div className="splitPps-zoomed-out">
                     <SplitPPS
                       displayBinId={true}

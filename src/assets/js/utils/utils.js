@@ -1,7 +1,6 @@
 var objectAssign = require("react/lib/Object.assign")
 var EventEmitter = require("events").EventEmitter
 var configConstants = require("../constants/configConstants")
-var resourceConstants = require("../constants/resourceConstants")
 var appConstants = require("../constants/appConstants")
 var CommonActions = require("../actions/CommonActions")
 var serverMessages = require("../serverMessages/server_messages")
@@ -59,83 +58,19 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
     })
   },
-  connectToWebSocket_FOR_MTU: function(stationId) {
-    // platform-ip:8080/wms-process/extraction-app-ws?pps=3
-    var url = "wss://192.168.9.65" + ":8080/wms-process/extraction-app-ws?pps=" + stationId
-    console.log(url);
-    self = this
-    ws = new WebSocket(url)
-    if ("WebSocket" in window) {
-      ws.onopen = function() {
-        $("#username, #password").prop("disabled", false)
-        console.log("websocket connection established.")
-        utils.checkSessionStorage()
-        clearTimeout(utils.connectToWebSocket)
-      }
-      ws.onmessage = function(evt) {
-        if (
-          evt.data == "CLIENTCODE_409" ||
-          evt.data == "CLIENTCODE_412" ||
-          evt.data == "CLIENTCODE_401" ||
-          evt.data == "CLIENTCODE_400" ||
-          evt.data == "CLIENTCODE_503" ||
-          evt.data == "CLIENTCODE_403"){
-              var msgCode = evt.data
-              CommonActions.showErrorMessage(serverMessages[msgCode])
-              sessionStorage.setItem("sessionData", null)
-              CommonActions.loginSeat(false)
-              utils.enableKeyboard()
-          }
-        else if (evt.data === resourceConstants.CLIENTCODE_MODE_CHANGED) {
-          utils.sessionLogout()
-          return false
-        } 
-        else {
-          var received_msg = evt.data
-          var data
-          try {
-            data = JSON.parse(evt.data)
-            if (data.hasOwnProperty("data")) {
-              if (data.data == "disconnect") {
-                utils.sessionLogout()
-                return false
-              }
-            }
-            readStateData(data)
-            CommonActions.setCurrentSeat(data.state_data)
-          } catch (err) {
-            //intentionally left blank
-          }
+  
 
-          CommonActions.setServerMessages()
-        }
-      }
-      ws.onclose = function() {
-        console.log("%c WSS CONNECTION CLOSED", "color:red");
-        //serverMessages.CLIENTCODE_003;
-        /* alert(JSON.stringify(evt));
-                 if(evt == "CLIENTCODE_409" || evt == "CLIENTCODE_503"){
-                     var msgCode = evt;
-                     console.log(serverMessages[msgCode]);
-                     CommonActions.showErrorMessage(serverMessages[msgCode]);
-                     CommonActions.logoutSession(true);
-                 }*/
-        //$("#username, #password").prop('disabled', true);
-        //alert("Connection is closed...");
-        setTimeout(utils.connectToWebSocket, 100)
-      }
-    } else {
-      alert("WebSocket NOT supported by your Browser!")
-    }
-  },
   connectToWebSocket: function(data) {
     console.log("=======> utils.js -> connectToWebSocket()");
+    var url = "ws://192.168.8.193:8080/wms-extraction/extraction-app-ws?ppsStn=" + data
+    console.log(url);
     self = this
-    ws = new WebSocket(configConstants.WEBSOCKET_IP)
+    ws = new WebSocket(url);
+    //ws = new WebSocket(configConstants.WEBSOCKET_IP)
     if ("WebSocket" in window) {
       ws.onopen = function() {
         $("#username, #password").prop("disabled", false)
-        console.log("=====================> websocket connected established...")
+        console.log("=====================> websocket connected established...OPENED")
         
         utils.checkSessionStorage()
         clearTimeout(utils.connectToWebSocket)
@@ -157,11 +92,11 @@ var utils = objectAssign({}, EventEmitter.prototype, {
               CommonActions.loginSeat(false)
               utils.enableKeyboard()
           }
-        else if (evt.data === resourceConstants.CLIENTCODE_MODE_CHANGED) {
-          console.log(" else if =====================> sessionLogout");
-          utils.sessionLogout()
-          return false
-        } 
+        // else if (evt.data === resourceConstants.CLIENTCODE_MODE_CHANGED) {
+        //   console.log(" else if =====================> sessionLogout");
+        //   utils.sessionLogout()
+        //   return false
+        // } 
         else {
           console.log(" else  =====================> sessionLogout");
           var received_msg = evt.data
@@ -175,7 +110,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
               }
             }
             readStateData(data)
-            CommonActions.setCurrentSeat(data.state_data)
+            CommonActions.setCurrentSeat(data)
+            //CommonActions.setCurrentSeat(data.state_data)
           } catch (err) {
             //intentionally left blank
           }
@@ -200,12 +136,14 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       alert("WebSocket NOT supported by your Browser!")
     }
   },
+
   getCurrentLang: function() {
     var localeStr = window.sessionStorage.getItem("localeData"),
       localeObj = localeStr ? JSON.parse(localeStr) : {},
       localeLang = localeObj && localeObj.data ? localeObj.data.locale : null
     return localeLang
   },
+
   get3dotTrailedText: function(){},
   displayData: function() {},
 
@@ -228,17 +166,45 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       utils.postDataToWebsockets(webSocketData)
     }
   },
-  postDataToWebsockets: function(data) {
-    console.log(" ===>  utils.js ===> postDataToWebsockets ()");
-    console.log(JSON.stringify(data))
-    ws.send(JSON.stringify(data))
-    setTimeout(CommonActions.operatorSeat, 0, true)
-  },
+  
   storeSession: function(data) {
     console.log(" ===>  utils.js ===> storeSession ()");
     // Put the object into storage
     sessionStorage.setItem("sessionData", JSON.stringify(data))
   },
+
+  loginConfirmation: function(data){
+    var stationId = data.data.stationId;
+    var username= data.data.userName;
+    $.ajax({
+      type: "POST",
+      url: "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/login?ppsStn="+stationId,
+      data: JSON.stringify({
+        userName: username
+      }),
+     // dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json"
+      }
+    })
+    .done(function(response) {
+      console.log("success ===> from login COnfirmation");
+      setTimeout(CommonActions.operatorSeat, 0, true)
+    })
+    .fail(function(data, jqXHR, textStatus, errorThrown) {
+      CommonActions.showErrorMessage(data)
+    })
+  },
+
+  postDataToWebsockets: function(data) {
+    console.log(" ===>  utils.js ===> postDataToWebsockets ()");
+    console.log(JSON.stringify(data))
+
+    ws.send(JSON.stringify(data))
+    setTimeout(CommonActions.operatorSeat, 0, true)
+  },
+
   getAuthToken: function(data) {
     sessionStorage.setItem("sessionData", null)
       var loginData = {
@@ -252,31 +218,29 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           app_name: "boi_ui"
         }
       }
-    $.ajax({
-      type: "POST",
-      url:
-        configConstants.INTERFACE_IP +
-        appConstants.API +
-        appConstants.AUTH +
-        appConstants.TOKEN,
-      data: JSON.stringify(loginData),
-      dataType: "json",
-      headers: {
-        "content-type": "application/json",
-        accept: "application/json"
-      }
-    })
+      $.ajax({
+        type: "POST",
+        url: "https://192.168.8.193/api/auth/token",
+        data: JSON.stringify(loginData),
+        dataType: "json",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json"
+        }
+      })
       .done(function(response) {
         var webSocketData = {
           data_type: "auth",
           data: {
             "auth-token": response.auth_token,
-            seat_name: data.data.seat_name,
-            //stationId: data
+            //seat_name: data.data.seat_name,
+            userName: data.data.username,
+            stationId: data.data.seat_name  //"1"
           }
         }
         utils.storeSession(webSocketData)
-        utils.postDataToWebsockets(webSocketData)
+        //utils.postDataToWebsockets(webSocketData)
+        utils.loginConfirmation(webSocketData);
       })
       .fail(function(data, jqXHR, textStatus, errorThrown) {
         CommonActions.showErrorMessage(data.responseJSON.error)
@@ -334,28 +298,14 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         CommonActions.hideSpinner()
       })
   },
+
   postDataToInterface: function(data, stationId) {
-    //platform-ip:8080/api-gateway/process-service/wms-process/extraction-app/notify/ui-event?pps=3
     console.log("===== > utils.js ===> postDataToInterface()");
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     $.ajax({
       type: "POST",
-      // url:
-      //   configConstants.INTERFACE_IP +
-      //   appConstants.API +
-      //   appConstants.PPS_SEATS +
-      //   seat_name +
-      //   appConstants.SEND_DATA,
-      url:
-        configConstants.INTERFACE_IP +
-        appConstants.API_GATEWAY +
-        appConstants.PROCESS_SERVICE +
-        appConstants.WMS_PROCESS +
-        appConstants.EXTRACTION_APP +
-        appConstants.NOTIFY + 
-        appConstants.UI_EVENT + 
-        "?pps=" +  stationId,
+      url:   "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/ui-event?ppsStn=1",
       data: JSON.stringify(data),
       dataType: "json",
       headers: {
@@ -380,13 +330,14 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         }
       })
   },
-  generateSessionId: function() {
+  generateSessionId: function(data) {
     var text = ""
     var possible =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
     for (var i = 0; i < 50; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length))
     localStorage.setItem("session", text)
+    localStorage.setItem("stationId", data.data.seat_name)
   },
   getPeripheralData: function(type, seat_name, status, method) {
     console.log("===== > utils.js ===> getPeripheralData()");
@@ -569,42 +520,10 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 })
 
 var readStateData = function(data) {
-
-  data.state_data = {"screen_id": "wait_for_mtu",
-"dock_station_list": [{
-
-"dock_station_label": "2",
-"direction": "top",
-"ppsbin_light_color": "#D8D8D8"
-}, {
-"dock_station_label": "4",
-"direction": "top",
-"ppsbin_light_color": "#D8D8D8"
-}, {
-"dock_station_label": "3",
-"direction": "top",
-"ppsbin_light_color": "#D8D8D8"
-}, {
-"dock_station_label": "1",
-"direction": "top",
-"ppsbin_light_color": "#D8D8D8"
-}],
-
-"scan_allowed": false,
-
-"header_msge_list": [{
-"level": "info",
-"code": "Mtu.E.000",
-"details": [],
-"description": "Wait for MTU"
-}]
-}
-
-
-
   console.log("=======> UTitls.js -> readStateData()");
   console.log(data)
-  CommonActions.setPickFrontData(data.state_data);
+  CommonActions.setPickFrontData(data)
+  //CommonActions.setPickFrontData(data.state_data);
 }
 
 module.exports = utils

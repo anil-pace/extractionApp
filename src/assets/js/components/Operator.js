@@ -52,7 +52,7 @@ var Operator = React.createClass({
 
   render: function(data){ 
     console.log("=======> operator.js -> render ()");
-     if(this.state.currentSeat){
+     //if(this.state.currentSeat){
        this.getSeatType(this.state.currentSeat);
        return (
         <div>
@@ -60,36 +60,17 @@ var Operator = React.createClass({
         </div> 
 
       )
-     }
-     else{
-      return (
-        <div>
-          <Spinner />
-        </div> 
+    //}
+    //  else{
+    //   return (
+    //     <div>
+    //       <Spinner />
+    //     </div> 
 
-      )
-     }
+    //   )
+    //  }
      
-      // if(this.state.spinner === true){
-      //  this._spinner = <Spinner />
-      // }else{
-      //   this._spinner ='';
-      // }
-      //  if(this.state.systemIsIdle === true){
-      //     return (
-      //       <div className="main">
-      //         {this.state.isMobile?<MobileSystemIdle/>:<SystemIdle />}
-      //       </div> 
-      //     )
-      //   }else{
-      //     return (
-      //       <div>
-      //         {this._spinner}
-      //         {this._currentSeat}
-      //       </div> 
-
-      //     )
-      //  }
+     
       
      
   }

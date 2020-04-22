@@ -19,7 +19,7 @@ function getState() {
   console.log("====> + LoginPage.js ==> getState () ");
   return {
     flag: loginstore.getFlag(),
-    seatList: loginstore.seatList(),
+    stationList: loginstore.stationList(),
     username: '',
     password: '',
     showError: loginstore.getErrorMessage(),
@@ -115,7 +115,9 @@ var LoginPage = React.createClass({
     loginstore.addChangeListener(this.onChange);
 
      //CommonActions.webSocketConnection();
-     CommonActions.listSeats();
+
+     // get list of Station Ids
+     CommonActions.listSeats(); 
     
     // CommonActions.setLanguage(); //Dispatch setLanguage action
     // if (this.state.getLang) {
@@ -123,6 +125,7 @@ var LoginPage = React.createClass({
     // } else if (this.state.getCurrentLang) {
     //   CommonActions.changeLanguage(this.state.getCurrentLang);
     // }
+
     virtualKeyBoard_login = $('#username, #password').keyboard({
       layout: 'custom',
       customLayout: {
@@ -175,7 +178,7 @@ var LoginPage = React.createClass({
   },
   
   onChange: function() {
-    console.log("====> + LoginPage.js ==> componentWillMount () ");
+    console.log("===================> componentWillMount () ");
     this.setState(getState());
   },
 
@@ -191,7 +194,7 @@ var LoginPage = React.createClass({
   },
 
   handleLogin: function() {
-    console.log("====> + LoginPage.js ==> handlelOgin () ");
+    console.log("===================> handlelOgin () ");
     var _self = this;
     if (_seat_name == null) {
       _seat_name = this.refs.seat_name.value;
@@ -201,48 +204,12 @@ var LoginPage = React.createClass({
       data: {
         username: _self.refs.username.value,
         password: _self.refs.password.value,
-        //stationId: this.state.stationId
         seat_name: _seat_name,
-        role: _role
+        //role: _role
       }
     };
-    // $.ajax({
-    //   type: 'GET',
-    //   url:
-    //     configConstants.INTERFACE_IP +
-    //     appConstants.API +
-    //     appConstants.PPS_SEATS +
-    //     _seat_name +
-    //     appConstants.MODE,
-    //   dataType: 'json'
-    // }).done(function(response) {
-    //   _role = ('ROLE_' + response.mode).toUpperCase();
-    //   // if (mode === appConstants.KEYBOARD) {
-    //     var data = {
-    //       data_type: 'auth',
-    //       data: {
-    //         username: _self.refs.username.value,
-    //         password: _self.refs.password.value,
-    //         seat_name: _seat_name,
-    //         role: _role
-    //       }
-    //     };
-    //     _mode = appConstants.KEYBOARD;
-      //} 
-      // else {
-      //   var data = {
-      //     data_type: 'auth',
-      //     data: {
-      //       barcode: barcodeValue,
-      //       seat_name: _seat_name,
-      //       role: _role
-      //     }
-      //   };
-      //   _mode = appConstants.SCANNER;
-      // }
-      utils.generateSessionId();
+      utils.generateSessionId(data);
       CommonActions.login(data);
-   // });
   },
 
   disableLoginButton: function() {
@@ -257,21 +224,23 @@ var LoginPage = React.createClass({
   },
 
   onStationIdChange: function(){
-    console.log("inside onStationIdChanges")
-    CommonActions.webSocketConnection();
+    console.log("this.state.stationid is =======>" + this.state.stationId)
+    console.log("this.refs.seat_name is =======>" + this.refs.seat_name.value)
+    CommonActions.webSocketConnection(this.state.stationId);
+    
 
     //save the current station id
     //CommonActions.setCurrentStationId(this.state.stationId);
 
     // create a web-socket connection for current station id
-    if (
-      this.state.stationId !== "0"  // select station id
-    ) {
-      CommonActions.webSocketConnection(this.state.stationId); 
-      $('#loginBtn').prop('disabled', false);
-    } else {
-      $('#loginBtn').prop('disabled', true);
-    }
+    // if (
+    //   this.state.stationId !== "0"  // select station id
+    // ) {
+    //   CommonActions.webSocketConnection(this.state.stationId); 
+    //   $('#loginBtn').prop('disabled', false);
+    // } else {
+    //   $('#loginBtn').prop('disabled', true);
+    // }
   },
 
   ChangeStationId: function(e){
@@ -284,48 +253,48 @@ var LoginPage = React.createClass({
     var isScannerLoginEnabled = mainstore.loginScannerAllowed();
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
-    if (this.state.seatList.length > 0) {
+    if (this.state.stationList.length > 0) {
       var parseSeatID, ppsOption, showTiltButton;
       
       /******** list of stations **********/
-          // var stationList = [1,2,3,4];
-          // seatData = stationList.map(function(eachItem, index){
-          //   return(
-          //     <option key={'station' + index} value={eachItem}>
-          //     Station Id {eachItem}
-          //   </option>
-          //   );
-          // })
-          // seatData.unshift(<option key={'station'} value={0}>Select Station Id</option>);
+          var stationList = [1];
+          seatData = stationList.map(function(eachItem, index){
+            return(
+              <option key={'station' + index} value={eachItem}>
+              Station Id {eachItem}
+            </option>
+            );
+          })
+          seatData.unshift(<option key={'station'} value={0}>Select Station Id</option>);
        /***********************/
        
       /******************************* */
-      seatData = this.state.seatList.map(function(data, index) {
-        if (data.hasOwnProperty('seat_type')) {
-          parseSeatID = null;
-          return (
-            <option key={'pps' + index} value={data.seat_name}>
-              PPS {data.seat_name.split('_').join(' ')}
-            </option>
-          );
-        } else {
-          /* only VALID when in production */
-          parseSeatID = data.split('_');
-          _seat_name = data;
-          seat_name = parseSeatID[0] + ' ' + parseSeatID[1];
-          if (seat_name.charAt(seat_name.length - 1) == '#') {
-            seat_name = seat_name.substr(0, seat_name.length - 1);
-          }
-          if (_seat_name.charAt(_seat_name.length - 1) == '#') {
-            _seat_name = _seat_name.substr(0, _seat_name.length - 1);
-          }
-          return (
-            <header className='ppsSeat' key={'pps' + index}>
-              PPS {data.split('_').join(' ')}
-            </header>
-          );
-        }
-      });
+      // seatData = this.state.stationList.map(function(data, index) {
+      //   if (data.hasOwnProperty('seat_type')) {
+      //     parseSeatID = null;
+      //     return (
+      //       <option key={'pps' + index} value={data.seat_name}>
+      //         PPS {data.seat_name.split('_').join(' ')}
+      //       </option>
+      //     );
+      //   } else {
+      //     /* only VALID when in production */
+      //     parseSeatID = data.split('_');
+      //     _seat_name = data;
+      //     seat_name = parseSeatID[0] + ' ' + parseSeatID[1];
+      //     if (seat_name.charAt(seat_name.length - 1) == '#') {
+      //       seat_name = seat_name.substr(0, seat_name.length - 1);
+      //     }
+      //     if (_seat_name.charAt(_seat_name.length - 1) == '#') {
+      //       _seat_name = _seat_name.substr(0, _seat_name.length - 1);
+      //     }
+      //     return (
+      //       <header className='ppsSeat' key={'pps' + index}>
+      //         PPS {data.split('_').join(' ')}
+      //       </header>
+      //     );
+      //   }
+      // });
       /*********************/
 
       if (parseSeatID != null) {
