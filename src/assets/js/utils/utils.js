@@ -173,7 +173,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     sessionStorage.setItem("sessionData", JSON.stringify(data))
   },
 
-  loginConfirmation: function(data){
+  sendLoginConfirmation: function(data){
     console.log("=== >%c login Confirmation ()", "color:red")
     var stationId = data.data.stationId;
     var username= data.data.userName;
@@ -238,14 +238,13 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           data_type: "auth",
           data: {
             "auth-token": response.auth_token,
-            //seat_name: data.data.seat_name,
             userName: data.data.username,
             stationId: data.data.seat_name  //"1"
           }
         }
         utils.storeSession(webSocketData)
         //utils.postDataToWebsockets(webSocketData)
-        utils.loginConfirmation(webSocketData);
+        utils.sendLoginConfirmation(webSocketData);
       })
       .fail(function(data, jqXHR, textStatus, errorThrown) {
         CommonActions.showErrorMessage(data.responseJSON.error)
