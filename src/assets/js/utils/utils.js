@@ -60,9 +60,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
   
 
-  connectToWebSocket: function(data) {
+  connectToWebSocket: function(stationId) {
     console.log("=======> utils.js -> connectToWebSocket()");
-    var url = "ws://192.168.8.193:8080/wms-extraction/extraction-app-ws?ppsStn=" + data
+    var url = configConstants.WEBSOCKET_IP + "/wms-extraction/extraction-app-ws?ppsStn=" + stationId
     console.log(url);
     self = this
     ws = new WebSocket(url);
@@ -174,8 +174,12 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
 
   loginConfirmation: function(data){
+    console.log("=== >%c login Confirmation ()", "color:red")
     var stationId = data.data.stationId;
     var username= data.data.userName;
+    console.log("station Id is " + data.data.stationId);
+    console.log("username is " + data.data.userName);
+
     $.ajax({
       type: "POST",
       url: "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/login?ppsStn="+stationId,
@@ -220,7 +224,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
       $.ajax({
         type: "POST",
-        url: "https://192.168.8.193/api/auth/token",
+        url: configConstants.INTERFACE_IP + "/api/auth/token",
+        //url: "https://192.168.8.193/api/auth/token",
         data: JSON.stringify(loginData),
         dataType: "json",
         headers: {
@@ -305,6 +310,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     $.ajax({
       type: "POST",
+      //url: configConstants.PLATFORM_IP + "/api-gateway/extraction-service/wms-extraction/extraction-app/ui-event?ppsStn=" + stationId,
       url:   "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/ui-event?ppsStn=1",
       data: JSON.stringify(data),
       dataType: "json",

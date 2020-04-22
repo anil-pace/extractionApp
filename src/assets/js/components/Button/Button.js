@@ -18,8 +18,8 @@ var Button1 = React.createClass({
   performAction: function (module, action, screenId) {
     var peripheralId;
     var data = {
-      event_name: '',
-      event_data: {}
+      // event_name: '',
+      // event_data: {}
     };
     var peripheralData = {
       peripheral_id: '',
@@ -64,26 +64,17 @@ var Button1 = React.createClass({
       case appConstants.PICK_FRONT:
         switch (action) {
           case appConstants.CANCEL_SCAN:
-            alert("cancel scan button clickecd");
-            //data['event_name'] = appConstants.CANCEL_SCAN;
-            data["event_name"] = "cancel_clicked";
-            data["event_data"] = null;
+            console.log("=====> cancel button clicked====>");
+            data["name"] = "cancel_clicked";
+            data["data"] = null;
             data["screen_id"] = screenId;
-            ActionCreators.postDataToInterface(data);
+            ActionCreators.postDataToInterface(data, mainstore.getCurrentStationId());
             break;
           
-          case appConstants.CONFIRM_FROM_USER:
-            ActionCreators.changePickFrontExceptionScreen('confirm_from_user');
-            break;
-
-          case appConstants.VALIDATE_AND_SEND_DATA_TO_SERVER:
-            ActionCreators.validateAndSendDataToServer();
-            break;
-
           case appConstants.REMOVE_ALL_BUTTON:
-            alert("Remove all buttons clicked");
-            data['event_name'] = 'all_totes_removed';
-            data["event_data"] = null;
+            console.log("=====>  remove all buttons clicked====>");
+            data['name'] = 'all_totes_removed';
+            data["data"] = null;
             data["screen_id"] = screenId;
             ActionCreators.postDataToInterface(data);
             break;

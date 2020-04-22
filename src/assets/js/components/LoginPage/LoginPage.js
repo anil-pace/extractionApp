@@ -114,8 +114,6 @@ var LoginPage = React.createClass({
     mainstore.addChangeListener(this.onChange);
     loginstore.addChangeListener(this.onChange);
 
-     //CommonActions.webSocketConnection();
-
      // get list of Station Ids
      CommonActions.listSeats(); 
     
@@ -224,13 +222,13 @@ var LoginPage = React.createClass({
   },
 
   onStationIdChange: function(){
-    console.log("this.state.stationid is =======>" + this.state.stationId)
-    console.log("this.refs.seat_name is =======>" + this.refs.seat_name.value)
+    console.log("=======> this.state.stationid is " + this.state.stationId)
+    console.log(" =======> this.refs.seat_name is =======>" + this.refs.seat_name.value)
     CommonActions.webSocketConnection(this.state.stationId);
     
 
     //save the current station id
-    //CommonActions.setCurrentStationId(this.state.stationId);
+    CommonActions.setCurrentStationId(this.state.stationId);
 
     // create a web-socket connection for current station id
     // if (

@@ -48,8 +48,8 @@ function listPpsSeat(seat){
       currentSeat.length = 0; 
       $.ajax({
         type: 'GET',
-        //url: "http://192.168.8.193:8080/wms-extraction/extraction-app/pps-extraction-stns"
-        url: configConstants.INTERFACE_IP+appConstants.PPS_SEATS,
+        //url: configConstants.PLATFORM_IP + "/wms-extraction/extraction-app/pps-extraction-stns",
+        url: "https://192.168.8.50" + appConstants.PPS_SEATS,
         dataType : "json",
         beforeSend : xhrConfig 
         }).done(function(response) {
