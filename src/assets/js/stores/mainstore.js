@@ -3598,7 +3598,8 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
   },
   postDataToInterface: function(data) {
     showModal = false
-    utils.postDataToInterface(data, _seatName)
+    //utils.postDataToInterface(data, _seatName)
+    utils.postDataToInterface(data, _currentStationId)
   },
   postDataToTower: function(data) {
     showModal = false

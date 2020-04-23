@@ -796,6 +796,52 @@ function loadComponent(modalType, modalData, ths) {
       title = _('Skip docking');
       break;
 
+      case appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE:
+        component = [];
+        component.push(
+          <div>
+            <div className='row'>
+              <div className='col-md-12'>
+                <div className='title-textbox'>
+                  {_(
+                    'Are you sure all Entities are removed from the MTU? MTU will auto undock after confirmation'
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className='modal-footer removeBorder'>
+              <div className='buttonContainer center-block chklstButtonContainer'>
+                <div className='row removeBorder'>
+                  <div className='col-md-6'>
+                    <Button1
+                      disabled={false}
+                      text={_('Cancel')}
+                      color={'black'}
+                      module={appConstants.PICK_FRONT}
+                      action={
+                        appConstants.CANCEL_BOX_FULL
+                      }
+                    />
+                  </div>
+                  <div className='col-md-6'>
+                    <Button1
+                      disabled={false}
+                      text={_('Confirm')}
+                      color={'orange'}
+                      module={appConstants.PICK_FRONT}
+                      action={
+                        appConstants.CONFIRM_BOX_FULL
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+        title = _('All Entities removed');
+        break;
+
     case appConstants.CANCEL_SCAN_ALL:
       component = [];
       component.push(
