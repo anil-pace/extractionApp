@@ -495,7 +495,8 @@ var serverMessages = {
     "PkF.S.005": {
         "textToDisplay": "Press PPTL",
         "screen_id": "pick_front_pptl_press"
-    }
+    },
+    "ExApp.I.004": "Tote scan successful"
 };
 
 

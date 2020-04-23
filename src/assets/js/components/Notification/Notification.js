@@ -16,7 +16,7 @@ var Notification = React.createClass({
         var _this = this;
         var navMessagesJson = this.props.navMessagesJson;
         var compData = this.props.notification;
-        var message_args  = this.props.notification.details.slice(0);
+        var message_args  = this.props.notification.details ? this.props.notification.details.slice(0): []
         var errorCode = this.props.notification.code;
         if(this.props.notification.level!=undefined && this.props.notification.level == "error"){
             var appendClass = 'notify-error';

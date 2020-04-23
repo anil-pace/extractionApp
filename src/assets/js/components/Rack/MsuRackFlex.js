@@ -151,26 +151,26 @@ var MsuRackFlex = React.createClass({
 
       /* END **********************************/
 
-      // if (i === selectedSlotIndex) {
-      //   var setSlotBackground = '#bbbbbb'
-      //   var drawALine = <div id='selectedSlot' />
-      // } else {
-      //   var setSlotBackground = vSlots[i].occupancy_color || '#e8e8e8'
-      // }
+      if (i === selectedSlotIndex) {
+        var setSlotBackground = '#bbbbbb'
+        var drawALine = <div id='selectedSlot' />
+      } else {
+        var setSlotBackground = vSlots[i].occupancy_color || '#e8e8e8'
+      }
 
 
       if (vSlots[i].tote_status === "inventoryItems") {
         setSlotBackground = '#ffffff'
-        toteIcon = <div className="bin-icon tote-icon"/>
+        toteIcon = <img className="bin-icon dark-tote-icon" src="./assets/images/fill_tote.png"></img>
 
       }
       else if(vSlots[i].tote_status === "empty"){
         setSlotBackground = '#ffffff'
-        toteIcon = <div className="bin-icon light-tote-icon"/>
+        toteIcon = <img className="bin-icon light-tote-icon" src="./assets/images/empty_tote.png"></img>
       }
       else if(vSlots[i].tote_status === "scanned_empty"){
-        setSlotBackground = '#D6D6D6;';
-        toteIcon = <div className="bin-icon light-tote-icon"/>
+        setSlotBackground = '#D6D6D6';
+        toteIcon = <img className="bin-icon light-tote-icon" src="./assets/images/empty_tote.png"></img>
       }
       else{
         setSlotBackground = '#ffffff'
@@ -280,7 +280,7 @@ var MsuRackFlex = React.createClass({
     return (
       <div className='parent-container'>
         <div className='slotsFlexContainer'>{vHTMLSlots}</div>
-        {/* <div className='right-container'>
+         <div className='right-container'>
           {this.state.selectedSlotIds && !this.props.hideSlotDetails && (
             <div id='slotDisplayArea' className='slotDisplayArea'>
               <img
@@ -292,7 +292,7 @@ var MsuRackFlex = React.createClass({
               </span>
             </div>
           )}
-        </div> */}
+        </div> 
       </div>
     )
   }

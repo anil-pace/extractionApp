@@ -70,7 +70,7 @@ var Header = React.createClass({
           var data = {
             "name": "scanned",
             "data": e.target.value.trim(),
-            "screen_id": "select_mtu_point"
+            "screen_id": mainstore.getScreenId()
           }
           CommonActions.postDataToInterface(data, currentStationId)
         }

@@ -5355,7 +5355,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
             data["PickFrontRackDetails"] = this.getRackDetails()
             data["udpBinMapDetails"] = this.getDockStationList()
             data["getCurrentMtu"] = this.getCurrentMtu()
-            //data["PickFrontNotification"] = this.getNotificationData()
+            data["PickFrontNotification"] = this.getNotificationData()
             break;
 
       case appConstants.SCAN_EMPTY_SLOT:
@@ -5365,7 +5365,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
         data["SlotType"] = this.getSlotType()
         data["PickFrontRackDetails"] = this.getRackDetails()
         data["udpBinMapDetails"] = this.getDockStationList()
-        //data["PickFrontNotification"] = this.getNotificationData()
+        data["PickFrontNotification"] = this.getNotificationData()
         break;
         
       case appConstants.PICK_FRONT_SLOT_SCAN:
