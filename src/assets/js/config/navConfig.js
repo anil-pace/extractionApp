@@ -292,7 +292,7 @@ var navData = {
     ],
     "pickFront": [
         [{
-            "screen_id": ["pick_front_waiting_for_msu", "pick_front_one_step_scan", "pick_front_dock_tote", "pick_front_undock_tote", "pick_front_slot_scan", "pick_front_tote_confirm", "remove_all_totes", "wait_for_mtu", "select_mtu_point"],
+            "screen_id": ["pick_front_waiting_for_msu", "pick_front_one_step_scan", "pick_front_dock_tote", "pick_front_undock_tote", "pick_front_slot_scan", "pick_front_tote_confirm", "remove_all_totes", "wait_for_mtu", "select_mtu_point", "scan_empty_tote","scan_empty_slot"],
             "code": "Common.000",
             "message": "Wait For MSU",
             "showImage": false,

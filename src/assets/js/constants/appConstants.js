@@ -391,6 +391,7 @@ var appConstants = {
   SELECT_MTU_POINT: "select_mtu_point",
   REMOVE_ALL_TOTES: "remove_all_totes",
   SCAN_EMPTY_TOTE: "scan_empty_tote",
+  SCAN_EMPTY_SLOT: "scan_empty_slot",
   PUT_TOTE_IN_MTU: "put_tote_in_mtu",
   SELECT_MTU_TO_PROCEED: "select_mtu_to_proceed",
 

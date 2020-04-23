@@ -2018,7 +2018,7 @@ var PickFront = React.createClass({
   
             this._component = (
               <div className='grid-container'>
-                  {/* <CurrentMtu /> */}
+                 {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> :" "}
                   <div className="splitPps-zoomed-out">
                     <SplitPPS
                       displayBinId={true}
@@ -2083,6 +2083,37 @@ var PickFront = React.createClass({
                 </div>
             )
           break;
+
+          case appConstants.SCAN_EMPTY_SLOT:
+            this._navigation = (
+              <Navigation
+                navData={this.state.PickFrontNavData}
+                serverNavData={this.state.PickFrontServerNavData}
+                navMessagesJson={this.props.navMessagesJson}
+              />
+            )
+  
+            this._component = (
+              <div className='grid-container'>
+                  <CurrentMtu />
+                  <div className="splitPps-zoomed-out">
+                    <SplitPPS
+                      displayBinId={true}
+                      groupInfo={this.state.udpBinMapDetails}
+                    />
+                    
+                  </div>
+                  <div className='main-container'>
+                  <Rack
+                      //isDrawer={this.state.isDrawer}
+                      slotType={this.state.SlotType}
+                      rackData={this.state.PickFrontRackDetails}
+                    /> 
+                  </div>
+                </div>
+            )
+          break;
+
           case appConstants.PUT_TOTE_IN_MTU:
             this._navigation = (
               <Navigation

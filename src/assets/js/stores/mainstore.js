@@ -317,6 +317,8 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
             _seatData.screen_id === appConstants.WAIT_FOR_MTU ||
             _seatData.screen_id === appConstants.SELECT_MTU_POINT ||
             _seatData.screen_id === appConstants.REMOVE_ALL_TOTES ||
+            _seatData.screen_id === appConstants.SCAN_EMPTY_TOTE ||
+            _seatData.screen_id === appConstants.SCAN_EMPTY_SLOT ||
             _seatData.screen_id === appConstants.PICK_FRONT_DOCK_TOTE ||
             _seatData.screen_id === appConstants.PICK_FRONT_UNDOCK_TOTE ||
             _seatData.screen_id === appConstants.PICK_FRONT_SLOT_SCAN
@@ -5050,6 +5052,12 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
     if (_seatData.hasOwnProperty("bin_coordinate_plotting"))
       return _seatData.bin_coordinate_plotting
   },
+
+  getCurrentMtu: function(){
+    if (_seatData.hasOwnProperty("current_mtu"))
+      return _seatData.current_mtu
+  },
+
   getStageButtonHideStatus: function() {
     if (_seatData.hasOwnProperty("auto_stage")) return _seatData.auto_stage
   },
@@ -5334,16 +5342,29 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
           data["PickFrontScreenId"] = this.getScreenId()
           data["PickFrontRackDetails"] = this.getRackDetails()
           data["udpBinMapDetails"] = this.getDockStationList()
+          data["getCurrentMtu"] = this.getCurrentMtu()
           // data["PickFrontNotification"] = this.getNotificationData()
           break;
 
-      case appConstants.SCAN_EMPTY_TOTE:
+        case appConstants.SCAN_EMPTY_TOTE:
+            data["PickFrontNavData"] = this.getNavData()
+            data["PickFrontServerNavData"] = this.getServerNavData()
+            data["PickFrontScreenId"] = this.getScreenId()
+            data["SlotType"] = this.getSlotType()
+            data["PickFrontRackDetails"] = this.getRackDetails()
+            data["udpBinMapDetails"] = this.getDockStationList()
+            data["getCurrentMtu"] = this.getCurrentMtu()
+            //data["PickFrontNotification"] = this.getNotificationData()
+            break;
+
+      case appConstants.SCAN_EMPTY_SLOT:
         data["PickFrontNavData"] = this.getNavData()
         data["PickFrontServerNavData"] = this.getServerNavData()
         data["PickFrontScreenId"] = this.getScreenId()
+        data["SlotType"] = this.getSlotType()
         data["PickFrontRackDetails"] = this.getRackDetails()
         data["udpBinMapDetails"] = this.getDockStationList()
-        data["PickFrontNotification"] = this.getNotificationData()
+        //data["PickFrontNotification"] = this.getNotificationData()
         break;
         
       case appConstants.PICK_FRONT_SLOT_SCAN:
