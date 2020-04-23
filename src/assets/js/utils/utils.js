@@ -304,13 +304,13 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
 
   postDataToInterface: function(data, stationId) {
-    console.log("===== > utils.js ===> postDataToInterface()");
+    console.log(" %c utils.js ===> postDataToInterface()", "color:red");
+    console.log("====================> station id" + stationId);
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     $.ajax({
       type: "POST",
-      //url: configConstants.PLATFORM_IP + "/api-gateway/extraction-service/wms-extraction/extraction-app/ui-event?ppsStn=" + stationId,
-      url:   "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/ui-event?ppsStn=1",
+      url:  configConstants.PLATFORM_IP + "/api-gateway/extraction-service/wms-extraction/extraction-app/ui-event?ppsStn=" + stationId,
       data: JSON.stringify(data),
       dataType: "json",
       headers: {

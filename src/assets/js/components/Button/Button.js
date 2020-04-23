@@ -78,6 +78,27 @@ var Button1 = React.createClass({
             data["screen_id"] = screenId;
             ActionCreators.postDataToInterface(data);
             break;
+          
+          case appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE_MODAL:
+              this.showModal(
+                appConstants.PICK_FRONT,
+                appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE
+              );
+              break;
+        
+          case appConstants.CANCEL_BOX_FULL:
+            data['event_name'] = appConstants.CANCEL_BOX_FULL_REQUEST;
+            data['event_data'] = null;
+            ActionCreators.postDataToInterface(data);
+            closeModalBox();
+            break;
+
+          case appConstants.CONFIRM_BOX_FULL:
+            data['event_name'] = appConstants.CONFIRM_BOX_FULL;
+            data['event_data'] = null;
+            ActionCreators.postDataToInterface(data);
+            closeModalBox();
+            break;
 
           case appConstants.CONFIRM_LOGOUT_REQUEST:
             data['event_name'] = appConstants.CONFIRM_REPRINT_LAST_REQUEST;

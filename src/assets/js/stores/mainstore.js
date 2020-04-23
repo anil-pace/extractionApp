@@ -5055,8 +5055,8 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
   },
 
   getCurrentMtu: function(){
-    if (_seatData.hasOwnProperty("current_mtu"))
-      return _seatData.current_mtu
+    if (_seatData.hasOwnProperty("selected_dock_station_label"))
+      return _seatData.selected_dock_station_label
   },
 
   getStageButtonHideStatus: function() {

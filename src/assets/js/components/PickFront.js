@@ -20,7 +20,6 @@ var appConstants = require('../constants/appConstants')
 var Rack = require('./Rack/MsuRack.js')
 var BoxSerial = require('./BoxSerial.js')
 var Modal = require('./Modal/Modal')
-var Modal1 = require('./Modal/Modal1')
 var CurrentSlot = require('./CurrentSlot')
 var BinMap = require('./BinMap')
 var PrdtDetails = require('./PrdtDetails/ProductDetails.js')
@@ -2008,6 +2007,30 @@ var PickFront = React.createClass({
           break;
 
           case appConstants.REMOVE_ALL_TOTES:
+            if (true) {
+              var removeAllButton = (
+                <Button1
+                  disabled={false}
+                  text={_('Remove All')}
+                  module={appConstants.PICK_FRONT}
+                  action={appConstants.REMOVE_ALL_BUTTON}
+                  screenId={mainstore.getScreenId()}
+                  color={'orange'}
+                />
+              )
+            } else {
+              var removeAllButton = (
+                <Button1
+                  disabled={false}
+                  text={_('Remove All')}
+                  module={appConstants.PICK_FRONT}
+                  action={appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE_MODAL}
+                  screenId={mainstore.getScreenId()}
+                  color={'orange'}
+                />
+              )
+            }
+
             this._navigation = (
               <Navigation
                 navData={this.state.PickFrontNavData}
@@ -2018,6 +2041,7 @@ var PickFront = React.createClass({
   
             this._component = (
               <div className='grid-container'>
+                <Modal />
                  {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> :" "}
                   <div className="splitPps-zoomed-out">
                     <SplitPPS
@@ -2042,14 +2066,15 @@ var PickFront = React.createClass({
                         screenId={mainstore.getScreenId()}
                         color={"black"} />
                   </div>
-                  <Button1
+                  {removeAllButton}
+                  {/* <Button1
                       disabled={false}
                       text={_('Remove All')}
                       module={appConstants.PICK_FRONT}
                       action={appConstants.REMOVE_ALL_BUTTON}
                       screenId={mainstore.getScreenId()}
                       color={'orange'}
-                  />
+                  /> */}
                 </div>
             )
           break;
@@ -2065,7 +2090,7 @@ var PickFront = React.createClass({
   
             this._component = (
               <div className='grid-container'>
-                  <CurrentMtu />
+                  {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> :" "}
                   <div className="splitPps-zoomed-out">
                     <SplitPPS
                       displayBinId={true}
@@ -2095,7 +2120,7 @@ var PickFront = React.createClass({
   
             this._component = (
               <div className='grid-container'>
-                  <CurrentMtu />
+                  {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> :" "}
                   <div className="splitPps-zoomed-out">
                     <SplitPPS
                       displayBinId={true}
