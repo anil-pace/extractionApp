@@ -225,9 +225,12 @@ var LoginPage = React.createClass({
   onStationIdChange: function(){
     console.log("=======> this.state.stationid is " + this.state.stationId)
     console.log(" =======> this.refs.seat_name is =======>" + this.refs.seat_name.value)
-    CommonActions.webSocketConnection(this.state.stationId);
-    if(this.refs.seat_name.value !== 0){
+    if(this.refs.seat_name.value !== "0"){
       $("#loginBtn").show();
+      CommonActions.webSocketConnection(this.state.stationId);
+    }
+    else{
+      $("#loginBtn").hide();
     }
     
 
@@ -252,7 +255,7 @@ var LoginPage = React.createClass({
   render: function() {
     console.log("====> + LoginPage.js ==> render () ");
 
-    var isScannerLoginEnabled = mainstore.loginScannerAllowed();
+    
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
     if (this.state.stationList.length > 0) {
