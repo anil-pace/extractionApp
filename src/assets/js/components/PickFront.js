@@ -1514,7 +1514,7 @@ var PickFront = React.createClass({
                 text={_('BACK')}
                 module={appConstants.PICK_FRONT}
                 status={true}
-                action={appConstants.CANCEL_BOX_FULL}
+                action={appConstants.CANCEL_REMOVE_ALL_ENTITIES}
                 color={'black'}
               />
               <Button1

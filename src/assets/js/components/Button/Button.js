@@ -86,17 +86,18 @@ var Button1 = React.createClass({
               );
               break;
         
-          case appConstants.CANCEL_BOX_FULL:
-            data['event_name'] = appConstants.CANCEL_BOX_FULL_REQUEST;
-            data['event_data'] = null;
-            ActionCreators.postDataToInterface(data);
+          case appConstants.CANCEL_REMOVE_ALL_ENTITIES:
+            // data['event_name'] = appConstants.CANCEL_BOX_FULL_REQUEST;
+            // data['event_data'] = null;
+            // ActionCreators.postDataToInterface(data);
             closeModalBox();
             break;
 
-          case appConstants.CONFIRM_BOX_FULL:
-            data['event_name'] = appConstants.CONFIRM_BOX_FULL;
-            data['event_data'] = null;
-            ActionCreators.postDataToInterface(data);
+          case appConstants.CONFIRM_REMOVE_ALL_ENTITIES:
+            data["name"] = "confirm_clicked";
+            data["data"] = null;
+            data["screen_id"] = screenId;
+            ActionCreators.postDataToInterface(data, mainstore.getCurrentStationId());
             closeModalBox();
             break;
 

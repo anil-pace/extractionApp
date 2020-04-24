@@ -381,43 +381,43 @@ function loadComponent(modalType, modalData, ths) {
       );
 
       break;
-    case appConstants.BOX_FULL:
-      component = [];
-      component.push(
-        <div>
-          <div className='row'>
-            <p>
-              {_('Last item scan will be cancelled. Do you want to continue?')}
-            </p>
-          </div>
-          <div className='modal-footer removeBorder'>
-            <div className='buttonContainer center-block chklstButtonContainer'>
-              <div className='row removeBorder'>
-                <div className='col-md-6'>
-                  <Button1
-                    disabled={false}
-                    text={_('Cancel')}
-                    color={'black'}
-                    module={appConstants.PICK_FRONT}
-                    action={appConstants.CANCEL_BOX_FULL}
-                  />
-                </div>
-                <div className='col-md-6'>
-                  <Button1
-                    disabled={false}
-                    text={_('Continue')}
-                    color={'orange'}
-                    module={appConstants.PICK_FRONT}
-                    action={appConstants.CONFIRM_BOX_FULL}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-      title = _('Box Full');
-      break;
+    // case appConstants.BOX_FULL:
+    //   component = [];
+    //   component.push(
+    //     <div>
+    //       <div className='row'>
+    //         <p>
+    //           {_('Last item scan will be cancelled. Do you want to continue?')}
+    //         </p>
+    //       </div>
+    //       <div className='modal-footer removeBorder'>
+    //         <div className='buttonContainer center-block chklstButtonContainer'>
+    //           <div className='row removeBorder'>
+    //             <div className='col-md-6'>
+    //               <Button1
+    //                 disabled={false}
+    //                 text={_('Cancel')}
+    //                 color={'black'}
+    //                 module={appConstants.PICK_FRONT}
+    //                 action={appConstants.CANCEL_REMOVE_ALL_ENTITIES}
+    //               />
+    //             </div>
+    //             <div className='col-md-6'>
+    //               <Button1
+    //                 disabled={false}
+    //                 text={_('Continue')}
+    //                 color={'orange'}
+    //                 module={appConstants.PICK_FRONT}
+    //                 action={appConstants.CONFIRM_REMOVE_ALL_ENTITIES}
+    //               />
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    //   title = _('Box Full');
+    //   break;
     case appConstants.BIN_FULL:
       component = [];
       component.push(
@@ -504,44 +504,44 @@ function loadComponent(modalType, modalData, ths) {
       );
       title = _('Reprint Label');
       break;
-    case appConstants.DISCARD_PACKING_BOX:
-      component = [];
-      component.push(
-        <div>
-          <div className='row'>
-            <p>
-              {_(
-                'All item scan will be cancelled. Do you want to discard packing box?'
-              )}
-            </p>
-          </div>
-          <div className='modal-footer removeBorder'>
-            <div className='buttonContainer center-block chklstButtonContainer'>
-              <div className='row removeBorder'>
-                <div className='col-md-6'>
-                  <Button1
-                    disabled={false}
-                    text={_('Cancel')}
-                    color={'black'}
-                    module={appConstants.PICK_FRONT}
-                    action={appConstants.CANCEL_BOX_FULL}
-                  />
-                </div>
-                <div className='col-md-6'>
-                  <Button1
-                    disabled={false}
-                    text={_('Continue')}
-                    color={'orange'}
-                    module={appConstants.PICK_FRONT}
-                    action={appConstants.CONFIRM_BOX_FULL}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-      title = _('Discard Box');
+    // case appConstants.DISCARD_PACKING_BOX:
+    //   component = [];
+    //   component.push(
+    //     <div>
+    //       <div className='row'>
+    //         <p>
+    //           {_(
+    //             'All item scan will be cancelled. Do you want to discard packing box?'
+    //           )}
+    //         </p>
+    //       </div>
+    //       <div className='modal-footer removeBorder'>
+    //         <div className='buttonContainer center-block chklstButtonContainer'>
+    //           <div className='row removeBorder'>
+    //             <div className='col-md-6'>
+    //               <Button1
+    //                 disabled={false}
+    //                 text={_('Cancel')}
+    //                 color={'black'}
+    //                 module={appConstants.PICK_FRONT}
+    //                 action={appConstants.CANCEL_REMOVE_ALL_ENTITIES}
+    //               />
+    //             </div>
+    //             <div className='col-md-6'>
+    //               <Button1
+    //                 disabled={false}
+    //                 text={_('Continue')}
+    //                 color={'orange'}
+    //                 module={appConstants.PICK_FRONT}
+    //                 action={appConstants.CONFIRM_REMOVE_ALL_ENTITIES}
+    //               />
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    //   title = _('Discard Box');
       break;
     case appConstants.EXIT_INVOICE:
       var invoiceStringArg = [];
@@ -819,7 +819,7 @@ function loadComponent(modalType, modalData, ths) {
                       color={'black'}
                       module={appConstants.PICK_FRONT}
                       action={
-                        appConstants.CANCEL_BOX_FULL
+                        appConstants.CANCEL_REMOVE_ALL_ENTITIES
                       }
                     />
                   </div>
@@ -830,7 +830,7 @@ function loadComponent(modalType, modalData, ths) {
                       color={'orange'}
                       module={appConstants.PICK_FRONT}
                       action={
-                        appConstants.CONFIRM_BOX_FULL
+                        appConstants.CONFIRM_REMOVE_ALL_ENTITIES
                       }
                     />
                   </div>
