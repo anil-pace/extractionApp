@@ -255,8 +255,8 @@ var LoginPage = React.createClass({
       var parseSeatID, ppsOption, showTiltButton;
       
       /******** list of stations **********/
-          var stationList = [1];
-          seatData = stationList.map(function(eachItem, index){
+          //var stationList = [1];
+          seatData = this.state.stationList.map(function(eachItem, index){
             return(
               <option key={'station' + index} value={eachItem}>
               Station Id {eachItem}

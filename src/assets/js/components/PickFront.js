@@ -2100,7 +2100,7 @@ var PickFront = React.createClass({
                   </div>
                   <div className='main-container'>
                   <Rack
-                      isDrawer={this.state.isDrawer}
+                      //isDrawer={this.state.isDrawer}
                       slotType={this.state.SlotType}
                       rackData={this.state.PickFrontRackDetails}
                     /> 

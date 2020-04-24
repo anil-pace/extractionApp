@@ -3,14 +3,12 @@ var configConstants = require('../constants/configConstants');
 var appConstants = require('../constants/appConstants');
 var objectAssign = require('react/lib/Object.assign');
 var EventEmitter = require('events').EventEmitter;
-var CommonActions = require('../actions/CommonActions');
 var utils  = require('../utils/utils.js');
 
 
 var CHANGE_EVENT = 'change';
 var flag = false;
 var currentSeat = [];
-var currentStation = [];
 var currentLang = '';
 var _errMsg = null;
 
@@ -43,45 +41,29 @@ function getCurrentLang(){
 
 
 function listPpsSeat(seat){
-  console.log("=====> get list of station ids" );
+  console.log("=====> %c  get list of station ids", "color:red" );
     if(seat === null){
       currentSeat.length = 0; 
       $.ajax({
         type: 'GET',
-        //url: configConstants.PLATFORM_IP + "/wms-extraction/extraction-app/pps-extraction-stns",
-        url: "https://192.168.8.50" + appConstants.PPS_SEATS,
+        url:  configConstants.PLATFORM_IP + "/api-gateway/extraction-service/wms-extraction/extraction-app/pps-extraction-stns",
         dataType : "json",
         beforeSend : xhrConfig 
         }).done(function(response) {
-          currentSeat = response.pps_seats; // [1,2,3,4]
+          currentSeat = response;
           loginstore.emit(CHANGE_EVENT); 
         }).fail(function(jqXhr) {
         }).success(function(data){
-          console.log("success");
+          console.log("list of station ids successful====>");
         });
     }else{
       loginstore.emit(CHANGE_EVENT); 
     }
 }
 
-function checkLang(){             //Ajax call to get language from api
-      $.ajax({
-        type: 'GET',
-        url: configConstants.INTERFACE_IP+appConstants.API+appConstants.COMPONENT+appConstants.LANG,
-        dataType : "json",
-        beforeSend : xhrConfig 
-        }).done(function(response) {
-          currentLang = response.data[0].locale;
-          CommonActions.changeLanguage(currentLang);
-          console.log("Language_Recieved");
-        });
-}
-
-
 var showBox = function(index){
   flag = true;
 }
-
 
 var loginstore = objectAssign({}, EventEmitter.prototype, {
   emitChange: function() {

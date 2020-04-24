@@ -5365,6 +5365,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
         data["SlotType"] = this.getSlotType()
         data["PickFrontRackDetails"] = this.getRackDetails()
         data["udpBinMapDetails"] = this.getDockStationList()
+        data["getCurrentMtu"] = this.getCurrentMtu()
         data["PickFrontNotification"] = this.getNotificationData()
         break;
         
@@ -5640,7 +5641,7 @@ AppDispatcher.register(function(payload) {
         payload.action.data.event_name === appConstants.BOX_FULL_REQUEST ||
         payload.action.data.event_name === appConstants.BOX_FULL_REQUEST
       )
-        mainstore.hideSpinner()
+       mainstore.hideSpinner()
       mainstore.emit(CHANGE_EVENT)
       break
     case appConstants.RESET_NUMPAD:
