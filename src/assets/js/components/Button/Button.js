@@ -82,7 +82,7 @@ var Button1 = React.createClass({
           case appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE_MODAL:
               this.showModal(
                 appConstants.PICK_FRONT,
-                appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE
+                appConstants.REMOVE_ALL_BUTTON_CONFIRMATION
               );
               break;
         

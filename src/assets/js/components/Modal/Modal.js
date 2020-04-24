@@ -796,7 +796,7 @@ function loadComponent(modalType, modalData, ths) {
       title = _('Skip docking');
       break;
 
-      case appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE:
+      case appConstants.REMOVE_ALL_BUTTON_CONFIRMATION:
         component = [];
         component.push(
           <div>
@@ -830,7 +830,7 @@ function loadComponent(modalType, modalData, ths) {
                       color={'orange'}
                       module={appConstants.PICK_FRONT}
                       action={
-                        appConstants.CONFIRM_REMOVE_ALL_ENTITIES
+                        appConstants.REMOVE_ALL_BUTTON
                       }
                     />
                   </div>
