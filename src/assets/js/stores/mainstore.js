@@ -5059,6 +5059,11 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
       return _seatData.selected_dock_station_label
   },
 
+  isToteFlowEnabled: function(){
+    if (_seatData.hasOwnProperty("is_flow_scan_totes"))
+      return _seatData.is_flow_scan_totes
+  },
+
   getStageButtonHideStatus: function() {
     if (_seatData.hasOwnProperty("auto_stage")) return _seatData.auto_stage
   },
@@ -5344,6 +5349,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
           data["PickFrontRackDetails"] = this.getRackDetails()
           data["udpBinMapDetails"] = this.getDockStationList()
           data["getCurrentMtu"] = this.getCurrentMtu()
+          data["isToteFlowEnabled"]  = this.isToteFlowEnabled()
           // data["PickFrontNotification"] = this.getNotificationData()
           break;
 

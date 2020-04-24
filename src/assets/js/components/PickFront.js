@@ -126,45 +126,45 @@ var PickFront = React.createClass({
       this._notification = ''
     }
   },
-  // showModal: function (data, index, manual) {
-  //   if (manual == true) checkListOpen = false
-  //   var data = {
-  //     checklist_data: data,
-  //     checklist_index: index,
-  //     product_details: this.state.PickFrontProductDetails
-  //   }
-  //   console.log(this.state.PickFrontChecklistOverlayStatus, checkListOpen)
-  //   if (
-  //     this.state.PickFrontChecklistOverlayStatus === true &&
-  //     checkListOpen == false
-  //   ) {
-  //     checkListOpen = true
-  //     setTimeout(function () {
-  //       CommonActions.showModal({
-  //         data: data,
-  //         type: 'pick_checklist'
-  //       })
-  //       $('.modal').modal()
-  //       //$('.modal').data('bs.modal').escape(); // reset keyboard
-  //       $('.modal').data('bs.modal').options.backdrop = 'static'
-  //       return false
-  //     }, 0)
-  //   } else if (
-  //     this.state.PickFrontChecklistOverlayStatus === false &&
-  //     checkListOpen == true
-  //   ) {
-  //     setTimeout(function () {
-  //       $('.modal').modal('hide')
+  showModal: function (data, index, manual) {
+    if (manual == true) checkListOpen = false
+    var data = {
+      checklist_data: data,
+      checklist_index: index,
+      product_details: this.state.PickFrontProductDetails
+    }
+    console.log(this.state.PickFrontChecklistOverlayStatus, checkListOpen)
+    if (
+      this.state.PickFrontChecklistOverlayStatus === true &&
+      checkListOpen == false
+    ) {
+      checkListOpen = true
+      setTimeout(function () {
+        CommonActions.showModal({
+          data: data,
+          type: 'pick_checklist'
+        })
+        $('.modal').modal()
+        //$('.modal').data('bs.modal').escape(); // reset keyboard
+        $('.modal').data('bs.modal').options.backdrop = 'static'
+        return false
+      }, 0)
+    } else if (
+      this.state.PickFrontChecklistOverlayStatus === false &&
+      checkListOpen == true
+    ) {
+      setTimeout(function () {
+        $('.modal').modal('hide')
 
-  //       $('.modal')
-  //         .data('bs.modal')
-  //         .escape() // reset keyboard
-  //       $('.modal').data('bs.modal').options.backdrop = true
-  //       $('button.close', $('.modal')).show()
-  //     }, 0)
-  //     checkListOpen = false
-  //   }
-  // },
+        $('.modal')
+          .data('bs.modal')
+          .escape() // reset keyboard
+        $('.modal').data('bs.modal').options.backdrop = true
+        $('button.close', $('.modal')).show()
+      }, 0)
+      checkListOpen = false
+    }
+  },
   getExceptionComponent: function () {
     var _rightComponent = ''
     this._navigation = ''
@@ -2007,7 +2007,7 @@ var PickFront = React.createClass({
           break;
 
           case appConstants.REMOVE_ALL_TOTES:
-            if (true) {
+            if (this.state.isToteFlowEnabled) { // for Tote flow
               var removeAllButton = (
                 <Button1
                   disabled={false}
@@ -2018,7 +2018,7 @@ var PickFront = React.createClass({
                   color={'orange'}
                 />
               )
-            } else {
+            } else { // for Non-Tote Flow
               var removeAllButton = (
                 <Button1
                   disabled={false}
