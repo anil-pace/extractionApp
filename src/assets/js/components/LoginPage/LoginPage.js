@@ -89,6 +89,7 @@ var LoginPage = React.createClass({
   componentDidMount: function() {
     console.log("====> + LoginPage.js ==> componentDidMount () ");
     var self = this;
+    $("#loginBtn").hide();
 
     /* if enter key is hit from keyboard, do NOT call the API and vice-versa */
     $('body').on('keypress', function(e) {
@@ -225,6 +226,9 @@ var LoginPage = React.createClass({
     console.log("=======> this.state.stationid is " + this.state.stationId)
     console.log(" =======> this.refs.seat_name is =======>" + this.refs.seat_name.value)
     CommonActions.webSocketConnection(this.state.stationId);
+    if(this.refs.seat_name.value !== 0){
+      $("#loginBtn").show();
+    }
     
 
     //save the current station id
