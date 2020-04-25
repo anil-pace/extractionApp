@@ -60,7 +60,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
   
 
-  connectToWebSocket: function(stationId) {
+  connectToWebSocket: function(data) {
+    var stationId = data
     console.log("=======> utils.js -> connectToWebSocket()");
     var url = configConstants.WEBSOCKET_IP + "/wms-extraction/extraction-app-ws?ppsStn=" + stationId
     console.log(url);
@@ -130,7 +131,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
                  }*/
         //$("#username, #password").prop('disabled', true);
         //alert("Connection is closed...");
-        setTimeout(utils.connectToWebSocket, 100)
+        
+        
+        //setTimeout(utils.connectToWebSocket, 100)
       }
     } else {
       alert("WebSocket NOT supported by your Browser!")
