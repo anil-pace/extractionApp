@@ -66,8 +66,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     var url = configConstants.WEBSOCKET_IP + "/wms-extraction/extraction-app-ws?ppsStn=" + stationId
     console.log(url);
     self = this
-    ws = new WebSocket(url);
-    //ws = new WebSocket(configConstants.WEBSOCKET_IP)
+    //ws = new WebSocket(url);
+    ws = new WebSocket(configConstants.WEBSOCKET_IP)
     if ("WebSocket" in window) {
       ws.onopen = function() {
         $("#username, #password").prop("disabled", false)
@@ -120,7 +120,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           CommonActions.setServerMessages()
         }
       }
-      ws.onclose = function() {
+      ws.onclose = function(event) {
         //serverMessages.CLIENTCODE_003;
         /* alert(JSON.stringify(evt));
                  if(evt == "CLIENTCODE_409" || evt == "CLIENTCODE_503"){
@@ -134,6 +134,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         
         
         //setTimeout(utils.connectToWebSocket, 100)
+      }
+      ws.onerror = function (event){
+        CommonActions.showErrorMessage(serverMessages[event.type]);
       }
     } else {
       alert("WebSocket NOT supported by your Browser!")
