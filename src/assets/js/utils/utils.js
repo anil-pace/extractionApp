@@ -61,13 +61,14 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   
 
   connectToWebSocket: function(data) {
-    var stationId = data
+    var stationId = data;
+    sessionStorage.setItem("stationId", stationId);
     console.log("=======> utils.js -> connectToWebSocket()");
+    
     var url = configConstants.WEBSOCKET_IP + "/wms-extraction/extraction-app-ws?ppsStn=" + stationId
     console.log(url);
     self = this
-    //ws = new WebSocket(url);
-    ws = new WebSocket(configConstants.WEBSOCKET_IP)
+    ws = new WebSocket(url);
     if ("WebSocket" in window) {
       ws.onopen = function() {
         $("#username, #password").prop("disabled", false)
@@ -130,10 +131,11 @@ var utils = objectAssign({}, EventEmitter.prototype, {
                      CommonActions.logoutSession(true);
                  }*/
         //$("#username, #password").prop('disabled', true);
-        //alert("Connection is closed...");
+        console.log("Connection is closed...");
+        var stationId = sessionStorage.getItem("stationId");
         
         
-        //setTimeout(utils.connectToWebSocket, 100)
+        setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
       }
       ws.onerror = function (event){
         CommonActions.showErrorMessage(serverMessages[event.type]);
