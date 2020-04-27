@@ -70,13 +70,6 @@ var Button1 = React.createClass({
             ActionCreators.postDataToInterface(data, mainstore.getCurrentStationId());
             break;
           
-          case appConstants.CANCEL_SCAN:
-            data["name"] = "cancel_clicked";
-            data["data"] = null;
-            data["screen_id"] = screenId;
-            ActionCreators.postDataToInterface(data, mainstore.getCurrentStationId());
-            break;
-          
           case appConstants.REMOVE_ALL_BUTTON:
             data['name'] = 'all_totes_removed';
             data["data"] = null;
@@ -86,7 +79,7 @@ var Button1 = React.createClass({
           
           case appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE_MODAL:
               this.showModal(
-                appConstants.PICK_FRONT,
+                appConstants.ORDER_PICK,
                 appConstants.REMOVE_ALL_BUTTON_CONFIRMATION
               );
               break;

@@ -359,7 +359,7 @@ function loadComponent(modalType, modalData, ths) {
                     disabled={false}
                     text={_('Clear All')}
                     color={'black'}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CHECKLIST_CLEARALL}
                   />
                 </div>
@@ -370,7 +370,7 @@ function loadComponent(modalType, modalData, ths) {
                     color={'orange'}
                     buttonChecklist={'checklist'}
                     checkListData={modalData}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CHECKLIST_SUBMIT}
                   />
                 </div>
@@ -398,7 +398,7 @@ function loadComponent(modalType, modalData, ths) {
     //                 disabled={false}
     //                 text={_('Cancel')}
     //                 color={'black'}
-    //                 module={appConstants.PICK_FRONT}
+    //                 module={appConstants.ORDER_PICK}
     //                 action={appConstants.CANCEL_REMOVE_ALL_ENTITIES}
     //               />
     //             </div>
@@ -407,7 +407,7 @@ function loadComponent(modalType, modalData, ths) {
     //                 disabled={false}
     //                 text={_('Continue')}
     //                 color={'orange'}
-    //                 module={appConstants.PICK_FRONT}
+    //                 module={appConstants.ORDER_PICK}
     //                 action={appConstants.CONFIRM_REMOVE_ALL_ENTITIES}
     //               />
     //             </div>
@@ -440,7 +440,7 @@ function loadComponent(modalType, modalData, ths) {
                     disabled={false}
                     text={_('Cancel')}
                     color={'black'}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CANCEL_BIN_FULL_REQUEST}
                   />
                 </div>
@@ -449,7 +449,7 @@ function loadComponent(modalType, modalData, ths) {
                     disabled={false}
                     text={_('Continue')}
                     color={'orange'}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CONFIRM_BIN_FULL_REQUEST}
                   />
                 </div>
@@ -475,7 +475,7 @@ function loadComponent(modalType, modalData, ths) {
                     disabled={false}
                     text={_('Cancel')}
                     color={'black'}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CANCEL_REPRINT_REQUEST}
                   />
                 </div>
@@ -484,7 +484,7 @@ function loadComponent(modalType, modalData, ths) {
                     disabled={false}
                     text={_('Reprint all')}
                     color={'orange'}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CONFIRM_REPRINT_ALL_REQUEST}
                   />
                 </div>
@@ -493,7 +493,7 @@ function loadComponent(modalType, modalData, ths) {
                     disabled={false}
                     text={_('Reprint last')}
                     color={'orange'}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CONFIRM_REPRINT_LAST_REQUEST}
                   />
                 </div>
@@ -523,7 +523,7 @@ function loadComponent(modalType, modalData, ths) {
     //                 disabled={false}
     //                 text={_('Cancel')}
     //                 color={'black'}
-    //                 module={appConstants.PICK_FRONT}
+    //                 module={appConstants.ORDER_PICK}
     //                 action={appConstants.CANCEL_REMOVE_ALL_ENTITIES}
     //               />
     //             </div>
@@ -532,7 +532,7 @@ function loadComponent(modalType, modalData, ths) {
     //                 disabled={false}
     //                 text={_('Continue')}
     //                 color={'orange'}
-    //                 module={appConstants.PICK_FRONT}
+    //                 module={appConstants.ORDER_PICK}
     //                 action={appConstants.CONFIRM_REMOVE_ALL_ENTITIES}
     //               />
     //             </div>
@@ -728,7 +728,7 @@ function loadComponent(modalType, modalData, ths) {
                     disabled={false}
                     text={_('Cancel')}
                     color={'black'}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CANCEL_LOGOUT_REQUEST}
                   />
                 </div>
@@ -737,7 +737,7 @@ function loadComponent(modalType, modalData, ths) {
                     disabled={false}
                     text={_('Confirm')}
                     color={'orange'}
-                    module={appConstants.PICK_FRONT}
+                    module={appConstants.ORDER_PICK}
                     action={appConstants.CONFIRM_LOGOUT_REQUEST}
                   />
                 </div>
@@ -817,7 +817,7 @@ function loadComponent(modalType, modalData, ths) {
                       disabled={false}
                       text={_('Cancel')}
                       color={'black'}
-                      module={appConstants.PICK_FRONT}
+                      module={appConstants.ORDER_PICK}
                       action={
                         appConstants.CANCEL_REMOVE_ALL_ENTITIES
                       }
@@ -828,7 +828,7 @@ function loadComponent(modalType, modalData, ths) {
                       disabled={false}
                       text={_('Confirm')}
                       color={'orange'}
-                      module={appConstants.PICK_FRONT}
+                      module={appConstants.ORDER_PICK}
                       action={
                         appConstants.REMOVE_ALL_BUTTON
                       }
