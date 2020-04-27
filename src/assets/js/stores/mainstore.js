@@ -398,7 +398,6 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
     var data = {}
 
     //since OrigBinUse Flag is needed in all the screens.
-    data["OrigBinUse"] = this._getOrigBinUse()
     data["SeatType"] = this.getSeatType()
     data["ppsMode"] = this.getPpsMode()
     data["username"] = this.getUsername()

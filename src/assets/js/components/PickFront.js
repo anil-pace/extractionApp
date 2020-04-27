@@ -37,8 +37,6 @@ var checkListOpen = false
 function getStateData() {
   var screenData = mainstore.getScreenData()
   var splitPPSData = {
-    groupInfo: mainstore._getBinMapDetails(),
-    groupOrientation: mainstore._getBinMapOrientation()
   }
 
   return Object.assign({}, screenData, splitPPSData)

@@ -6,7 +6,6 @@ function getState(){
   console.log("=======> operator.js -> getState()");
   return {
       currentSeat: mainstore.getCurrentSeat(),
-      isMobile:mainstore._getMobileFlag(),
       spinner : mainstore.getSpinnerState(),
       systemIsIdle : mainstore.getSystemIdleState(),
       navMessages : mainstore.getServerMessages()
