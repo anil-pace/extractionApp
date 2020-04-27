@@ -313,6 +313,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     console.log("====================> station id" + stationId);
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
+    if(!stationId){
+      stationId = sessionStorage.getItem("stationId");
+    }
     $.ajax({
       type: "POST",
       url:  configConstants.PLATFORM_IP + "/api-gateway/extraction-service/wms-extraction/extraction-app/ui-event?ppsStn=" + stationId,

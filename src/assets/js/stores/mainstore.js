@@ -5323,7 +5323,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
        // data["PickFrontExceptionStatus"] = this.getExceptionStatus()
         data["PickFrontNavData"] = this.getNavData()
         data["PickFrontServerNavData"] = this.getServerNavData()
-        //data["PickFrontNotification"] = this.getNotificationData()
+        data["PickFrontNotification"] = this.getNotificationData()
         data["PickFrontScreenId"] = this.getScreenId()
         //data["groupOrientation"] = this._getBinMapOrientation()
 

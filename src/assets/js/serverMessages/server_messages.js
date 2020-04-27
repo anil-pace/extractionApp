@@ -31,7 +31,7 @@ var serverMessages = {
     "STS.H.001": "Scan empty tote",
     "STS.H.002": "Put tote in MTU and scan slot",
     "Mtu.E.005": "Select MTU to proceed",
-    "ExApp.I.004": "Tote scan successful",
+    //"ExApp.I.004": "Tote scan successful",
     //"ExApp.E.009": "Service integration-service returned a status code of 500. Try last action again.",
     "error": "Error during WebSocket handshake"
 };
