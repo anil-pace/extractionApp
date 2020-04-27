@@ -115,6 +115,10 @@ var LoginPage = React.createClass({
     mainstore.addChangeListener(this.onChange);
     loginstore.addChangeListener(this.onChange);
 
+    if(sessionStorage.getItem("sessionData")){
+      CommonActions.webSocketConnection("1")
+    }
+
      // get list of Station Ids
      CommonActions.listSeats(); 
     

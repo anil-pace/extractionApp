@@ -171,7 +171,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           seat_name: sessionData.data.seat_name
         }
       }
-      utils.postDataToWebsockets(webSocketData)
+      //utils.postDataToWebsockets(webSocketData)
+      utils.sendLoginConfirmation1();
     }
   },
   
@@ -179,6 +180,32 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     console.log(" ===>  utils.js ===> storeSession ()");
     // Put the object into storage
     sessionStorage.setItem("sessionData", JSON.stringify(data))
+  },
+
+  sendLoginConfirmation1: function(data){
+    console.log("=== >%c login Confirmation ()", "color:red")
+    var stationId = "1";
+    var username= "admin"
+
+    $.ajax({
+      type: "POST",
+      url: "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/login?ppsStn="+stationId,
+      data: JSON.stringify({
+        userName: username
+      }),
+     // dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json"
+      }
+    })
+    .done(function(response) {
+      console.log("success ===> from login COnfirmation");
+      setTimeout(CommonActions.operatorSeat, 0, true)
+    })
+    .fail(function(data, jqXHR, textStatus, errorThrown) {
+      CommonActions.showErrorMessage(data)
+    })
   },
 
   sendLoginConfirmation: function(data){
