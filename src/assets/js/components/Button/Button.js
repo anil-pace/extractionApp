@@ -63,9 +63,17 @@ var Button1 = React.createClass({
 
       case appConstants.PICK_FRONT:
         switch (action) {
-          case appConstants.CANCEL_SCAN:
+          case appConstants.CANCEL_ONLY:
             console.log("=====> cancel button clicked====>");
             data["name"] = "cancel_clicked";
+            data["data"] = null;
+            data["screen_id"] = screenId;
+            ActionCreators.postDataToInterface(data, mainstore.getCurrentStationId());
+            break;
+          
+          case appConstants.CANCEL_SCAN:
+            console.log("=====> cancel button clicked====>");
+            data["name"] = "cancel_scan";
             data["data"] = null;
             data["screen_id"] = screenId;
             ActionCreators.postDataToInterface(data, mainstore.getCurrentStationId());

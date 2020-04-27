@@ -291,7 +291,7 @@ var PickFront = React.createClass({
                         disabled={false} 
                         text={_("Cancel")} 
                         module={appConstants.PICK_FRONT} 
-                        action={appConstants.CANCEL_SCAN} 
+                        action={appConstants.CANCEL_ONLY} 
                         screenId={mainstore.getScreenId()}
                         color={"black"} />
                   </div>
