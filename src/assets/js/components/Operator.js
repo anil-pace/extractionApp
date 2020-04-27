@@ -1,6 +1,6 @@
 var React = require('react');
 var mainstore = require('../stores/mainstore');
-var PickFront = require('./PickFront');
+var OrderPick = require('./OrderPick');
 
 function getState(){
   return {
@@ -29,7 +29,7 @@ var Operator = React.createClass({
    this.setState(getState());
   },
   getSeatType:function(seat){
-    this._currentSeat = <PickFront navMessagesJson={this.state.navMessages}/>;
+    this._currentSeat = <OrderPick navMessagesJson={this.state.navMessages}/>;
   },
 
   render: function(data){ 

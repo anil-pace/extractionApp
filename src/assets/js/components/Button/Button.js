@@ -61,10 +61,9 @@ var Button1 = React.createClass({
         $('.modal').removeClass('notification-error');
         break;
 
-      case appConstants.PICK_FRONT:
+      case appConstants.ORDER_PICK:
         switch (action) {
           case appConstants.CANCEL_SCAN:
-            console.log("=====> cancel button clicked====>");
             data["name"] = "cancel_clicked";
             data["data"] = null;
             data["screen_id"] = screenId;
@@ -72,7 +71,6 @@ var Button1 = React.createClass({
             break;
           
           case appConstants.CANCEL_SCAN:
-            console.log("=====> cancel button clicked====>");
             data["name"] = "cancel_clicked";
             data["data"] = null;
             data["screen_id"] = screenId;
@@ -80,7 +78,6 @@ var Button1 = React.createClass({
             break;
           
           case appConstants.REMOVE_ALL_BUTTON:
-            console.log("=====>  remove all buttons clicked====>");
             data['name'] = 'all_totes_removed';
             data["data"] = null;
             data["screen_id"] = screenId;
@@ -95,9 +92,6 @@ var Button1 = React.createClass({
               break;
         
           case appConstants.CANCEL_REMOVE_ALL_ENTITIES:
-            // data['event_name'] = appConstants.CANCEL_BOX_FULL_REQUEST;
-            // data['event_data'] = null;
-            // ActionCreators.postDataToInterface(data);
             closeModalBox();
             break;
 

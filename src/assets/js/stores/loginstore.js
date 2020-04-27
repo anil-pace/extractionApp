@@ -112,9 +112,6 @@ AppDispatcher.register(function(payload){
     case appConstants.LIST_SEATS:
       getParameterByName();
       break;
-    case appConstants.SET_LANGUAGE:             // Register callback for SET_LANGUAGE action
-      checkLang();
-      break;
     case appConstants.LOGIN:
       loginstore.getAuthToken(action.data);
       loginstore.emit(CHANGE_EVENT);

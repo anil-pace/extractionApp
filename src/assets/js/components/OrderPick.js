@@ -90,7 +90,7 @@ var PickFront = React.createClass({
           <Button1
             disabled={false}
             text={_('Cancel Exception')}
-            module={appConstants.PICK_FRONT}
+            module={appConstants.ORDER_PICK}
             action={appConstants.CANCEL_EXCEPTION}
             color={'black'}
           />
@@ -158,7 +158,7 @@ var PickFront = React.createClass({
                 <Button1
                   disabled={false}
                   text={_('Remove All')}
-                  module={appConstants.PICK_FRONT}
+                  module={appConstants.ORDER_PICK}
                   action={appConstants.REMOVE_ALL_BUTTON}
                   screenId={mainstore.getScreenId()}
                   color={'orange'}
@@ -169,7 +169,7 @@ var PickFront = React.createClass({
                 <Button1
                   disabled={false}
                   text={_('Remove All')}
-                  module={appConstants.PICK_FRONT}
+                  module={appConstants.ORDER_PICK}
                   action={appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE_MODAL}
                   screenId={mainstore.getScreenId()}
                   color={'orange'}
@@ -207,7 +207,7 @@ var PickFront = React.createClass({
                       <Button1 
                         disabled={false} 
                         text={_("Cancel")} 
-                        module={appConstants.PICK_FRONT} 
+                        module={appConstants.ORDER_PICK} 
                         action={appConstants.CANCEL_SCAN} 
                         screenId={mainstore.getScreenId()}
                         color={"black"} />
@@ -272,6 +272,15 @@ var PickFront = React.createClass({
                       slotType={this.state.SlotType}
                       rackData={this.state.PickFrontRackDetails}
                     /> 
+                  </div>
+                  <div className='cancel-scan'>
+                      <Button1 
+                        disabled={false} 
+                        text={_("Cancel")} 
+                        module={appConstants.ORDER_PICK} 
+                        action={appConstants.CANCEL_SCAN} 
+                        screenId={mainstore.getScreenId()}
+                        color={"black"} />
                   </div>
                 </div>
             )

@@ -152,7 +152,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
       return _NavData
     } else {
       switch (_currentSeat) {
-        case appConstants.PICK_FRONT:
+        case appConstants.ORDER_PICK:
           if (
             _seatData.screen_id === appConstants.PICK_FRONT_WAITING_FOR_MSU ||
             _seatData.screen_id === appConstants.PICK_FRONT_ONE_STEP_SCAN ||
@@ -287,7 +287,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
   },
   setCurrentSeat: function(data) {
     _seatData = data
-    _currentSeat = "pick_front";
+    _currentSeat = "order_pick";
     _screenId = data.screen_id
   },
   getModalContent: function() {
@@ -426,7 +426,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
             data["PickFrontNavData"] = this.getNavData()
             data["PickFrontServerNavData"] = this.getServerNavData()
             data["PickFrontScreenId"] = this.getScreenId()
-            data["SlotType"] = this.getSlotType()
+            //data["SlotType"] = this.getSlotType()
             data["PickFrontRackDetails"] = this.getRackDetails()
             data["udpBinMapDetails"] = this.getDockStationList()
             data["getCurrentMtu"] = this.getCurrentMtu()
@@ -437,7 +437,7 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
         data["PickFrontNavData"] = this.getNavData()
         data["PickFrontServerNavData"] = this.getServerNavData()
         data["PickFrontScreenId"] = this.getScreenId()
-        data["SlotType"] = this.getSlotType()
+        //data["SlotType"] = this.getSlotType()
         data["PickFrontRackDetails"] = this.getRackDetails()
         data["udpBinMapDetails"] = this.getDockStationList()
         data["getCurrentMtu"] = this.getCurrentMtu()
@@ -453,33 +453,11 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload) {
   var action = payload.action
   switch (action.actionType) {
-    case appConstants.OPEN_AUDIT_MODAL:
-      mainstore.setAuditModalStatus(action.data)
-      break
-    case appConstants.SET_CANCEL_BUTTON_STATUS:
-      mainstore.setCancelButtonStatus(action.data)
-      break
-    case appConstants.TOGGLE_BIN_SELECTION:
-      mainstore.toggleBinSelection(action.bin_id)
-      mainstore.emitChange()
-      break
-    case appConstants.STAGE_ONE_BIN:
-      mainstore.showSpinner()
-      mainstore.stageOneBin()
-      mainstore.emitChange()
-      break
-
-    case appConstants.STAGE_ALL:
-      mainstore.showSpinner()
-      mainstore.stageAllBin()
-      mainstore.emitChange()
-      break
     case appConstants.WEBSOCKET_CONNECT:
       utils.connectToWebSocket(action.data)
       mainstore.emit(CHANGE_EVENT)
       break
     case appConstants.SET_CURRENT_SEAT:
-      console.log("=======> mainstore.js -> case appConstants.SET_CURRENT_SEAT");
       mainstore.setCurrentSeat(action.data)
       mainstore.emit(CHANGE_EVENT)
       break
@@ -494,10 +472,6 @@ AppDispatcher.register(function(payload) {
       mainstore.hideSpinner()
       mainstore.emit(CHANGE_EVENT)
       break
-    case appConstants.POST_DATA_TO_TOWER:
-      mainstore.postDataToTower(action.data)
-      mainstore.emit(CHANGE_EVENT)
-      break
     case appConstants.POST_DATA_TO_INTERFACE:
       mainstore.showSpinner()
       mainstore.postDataToInterface(action.data)
@@ -509,119 +483,20 @@ AppDispatcher.register(function(payload) {
        mainstore.hideSpinner()
       mainstore.emit(CHANGE_EVENT)
       break
-    case appConstants.RESET_NUMPAD:
-      mainstore.emit(CHANGE_EVENT)
-      break
     case appConstants.LOAD_MODAL:
       mainstore.setModalContent(action.data)
       mainstore.emit(CHANGE_EVENT)
       break
+    case appConstants.SET_CURRENT_SEAT:
+      mainstore.setCurrentSeat(action.data)
+      mainstore.emit(CHANGE_EVENT)
+      break
     case appConstants.SET_SERVER_MESSAGES:
-      console.log("=======> mainstore.js -> case appConstants.SET_SERVER_MESSAGES");
       mainstore.setServerMessages()
-      mainstore.emit(CHANGE_EVENT)
-      break
-    case appConstants.CHANGE_LANGUAGE:
-      mainstore.changeLanguage(action.data)
-      mainstore.emit(CHANGE_EVENT)
-      break
-    case appConstants.SET_LANGUAGE:
       mainstore.emit(CHANGE_EVENT)
       break
     case appConstants.LOG_ERROR:
       mainstore.logError(action.data)
-      break
-    case appConstants.ENABLE_EXCEPTION:
-      mainstore.enableException(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.ENABLE_SEARCH:
-      mainstore.enableSearch(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.SET_ACTIVE_EXCEPTION:
-      mainstore.setActiveException(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.UPDATE_KQ_QUANTITY:
-      mainstore.setKQQuanity(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.UPDATE_GOOD_QUANTITY:
-      mainstore.setGoodQuanity(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.UPDATE_DAMAGED_QUANTITY:
-      mainstore.setDamagedQuanity(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.UPDATE_MISSING_QUANTITY:
-      mainstore.setMissingQuanity(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.UPDATE_UNSCANNABLE_QUANTITY:
-      mainstore.setUnscannableQuanity(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.CHANGE_PUT_FRONT_EXCEPTION_SCREEN:
-      mainstore.setPutFrontExceptionScreen(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.VALIDATE_UNMARKED_DAMAGED_DATA:
-      mainstore.validateUnmarkedDamagedData()
-      mainstore.emitChange()
-      break
-    case appConstants.CHANGE_PUT_BACK_EXCEPTION_SCREEN:
-      mainstore.setPutBackExceptionScreen(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.CHANGE_AUDIT_EXCEPTION_SCREEN:
-      mainstore.setAuditExceptionScreen(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.CHANGE_PICK_FRONT_EXCEPTION_SCREEN:
-      mainstore.setPickFrontExceptionScreen(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.VALIDATE_AND_SEND_DATA_TO_SERVER:
-      mainstore.validateAndSendDataToServer()
-      mainstore.emitChange()
-      break
-    case appConstants.VALIDATE_AND_SEND_SPACE_UNAVAILABLE_DATA_TO_SERVER:
-      mainstore.validateAndSendSpaceUnavailableDataToServer()
-      mainstore.emitChange()
-      break
-    case appConstants.PERIPHERAL_DATA:
-      mainstore.getPeripheralData(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.ORPHAN_ITEM_DATA:
-      mainstore.getOrphanItemData(action.data)
-      mainstore.emitChange()
-      break
-    case appConstants.GET_BOI_CONFIG:
-      mainstore.getBOIConfigData()
-      mainstore.emitChange()
-      break
-    case appConstants.UPDATE_SEAT_DATA:
-      mainstore.showSpinner()
-      mainstore.updateSeatData(
-        action.data,
-        action.type,
-        action.status,
-        action.method
-      )
-      mainstore.emitChange()
-      break
-
-    case appConstants.CONVERT_TEXTBOX:
-      mainstore.convert_textbox(action.data, action.index)
-      mainstore.emitChange()
-      break
-    case appConstants.UPDATE_PERIPHERAL:
-      mainstore.showSpinner()
-      mainstore.update_peripheral(action.data, action.method, action.index)
-      mainstore.emitChange()
       break
     case appConstants.GENERATE_NOTIFICATION:
       mainstore.generateNotification(action.data)
