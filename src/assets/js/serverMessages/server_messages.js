@@ -30,7 +30,6 @@ var serverMessages = {
     "RET.E.002": "Remove all Totes from the MTU",
     "STS.H.001": "Scan empty tote",
     "STS.H.002": "Put tote in MTU and scan slot",
-    "Mtu.E.005": "Select MTU to proceed",
     "error": "Error during WebSocket handshake"
 };
 
