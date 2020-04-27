@@ -115,9 +115,12 @@ var LoginPage = React.createClass({
     mainstore.addChangeListener(this.onChange);
     loginstore.addChangeListener(this.onChange);
 
-    if(sessionStorage.getItem("sessionData")){
-      CommonActions.webSocketConnection("1")
+    // <START> 
+    /*  condition to Auto login on page REFRESH, before session expiration */ 
+    if(sessionStorage.getItem("stationId")){
+      CommonActions.webSocketConnection(sessionStorage.getItem("stationId"))
     }
+    // <END>
 
      // get list of Station Ids
      CommonActions.listSeats(); 
