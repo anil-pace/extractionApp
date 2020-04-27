@@ -8,15 +8,12 @@ var allSvgConstants = require('../../constants/svgConstants');
 var resourceConstants = require('../../constants/resourceConstants');
 var utils = require('../../utils/utils.js');
 var appConstants = require('../../constants/appConstants');
-var configConstants = require('../../constants/configConstants');
 
 
 var _seat_name = null;
 var _mode = null;
-var _role = null;
 
 function getState() {
-  console.log("====> + LoginPage.js ==> getState () ");
   return {
     flag: loginstore.getFlag(),
     stationList: loginstore.stationList(),
@@ -87,7 +84,6 @@ var LoginPage = React.createClass({
   },
 
   componentDidMount: function() {
-    console.log("====> + LoginPage.js ==> componentDidMount () ");
     var self = this;
     $("#loginBtn").hide();
 
@@ -125,13 +121,6 @@ var LoginPage = React.createClass({
      // get list of Station Ids
      CommonActions.listSeats(); 
     
-    // CommonActions.setLanguage(); //Dispatch setLanguage action
-    // if (this.state.getLang) {
-    //   CommonActions.changeLanguage(this.state.getLang);
-    // } else if (this.state.getCurrentLang) {
-    //   CommonActions.changeLanguage(this.state.getCurrentLang);
-    // }
-
     virtualKeyBoard_login = $('#username, #password').keyboard({
       layout: 'custom',
       customLayout: {
@@ -184,7 +173,6 @@ var LoginPage = React.createClass({
   },
   
   onChange: function() {
-    console.log("===================> componentWillMount () ");
     this.setState(getState());
   },
 
@@ -200,7 +188,6 @@ var LoginPage = React.createClass({
   },
 
   handleLogin: function() {
-    console.log("===================> handlelOgin () ");
     var _self = this;
     if (_seat_name == null) {
       _seat_name = this.refs.seat_name.value;
@@ -230,8 +217,6 @@ var LoginPage = React.createClass({
   },
 
   onStationIdChange: function(){
-    console.log("=======> this.state.stationid is " + this.state.stationId)
-    console.log(" =======> this.refs.seat_name is =======>" + this.refs.seat_name.value)
     if(this.refs.seat_name.value !== "0"){
       $("#loginBtn").show();
       CommonActions.webSocketConnection(this.state.stationId);
@@ -243,16 +228,6 @@ var LoginPage = React.createClass({
 
     //save the current station id
     CommonActions.setCurrentStationId(this.state.stationId);
-
-    // create a web-socket connection for current station id
-    // if (
-    //   this.state.stationId !== "0"  // select station id
-    // ) {
-    //   CommonActions.webSocketConnection(this.state.stationId); 
-    //   $('#loginBtn').prop('disabled', false);
-    // } else {
-    //   $('#loginBtn').prop('disabled', true);
-    // }
   },
 
   ChangeStationId: function(e){
@@ -260,16 +235,12 @@ var LoginPage = React.createClass({
   },
 
   render: function() {
-    console.log("====> + LoginPage.js ==> render () ");
-
-    
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
     if (this.state.stationList.length > 0) {
       var parseSeatID, ppsOption, showTiltButton;
       
       /******** list of stations **********/
-          //var stationList = [1];
           seatData = this.state.stationList.map(function(eachItem, index){
             return(
               <option key={'station' + index} value={eachItem}>
@@ -279,35 +250,6 @@ var LoginPage = React.createClass({
           })
           seatData.unshift(<option key={'station'} value={0}>Select Station Id</option>);
        /***********************/
-       
-      /******************************* */
-      // seatData = this.state.stationList.map(function(data, index) {
-      //   if (data.hasOwnProperty('seat_type')) {
-      //     parseSeatID = null;
-      //     return (
-      //       <option key={'pps' + index} value={data.seat_name}>
-      //         PPS {data.seat_name.split('_').join(' ')}
-      //       </option>
-      //     );
-      //   } else {
-      //     /* only VALID when in production */
-      //     parseSeatID = data.split('_');
-      //     _seat_name = data;
-      //     seat_name = parseSeatID[0] + ' ' + parseSeatID[1];
-      //     if (seat_name.charAt(seat_name.length - 1) == '#') {
-      //       seat_name = seat_name.substr(0, seat_name.length - 1);
-      //     }
-      //     if (_seat_name.charAt(_seat_name.length - 1) == '#') {
-      //       _seat_name = _seat_name.substr(0, _seat_name.length - 1);
-      //     }
-      //     return (
-      //       <header className='ppsSeat' key={'pps' + index}>
-      //         PPS {data.split('_').join(' ')}
-      //       </header>
-      //     );
-      //   }
-      // });
-      /*********************/
 
       if (parseSeatID != null) {
         ppsOption = (
@@ -332,27 +274,6 @@ var LoginPage = React.createClass({
       }
     } else {
     }
-    // var _languageDropDown = (
-    //   <div className='selectWrapper'>
-    //     <select
-    //       className='selectLang'
-    //       value={this.state.getCurrentLang}
-    //       ref='language'
-    //       onChange={this.changeLanguage}
-    //     >
-    //       <option value='en-US'>{'English (United States)'}</option>
-    //       <option value='ja-JP'>{'日本語'}</option>
-    //       <option value='de-DE'>{'Deutsche'}</option>
-    //       <option value='zh-ZH'>{'中文'}</option>
-    //       <option value='fr-FR'>{'Français'}</option>
-    //       <option value='es-ES'>{'Español'}</option>
-    //       <option value='nl'>{'Dutch'}</option>
-    //     </select>
-    //     <span className='tiltButton' />
-    //   </div>
-    // );
-
-    
 
     if (this.state.flag === false) {
       if (this.state.showError != null) {
@@ -385,11 +306,7 @@ var LoginPage = React.createClass({
         plusIconClass = 'plusIcon';
       }
 
-      //if (isScannerLoginEnabled) {
-        //var keyboardLoginClass = 'keyboardLogin'; // show keyboard login + scanner login
-      //} else {
-        var keyboardLoginClass = 'keyboardLogin alignCenter'; // show keyboard login only
-      //}
+      var keyboardLoginClass = 'keyboardLogin alignCenter'; // show keyboard login only
 
       return (
         <div className='containerLogin'>
@@ -397,10 +314,6 @@ var LoginPage = React.createClass({
             <div className='logo'>
               <img className='imgLogo' src={allSvgConstants.logo} />
             </div>
-            {/* <div className='languageDropDown'>
-              <span className='langText'>{_(appConstants.LANGUAGE)}</span>
-              {this.state.getLang ? '' : _languageDropDown}
-            </div> */}
           </header>
           <div className='subHeading'>
             <div className='langText'>
@@ -473,36 +386,6 @@ var LoginPage = React.createClass({
                 />
               </div>
             </div>
-
-            {/* {isScannerLoginEnabled ? _dividerWrapper : ''}
-
-            {isScannerLoginEnabled ? (
-              <div className='scanIdLogin'>
-                <div className='outerDiv'>
-                  <div className={rightUpper} />
-                  <div className={leftUpper} />
-                  <div className={rightBelow} />
-                  <div className={leftBelow} />
-                  <div className='scanLogo' />
-                  <span className={plusIconClass}>&#43;</span>
-                  <div style={{ fontSize: '2vh' }}>
-                    {' '}
-                    {_('Scan ID card to login.')}
-                  </div>
-                  <div className={scannerErrorClass}>
-                    <span>{_(this.state.showError)}</span>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              ''
-            )} */}
-            {/* <input
-              type='text'
-              id='hiddenText'
-              ref='hiddenText'
-              style={{ width: '2px', opacity: '0' }}
-            /> */}
           </main>
           <footer>Copyright &copy; {currentYear} GreyOrange Pte Ltd</footer>
         </div>

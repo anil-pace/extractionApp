@@ -3,7 +3,6 @@ var mainstore = require('../stores/mainstore');
 var PickFront = require('./PickFront');
 
 function getState(){
-  console.log("=======> operator.js -> getState()");
   return {
       currentSeat: mainstore.getCurrentSeat(),
       spinner : mainstore.getSpinnerState(),
@@ -30,22 +29,10 @@ var Operator = React.createClass({
    this.setState(getState());
   },
   getSeatType:function(seat){
-  console.log("....seat" + seat);
-  console.log("=======> operator.js -> getSeatType ()");
-     //switch(seat){
-      //case appConstants.PICK_FRONT:
-          this._currentSeat = <PickFront navMessagesJson={this.state.navMessages}/>;
-       // break;
-      //case appConstants.MTU_SUBSYSTEM:
-            //this._currentSeat = <MtuSubsystem navMessagesJson={this.state.navMessages}/>;   
-        //    break;            
-      //default:
-        //return true; 
-      //}
+    this._currentSeat = <PickFront navMessagesJson={this.state.navMessages}/>;
   },
 
   render: function(data){ 
-    console.log("=======> operator.js -> render ()");
      //if(this.state.currentSeat){
        this.getSeatType(this.state.currentSeat);
        return (
