@@ -15,6 +15,7 @@ var appConstants = {
   OPERATOR_SEAT: "OPERATOR_SEAT",
   LOGIN_SEAT: "LOGIN_SEAT",
   SCAN_ITEMS: "Scan the item(s)",
+  LOGINTO: "Login to",
   PLACE_ITEMS: "Place",
   TOGGLE_BIN_SELECTION: "TOGGLE_BIN_SELECTION",
   SET_PUT_DATA: "SET_PUT_DATA",
