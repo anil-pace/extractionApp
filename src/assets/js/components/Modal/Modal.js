@@ -821,6 +821,7 @@ function loadComponent(modalType, modalData, ths) {
                       action={
                         appConstants.CANCEL_REMOVE_ALL_ENTITIES
                       }
+                      screenId={mainstore.getScreenId()}
                     />
                   </div>
                   <div className='col-md-6'>
@@ -832,6 +833,7 @@ function loadComponent(modalType, modalData, ths) {
                       action={
                         appConstants.REMOVE_ALL_BUTTON
                       }
+                      screenId={mainstore.getScreenId()}
                     />
                   </div>
                 </div>
