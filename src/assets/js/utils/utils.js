@@ -206,6 +206,30 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     })
   },
 
+  sendLogoutConfirmation: function(stationId, userName){
+    var stationId = stationId;
+    var userName = userName;
+
+    $.ajax({
+      type: "POST",
+      url: "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/logout?ppsStn="+stationId,
+      data: JSON.stringify({
+        userName: userName
+      }),
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json"
+      }
+    })
+    .done(function(response) {
+      console.log("success ===> from logout COnfirmation");
+      setTimeout(CommonActions.operatorSeat, 0, true)
+    })
+    .fail(function(data, jqXHR, textStatus, errorThrown) {
+      CommonActions.showErrorMessage(data)
+    })
+  },
+
   postDataToWebsockets: function(data) {
     console.log(" ===>  utils.js ===> postDataToWebsockets ()");
     console.log(JSON.stringify(data))
@@ -257,8 +281,10 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
 
   sessionLogout: function(data) {
-    sessionStorage.setItem("sessionData", null)
-    location.reload()
+    var stationId = sessionStorage.getItem("stationId");
+    var userName = sessionStorage.getItem("userName");
+    //sessionStorage.setItem("sessionData", null)
+    //location.reload()
     $.ajax({
       type: "GET",
       url:
@@ -276,6 +302,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
     })
       .done(function(response) {
+        utils.sendLogoutConfirmation(stationId, userName);
         sessionStorage.setItem("sessionData", null)
         location.reload()
       })
