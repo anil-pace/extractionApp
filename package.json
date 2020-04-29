@@ -1,23 +1,23 @@
 {
-  "name": "butlerui",
-  "version": "1.5.0",
-  "description": "Pick Put Station user interface to perform pick put operations in the warehouse.",
+  "name": "extractionapp",
+  "version": "1.0.0",
+  "description": "Order Picking Using MTU subsystem.",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/gorcode/butlerui.git"
+    "url": "git+ssh://git@bitbucket.org/gorcode/extractionapp.git"
   },
   "keywords": [
-    "PPS",
+    "OrderPicking",
     "UI",
-    "Butlerui"
+    "ExtractionUI"
   ],
-  "author": "Aatif Bandey",
+  "author": "Anil Kumar",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/gorcode/butlerui#readme",
+  "homepage": "https://bitbucket.org/gorcode/extractionapp#readme",
   "devDependencies": {
     "bootstrap": "^3.3.6",
     "browserify": "^13.1.1",
