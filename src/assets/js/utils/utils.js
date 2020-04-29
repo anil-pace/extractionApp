@@ -94,13 +94,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
               CommonActions.loginSeat(false)
               utils.enableKeyboard()
           }
-        // else if (evt.data === resourceConstants.CLIENTCODE_MODE_CHANGED) {
-        //   console.log(" else if =====================> sessionLogout");
-        //   utils.sessionLogout()
-        //   return false
-        // } 
         else {
-          console.log(" else  =====================> sessionLogout");
           var received_msg = evt.data
           var data
           try {
@@ -187,7 +181,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
     $.ajax({
       type: "POST",
-      url:  appConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/login?ppsStn="+stationId,
+      url:  configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/login?ppsStn="+stationId,
       data: JSON.stringify({
         userName: username
       }),
@@ -206,29 +200,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     })
   },
 
-  sendLogoutConfirmation: function(stationId, userName){
-    var stationId = stationId;
-    var userName = userName;
-
-    $.ajax({
-      type: "POST",
-      url: configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/logout?ppsStn="+stationId,
-      data: JSON.stringify({
-        userName: userName
-      }),
-      headers: {
-        "content-type": "application/json",
-        accept: "application/json"
-      }
-    })
-    .done(function(response) {
-      console.log("success ===> from logout COnfirmation");
-      setTimeout(CommonActions.operatorSeat, 0, true)
-    })
-    .fail(function(data, jqXHR, textStatus, errorThrown) {
-      CommonActions.showErrorMessage(data)
-    })
-  },
+  
 
   postDataToWebsockets: function(data) {
     console.log(" ===>  utils.js ===> postDataToWebsockets ()");
@@ -279,9 +251,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       })
   },
 
-  sessionLogout: function(data) {
-    var stationId = sessionStorage.getItem("stationId");
-    var userName = sessionStorage.getItem("userName");
+  sendLogoutConfirmation: function(){
     //sessionStorage.setItem("sessionData", null)
     //location.reload()
     $.ajax({
@@ -301,7 +271,6 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
     })
       .done(function(response) {
-        utils.sendLogoutConfirmation(stationId, userName);
         sessionStorage.setItem("sessionData", null)
         location.reload()
       })
@@ -309,6 +278,33 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         alert("Logout Failed")
       })
   },
+
+  sessionLogout: function(data) {
+    /* sending LOGOUT confirmation to Backend first */
+    var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
+    var stationId = sessionData.data.stationId;
+    var userName = sessionData.data.userName;
+
+    $.ajax({
+      type: "POST",
+      url: configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/logout?ppsStn="+stationId,
+      data: JSON.stringify({
+        userName: userName
+      }),
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json"
+      }
+    })
+    .done(function(response) {
+      utils.sendLogoutConfirmation(stationId, userName);
+      setTimeout(CommonActions.operatorSeat, 0, true)
+    })
+    .fail(function(data, jqXHR, textStatus, errorThrown) {
+      CommonActions.showErrorMessage(data)
+    })
+  },
+
   postDataToTower: function(data) {
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]

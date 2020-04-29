@@ -1,3 +1,4 @@
+/dist/
 /node_modules/
 /src/assets/js/utils/vendor/i18n/*
 !/src/assets/js/utils/vendor/i18n/translation-template_v1.pot
