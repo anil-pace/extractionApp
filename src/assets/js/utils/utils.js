@@ -62,16 +62,13 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
   connectToWebSocket: function(data) {
     var stationId = data;
-    //sessionStorage.setItem("stationId", stationId);
-    console.log("=======> utils.js -> connectToWebSocket()");
-    
     var url = configConstants.WEBSOCKET_IP + "/wms-process/extraction-app-ws?ppsStn=" + stationId
     self = this
     ws = new WebSocket(url);
     if ("WebSocket" in window) {
       ws.onopen = function() {
         $("#username, #password").prop("disabled", false)
-        console.log("connected");
+        
         utils.checkSessionStorage()
         clearTimeout(utils.connectToWebSocket)
       }
@@ -112,9 +109,17 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         }
       }
       ws.onclose = function(event) {
-        console.log("Connection is closed...");
+        //serverMessages.CLIENTCODE_003;
+        /* alert(JSON.stringify(evt));
+                 if(evt == "CLIENTCODE_409" || evt == "CLIENTCODE_503"){
+                     var msgCode = evt;
+                     console.log(serverMessages[msgCode]);
+                     CommonActions.showErrorMessage(serverMessages[msgCode]);
+                     CommonActions.logoutSession(true);
+                 }*/
+        //$("#username, #password").prop('disabled', true);
         //var stationId = sessionStorage.getItem("stationId");
-        setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
+        //setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
       }
       ws.onerror = function (event){
         CommonActions.showErrorMessage(serverMessages[event.type]);
@@ -155,12 +160,14 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       data: JSON.stringify({
         userName: username
       }),
+     // dataType: "json",
       headers: {
         "content-type": "application/json",
         accept: "application/json"
       }
     })
     .done(function(response) {
+      console.log("success ===> from login COnfirmation");
       setTimeout(CommonActions.operatorSeat, 0, true)
     })
     .fail(function(data, jqXHR, textStatus, errorThrown) {
@@ -171,6 +178,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   
 
   postDataToWebsockets: function(data) {
+    console.log(" ===>  utils.js ===> postDataToWebsockets ()");
+    console.log(JSON.stringify(data))
+
     ws.send(JSON.stringify(data))
     setTimeout(CommonActions.operatorSeat, 0, true)
   },
@@ -208,6 +218,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           }
         }
         utils.storeSession(webSocketData)
+        //utils.postDataToWebsockets(webSocketData)
         utils.sendLoginConfirmation(webSocketData);
       })
       .fail(function(data, jqXHR, textStatus, errorThrown) {
@@ -216,8 +227,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
 
   sendLogoutConfirmation: function(){
-    //sessionStorage.setItem("sessionData", null)
-    //location.reload()
+    
     $.ajax({
       type: "GET",
       url:
@@ -262,6 +272,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     })
     .done(function(response) {
       utils.sendLogoutConfirmation(stationId, userName);
+      sessionStorage.setItem("sessionData", null)
+      location.reload()
       setTimeout(CommonActions.operatorSeat, 0, true)
     })
     .fail(function(data, jqXHR, textStatus, errorThrown) {
@@ -269,37 +281,11 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     })
   },
 
-  postDataToTower: function(data) {
-    var retrieved_token = sessionStorage.getItem("sessionData")
-    var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
-    $.ajax({
-      type: "POST",
-      url: configConstants.INTERFACE_IP + "/tower/api/v1/mle/pps-call",
-      data: JSON.stringify(data),
-      dataType: "json",
-      headers: {
-        "content-type": "application/json",
-        accept: "application/json",
-        "Authentication-Token": authentication_token
-      }
-    })
-      .done(function(response) {
-        alert("Your call ticket was submitted successfully")
-        CommonActions.hideSpinner()
-      })
-      .fail(function(jqXhr) {
-        console.log(jqXhr)
-        alert("There was a problem in submitting your call ticket.")
-        CommonActions.hideSpinner()
-      })
-  },
-
   postDataToInterface: function(data, stationId) {
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     if(!stationId){
-      //stationId = sessionStorage.getItem("stationId");
-      var stationId = JSON.parse(retrieved_token)["data"]["stationId"];
+      stationId = JSON.parse(retrieved_token).data.stationId;
     }
     $.ajax({
       type: "POST",
@@ -338,31 +324,18 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     localStorage.setItem("session", text)
     //localStorage.setItem("stationId", data.data.seat_name)
   },
-  
+
   createLogData: function(message, type) {
     var data = {}
     data["message"] = message
     data["type"] = type
     data["session"] = localStorage.getItem("session")
     return data
-  },
-
-  logError: function(data) {
-    $.ajax({
-      type: "POST",
-      url: "http://192.168.3.93:300/api/log",
-      data: data,
-      dataType: "json"
-    }).success(function(response) {
-      console.log("Error logged Successfully")
-      console.log("Log Details :")
-      console.log(JSON.stringify(data))
-    })
   }
+  
 })
 
 var readStateData = function(data) {
-  console.log('----------->');
   console.log(data)
   CommonActions.setPickFrontData(data)
 }
