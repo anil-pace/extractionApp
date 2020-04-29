@@ -62,7 +62,13 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
   connectToWebSocket: function(data) {
     var stationId = data;
+<<<<<<< HEAD
     sessionStorage.setItem("stationId", stationId);
+=======
+    //sessionStorage.setItem("stationId", stationId);
+    console.log("=======> utils.js -> connectToWebSocket()");
+    
+>>>>>>> fbd083b... BSS-22115: stop sending wss request post logout - updated
     var url = configConstants.WEBSOCKET_IP + "/wms-process/extraction-app-ws?ppsStn=" + stationId
     self = this
     ws = new WebSocket(url);
@@ -359,6 +365,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         }
       })
   },
+
   generateSessionId: function(data) {
     var text = ""
     var possible =
@@ -366,9 +373,159 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     for (var i = 0; i < 50; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length))
     localStorage.setItem("session", text)
-    localStorage.setItem("stationId", data.data.seat_name)
+    //localStorage.setItem("stationId", data.data.seat_name)
   },
+<<<<<<< HEAD
   
+=======
+
+  getPeripheralData: function(type, seat_name, status, method) {
+    console.log("===== > utils.js ===> getPeripheralData()");
+    var retrieved_token = sessionStorage.getItem("sessionData")
+    var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
+    $.ajax({
+      type: "GET",
+      url:
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.PPS_SEATS +
+        seat_name +
+        "/" +
+        appConstants.PERIPHERALS +
+        "?type=" +
+        type,
+      dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        "Authentication-Token": authentication_token
+      }
+    })
+      .done(function(response) {
+        CommonActions.updateSeatData(response.data, type, status, method)
+      })
+      .fail(function(jqXhr) {})
+  },
+  ///itemsearch
+  getOrphanItemData: function(data, seat_name) {
+    var dataToSent = "?" + "barcode=" + data + "&" + "ppsId=" + seat_name
+    var retrieved_token = sessionStorage.getItem("sessionData")
+    var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
+    $.ajax({
+      type: "GET",
+      url:
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.API_GATEWAY +
+        appConstants.SR_SERVICE +
+        appConstants.PLATFORM_SRMS +
+        appConstants.SERVICE_REQUEST +
+        appConstants.SEARCH_ITEM +
+        dataToSent,
+      dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        "Authentication-Token": authentication_token
+      }
+    })
+      .done(function(response) {
+        CommonActions.updateSeatData(response.data, "orphanSearch")
+      })
+      .fail(function(jqXhr) {
+        CommonActions.updateSeatData([], "orphanSearch")
+      })
+  },
+  getBOIConfig: function() {
+    $.ajax({
+      type: "GET",
+      url: configConstants.BOI_CONFIG
+    })
+      .done(function(response) {
+        CommonActions.updateSeatData(response, "BOI_CONFIG")
+      })
+      .fail(function(jqXhr) {
+        CommonActions.updateSeatData(null, "BOI_CONFIG")
+      })
+  },
+  updatePeripherals: function(data, method, seat_name) {
+    console.log("===== > utils.js ===> updatePeripherals()");
+    var retrieved_token = sessionStorage.getItem("sessionData")
+    var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
+    var url
+    var method = method
+    if (method == "POST") {
+      url =
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.PPS_SEATS +
+        seat_name +
+        "/" +
+        appConstants.PERIPHERALS +
+        appConstants.ADD
+    } else {
+      url =
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.PPS_SEATS +
+        appConstants.PERIPHERALS +
+        "/" +
+        data.peripheral_type +
+        "/" +
+        encodeURIComponent(data.peripheral_id) /*.replace(/\//g, "%2F")*/
+    }
+    $.ajax({
+      type: method,
+      url: url,
+      data: JSON.stringify(data),
+      dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        "Authentication-Token": authentication_token
+      }
+      /*complete:function(xhr,textStatus) {
+                if(xhr.status == 409)
+                    utils.getPeripheralData(data.peripheral_type, seat_name , '409', method)
+
+            //utils.getPeripheralData(data.peripheral_type, seat_name , 'success', method)
+           // CommonActions.updateSeatData(response.data, data.peripheral_type); 
+       }*/
+    })
+      .done(function(response, statusText, xhr) {
+        utils.getPeripheralData(
+          data.peripheral_type,
+          seat_name,
+          "success",
+          method
+        )
+        // CommonActions.updateSeatData(response.data, data.peripheral_type);
+      })
+      .fail(function(jqXhr) {
+        if (jqXhr.status == 409)
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "409",
+            method
+          )
+        else if (jqXhr.status == 400)
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "400",
+            method
+          )
+        else
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "fail",
+            method
+          )
+      })
+  },
+>>>>>>> fbd083b... BSS-22115: stop sending wss request post logout - updated
   createLogData: function(message, type) {
     var data = {}
     data["message"] = message
