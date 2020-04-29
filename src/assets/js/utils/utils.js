@@ -252,8 +252,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   },
 
   sendLogoutConfirmation: function(){
-    //sessionStorage.setItem("sessionData", null)
-    //location.reload()
+    
     $.ajax({
       type: "GET",
       url:
@@ -298,6 +297,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     })
     .done(function(response) {
       utils.sendLogoutConfirmation(stationId, userName);
+      sessionStorage.setItem("sessionData", null)
+      location.reload()
       setTimeout(CommonActions.operatorSeat, 0, true)
     })
     .fail(function(data, jqXHR, textStatus, errorThrown) {
