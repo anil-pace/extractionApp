@@ -149,7 +149,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
     $.ajax({
       type: "POST",
-      url:  appConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/login?ppsStn="+stationId,
+      url:  configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/login?ppsStn="+stationId,
       data: JSON.stringify({
         userName: username
       }),
@@ -166,6 +166,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     })
   },
 
+<<<<<<< HEAD
   sendLogoutConfirmation: function(stationId, userName){
     var stationId = stationId;
     var userName = userName;
@@ -188,6 +189,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       CommonActions.showErrorMessage(data)
     })
   },
+=======
+  
+>>>>>>> a8c6707... BSS-22115: sending logout confirmation to backend*/
 
   postDataToWebsockets: function(data) {
     ws.send(JSON.stringify(data))
@@ -234,9 +238,15 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       })
   },
 
+<<<<<<< HEAD
   sessionLogout: function(data) {
     sessionStorage.setItem("sessionData", null)
     location.reload()
+=======
+  sendLogoutConfirmation: function(){
+    //sessionStorage.setItem("sessionData", null)
+    //location.reload()
+>>>>>>> a8c6707... BSS-22115: sending logout confirmation to backend*/
     $.ajax({
       type: "GET",
       url:
@@ -261,6 +271,60 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         alert("Logout Failed")
       })
   },
+<<<<<<< HEAD
+=======
+
+  sessionLogout: function(data) {
+    /* sending LOGOUT confirmation to Backend first */
+    var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
+    var stationId = sessionData.data.stationId;
+    var userName = sessionData.data.userName;
+
+    $.ajax({
+      type: "POST",
+      url: configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/logout?ppsStn="+stationId,
+      data: JSON.stringify({
+        userName: userName
+      }),
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json"
+      }
+    })
+    .done(function(response) {
+      utils.sendLogoutConfirmation(stationId, userName);
+      setTimeout(CommonActions.operatorSeat, 0, true)
+    })
+    .fail(function(data, jqXHR, textStatus, errorThrown) {
+      CommonActions.showErrorMessage(data)
+    })
+  },
+
+  postDataToTower: function(data) {
+    var retrieved_token = sessionStorage.getItem("sessionData")
+    var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
+    $.ajax({
+      type: "POST",
+      url: configConstants.INTERFACE_IP + "/tower/api/v1/mle/pps-call",
+      data: JSON.stringify(data),
+      dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        "Authentication-Token": authentication_token
+      }
+    })
+      .done(function(response) {
+        alert("Your call ticket was submitted successfully")
+        CommonActions.hideSpinner()
+      })
+      .fail(function(jqXhr) {
+        console.log(jqXhr)
+        alert("There was a problem in submitting your call ticket.")
+        CommonActions.hideSpinner()
+      })
+  },
+>>>>>>> a8c6707... BSS-22115: sending logout confirmation to backend*/
 
   postDataToInterface: function(data, stationId) {
     var retrieved_token = sessionStorage.getItem("sessionData")
