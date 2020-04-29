@@ -87,8 +87,8 @@ var LoginPage = React.createClass({
   },
 
   componentDidMount: function() {
-    var sessionData = sessionStorage.getItem("sessionData");
-    if(sessionData !== "null"){
+    var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
+    if(sessionData != null){
       var stationId = sessionData.data.stationId;
     }
     

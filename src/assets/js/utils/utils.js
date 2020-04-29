@@ -62,7 +62,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
   connectToWebSocket: function(data) {
     var stationId = data;
-    sessionStorage.setItem("stationId", stationId);
+    //sessionStorage.setItem("stationId", stationId);
     console.log("=======> utils.js -> connectToWebSocket()");
     
     var url = configConstants.WEBSOCKET_IP + "/wms-process/extraction-app-ws?ppsStn=" + stationId
@@ -365,6 +365,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         }
       })
   },
+
   generateSessionId: function(data) {
     var text = ""
     var possible =
@@ -372,8 +373,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     for (var i = 0; i < 50; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length))
     localStorage.setItem("session", text)
-    localStorage.setItem("stationId", data.data.seat_name)
+    //localStorage.setItem("stationId", data.data.seat_name)
   },
+
   getPeripheralData: function(type, seat_name, status, method) {
     console.log("===== > utils.js ===> getPeripheralData()");
     var retrieved_token = sessionStorage.getItem("sessionData")
