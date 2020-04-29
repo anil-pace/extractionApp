@@ -113,7 +113,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
       ws.onclose = function(event) {
         console.log("Connection is closed...");
-        var stationId = sessionStorage.getItem("stationId");
+        //var stationId = sessionStorage.getItem("stationId");
         setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
       }
       ws.onerror = function (event){
@@ -298,7 +298,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
     if(!stationId){
-      stationId = sessionStorage.getItem("stationId");
+      //stationId = sessionStorage.getItem("stationId");
+      var stationId = JSON.parse(retrieved_token)["data"]["stationId"];
     }
     $.ajax({
       type: "POST",
