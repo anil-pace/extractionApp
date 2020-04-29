@@ -1,8 +1,15 @@
 var React = require('react');
 var mainstore = require('../../stores/mainstore');
 var ModalHeader = require('./ModalHeader');
+var ModalFooter = require('./ModalFooter');
 var Button1 = require('../Button/Button');
 var appConstants = require('../../constants/appConstants');
+var allSvgConstants = require('../../constants/svgConstants');
+var NumericIndicator = require('../ProductDetails/NumericIndicator');
+var bootstrap = require('bootstrap');
+var jqueryPosition = require('jquery-ui/position');
+var virtualkeyboard = require('virtual-keyboard');
+var utils = require('../../utils/utils.js');
 var component, title;
 
 function getStateData(ths) {
