@@ -46,7 +46,7 @@ function listPpsSeat(seat){
       currentSeat.length = 0; 
       $.ajax({
         type: 'GET',
-        url:  configConstants.PLATFORM_IP + "/api-gateway/extraction-service/wms-extraction/extraction-app/pps-extraction-stns",
+        url:  configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/pps-extraction-stns",
         dataType : "json",
         beforeSend : xhrConfig 
         }).done(function(response) {
