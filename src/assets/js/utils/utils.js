@@ -65,7 +65,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     sessionStorage.setItem("stationId", stationId);
     console.log("=======> utils.js -> connectToWebSocket()");
     
-    var url = configConstants.WEBSOCKET_IP + "/wms-extraction/extraction-app-ws?ppsStn=" + stationId
+    var url = configConstants.WEBSOCKET_IP + "/wms-process/extraction-app-ws?ppsStn=" + stationId
     console.log(url);
     self = this
     ws = new WebSocket(url);
@@ -187,7 +187,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
     $.ajax({
       type: "POST",
-      url: "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/login?ppsStn="+stationId,
+      url:  appConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/login?ppsStn="+stationId,
       data: JSON.stringify({
         userName: username
       }),
@@ -212,7 +212,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
     $.ajax({
       type: "POST",
-      url: "http://192.168.8.193:8080/api-gateway/extraction-service/wms-extraction/extraction-app/logout?ppsStn="+stationId,
+      url: configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/logout?ppsStn="+stationId,
       data: JSON.stringify({
         userName: userName
       }),
@@ -254,7 +254,6 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       $.ajax({
         type: "POST",
         url: configConstants.INTERFACE_IP + "/api/auth/token",
-        //url: "https://192.168.8.193/api/auth/token",
         data: JSON.stringify(loginData),
         dataType: "json",
         headers: {
@@ -345,7 +344,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     }
     $.ajax({
       type: "POST",
-      url:  configConstants.PLATFORM_IP + "/api-gateway/extraction-service/wms-extraction/extraction-app/ui-event?ppsStn=" + stationId,
+      url:  configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/ui-event?ppsStn=" + stationId,
       data: JSON.stringify(data),
       dataType: "json",
       headers: {
