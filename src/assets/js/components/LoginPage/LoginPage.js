@@ -87,7 +87,11 @@ var LoginPage = React.createClass({
   },
 
   componentDidMount: function() {
-    console.log("====> + LoginPage.js ==> componentDidMount () ");
+    var sessionData = sessionStorage.getItem("sessionData");
+    if(sessionData !== "null"){
+      var stationId = sessionData.data.stationId;
+    }
+    
     var self = this;
     $("#loginBtn").hide();
 
@@ -117,8 +121,8 @@ var LoginPage = React.createClass({
 
     // <START> 
     /*  condition to Auto login on page REFRESH, before session expiration */ 
-    if(sessionStorage.getItem("stationId")){
-      CommonActions.webSocketConnection(sessionStorage.getItem("stationId"))
+    if(stationId){
+      CommonActions.webSocketConnection(stationId)
     }
     // <END>
 
