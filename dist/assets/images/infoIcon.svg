@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="52px" viewBox="0 0 52 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>baseline-error-24px</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="1.3" transform="translate(-573.000000, -427.000000)">
+            <g id="Group-4" transform="translate(568.000000, 412.000000)">
+                <g id="Group-2">
+                    <g id="baseline-error-24px" transform="translate(31.500000, 40.500000) scale(1, -1) translate(-31.500000, -40.500000) translate(0.000000, 9.000000)">
+                        <polygon id="Path" points="0 0 63 0 63 63 0 63"></polygon>
+                        <path d="M31,5 C16.648,5 5,16.648 5,31 C5,45.352 16.648,57 31,57 C45.352,57 57,45.352 57,31 C57,16.648 45.352,5 31,5 Z M33.6,44 L28.4,44 L28.4,38.8 L33.6,38.8 L33.6,44 Z M33.6,33.6 L28.4,33.6 L28.4,18 L33.6,18 L33.6,33.6 Z" id="Shape" fill="#55616A" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
