@@ -87,6 +87,7 @@ var LoginPage = React.createClass({
     var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
     if(sessionData != null){
       var stationId = sessionData.data.stationId;
+      CommonActions.setCurrentStationId(stationId);
     }
     
     var self = this;
