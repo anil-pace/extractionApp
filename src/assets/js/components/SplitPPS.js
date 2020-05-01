@@ -83,7 +83,6 @@ var SplitPPS = React.createClass({
 			transform: 'rotate(' + (((orientation > 90 ? 180 : 0) + 'deg)'))
 		}
 
-		console.log("========= SplitPPS => seatType => else");
 		return (
 			<div className="splitPPSWrapper">
 				<div className="mapCont">
