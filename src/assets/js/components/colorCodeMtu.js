@@ -11,7 +11,7 @@ var CurrentMtu = React.createClass({
                 </div>
                 <div className="col1">
                     <span className="colorBox grey">  </span>
-                    <span className="colorText"> No MTU at dockstation </span>
+                    <span className="colorText"> MTU not docked </span>
                 </div>
                <div className="col1">
                 <span className="colorBox green">  </span>
