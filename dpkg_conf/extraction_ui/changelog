@@ -1,4 +1,4 @@
-butler_ui(1.0) stable; urgency=low
+extraction_ui(1.0) stable; urgency=low
 
 * Initial release
 -- Grey Orange <support@greyorange.sg>  Sat, 29 Oct 2014 16:06:31
