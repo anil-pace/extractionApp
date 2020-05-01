@@ -1,6 +1,6 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          butler-ui
+# Provides:          extraction-ui
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
@@ -14,14 +14,14 @@
 # Do NOT "set -e"
 
 DESC="UI"
-NAME=butler_ui
-DAEMON=/opt/butler_ui/bin/$NAME
+NAME=extraction_ui
+DAEMON=/opt/extraction_ui/bin/$NAME
 DAEMON_ARGS=""
 SCRIPTNAME=/etc/init.d/$NAME
 DIR=`pwd`
 
 if [ -z "$HOME" ]; then
-	export HOME=/opt/butler_ui
+	export HOME=/opt/extraction_ui
 fi
 
 # Define LSB log_* functions.
@@ -34,7 +34,7 @@ fi
 #
 do_start()
 {
-	 /opt/butler_ui/bin/butler-ui start
+	 /opt/extraction_ui/bin/extraction-ui start
 }
 
 #
@@ -42,7 +42,7 @@ do_start()
 #
 do_stop()
 {
-	 /opt/butler_ui/bin/butler-ui stop
+	 /opt/extraction_ui/bin/extraction-ui stop
 }
 
 

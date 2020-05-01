@@ -32,7 +32,6 @@ var LoginPage = React.createClass({
   },
 
   componentWillMount: function() {
-    console.log("====> + LoginPage.js ==> componentWillMount () ");
     virtualKeyBoard_login = $('#username, #password').keyboard({
       layout: 'custom',
       customLayout: {

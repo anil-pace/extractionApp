@@ -13,7 +13,6 @@ var currentLang = '';
 var _errMsg = null;
 
 function getParameterByName(){
-    console.log("=====> loginStore.js => getParameterByName ()" );
     var l = document.createElement("a");
     l.href = window.location.href;
     var url_exist = window.location.href.split('=');
@@ -41,7 +40,6 @@ function getCurrentLang(){
 
 
 function listPpsSeat(seat){
-  console.log("=====> %c  get list of station ids", "color:red" );
     if(seat === null){
       currentSeat.length = 0; 
       $.ajax({
@@ -54,7 +52,6 @@ function listPpsSeat(seat){
           loginstore.emit(CHANGE_EVENT); 
         }).fail(function(jqXhr) {
         }).success(function(data){
-          console.log("list of station ids successful====>");
         });
     }else{
       loginstore.emit(CHANGE_EVENT); 

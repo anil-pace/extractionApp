@@ -167,7 +167,6 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
     })
     .done(function(response) {
-      console.log("success ===> from login COnfirmation");
       setTimeout(CommonActions.operatorSeat, 0, true)
     })
     .fail(function(data, jqXHR, textStatus, errorThrown) {
@@ -178,9 +177,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
   
 
   postDataToWebsockets: function(data) {
-    console.log(" ===>  utils.js ===> postDataToWebsockets ()");
     console.log(JSON.stringify(data))
-
     ws.send(JSON.stringify(data))
     setTimeout(CommonActions.operatorSeat, 0, true)
   },
