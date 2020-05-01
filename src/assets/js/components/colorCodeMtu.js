@@ -10,7 +10,7 @@ var CurrentMtu = React.createClass({
                     <span className="colorText"> MTU docked  </span>
                 </div>
                 <div className="col1">
-                    <span className="colorBox orange">  </span>
+                    <span className="colorBox grey">  </span>
                     <span className="colorText"> Action overdue </span>
                 </div>
                <div className="col1">
