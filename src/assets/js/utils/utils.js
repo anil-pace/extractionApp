@@ -129,10 +129,11 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         var stationId = sessionStorage.getItem("stationId");
         
         
-        setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
+       // setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
       }
       ws.onerror = function (event){
         CommonActions.showErrorMessage(serverMessages[event.type]);
+        $("#loginBtn").hide();
       }
     } else {
       alert("WebSocket NOT supported by your Browser!")
