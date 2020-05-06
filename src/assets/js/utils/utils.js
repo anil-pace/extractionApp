@@ -118,16 +118,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
                      CommonActions.logoutSession(true);
                  }*/
         //$("#username, #password").prop('disabled', true);
-<<<<<<< HEAD
-        //var stationId = sessionStorage.getItem("stationId");
-        //setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
-=======
         console.log("Connection is closed...");
-        var stationId = sessionStorage.getItem("stationId");
-        
-        
+        //var stationId = sessionStorage.getItem("stationId");
        // setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
->>>>>>> 78a8e4f... BSS-22115: redirection urls
       }
       ws.onerror = function (event){
         CommonActions.showErrorMessage(serverMessages[event.type]);
