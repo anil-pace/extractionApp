@@ -83,14 +83,6 @@ var LoginPage = React.createClass({
   },
 
   componentDidMount: function() {
-    var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
-    if(sessionData != null){
-      var stationId = sessionData.data.stationId;
-      CommonActions.setCurrentStationId(stationId);
-    }
-    
-    var self = this;
-    $("#loginBtn").hide();
 
     /* if enter key is hit from keyboard, do NOT call the API and vice-versa */
     $('body').on('keypress', function(e) {
@@ -116,16 +108,47 @@ var LoginPage = React.createClass({
     mainstore.addChangeListener(this.onChange);
     loginstore.addChangeListener(this.onChange);
 
+
+    /* if user tries to log in by specifying any extraction_point */ 
+
+    var currentUrl = "https://192.168.8.50/ext_ui/?blahblah=1";
+    var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
+    //var currentUrl = window.location.href;
+    if(currentUrl.includes("extraction_point")){
+      console.log("========> On direct login to specific station point ====>");
+      var parseUrl = currentUrl.split("?")[1];
+      var stationId = parseUrl.split("=")[1];
+      _seat_name = stationId;
+      console.log("====================> getId");
+      console.log(stationId);
+      CommonActions.setCurrentStationId(stationId);
+      CommonActions.webSocketConnection(stationId);
+      $("#loginBtn").show();
+    }
+    else if(sessionData != null){
+      console.log("========> On page Refresh do auto login ====>");
+        var stationId = sessionData.data.stationId;
+        CommonActions.setCurrentStationId(stationId);
+        CommonActions.webSocketConnection(stationId)
+    }
+    else{
+      console.log("========> fresh login ====>");
+      $("#loginBtn").hide();
+      // get list of Station Ids
+      CommonActions.listSeats();
+    }
+
     // <START> 
     /*  condition to Auto login on page REFRESH, before session expiration */ 
-    if(stationId){
-      CommonActions.webSocketConnection(stationId)
-    }
+    // if(stationId){
+    //   CommonActions.webSocketConnection(stationId)
+    // }
     // <END>
 
      // get list of Station Ids
-     CommonActions.listSeats(); 
-    
+     //CommonActions.listSeats(); 
+
+    var self = this;
     virtualKeyBoard_login = $('#username, #password').keyboard({
       layout: 'custom',
       customLayout: {
@@ -256,14 +279,14 @@ var LoginPage = React.createClass({
           seatData.unshift(<option key={'station'} value={0}>Select Station Id</option>);
        /***********************/
 
-      if (parseSeatID != null) {
-        ppsOption = (
-          <span style={{ 'font-size': '24px', 'font-weight': '400' }}>
-            {seatData}
-          </span>
-        );
-        showTiltButton = '';
-      } else {
+      // if (parseSeatID != null) {
+      //   // ppsOption = (
+      //   //   <span style={{ 'font-size': '24px', 'font-weight': '400' }}>
+      //   //     {"fuckoff"}
+      //   //   </span>
+      //   // );
+      //   // showTiltButton = '';
+      // } else {
         _seat_name = null;
         ppsOption = (
           <select
@@ -276,8 +299,14 @@ var LoginPage = React.createClass({
           </select>
         );
         showTiltButton = <span className='tiltButton' />;
-      }
+      // }
     } else {
+      ppsOption = (
+        <span style={{ 'font-size': '24px', 'font-weight': '400' }}>
+          {"Extraction Point : " + _seat_name}
+        </span>
+      );
+      showTiltButton = '';
     }
 
     if (this.state.flag === false) {
