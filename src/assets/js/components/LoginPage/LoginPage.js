@@ -111,9 +111,9 @@ var LoginPage = React.createClass({
 
     /* if user tries to log in by specifying any extraction_point */ 
 
-    var currentUrl = "https://192.168.8.50/ext_ui/?blahblah=1";
+    //var currentUrl = "https://192.168.8.50/ext_ui/?blahblah=1";
     var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
-    //var currentUrl = window.location.href;
+    var currentUrl = window.location.href;
     if(currentUrl.includes("extraction_point")){
       console.log("========> On direct login to specific station point ====>");
       var parseUrl = currentUrl.split("?")[1];
@@ -128,6 +128,7 @@ var LoginPage = React.createClass({
     else if(sessionData != null){
       console.log("========> On page Refresh do auto login ====>");
         var stationId = sessionData.data.stationId;
+        CommonActions.listSeats();
         CommonActions.setCurrentStationId(stationId);
         CommonActions.webSocketConnection(stationId)
     }
@@ -136,6 +137,11 @@ var LoginPage = React.createClass({
       $("#loginBtn").hide();
       // get list of Station Ids
       CommonActions.listSeats();
+      if (this.state.getLang) {
+        CommonActions.changeLanguage(this.state.getLang);
+      } else if (this.state.getCurrentLang) {
+        CommonActions.changeLanguage(this.state.getCurrentLang);
+      }
     }
 
     // <START> 
@@ -263,6 +269,8 @@ var LoginPage = React.createClass({
   },
 
   render: function() {
+    //var isScannerLoginEnabled = mainstore.loginScannerAllowed();
+    var isScannerLoginEnabled = true;
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
     if (this.state.stationList.length > 0) {
@@ -309,6 +317,35 @@ var LoginPage = React.createClass({
       showTiltButton = '';
     }
 
+    var _languageDropDown = (
+      <div className='selectWrapper'>
+        <select
+          className='selectLang'
+          value={this.state.getCurrentLang}
+          ref='language'
+          onChange={this.changeLanguage}
+        >
+          <option value='en-US'>{'English (United States)'}</option>
+          <option value='ja-JP'>{'日本語'}</option>
+          <option value='de-DE'>{'Deutsche'}</option>
+          <option value='he-IL'>{'עברי'}</option>
+          <option value='zh-ZH'>{'中文'}</option>
+          <option value='fr-FR'>{'Français'}</option>
+          <option value='es-ES'>{'Español'}</option>
+          <option value='nl'>{'Dutch'}</option>
+        </select>
+        <span className='tiltButton' />
+      </div>
+    );
+
+    var _dividerWrapper = (
+      <div className='divider'>
+        <span className='dividerUpper' />
+        <div className='dividerText'>OR</div>
+        <span className='dividerBelow' />
+      </div>
+    );
+
     if (this.state.flag === false) {
       if (this.state.showError != null) {
         if (_mode === appConstants.SCANNER) {
@@ -340,13 +377,21 @@ var LoginPage = React.createClass({
         plusIconClass = 'plusIcon';
       }
 
-      var keyboardLoginClass = 'keyboardLogin alignCenter'; // show keyboard login only
+      if (isScannerLoginEnabled) {
+        var keyboardLoginClass = 'keyboardLogin'; // show keyboard login + scanner login
+      } else {
+        var keyboardLoginClass = 'keyboardLogin alignCenter'; // show keyboard login only
+      }
 
       return (
         <div className='containerLogin'>
           <header className='heading'>
             <div className='logo'>
               <img className='imgLogo' src={allSvgConstants.logo} />
+            </div>
+            <div className='languageDropDown'>
+              <span className='langText'>{_(appConstants.LANGUAGE)}</span>
+              {this.state.getLang ? '' : _languageDropDown}
             </div>
           </header>
           <div className='subHeading'>
@@ -420,6 +465,36 @@ var LoginPage = React.createClass({
                 />
               </div>
             </div>
+            {isScannerLoginEnabled ? _dividerWrapper : ''}
+
+            {isScannerLoginEnabled ? (
+              <div className='scanIdLogin'>
+                <div className='outerDiv'>
+                  <div className={rightUpper} />
+                  <div className={leftUpper} />
+                  <div className={rightBelow} />
+                  <div className={leftBelow} />
+                  <div className='scanLogo' />
+                  <span className={plusIconClass}>&#43;</span>
+                  <div style={{ fontSize: '2vh' }}>
+                    {' '}
+                    {_('Scan ID card to login.')}
+                  </div>
+                  <div className={scannerErrorClass}>
+                    <span>{_(this.state.showError)}</span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
+            <input
+              type='text'
+              id='hiddenText'
+              ref='hiddenText'
+              style={{ width: '2px', opacity: '0' }}
+            />
+
           </main>
           <footer>Copyright &copy; {currentYear} GreyOrange Pte Ltd</footer>
         </div>

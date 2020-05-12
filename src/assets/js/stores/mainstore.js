@@ -4,6 +4,14 @@ var objectAssign = require("react/lib/Object.assign")
 var EventEmitter = require("events").EventEmitter
 var utils = require("../utils/utils")
 var serverMessages = require("../serverMessages/server_messages")
+var chinese = require("../serverMessages/chinese")
+var english = require("../serverMessages/english")
+var hebrew = require("../serverMessages/hebrew")
+var japanese = require("../serverMessages/japanese")
+var german = require("../serverMessages/german")
+var french = require("../serverMessages/french")
+var spanish = require("../serverMessages/spanish")
+var dutch = require("../serverMessages/dutch")
 var navConfig = require("../config/navConfig")
 var CommonActions = require("../actions/CommonActions")
 var CHANGE_EVENT = "change"
@@ -322,6 +330,42 @@ var mainstore = objectAssign({}, EventEmitter.prototype, {
   getServerMessages: function() {
     return _messageJson
   },
+  changeLanguage: function (data) {
+    var locale_data = {
+      data: {
+        locale: data,
+      },
+    }
+    switch (data) {
+      case "ja-JP":
+        _.setTranslation(japanese)
+        break
+      case "zh-ZH":
+        _.setTranslation(chinese)
+        break
+      case "en-US":
+        _.setTranslation(english)
+        break
+      case "he-IL":
+        _.setTranslation(hebrew)
+        break
+      case "de-DE":
+        _.setTranslation(german)
+        break
+      case "fr-FR":
+        _.setTranslation(french)
+        break
+      case "es-ES":
+        _.setTranslation(spanish)
+        break
+      case "nl":
+        _.setTranslation(dutch)
+        break
+      default:
+        return true
+    }
+    sessionStorage.setItem("localeData", JSON.stringify(locale_data))
+  },
   
   postDataToInterface: function(data) {
     showModal = false
@@ -495,6 +539,14 @@ AppDispatcher.register(function(payload) {
       mainstore.setServerMessages()
       mainstore.emit(CHANGE_EVENT)
       break
+
+    case appConstants.CHANGE_LANGUAGE:
+        mainstore.changeLanguage(action.data)
+        mainstore.emit(CHANGE_EVENT)
+        break
+    case appConstants.SET_LANGUAGE:
+        mainstore.emit(CHANGE_EVENT)
+        break
     case appConstants.LOG_ERROR:
       mainstore.logError(action.data)
       break
