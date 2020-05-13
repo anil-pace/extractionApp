@@ -3,6 +3,7 @@
     cat components/scripts/server_messages.json | sed 's/^.*: /_(/g' | sed 's/,$//g' | grep Ev "({|})" | sed 's/$/);/g'
  */
 function server_messages_list() {
+  
   _("User Name")
   _("Password")
   _("Waiting for MSU")
@@ -18,8 +19,11 @@ function server_messages_list() {
   _("CURRENT SLOT")
   _("User Name")
   _("Password")
+  
   _("Logout")
+  
   _("Login")
+
   _("Enter Username")
   _("Enter Password")
   _("Invalid credentials")
@@ -35,7 +39,9 @@ function server_messages_list() {
   _("Enter password")
   _("Scan ID card to login.")
   _("Wait for MTU")
+
   _("Select MTU point")
+
   _("MTU docked")
   _("Action overdue")
   _("MTU waiting for bot")
@@ -54,4 +60,5 @@ function server_messages_list() {
   _("All Entities removed")
   _("Are you sure all Entities are removed from the MTU?")
   _("MTU will auto undock after Confirmation.")
+  
 }
