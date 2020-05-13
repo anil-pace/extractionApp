@@ -1,6 +1,7 @@
 var appConstants = {
   WEBSOCKET_CONNECT: "Websocket connection",
   LIST_SEATS: "LIST_SEATS",
+  LOGIN_SCANNER_STATUS: "LOGIN_SCANNER_STATUS",
   
   LOGIN: "LOGIN",
   API: "/api",

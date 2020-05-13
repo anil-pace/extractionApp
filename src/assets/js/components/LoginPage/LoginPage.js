@@ -22,6 +22,7 @@ function getState() {
     showError: loginstore.getErrorMessage(),
     getLang: loginstore.getLang(),
     getCurrentLang: loginstore.getCurrentLang(),
+    scannerStatus: loginstore.scannerStatus()
   };
 }
 
@@ -129,6 +130,7 @@ var LoginPage = React.createClass({
       console.log("========> On page Refresh do auto login ====>");
         var stationId = sessionData.data.stationId;
         CommonActions.listSeats();
+        CommonActions.getScannerStatus();
         CommonActions.setCurrentStationId(stationId);
         CommonActions.webSocketConnection(stationId)
     }
@@ -137,6 +139,7 @@ var LoginPage = React.createClass({
       $("#loginBtn").hide();
       // get list of Station Ids
       CommonActions.listSeats();
+      CommonActions.getScannerStatus();
       if (this.state.getLang) {
         CommonActions.changeLanguage(this.state.getLang);
       } else if (this.state.getCurrentLang) {
@@ -269,8 +272,7 @@ var LoginPage = React.createClass({
   },
 
   render: function() {
-    //var isScannerLoginEnabled = mainstore.loginScannerAllowed();
-    var isScannerLoginEnabled = true;
+    var isScannerLoginEnabled = (this.state.scannerStatus === 'true');
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
     if (this.state.stationList.length > 0) {
@@ -377,9 +379,14 @@ var LoginPage = React.createClass({
         plusIconClass = 'plusIcon';
       }
 
+      console.log("=======================>");
+      console.log(isScannerLoginEnabled);
+
       if (isScannerLoginEnabled) {
+        console.log("1");
         var keyboardLoginClass = 'keyboardLogin'; // show keyboard login + scanner login
       } else {
+        console.log("2");
         var keyboardLoginClass = 'keyboardLogin alignCenter'; // show keyboard login only
       }
 

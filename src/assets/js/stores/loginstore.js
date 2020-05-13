@@ -11,6 +11,7 @@ var flag = false;
 var currentSeat = [];
 var currentLang = '';
 var _errMsg = null;
+var scannerStatus = "";
 
 function getParameterByName(){
     var l = document.createElement("a");
@@ -58,6 +59,27 @@ function listPpsSeat(seat){
     }
 }
 
+function getScannerStatus(seat){
+  if(seat === null){
+    currentSeat.length = 0; 
+    $.ajax({
+      type: 'GET',
+      url:  configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/env/extractionApp.login_scanner_enabled",
+      dataType : "json",
+      beforeSend : xhrConfig 
+      }).done(function(response) {
+        scannerStatus = response["extractionApp.login_scanner_enabled"];
+        loginstore.emit(CHANGE_EVENT); 
+      }).fail(function(jqXhr) {
+        scannerStatus = false; // if 500 or other error, manually assign false to scanner
+        console.log("failed");
+      }).success(function(data){
+      });
+  }else{
+    loginstore.emit(CHANGE_EVENT); 
+  }
+}
+
 var showBox = function(index){
   flag = true;
 }
@@ -80,6 +102,9 @@ var loginstore = objectAssign({}, EventEmitter.prototype, {
   },
   stationList : function(){ 
     return currentSeat;
+  },
+  scannerStatus : function(){ 
+    return scannerStatus;
   },
   getLang : function(){            //get language
     return currentLang;
@@ -108,6 +133,9 @@ AppDispatcher.register(function(payload){
 
     case appConstants.LIST_SEATS:
       getParameterByName();
+      break;
+    case appConstants.LOGIN_SCANNER_STATUS:
+      getScannerStatus(null);
       break;
     case appConstants.LOGIN:
       loginstore.getAuthToken(action.data);
