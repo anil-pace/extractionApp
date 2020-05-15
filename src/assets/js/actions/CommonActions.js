@@ -14,6 +14,12 @@ var commonActions = {
       data: data
     });
   },
+  getScannerStatus: function(data) {
+    AppDispatcher.handleAction({
+      actionType: appConstants.LOGIN_SCANNER_STATUS,
+      data: data
+    });
+  },
   listStations: function(data) {
     AppDispatcher.handleAction({
       actionType: appConstants.LIST_STATIONS,

@@ -172,7 +172,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       setTimeout(CommonActions.operatorSeat, 0, true)
     })
     .fail(function(data, jqXHR, textStatus, errorThrown) {
-      CommonActions.showErrorMessage(data)
+      CommonActions.showErrorMessage(data.responseJSON.reason)
     })
   },
 
