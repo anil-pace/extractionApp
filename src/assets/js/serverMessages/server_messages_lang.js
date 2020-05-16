@@ -6,9 +6,7 @@ function server_messages_list() {
   
   _("User Name")
   _("Password")
-  _("Waiting for MSU")
   _("Connection is closed. Connecting...")
-  _("Wait for MTU")
   _("Slot scan successful")
   _("Cancel scan successful")
   _("Finish")
@@ -17,19 +15,12 @@ function server_messages_list() {
   _("TOTE")
   _("System is Idle")
   _("CURRENT SLOT")
-  _("User Name")
-  _("Password")
-  
   _("Logout")
-  
   _("Login")
-
   _("Enter Username")
   _("Enter Password")
   _("Invalid credentials")
   _("Login not allowed. You're already logged in")
-  _("CURRENT SLOT")
-  _("Wait for MTU")
   _("Slot scan successful")
   _("LOGIN")
   _("Language")
@@ -38,10 +29,10 @@ function server_messages_list() {
   _("Enter username")
   _("Enter password")
   _("Scan ID card to login.")
+
+
   _("Wait for MTU")
-
   _("Select MTU point")
-
   _("MTU docked")
   _("Action overdue")
   _("MTU waiting for bot")
@@ -55,7 +46,6 @@ function server_messages_list() {
   _("Scan empty tote")
   _("MTU clear successfully")
   _("Tote scan successful")
-  _("Scan empty tote")
   _("Tote docked successfully")
   _("All Entities removed")
   _("Are you sure all Entities are removed from the MTU?")
