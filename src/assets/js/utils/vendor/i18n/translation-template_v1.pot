@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-16 06:47+0000\n"
+"POT-Creation-Date: 2020-05-16 07:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -654,6 +654,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:114
 #: src/assets/js/serverMessages/server_messages_lang.js:10
 #: src/assets/js/serverMessages/server_messages_lang.js:9
+#: src/assets/js/serverMessages/server_messages_lang.js:17
 msgid "Connection is closed. Connecting..."
 msgstr ""
 
@@ -848,6 +849,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:204
 #: src/assets/js/serverMessages/server_messages_lang.js:13
 #: src/assets/js/serverMessages/server_messages_lang.js:11
+#: src/assets/js/serverMessages/server_messages_lang.js:22
 msgid "Cancel scan successful"
 msgstr ""
 
@@ -1151,6 +1153,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:33
 #: src/assets/js/serverMessages/server_messages_lang.js:10
 #: src/assets/js/serverMessages/server_messages_lang.js:24
+#: src/assets/js/serverMessages/server_messages_lang.js:21
 msgid "Slot scan successful"
 msgstr ""
 
@@ -1412,6 +1415,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:246
 #: src/assets/js/serverMessages/server_messages_lang.js:51
 #: src/assets/js/serverMessages/server_messages_lang.js:42
+#: src/assets/js/serverMessages/server_messages_lang.js:32
 msgid "Cancel Scan"
 msgstr ""
 
@@ -1522,6 +1526,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:263
 #: src/assets/js/serverMessages/server_messages_lang.js:50
 #: src/assets/js/serverMessages/server_messages_lang.js:41
+#: src/assets/js/serverMessages/server_messages_lang.js:31
 msgid "Cancel"
 msgstr ""
 
@@ -1530,6 +1535,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:264
 #: src/assets/js/serverMessages/server_messages_lang.js:52
 #: src/assets/js/serverMessages/server_messages_lang.js:43
+#: src/assets/js/serverMessages/server_messages_lang.js:33
 msgid "Confirm"
 msgstr ""
 
@@ -1943,6 +1949,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:343
 #: src/assets/js/serverMessages/server_messages_lang.js:23
 #: src/assets/js/serverMessages/server_messages_lang.js:18
+#: src/assets/js/serverMessages/server_messages_lang.js:14
 msgid "Logout"
 msgstr ""
 
@@ -2023,6 +2030,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:355
 #: src/assets/js/serverMessages/server_messages_lang.js:29
 #: src/assets/js/serverMessages/server_messages_lang.js:22
+#: src/assets/js/serverMessages/server_messages_lang.js:19
 msgid "Invalid credentials"
 msgstr ""
 
@@ -2031,6 +2039,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:356
 #: src/assets/js/serverMessages/server_messages_lang.js:30
 #: src/assets/js/serverMessages/server_messages_lang.js:23
+#: src/assets/js/serverMessages/server_messages_lang.js:20
 msgid "Login not allowed. You're already logged in"
 msgstr ""
 
@@ -4629,6 +4638,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:770
 #: src/assets/js/serverMessages/server_messages_lang.js:34
 #: src/assets/js/serverMessages/server_messages_lang.js:25
+#: src/assets/js/serverMessages/server_messages_lang.js:13
 msgid "LOGIN"
 msgstr ""
 
@@ -4637,6 +4647,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:771
 #: src/assets/js/serverMessages/server_messages_lang.js:35
 #: src/assets/js/serverMessages/server_messages_lang.js:26
+#: src/assets/js/serverMessages/server_messages_lang.js:9
 msgid "Language"
 msgstr ""
 
@@ -4645,6 +4656,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:772
 #: src/assets/js/serverMessages/server_messages_lang.js:36
 #: src/assets/js/serverMessages/server_messages_lang.js:27
+#: src/assets/js/serverMessages/server_messages_lang.js:7
 msgid "Username"
 msgstr ""
 
@@ -4657,6 +4669,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:773
 #: src/assets/js/serverMessages/server_messages_lang.js:37
 #: src/assets/js/serverMessages/server_messages_lang.js:28
+#: src/assets/js/serverMessages/server_messages_lang.js:10
 msgid "Login to"
 msgstr ""
 
@@ -4665,6 +4678,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:774
 #: src/assets/js/serverMessages/server_messages_lang.js:38
 #: src/assets/js/serverMessages/server_messages_lang.js:29
+#: src/assets/js/serverMessages/server_messages_lang.js:11
 msgid "Enter username"
 msgstr ""
 
@@ -4673,6 +4687,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:775
 #: src/assets/js/serverMessages/server_messages_lang.js:39
 #: src/assets/js/serverMessages/server_messages_lang.js:30
+#: src/assets/js/serverMessages/server_messages_lang.js:12
 msgid "Enter password"
 msgstr ""
 
@@ -4681,6 +4696,7 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:776
 #: src/assets/js/serverMessages/server_messages_lang.js:40
 #: src/assets/js/serverMessages/server_messages_lang.js:31
+#: src/assets/js/serverMessages/server_messages_lang.js:15
 msgid "Scan ID card to login."
 msgstr ""
 
@@ -4909,81 +4925,97 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:32
 #: src/assets/js/serverMessages/server_messages_lang.js:41
 #: src/assets/js/serverMessages/server_messages_lang.js:34
+#: src/assets/js/serverMessages/server_messages_lang.js:24
 msgid "Wait for MTU"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:43
 #: src/assets/js/serverMessages/server_messages_lang.js:35
+#: src/assets/js/serverMessages/server_messages_lang.js:25
 msgid "Select MTU point"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:45
 #: src/assets/js/serverMessages/server_messages_lang.js:36
+#: src/assets/js/serverMessages/server_messages_lang.js:26
 msgid "MTU docked"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:46
 #: src/assets/js/serverMessages/server_messages_lang.js:37
+#: src/assets/js/serverMessages/server_messages_lang.js:27
 msgid "Action overdue"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:47
 #: src/assets/js/serverMessages/server_messages_lang.js:38
+#: src/assets/js/serverMessages/server_messages_lang.js:28
 msgid "MTU waiting for bot"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:48
 #: src/assets/js/serverMessages/server_messages_lang.js:39
+#: src/assets/js/serverMessages/server_messages_lang.js:29
 msgid "Current MTU"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:49
 #: src/assets/js/serverMessages/server_messages_lang.js:40
+#: src/assets/js/serverMessages/server_messages_lang.js:30
 msgid "All removed"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:53
 #: src/assets/js/serverMessages/server_messages_lang.js:44
+#: src/assets/js/serverMessages/server_messages_lang.js:34
 msgid "Remove all Totes from the MTU"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:54
 #: src/assets/js/serverMessages/server_messages_lang.js:45
+#: src/assets/js/serverMessages/server_messages_lang.js:35
 msgid "Put tote in MTU and scan slot"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:55
 #: src/assets/js/serverMessages/server_messages_lang.js:58
 #: src/assets/js/serverMessages/server_messages_lang.js:46
+#: src/assets/js/serverMessages/server_messages_lang.js:36
 msgid "Scan empty tote"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:56
 #: src/assets/js/serverMessages/server_messages_lang.js:47
+#: src/assets/js/serverMessages/server_messages_lang.js:37
 msgid "MTU clear successfully"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:57
 #: src/assets/js/serverMessages/server_messages_lang.js:48
+#: src/assets/js/serverMessages/server_messages_lang.js:38
 msgid "Tote scan successful"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:59
 #: src/assets/js/serverMessages/server_messages_lang.js:49
+#: src/assets/js/serverMessages/server_messages_lang.js:39
 msgid "Tote docked successfully"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:60
 #: src/assets/js/serverMessages/server_messages_lang.js:50
+#: src/assets/js/serverMessages/server_messages_lang.js:40
 msgid "All Entities removed"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:61
 #: src/assets/js/serverMessages/server_messages_lang.js:51
+#: src/assets/js/serverMessages/server_messages_lang.js:41
 msgid "Are you sure all Entities are removed from the MTU?"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:62
 #: src/assets/js/serverMessages/server_messages_lang.js:52
+#: src/assets/js/serverMessages/server_messages_lang.js:42
 msgid "MTU will auto undock after Confirmation."
 msgstr ""
