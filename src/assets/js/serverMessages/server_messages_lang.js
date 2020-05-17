@@ -20,7 +20,7 @@ function server_messages_list() {
   _("Login not allowed. You're already logged in")
   _("Slot scan successful")
   _("Cancel scan successful")
-
+  _("Select Station Id")
   _("Wait for MTU")
   _("Select MTU point")
   _("MTU docked")
@@ -40,4 +40,5 @@ function server_messages_list() {
   _("All Entities removed")
   _("Are you sure all Entities are removed from the MTU?")
   _("MTU will auto undock after Confirmation.")
+  _("Error during WebSocket handshake")
 }
