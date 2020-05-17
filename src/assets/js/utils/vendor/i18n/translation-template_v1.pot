@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-16 07:25+0000\n"
+"POT-Creation-Date: 2020-05-17 11:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5018,4 +5018,12 @@ msgstr ""
 #: src/assets/js/serverMessages/server_messages_lang.js:52
 #: src/assets/js/serverMessages/server_messages_lang.js:42
 msgid "MTU will auto undock after Confirmation."
+msgstr ""
+
+#: src/assets/js/serverMessages/server_messages_lang.js:23
+msgid "Select Station Id"
+msgstr ""
+
+#: src/assets/js/serverMessages/server_messages_lang.js:43
+msgid "Error during WebSocket handshake"
 msgstr ""
