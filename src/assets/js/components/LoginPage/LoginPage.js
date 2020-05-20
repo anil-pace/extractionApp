@@ -286,7 +286,7 @@ var LoginPage = React.createClass({
             </option>
             );
           })
-          seatData.unshift(<option key={'station'} value={0}>Select Station Id</option>);
+          seatData.unshift(<option key={'station'} value={0}>{_('Select Station Id')}</option>);
        /***********************/
 
       // if (parseSeatID != null) {

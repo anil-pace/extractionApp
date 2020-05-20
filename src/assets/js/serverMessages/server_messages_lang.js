@@ -32,13 +32,15 @@ function server_messages_list() {
   _("Cancel")
   _("Cancel Scan")
   _("Confirm")
-  _("Remove all Totes from the MTU")
-  _("Put tote in MTU and scan slot")
+  _("Remove all Entities from the MTU")
+  _("Put tote on MTU and scan slot")
   _("Scan empty tote")
   _("MTU clear successfully")
   _("Tote scan successful")
   _("Tote docked successfully")
   _("All Entities removed")
   _("Are you sure all Entities are removed from the MTU?")
-  _("MTU will auto undock after Confirmation.")
+  _("MTU will auto undock after confirmation."
+  _("MTU undock successfully")
+  _("MTU undock")
 }
