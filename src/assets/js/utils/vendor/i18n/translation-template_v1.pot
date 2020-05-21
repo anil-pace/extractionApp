@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-21 17:19+0000\n"
+"POT-Creation-Date: 2020-05-21 17:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,6 +61,7 @@ msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:32
 #: src/assets/js/serverMessages/server_messages_lang.js:33
+#: src/assets/js/serverMessages/server_messages_lang.js:34
 msgid "Cancel Scan"
 msgstr ""
 
@@ -74,11 +75,13 @@ msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:31
 #: src/assets/js/serverMessages/server_messages_lang.js:32
+#: src/assets/js/serverMessages/server_messages_lang.js:33
 msgid "Cancel"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:33
 #: src/assets/js/serverMessages/server_messages_lang.js:34
+#: src/assets/js/serverMessages/server_messages_lang.js:35
 msgid "Confirm"
 msgstr ""
 
@@ -178,21 +181,25 @@ msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:27
 #: src/assets/js/serverMessages/server_messages_lang.js:28
+#: src/assets/js/serverMessages/server_messages_lang.js:29
 msgid "Action overdue"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:28
 #: src/assets/js/serverMessages/server_messages_lang.js:29
+#: src/assets/js/serverMessages/server_messages_lang.js:30
 msgid "MTU waiting for bot"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:29
 #: src/assets/js/serverMessages/server_messages_lang.js:30
+#: src/assets/js/serverMessages/server_messages_lang.js:31
 msgid "Current MTU"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:30
 #: src/assets/js/serverMessages/server_messages_lang.js:31
+#: src/assets/js/serverMessages/server_messages_lang.js:32
 msgid "All removed"
 msgstr ""
 
@@ -206,26 +213,31 @@ msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:36
 #: src/assets/js/serverMessages/server_messages_lang.js:37
+#: src/assets/js/serverMessages/server_messages_lang.js:38
 msgid "Scan empty tote"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:37
 #: src/assets/js/serverMessages/server_messages_lang.js:38
+#: src/assets/js/serverMessages/server_messages_lang.js:39
 msgid "MTU clear successfully"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:38
 #: src/assets/js/serverMessages/server_messages_lang.js:39
+#: src/assets/js/serverMessages/server_messages_lang.js:40
 msgid "Tote scan successful"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:39
 #: src/assets/js/serverMessages/server_messages_lang.js:40
+#: src/assets/js/serverMessages/server_messages_lang.js:41
 msgid "Tote docked successfully"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:40
 #: src/assets/js/serverMessages/server_messages_lang.js:41
+#: src/assets/js/serverMessages/server_messages_lang.js:42
 msgid "All Entities removed"
 msgstr ""
 
@@ -253,10 +265,12 @@ msgid "Logout"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:35
+#: src/assets/js/serverMessages/server_messages_lang.js:36
 msgid "Remove all Entities from the MTU"
 msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:36
+#: src/assets/js/serverMessages/server_messages_lang.js:37
 msgid "Put tote on MTU and scan slot"
 msgstr ""
 
@@ -270,4 +284,14 @@ msgstr ""
 
 #: src/assets/js/serverMessages/server_messages_lang.js:43
 msgid "MTU will auto undock after confirmation."
+msgstr ""
+
+#: src/assets/js/serverMessages/server_messages_lang.js:28
+msgid "MTU not docked"
+msgstr ""
+
+#: src/assets/js/serverMessages/server_messages_lang.js:43
+msgid ""
+"Are you sure all Entities are removed from the MTU? MTU will auto undock "
+"after confirmation."
 msgstr ""
