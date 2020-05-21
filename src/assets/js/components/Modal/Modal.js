@@ -121,7 +121,7 @@ function loadComponent(modalType, modalData, ths) {
               <div className='col-md-12'>
                 <div className='title-textbox'>
                   {_(
-                    'Are you sure all Entities are removed from the MTU? MTU will auto undock after confirmation'
+                    'Are you sure all Entities are removed from the MTU? MTU will auto undock after confirmation.'
                   )}
                 </div>
               </div>

@@ -1,7 +1,7 @@
 var configConstants = {
-   WEBSOCKET_IP: 'wss://localhost/wss',
-   INTERFACE_IP: 'https://localhost',
-   PLATFORM_IP: 'https://localhost/api'
+   WEBSOCKET_IP: 'wss://192.168.9.208/wss',
+   INTERFACE_IP: 'https://192.168.9.208',
+   PLATFORM_IP: 'https://192.168.9.208/api'
 };
 var BOI_CONFIG =
    configConstants.INTERFACE_IP + '/api/components/get_boi_config';
