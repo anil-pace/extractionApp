@@ -250,7 +250,7 @@ var LoginPage = React.createClass({
   },
   changeLanguage: function() {
     CommonActions.changeLanguage(this.refs.language.value);
-    this.disableLoginButton();
+    //this.disableLoginButton();
   },
   removeNotify: function() {
     $('.errorNotify').css('display', 'none');
