@@ -69,16 +69,16 @@ var LoginPage = React.createClass({
       accepted: function(e, keypressed, el) {
         var usernameValue = document.getElementById('username').value;
         var passwordValue = document.getElementById('password').value;
-        if (
-          usernameValue != null &&
-          usernameValue != '' &&
-          passwordValue != null &&
-          passwordValue != ''
-        ) {
-          $('#loginBtn').prop('disabled', false);
-        } else {
-          $('#loginBtn').prop('disabled', true);
-        }
+        // if (
+        //   usernameValue != null &&
+        //   usernameValue != '' &&
+        //   passwordValue != null &&
+        //   passwordValue != ''
+        // ) {
+        //   $('#loginBtn').prop('disabled', false);
+        // } else {
+        //   $('#loginBtn').prop('disabled', true);
+        //}
       }
     });
   },
@@ -136,7 +136,7 @@ var LoginPage = React.createClass({
     }
     else{
       console.log("========> fresh login ====>");
-      $("#loginBtn").hide();
+      $("#loginBtn").prop("disabled", true);
       // get list of Station Ids
       CommonActions.listSeats();
       CommonActions.getScannerStatus();
@@ -195,16 +195,16 @@ var LoginPage = React.createClass({
       accepted: function(e, keypressed, el) {
         var usernameValue = document.getElementById('username').value;
         var passwordValue = document.getElementById('password').value;
-        if (
-          usernameValue != null &&
-          usernameValue != '' &&
-          passwordValue != null &&
-          passwordValue != ''
-        ) {
-          $('#loginBtn').prop('disabled', false);
-        } else {
-          $('#loginBtn').prop('disabled', true);
-        }
+        // if (
+        //   usernameValue != null &&
+        //   usernameValue != '' &&
+        //   passwordValue != null &&
+        //   passwordValue != ''
+        // ) {
+        //   $('#loginBtn').prop('disabled', false);
+        // } else {
+        //   $('#loginBtn').prop('disabled', true);
+        // }
       }
     });
   },
@@ -255,11 +255,13 @@ var LoginPage = React.createClass({
 
   onStationIdChange: function(){
     if(this.refs.seat_name.value !== "0"){
-      $("#loginBtn").show();
+      //$("#loginBtn").show();
+      $("#loginBtn").prop("disabled", false);
       CommonActions.webSocketConnection(this.state.stationId);
     }
     else{
-      $("#loginBtn").hide();
+      //$("#loginBtn").hide();
+      $("#loginBtn").prop("disabled", true);
     }
     
 

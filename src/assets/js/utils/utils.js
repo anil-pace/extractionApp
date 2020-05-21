@@ -67,7 +67,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     ws = new WebSocket(url);
     if ("WebSocket" in window) {
       ws.onopen = function() {
-        $("#username, #password").prop("disabled", false)
+        $("#username, #password, #loginBtn").prop("disabled", false)
         
         utils.checkSessionStorage()
         clearTimeout(utils.connectToWebSocket)
@@ -124,7 +124,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
       ws.onerror = function (event){
         CommonActions.showErrorMessage(serverMessages[event.type]);
-        $("#loginBtn").hide();
+        //$("#loginBtn").hide();
+        $("#loginBtn").prop("disabled", true);
       }
     } else {
       alert("WebSocket NOT supported by your Browser!")
