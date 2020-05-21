@@ -7,15 +7,15 @@ var CurrentMtu = React.createClass({
             <div className="color-conventions">
                 <div className="col1">
                     <span className="colorBox blue">  </span>
-                    <span className="colorText"> MTU docked  </span>
+                    <span className="colorText"> {_("MTU docked")}  </span>
                 </div>
                 <div className="col1">
                     <span className="colorBox grey">  </span>
-                    <span className="colorText"> MTU not docked </span>
+                    <span className="colorText"> {_("MTU not docked")} </span>
                 </div>
                <div className="col1">
                 <span className="colorBox green">  </span>
-                <span className="colorText"> MTU waiting for bot </span>
+                <span className="colorText"> {_("MTU waiting for bot")} </span>
                </div>
             </div>
         );

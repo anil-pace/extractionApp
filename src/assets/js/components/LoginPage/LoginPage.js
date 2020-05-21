@@ -124,7 +124,8 @@ var LoginPage = React.createClass({
       console.log(stationId);
       CommonActions.setCurrentStationId(stationId);
       CommonActions.webSocketConnection(stationId);
-      $("#loginBtn").show();
+      $("#loginBtn").prop("disabled", false);
+      //$("#loginBtn").show();
     }
     else if(sessionData != null){
       console.log("========> On page Refresh do auto login ====>");
@@ -132,7 +133,8 @@ var LoginPage = React.createClass({
         CommonActions.listSeats();
         CommonActions.getScannerStatus();
         CommonActions.setCurrentStationId(stationId);
-        CommonActions.webSocketConnection(stationId)
+        CommonActions.webSocketConnection(stationId);
+        CommonActions.changeLanguage(this.state.getCurrentLang);
     }
     else{
       console.log("========> fresh login ====>");
@@ -146,6 +148,7 @@ var LoginPage = React.createClass({
         CommonActions.changeLanguage(this.state.getCurrentLang);
       }
     }
+    
 
     // <START> 
     /*  condition to Auto login on page REFRESH, before session expiration */ 

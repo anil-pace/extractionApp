@@ -25,6 +25,7 @@ function server_messages_list() {
   _("Wait for MTU")
   _("Select MTU point")
   _("MTU docked")
+  _("MTU not docked")
   _("Action overdue")
   _("MTU waiting for bot")
   _("Current MTU")
@@ -39,8 +40,7 @@ function server_messages_list() {
   _("Tote scan successful")
   _("Tote docked successfully")
   _("All Entities removed")
-  _("Are you sure all Entities are removed from the MTU?")
-  _("MTU will auto undock after confirmation."
+  _("Are you sure all Entities are removed from the MTU? MTU will auto undock after confirmation.")
   _("MTU undock successfully")
   _("MTU undock")
 }
