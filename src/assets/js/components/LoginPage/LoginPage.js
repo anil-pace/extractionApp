@@ -116,16 +116,16 @@ var LoginPage = React.createClass({
     var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
     var currentUrl = window.location.href;
     if(currentUrl.includes("extraction_point")){
+      if(sessionData !== null){
+        CommonActions.changeLanguage(this.state.getCurrentLang);
+      }
       console.log("========> On direct login to specific station point ====>");
       var parseUrl = currentUrl.split("?")[1];
       var stationId = parseUrl.split("=")[1];
       _seat_name = stationId;
-      console.log("====================> getId");
-      console.log(stationId);
       CommonActions.setCurrentStationId(stationId);
       CommonActions.webSocketConnection(stationId);
       $("#loginBtn").prop("disabled", false);
-      //$("#loginBtn").show();
     }
     else if(sessionData != null){
       console.log("========> On page Refresh do auto login ====>");
@@ -258,12 +258,10 @@ var LoginPage = React.createClass({
 
   onStationIdChange: function(){
     if(this.refs.seat_name.value !== "0"){
-      //$("#loginBtn").show();
       $("#loginBtn").prop("disabled", false);
       CommonActions.webSocketConnection(this.state.stationId);
     }
     else{
-      //$("#loginBtn").hide();
       $("#loginBtn").prop("disabled", true);
     }
     
@@ -318,7 +316,7 @@ var LoginPage = React.createClass({
     } else {
       ppsOption = (
         <span style={{ 'font-size': '24px', 'font-weight': '400' }}>
-          {"Extraction Point : " + _seat_name}
+          {"Station Id : " + _seat_name}
         </span>
       );
       showTiltButton = '';
