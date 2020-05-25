@@ -187,6 +187,21 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
   getAuthToken: function(data) {
     sessionStorage.setItem("sessionData", null)
+    if (data.data.barcode) {
+      // if barcode key is present its login via scanner mode
+      var loginData = {
+        username: "d_____", // post discussion with platform (rahul.s)
+        password: "d_____", // d+(5 times _)
+        grant_type: "password",
+        action: "LOGIN",
+        role: [data.data.role],
+        context: {
+          entity_id: "1",
+          barcode: data.data.barcode,
+          app_name: "boi_ui",
+        },
+      }
+    } else {
       var loginData = {
         username: data.data.username,
         password: data.data.password,
@@ -198,7 +213,8 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           app_name: "boi_ui"
         }
       }
-      $.ajax({
+    }
+    $.ajax({
         type: "POST",
         url: configConstants.INTERFACE_IP + "/api/auth/token",
         data: JSON.stringify(loginData),
