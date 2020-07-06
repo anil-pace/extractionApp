@@ -9,5 +9,5 @@ function server_messages_list() {
   _("Language")
   _("Enter username")
   _("Enter password")
-  _("new text introduce")
+  _("new text introduced")
 }
