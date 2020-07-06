@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 08:37+0000\n"
+"POT-Creation-Date: 2020-07-06 19:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,3 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: src/assets/js/serverMessages/server_messages_lang.js:7
+msgid "Username"
+msgstr ""
+
+#: src/assets/js/serverMessages/server_messages_lang.js:8
+msgid "Password"
+msgstr ""
+
+#: src/assets/js/serverMessages/server_messages_lang.js:9
+msgid "Language"
+msgstr ""
+
+#: src/assets/js/serverMessages/server_messages_lang.js:10
+msgid "Enter username"
+msgstr ""
+
+#: src/assets/js/serverMessages/server_messages_lang.js:11
+msgid "Enter password"
+msgstr ""
