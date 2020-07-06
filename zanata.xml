@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <config xmlns="http://zanata.org/namespace/config/">
   <url>http://172.104.62.224:8080/zanata/</url>
-  <project>gor-extractionui</project>
+  <project>gor-extractionui_1</project>
   <project-version>102.0.0</project-version>
   <project-type>gettext</project-type>
   <src-dir>src/assets/js/utils/vendor/i18n/</src-dir>
