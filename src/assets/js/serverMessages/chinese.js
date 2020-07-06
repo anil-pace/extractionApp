@@ -1,1 +1,3 @@
-var obj={};module.exports=obj
+var obj = {
+};
+module.exports = obj;
