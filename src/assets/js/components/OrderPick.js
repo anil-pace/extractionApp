@@ -12,6 +12,7 @@ var Exception = require('./Exception/Exception')
 var SplitPPS = require('./SplitPPS')
 var CurrentMtu = require('./CurrentMtu')
 var ColorCodeMtu = require("./colorCodeMtu")
+var TabularData = require("./TabularData");
 
 
 function getStateData() {
@@ -104,187 +105,253 @@ var PickFront = React.createClass({
 
   getScreenComponent: function (screen_id) {
     switch (screen_id) {
-        case appConstants.WAIT_FOR_MTU:
-          this._navigation = (
-            <Navigation
-              navData={this.state.PickFrontNavData}
-              serverNavData={this.state.PickFrontServerNavData}
-              navMessagesJson={this.props.navMessagesJson}
+      case appConstants.WAIT_FOR_MTU:
+        this._navigation = (
+          <Navigation
+            navData={this.state.PickFrontNavData}
+            serverNavData={this.state.PickFrontServerNavData}
+            navMessagesJson={this.props.navMessagesJson}
+          />
+        )
+
+        this._component = (
+          <div style={{ "opacity": "0.2" }} className='grid-container'>
+            <div className='main-container'>
+              <div style={{ "display": "flex", "flexFlow": "column", "width": "70%" }}>
+                <SplitPPS
+                  displayBinId={true}
+                  groupInfo={this.state.udpBinMapDetails}
+                />
+                <ColorCodeMtu />
+              </div>
+            </div>
+          </div>
+        )
+        break;
+
+      case appConstants.SELECT_MTU_POINT:
+        this._navigation = (
+          <Navigation
+            navData={this.state.PickFrontNavData}
+            serverNavData={this.state.PickFrontServerNavData}
+            navMessagesJson={this.props.navMessagesJson}
+          />
+        )
+
+        this._component = (
+          <div className='grid-container'>
+            <div className='main-container'>
+              <div style={{ "display": "flex", "flexFlow": "column", "width": "70%" }}>
+                <SplitPPS
+                  displayBinId={true}
+                  groupInfo={this.state.udpBinMapDetails}
+                />
+                <ColorCodeMtu />
+              </div>
+            </div>
+          </div>
+        )
+        break;
+
+      case appConstants.REMOVE_ALL_TOTES:
+        if (this.state.isToteFlowEnabled) { // for Tote flow
+          var removeAllButton = (
+            <Button1
+              disabled={false}
+              text={_('Remove All')}
+              module={appConstants.ORDER_PICK}
+              action={appConstants.REMOVE_ALL_BUTTON}
+              screenId={mainstore.getScreenId()}
+              color={'orange'}
             />
           )
+        } else { // for Non-Tote Flow
+          var removeAllButton = (
+            <Button1
+              disabled={false}
+              text={_('Remove All')}
+              module={appConstants.ORDER_PICK}
+              action={appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE_MODAL}
+              screenId={mainstore.getScreenId()}
+              color={'orange'}
+            />
+          )
+        }
 
-          this._component = (
-            <div style={{"opacity": "0.2"}} className='grid-container'>
-              <div className='main-container'> 
-                <div style={{"display": "flex", "flexFlow": "column", "width":"70%"}}>
-                  <SplitPPS
-                    displayBinId={true}
-                    groupInfo={this.state.udpBinMapDetails}
-                  />
-                  <ColorCodeMtu />
+        this._navigation = (
+          <Navigation
+            navData={this.state.PickFrontNavData}
+            serverNavData={this.state.PickFrontServerNavData}
+            navMessagesJson={this.props.navMessagesJson}
+          />
+        )
+
+        this._component = (
+          <div className='grid-container'>
+            <Modal />
+            {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> : " "}
+            <div className="splitPps-zoomed-out">
+              <SplitPPS
+                displayBinId={true}
+                groupInfo={this.state.udpBinMapDetails}
+              />
+
+            </div>
+            <div className='main-container'>
+              <Rack
+                isDrawer={this.state.isDrawer}
+                slotType={this.state.SlotType}
+                rackData={this.state.PickFrontRackDetails}
+              />
+            </div>
+            <div className='cancel-scan'>
+              <Button1
+                disabled={false}
+                text={_("Cancel")}
+                module={appConstants.ORDER_PICK}
+                action={appConstants.CANCEL_SCAN}
+                screenId={mainstore.getScreenId()}
+                color={"black"} />
+            </div>
+            {removeAllButton}
+          </div>
+        )
+        break;
+
+      case appConstants.SCAN_EMPTY_TOTE:
+        this._navigation = (
+          <Navigation
+            navData={this.state.PickFrontNavData}
+            serverNavData={this.state.PickFrontServerNavData}
+            navMessagesJson={this.props.navMessagesJson}
+          />
+        )
+
+        this._component = (
+          <div className='grid-container'>
+            {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> : " "}
+            <div className="splitPps-zoomed-out">
+              <SplitPPS
+                displayBinId={true}
+                groupInfo={this.state.udpBinMapDetails}
+              />
+
+            </div>
+            <div className='main-container'>
+              <Rack
+                //isDrawer={this.state.isDrawer}
+                slotType={this.state.SlotType}
+                rackData={this.state.PickFrontRackDetails}
+              />
+            </div>
+          </div>
+        )
+        break;
+
+      case appConstants.SCAN_EMPTY_SLOT:
+        this._navigation = (
+          <Navigation
+            navData={this.state.PickFrontNavData}
+            serverNavData={this.state.PickFrontServerNavData}
+            navMessagesJson={this.props.navMessagesJson}
+          />
+        )
+
+        this._component = (
+          <div className='grid-container'>
+            {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> : " "}
+            <div className="splitPps-zoomed-out">
+              <SplitPPS
+                displayBinId={true}
+                groupInfo={this.state.udpBinMapDetails}
+              />
+
+            </div>
+            <div className='main-container'>
+              <Rack
+                //isDrawer={this.state.isDrawer}
+                slotType={this.state.SlotType}
+                rackData={this.state.PickFrontRackDetails}
+              />
+            </div>
+            <div className='cancel-scan'>
+              <Button1
+                disabled={false}
+                text={_("Cancel")}
+                module={appConstants.ORDER_PICK}
+                action={appConstants.CANCEL_SCAN}
+                screenId={mainstore.getScreenId()}
+                color={"black"} />
+            </div>
+          </div>
+        )
+        break;
+      case appConstants.SCANNER_MANAGEMENT:
+        this._navigation = (
+          <Navigation
+            navData={this.state.PickFrontNavData}
+            serverNavData={this.state.PickFrontServerNavData}
+            navMessagesJson={this.props.navMessagesJson}
+          />
+        );
+        var _button;
+        if (this.state.PickFrontScreenId == appConstants.SCANNER_MANAGEMENT) {
+          _button = (
+            <div className="staging-action">
+              <Button1
+                disabled={false}
+                text={_("BACK")}
+                module={appConstants.PERIPHERAL_MANAGEMENT}
+                status={true}
+                action={appConstants.CANCEL_ADD_SCANNER}
+                color={"black"}
+              />
+              <Button1
+                disabled={false}
+                text={_("Add Scanner")}
+                module={appConstants.PERIPHERAL_MANAGEMENT}
+                status={true}
+                action={appConstants.ADD_SCANNER}
+                color={"orange"}
+              />
+            </div>
+          );
+        } else {
+          _button = (
+            <div className="staging-action">
+              <Button1
+                disabled={false}
+                text={_("BACK")}
+                module={appConstants.PERIPHERAL_MANAGEMENT}
+                status={true}
+                action={appConstants.CANCEL_PPTL}
+                color={"black"}
+              />
+            </div>
+          );
+        }
+        this._component = (
+          <div className="grid-container audit-reconcilation">
+            <div className="row scannerHeader">
+              <div className="col-md-6">
+                <div className="ppsMode">
+                  {" "}
+                  {/* PPS Mode : {this.state.PickFrontPpsMode.toUpperCase()}{" "} */}
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="seatType">
+                  {" "}
+                  {/* Seat Type : {this.state.PickFrontSeatType.toUpperCase()} */}
                 </div>
               </div>
             </div>
-          )
+            <TabularData data={this.state.utility} />
+            {_button}
+            <Modal />
+          </div>
+        );
         break;
-
-        case appConstants.SELECT_MTU_POINT:
-            this._navigation = (
-              <Navigation
-                navData={this.state.PickFrontNavData}
-                serverNavData={this.state.PickFrontServerNavData}
-                navMessagesJson={this.props.navMessagesJson}
-              />
-            )
-  
-            this._component = (
-              <div className='grid-container'>
-                <div className='main-container'> 
-                  <div style={{"display": "flex", "flexFlow": "column", "width":"70%"}}>
-                    <SplitPPS
-                      displayBinId={true}
-                      groupInfo={this.state.udpBinMapDetails}
-                    />
-                    <ColorCodeMtu />
-                  </div>
-                </div>
-              </div>
-            )
-          break;
-
-          case appConstants.REMOVE_ALL_TOTES:
-            if (this.state.isToteFlowEnabled) { // for Tote flow
-              var removeAllButton = (
-                <Button1
-                  disabled={false}
-                  text={_('Remove All')}
-                  module={appConstants.ORDER_PICK}
-                  action={appConstants.REMOVE_ALL_BUTTON}
-                  screenId={mainstore.getScreenId()}
-                  color={'orange'}
-                />
-              )
-            } else { // for Non-Tote Flow
-              var removeAllButton = (
-                <Button1
-                  disabled={false}
-                  text={_('Remove All')}
-                  module={appConstants.ORDER_PICK}
-                  action={appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE_MODAL}
-                  screenId={mainstore.getScreenId()}
-                  color={'orange'}
-                />
-              )
-            }
-
-            this._navigation = (
-              <Navigation
-                navData={this.state.PickFrontNavData}
-                serverNavData={this.state.PickFrontServerNavData}
-                navMessagesJson={this.props.navMessagesJson}
-              />
-            )
-  
-            this._component = (
-              <div className='grid-container'>
-                <Modal />
-                 {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> :" "}
-                  <div className="splitPps-zoomed-out">
-                    <SplitPPS
-                      displayBinId={true}
-                      groupInfo={this.state.udpBinMapDetails}
-                    />
-                    
-                  </div>
-                  <div className='main-container'>
-                  <Rack
-                      isDrawer={this.state.isDrawer}
-                      slotType={this.state.SlotType}
-                      rackData={this.state.PickFrontRackDetails}
-                    /> 
-                  </div>
-                  <div className='cancel-scan'>
-                      <Button1 
-                        disabled={false} 
-                        text={_("Cancel")} 
-                        module={appConstants.ORDER_PICK} 
-                        action={appConstants.CANCEL_SCAN} 
-                        screenId={mainstore.getScreenId()}
-                        color={"black"} />
-                  </div>
-                  {removeAllButton}
-                </div>
-            )
-          break;
-
-          case appConstants.SCAN_EMPTY_TOTE:
-            this._navigation = (
-              <Navigation
-                navData={this.state.PickFrontNavData}
-                serverNavData={this.state.PickFrontServerNavData}
-                navMessagesJson={this.props.navMessagesJson}
-              />
-            )
-  
-            this._component = (
-              <div className='grid-container'>
-                  {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> :" "}
-                  <div className="splitPps-zoomed-out">
-                    <SplitPPS
-                      displayBinId={true}
-                      groupInfo={this.state.udpBinMapDetails}
-                    />
-                    
-                  </div>
-                  <div className='main-container'>
-                  <Rack
-                      //isDrawer={this.state.isDrawer}
-                      slotType={this.state.SlotType}
-                      rackData={this.state.PickFrontRackDetails}
-                    /> 
-                  </div>
-                </div>
-            )
-          break;
-
-          case appConstants.SCAN_EMPTY_SLOT:
-            this._navigation = (
-              <Navigation
-                navData={this.state.PickFrontNavData}
-                serverNavData={this.state.PickFrontServerNavData}
-                navMessagesJson={this.props.navMessagesJson}
-              />
-            )
-  
-            this._component = (
-              <div className='grid-container'>
-                  {this.state.getCurrentMtu ? <CurrentMtu currentMtu={this.state.getCurrentMtu} /> :" "}
-                  <div className="splitPps-zoomed-out">
-                    <SplitPPS
-                      displayBinId={true}
-                      groupInfo={this.state.udpBinMapDetails}
-                    />
-                    
-                  </div>
-                  <div className='main-container'>
-                  <Rack
-                      //isDrawer={this.state.isDrawer}
-                      slotType={this.state.SlotType}
-                      rackData={this.state.PickFrontRackDetails}
-                    /> 
-                  </div>
-                  <div className='cancel-scan'>
-                      <Button1 
-                        disabled={false} 
-                        text={_("Cancel")} 
-                        module={appConstants.ORDER_PICK} 
-                        action={appConstants.CANCEL_SCAN} 
-                        screenId={mainstore.getScreenId()}
-                        color={"black"} />
-                  </div>
-                </div>
-            )
-          break;
 
       default:
         return true

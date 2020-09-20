@@ -82,10 +82,10 @@ function attachKeyboard(id) {
     reposition: true,
     alwaysOpen: false,
     initialFocus: true,
-    visible: function(e, keypressed, el) {
+    visible: function (e, keypressed, el) {
       el.value = '';
     },
-    accepted: function(e, keypressed, el) {}
+    accepted: function (e, keypressed, el) { }
   });
   $('#' + id)
     .data('keyboard')
@@ -101,8 +101,8 @@ function attachNumpad(id) {
     reposition: true,
     alwaysOpen: false,
     initialFocus: true,
-    accepted: function(e, keypressed, el) {},
-    visible: function(e, keypressed, el) {
+    accepted: function (e, keypressed, el) { },
+    visible: function (e, keypressed, el) {
       el.value = '';
     }
   });
@@ -113,53 +113,100 @@ function attachNumpad(id) {
 
 function loadComponent(modalType, modalData, ths) {
   switch (modalType) {
-      case appConstants.REMOVE_ALL_BUTTON_CONFIRMATION:
-        component = [];
-        component.push(
-          <div>
-            <div className='row'>
-              <div className='col-md-12'>
-                <div className='title-textbox'>
-                  {_(
-                    'Are you sure all Entities are removed from the MTU? MTU will auto undock after confirmation.'
-                  )}
-                </div>
+    case appConstants.REMOVE_ALL_BUTTON_CONFIRMATION:
+      component = [];
+      component.push(
+        <div>
+          <div className='row'>
+            <div className='col-md-12'>
+              <div className='title-textbox'>
+                {_(
+                  'Are you sure all Entities are removed from the MTU? MTU will auto undock after confirmation.'
+                )}
               </div>
             </div>
-            <div className='modal-footer removeBorder'>
-              <div className='buttonContainer center-block chklstButtonContainer'>
-                <div className='row removeBorder'>
-                  <div className='col-md-6'>
-                    <Button1
-                      disabled={false}
-                      text={_('Cancel')}
-                      color={'black'}
-                      module={appConstants.ORDER_PICK}
-                      action={
-                        appConstants.CANCEL_REMOVE_ALL_ENTITIES
-                      }
-                      screenId={mainstore.getScreenId()}
-                    />
-                  </div>
-                  <div className='col-md-6'>
-                    <Button1
-                      disabled={false}
-                      text={_('Confirm')}
-                      color={'orange'}
-                      module={appConstants.ORDER_PICK}
-                      action={
-                        appConstants.REMOVE_ALL_BUTTON
-                      }
-                      screenId={mainstore.getScreenId()}
-                    />
-                  </div>
+          </div>
+          <div className='modal-footer removeBorder'>
+            <div className='buttonContainer center-block chklstButtonContainer'>
+              <div className='row removeBorder'>
+                <div className='col-md-6'>
+                  <Button1
+                    disabled={false}
+                    text={_('Cancel')}
+                    color={'black'}
+                    module={appConstants.ORDER_PICK}
+                    action={
+                      appConstants.CANCEL_REMOVE_ALL_ENTITIES
+                    }
+                    screenId={mainstore.getScreenId()}
+                  />
+                </div>
+                <div className='col-md-6'>
+                  <Button1
+                    disabled={false}
+                    text={_('Confirm')}
+                    color={'orange'}
+                    module={appConstants.ORDER_PICK}
+                    action={
+                      appConstants.REMOVE_ALL_BUTTON
+                    }
+                    screenId={mainstore.getScreenId()}
+                  />
                 </div>
               </div>
             </div>
           </div>
-        );
-        title = _('All Entities removed');
-        break;
+        </div>
+      );
+      title = _('All Entities removed');
+      break;
+
+    case "enter_barcode":
+      component = []
+      component.push(
+        <div>
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title-textbox">{_("Enter Scanner Id")}</div>
+              <div className="textBox-div">
+                <input
+                  className="width95"
+                  type="text"
+                  id="add_scanner"
+                  onClick={attachKeyboard.bind(this, "add_scanner")}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-footer removeBorder">
+            <div className="buttonContainer center-block chklstButtonContainer">
+              <div className="row removeBorder">
+                <div className="col-md-6">
+                  <Button1
+                    disabled={false}
+                    text={_("Cancel")}
+                    color={"black"}
+                    module={appConstants.PERIPHERAL_MANAGEMENT}
+                    action={appConstants.CANCEL_CLOSE_SCANNER}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <Button1
+                    disabled={false}
+                    text={_("Submit")}
+                    color={"orange"}
+                    module={appConstants.PERIPHERAL_MANAGEMENT}
+                    action={appConstants.ADD_SCANNER_DETAILS}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+
+      title = _("Add Scanner")
+      break
 
     case appConstants.ERROR_NOTIFICATION:
       component = [];
@@ -203,23 +250,23 @@ function loadComponent(modalType, modalData, ths) {
 
 var Modal = React.createClass({
   virtualKeyBoard1: '',
-  componentDidMount: function(id) {
+  componentDidMount: function (id) {
     /*$(".modal").click(function(e){
       e.stopPropagation();
         return false;
     });*/
   },
 
-  componentWillMount: function() {
+  componentWillMount: function () {
     mainstore.addChangeListener(this.onChange);
   },
-  componentWillUnmount: function() {
+  componentWillUnmount: function () {
     mainstore.removeChangeListener(this.onChange);
   },
-  onChange: function() {
+  onChange: function () {
     this.setState(getStateData(this));
   },
-  render: function() {
+  render: function () {
     return (
       <div className='modal'>
         <div className='modal-dialog'>

@@ -69,21 +69,21 @@ var Button1 = React.createClass({
             data["screen_id"] = screenId;
             ActionCreators.postDataToInterface(data, mainstore.getCurrentStationId());
             break;
-          
+
           case appConstants.REMOVE_ALL_BUTTON:
             data['name'] = 'all_totes_removed';
             data["data"] = null;
             data["screen_id"] = screenId;
             ActionCreators.postDataToInterface(data);
             break;
-          
+
           case appConstants.REMOVE_ALL_BUTTON_WITHOUT_TOTE_MODAL:
-              this.showModal(
-                appConstants.ORDER_PICK,
-                appConstants.REMOVE_ALL_BUTTON_CONFIRMATION
-              );
-              break;
-        
+            this.showModal(
+              appConstants.ORDER_PICK,
+              appConstants.REMOVE_ALL_BUTTON_CONFIRMATION
+            );
+            break;
+
           case appConstants.CANCEL_REMOVE_ALL_ENTITIES:
             closeModalBox();
             break;
@@ -100,7 +100,7 @@ var Button1 = React.createClass({
             data['event_name'] = appConstants.CONFIRM_REPRINT_LAST_REQUEST;
             if (mainstore.getLogoutState() === "false" || mainstore.getLogoutState() === false) {
               return false;
-            }else {
+            } else {
               ActionCreators.logoutSession(true);
             }
             break;
@@ -108,7 +108,37 @@ var Button1 = React.createClass({
             return true;
         }
         break;
-      
+      case appConstants.PERIPHERAL_MANAGEMENT:
+        switch (action) {
+          case appConstants.ADD_SCANNER:
+            this.showModal(null, "enter_barcode")
+            break
+
+          case appConstants.ADD_SCANNER_DETAILS:
+            $(".modal:not(.notification-error)").modal("hide")
+            peripheralId = document.getElementById("add_scanner").value
+            peripheralData["peripheral_id"] = peripheralId
+            peripheralData["peripheral_type"] = "barcode_scanner"
+            ActionCreators.updateData(peripheralData, "POST")
+            closeModalBox()
+            document.getElementById("add_scanner").value = ""
+            break
+
+          case appConstants.CANCEL_ADD_SCANNER:
+            closeModalBox()
+            location.reload()
+            break
+          case appConstants.CANCEL_CLOSE_SCANNER:
+            closeModalBox()
+            //location.reload();
+            break
+          case appConstants.CANCEL_PPTL:
+            location.reload()
+            break
+        }
+
+        break
+
       default:
         return true;
     }

@@ -7,7 +7,7 @@ var serverMessages = require("../serverMessages/server_messages")
 var ws, self
 
 var utils = objectAssign({}, EventEmitter.prototype, {
-  enableKeyboard: function() {
+  enableKeyboard: function () {
     virtualKeyBoard_login = $("#username, #password").keyboard({
       layout: "custom",
       customLayout: {
@@ -37,12 +37,12 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       reposition: true,
       alwaysOpen: false,
       initialFocus: true,
-      visible: function(e, keypressed, el) {
+      visible: function (e, keypressed, el) {
         el.value = ""
         //$(".authNotify").css("display","none");
       },
 
-      accepted: function(e, keypressed, el) {
+      accepted: function (e, keypressed, el) {
         var usernameValue = document.getElementById("username").value
         var passwordValue = document.getElementById("password").value
         if (
@@ -58,36 +58,36 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
     })
   },
-  
 
-  connectToWebSocket: function(data) {
+
+  connectToWebSocket: function (data) {
     var stationId = data;
     var url = configConstants.WEBSOCKET_IP + "/wms-process/extraction-app-ws?ppsStn=" + stationId
     self = this
     ws = new WebSocket(url);
     if ("WebSocket" in window) {
-      ws.onopen = function() {
+      ws.onopen = function () {
         $("#username, #password, #loginBtn").prop("disabled", false)
-        
+
         utils.checkSessionStorage()
         clearTimeout(utils.connectToWebSocket)
       }
-      ws.onmessage = function(evt) {
+      ws.onmessage = function (evt) {
         if (
           evt.data == "CLIENTCODE_409" ||
           evt.data == "CLIENTCODE_412" ||
           evt.data == "CLIENTCODE_401" ||
           evt.data == "CLIENTCODE_400" ||
           evt.data == "CLIENTCODE_503" ||
-          evt.data == "CLIENTCODE_403"){
-              var msgCode = evt.data;
+          evt.data == "CLIENTCODE_403") {
+          var msgCode = evt.data;
 
-              CommonActions.showErrorMessage(serverMessages[msgCode])
-              sessionStorage.setItem("sessionData", null);
+          CommonActions.showErrorMessage(serverMessages[msgCode])
+          sessionStorage.setItem("sessionData", null);
 
-              CommonActions.loginSeat(false)
-              utils.enableKeyboard()
-          }
+          CommonActions.loginSeat(false)
+          utils.enableKeyboard()
+        }
         else {
           var received_msg = evt.data
           var data
@@ -108,7 +108,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
           CommonActions.setServerMessages()
         }
       }
-      ws.onclose = function(event) {
+      ws.onclose = function (event) {
         //serverMessages.CLIENTCODE_003;
         /* alert(JSON.stringify(evt));
                  if(evt == "CLIENTCODE_409" || evt == "CLIENTCODE_503"){
@@ -120,9 +120,9 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         //$("#username, #password").prop('disabled', true);
         console.log("Connection is closed...");
         //var stationId = sessionStorage.getItem("stationId");
-       // setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
+        // setTimeout(utils.connectToWebSocket(stationId), 2000);// try reconnecting post 2 seconds
       }
-      ws.onerror = function (event){
+      ws.onerror = function (event) {
         CommonActions.showErrorMessage(serverMessages[event.type]);
         //$("#loginBtn").hide();
         $("#loginBtn").prop("disabled", true);
@@ -131,8 +131,114 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       alert("WebSocket NOT supported by your Browser!")
     }
   },
+  getPeripheralData: function (type, seat_name, status, method) {
+    var retrieved_token = sessionStorage.getItem("sessionData");
+    var authentication_token = JSON.parse(retrieved_token)["data"][
+      "auth-token"
+    ];
+    $.ajax({
+      type: "GET",
+      url:
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.PPS_SEATS +
+        seat_name +
+        "/" +
+        appConstants.PERIPHERALS +
+        "?type=" +
+        type,
+      dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        "Authentication-Token": authentication_token,
+      },
+    })
+      .done(function (response) {
+        CommonActions.updateSeatData(response.data, type, status, method);
+      })
+      .fail(function (jqXhr) { });
+  },
+  updatePeripherals: function (data, method, seat_name) {
+    var retrieved_token = sessionStorage.getItem("sessionData");
+    var authentication_token = JSON.parse(retrieved_token)["data"][
+      "auth-token"
+    ];
+    var url;
+    var method = method;
+    if (method == "POST") {
+      url =
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.PPS_SEATS +
+        seat_name +
+        "/" +
+        appConstants.PERIPHERALS +
+        appConstants.ADD;
+    } else {
+      url =
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.PPS_SEATS +
+        appConstants.PERIPHERALS +
+        "/" +
+        data.peripheral_type +
+        "/" +
+        encodeURIComponent(data.peripheral_id); /*.replace(/\//g, "%2F")*/
+    }
+    $.ajax({
+      type: method,
+      url: url,
+      data: JSON.stringify(data),
+      dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        "Authentication-Token": authentication_token,
+      },
+      /*complete:function(xhr,textStatus) {
+                if(xhr.status == 409)
+                    utils.getPeripheralData(data.peripheral_type, seat_name , '409', method)
 
-  checkSessionStorage: function() {
+            //utils.getPeripheralData(data.peripheral_type, seat_name , 'success', method)
+           // CommonActions.updateSeatData(response.data, data.peripheral_type); 
+       }*/
+    })
+      .done(function (response, statusText, xhr) {
+        utils.getPeripheralData(
+          data.peripheral_type,
+          seat_name,
+          "success",
+          method
+        );
+        // CommonActions.updateSeatData(response.data, data.peripheral_type);
+      })
+      .fail(function (jqXhr) {
+        if (jqXhr.status == 409)
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "409",
+            method
+          );
+        else if (jqXhr.status == 400)
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "400",
+            method
+          );
+        else
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "fail",
+            method
+          );
+      });
+  },
+
+  checkSessionStorage: function () {
     var sessionData = JSON.parse(sessionStorage.getItem("sessionData"))
     if (sessionData === null) {
     } else {
@@ -147,45 +253,45 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       utils.sendLoginConfirmation(webSocketData);
     }
   },
-  
-  storeSession: function(data) {
+
+  storeSession: function (data) {
     // Put the object into storage
     sessionStorage.setItem("sessionData", JSON.stringify(data))
   },
 
-  sendLoginConfirmation: function(data){
+  sendLoginConfirmation: function (data) {
     var stationId = data.data.stationId;
-    var username= data.data.userName;
+    var username = data.data.userName;
 
     $.ajax({
       type: "POST",
-      url:  configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/login?ppsStn="+stationId,
+      url: configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/login?ppsStn=" + stationId,
       data: JSON.stringify({
         userName: username
       }),
-     // dataType: "json",
+      // dataType: "json",
       headers: {
         "content-type": "application/json",
         accept: "application/json"
       }
     })
-    .done(function(response) {
-      setTimeout(CommonActions.operatorSeat, 0, true)
-    })
-    .fail(function(data, jqXHR, textStatus, errorThrown) {
-      CommonActions.showErrorMessage(data.responseJSON.reason)
-    })
+      .done(function (response) {
+        setTimeout(CommonActions.operatorSeat, 0, true)
+      })
+      .fail(function (data, jqXHR, textStatus, errorThrown) {
+        CommonActions.showErrorMessage(data.responseJSON.reason)
+      })
   },
 
-  
 
-  postDataToWebsockets: function(data) {
+
+  postDataToWebsockets: function (data) {
     console.log(JSON.stringify(data))
     ws.send(JSON.stringify(data))
     setTimeout(CommonActions.operatorSeat, 0, true)
   },
 
-  getAuthToken: function(data) {
+  getAuthToken: function (data) {
     sessionStorage.setItem("sessionData", null)
     if (data.data.barcode) {
       // if barcode key is present its login via scanner mode
@@ -215,16 +321,16 @@ var utils = objectAssign({}, EventEmitter.prototype, {
       }
     }
     $.ajax({
-        type: "POST",
-        url: configConstants.INTERFACE_IP + "/api/auth/token",
-        data: JSON.stringify(loginData),
-        dataType: "json",
-        headers: {
-          "content-type": "application/json",
-          accept: "application/json"
-        }
-      })
-      .done(function(response) {
+      type: "POST",
+      url: configConstants.INTERFACE_IP + "/api/auth/token",
+      data: JSON.stringify(loginData),
+      dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json"
+      }
+    })
+      .done(function (response) {
         var webSocketData = {
           data_type: "auth",
           data: {
@@ -237,13 +343,13 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         //utils.postDataToWebsockets(webSocketData)
         utils.sendLoginConfirmation(webSocketData);
       })
-      .fail(function(data, jqXHR, textStatus, errorThrown) {
+      .fail(function (data, jqXHR, textStatus, errorThrown) {
         CommonActions.showErrorMessage(data.responseJSON.error)
       })
   },
 
-  sendLogoutConfirmation: function(){
-    
+  sendLogoutConfirmation: function () {
+
     $.ajax({
       type: "GET",
       url:
@@ -260,16 +366,16 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         )["data"]["auth-token"]
       }
     })
-      .done(function(response) {
+      .done(function (response) {
         sessionStorage.setItem("sessionData", null)
         location.reload()
       })
-      .fail(function(data, jqXHR, textStatus, errorThrown) {
+      .fail(function (data, jqXHR, textStatus, errorThrown) {
         alert("Logout Failed")
       })
   },
 
-  sessionLogout: function(data) {
+  sessionLogout: function (data) {
     /* sending LOGOUT confirmation to Backend first */
     var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
     var stationId = sessionData.data.stationId;
@@ -277,7 +383,7 @@ var utils = objectAssign({}, EventEmitter.prototype, {
 
     $.ajax({
       type: "POST",
-      url: configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/logout?ppsStn="+stationId,
+      url: configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/logout?ppsStn=" + stationId,
       data: JSON.stringify({
         userName: userName
       }),
@@ -286,26 +392,26 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         accept: "application/json"
       }
     })
-    .done(function(response) {
-      utils.sendLogoutConfirmation(stationId, userName);
-      sessionStorage.setItem("sessionData", null)
-      location.reload()
-      setTimeout(CommonActions.operatorSeat, 0, true)
-    })
-    .fail(function(data, jqXHR, textStatus, errorThrown) {
-      CommonActions.showErrorMessage(data)
-    })
+      .done(function (response) {
+        utils.sendLogoutConfirmation(stationId, userName);
+        sessionStorage.setItem("sessionData", null)
+        location.reload()
+        setTimeout(CommonActions.operatorSeat, 0, true)
+      })
+      .fail(function (data, jqXHR, textStatus, errorThrown) {
+        CommonActions.showErrorMessage(data)
+      })
   },
 
-  postDataToInterface: function(data, stationId) {
+  postDataToInterface: function (data, stationId) {
     var retrieved_token = sessionStorage.getItem("sessionData")
     var authentication_token = JSON.parse(retrieved_token)["data"]["auth-token"]
-    if(!stationId){
+    if (!stationId) {
       stationId = JSON.parse(retrieved_token).data.stationId;
     }
     $.ajax({
       type: "POST",
-      url:  configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/ui-event?ppsStn=" + stationId,
+      url: configConstants.PLATFORM_IP + "/api-gateway/process-service/wms-process/extraction-app/ui-event?ppsStn=" + stationId,
       data: JSON.stringify(data),
       dataType: "json",
       headers: {
@@ -314,10 +420,10 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         "Authentication-Token": authentication_token
       }
     })
-      .done(function(response) {
+      .done(function (response) {
         CommonActions.hideSpinner()
       })
-      .fail(function(jqXhr) {
+      .fail(function (jqXhr) {
         console.log(jqXhr)
         CommonActions.hideSpinner()
         if (jqXhr.status == 401 || jqXhr.status == 403) {
@@ -330,8 +436,86 @@ var utils = objectAssign({}, EventEmitter.prototype, {
         }
       })
   },
+  updatePeripherals: function (data, method, seat_name) {
+    var retrieved_token = sessionStorage.getItem("sessionData");
+    var authentication_token = JSON.parse(retrieved_token)["data"][
+      "auth-token"
+    ];
+    var url;
+    var method = method;
+    if (method == "POST") {
+      url =
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.PPS_SEATS +
+        seat_name +
+        "/" +
+        appConstants.PERIPHERALS +
+        appConstants.ADD;
+    } else {
+      url =
+        configConstants.INTERFACE_IP +
+        appConstants.API +
+        appConstants.PPS_SEATS +
+        appConstants.PERIPHERALS +
+        "/" +
+        data.peripheral_type +
+        "/" +
+        encodeURIComponent(data.peripheral_id); /*.replace(/\//g, "%2F")*/
+    }
+    $.ajax({
+      type: method,
+      url: url,
+      data: JSON.stringify(data),
+      dataType: "json",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        "Authentication-Token": authentication_token,
+      },
+      /*complete:function(xhr,textStatus) {
+                if(xhr.status == 409)
+                    utils.getPeripheralData(data.peripheral_type, seat_name , '409', method)
 
-  generateSessionId: function(data) {
+            //utils.getPeripheralData(data.peripheral_type, seat_name , 'success', method)
+           // CommonActions.updateSeatData(response.data, data.peripheral_type); 
+       }*/
+    })
+      .done(function (response, statusText, xhr) {
+        utils.getPeripheralData(
+          data.peripheral_type,
+          seat_name,
+          "success",
+          method
+        );
+        // CommonActions.updateSeatData(response.data, data.peripheral_type);
+      })
+      .fail(function (jqXhr) {
+        if (jqXhr.status == 409)
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "409",
+            method
+          );
+        else if (jqXhr.status == 400)
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "400",
+            method
+          );
+        else
+          utils.getPeripheralData(
+            data.peripheral_type,
+            seat_name,
+            "fail",
+            method
+          );
+      });
+  },
+
+  generateSessionId: function (data) {
     var text = ""
     var possible =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -341,17 +525,17 @@ var utils = objectAssign({}, EventEmitter.prototype, {
     //localStorage.setItem("stationId", data.data.seat_name)
   },
 
-  createLogData: function(message, type) {
+  createLogData: function (message, type) {
     var data = {}
     data["message"] = message
     data["type"] = type
     data["session"] = localStorage.getItem("session")
     return data
   }
-  
+
 })
 
-var readStateData = function(data) {
+var readStateData = function (data) {
   console.log(data)
   CommonActions.setPickFrontData(data)
 }

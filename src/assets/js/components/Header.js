@@ -19,10 +19,10 @@ var Header = React.createClass({
   virtualKeyBoard: "",
   exceptionMenu: "",
   searchMenu: "",
-  getInitialState: function() {
+  getInitialState: function () {
     return getState()
   },
-  openKeyboard: function() {
+  openKeyboard: function () {
     var currentStationId = mainstore.getCurrentStationId();
     var screenId = mainstore.getScreenId();
     $("#actionMenu").hide()
@@ -61,10 +61,10 @@ var Header = React.createClass({
         my: "center top",
         at: "center top"
       },
-      visible: function(e, keypressed, el) {
+      visible: function (e, keypressed, el) {
         el.value = ""
       },
-      accepted: function(e, keypressed, el) {
+      accepted: function (e, keypressed, el) {
         if (e.target.value === "") {
         } else {
           var data = {
@@ -80,7 +80,7 @@ var Header = React.createClass({
       .data("keyboard")
       .reveal()
   },
-  logoutSession: function() {
+  logoutSession: function () {
     $("#actionMenu").hide()
     if (
       mainstore.getLogoutState() === "false" ||
@@ -91,8 +91,8 @@ var Header = React.createClass({
       CommonActions.logoutSession(true)
     }
   },
-  componentDidMount: function() {},
-  enableException: function() {
+  componentDidMount: function () { },
+  enableException: function () {
     CommonActions.enableException(true)
     var data = {}
     data["code"] = null
@@ -100,27 +100,27 @@ var Header = React.createClass({
     CommonActions.generateNotification(data)
     $("#actionMenu").hide()
   },
-  enableSearch: function() {
+  enableSearch: function () {
     CommonActions.updateSeatData([], "itemSearch")
     $("#actionMenu").hide()
   },
-  showMenu: function() {
+  showMenu: function () {
     $("#actionMenu").toggle()
     $(".subMenu").hide()
   },
-  refresh: function() {
+  refresh: function () {
     location.reload()
   },
-  componentWillMount: function() {
+  componentWillMount: function () {
     mainstore.addChangeListener(this.onChange)
   },
-  onChange: function() {
+  onChange: function () {
     if (virtualKeyBoard_header != null) {
       virtualKeyBoard_header.getkeyboard().close()
     }
     this.setState(getState())
   },
-  getExceptionMenu: function() {
+  getExceptionMenu: function () {
     var x = "",
       screenId = mainstore.getScreenId()
     for (var prop in appConstants) {
@@ -154,7 +154,7 @@ var Header = React.createClass({
         <div className="actionItem disable">{_("Exception")}</div>
       )
   },
-  getSearchItemMenu: function() {
+  getSearchItemMenu: function () {
     if (mainstore.orphanSearchAllowed()) {
       this.searchMenu = (
         <div className="actionItem" onClick={this.enableSearch}>
@@ -164,33 +164,33 @@ var Header = React.createClass({
     }
   },
 
-  peripheralData: function(type) {
+  peripheralData: function (type) {
     CommonActions.getPeriPheralData(type)
     $("#actionMenu").hide()
   },
-  utilityMenu: function() {
+  utilityMenu: function () {
     $(".subMenu").toggle()
     //CommonActions.displayperipheralMenu();
   },
-  notifyTower: function() {
+  notifyTower: function () {
     var data = {
       pps_id: this.state.ppsId
     }
     CommonActions.postDataToTower(data)
   },
-  render: function() {
+  render: function () {
     var logoutClass
     var cssClass
     var disableScanClass
     var invoiceFlow =
       mainstore.getScreenId() === appConstants.PUT_BACK_INVOICE ? true : false
-      if (this.state.scanAllowed == true) {
-        cssClass = "keyboard-actions";
-        disableScanClass = "";
-      } else {
-        cssClass = "keyboard-actions hide-manual-barcode";
-        disableScanClass = "disableScanClass";
-      }
+    if (this.state.scanAllowed == true) {
+      cssClass = "keyboard-actions";
+      disableScanClass = "";
+    } else {
+      cssClass = "keyboard-actions hide-manual-barcode";
+      disableScanClass = "disableScanClass";
+    }
     //this.getExceptionMenu()
     //this.getSearchItemMenu()
     // if (this.state.spinner || this.state.systemIsIdle || invoiceFlow) {
@@ -206,7 +206,7 @@ var Header = React.createClass({
     // } else {
     //   logoutClass = "actionItem"
     // }
-    
+
     return (
       <div>
         <div className="head">
@@ -230,21 +230,21 @@ var Header = React.createClass({
         </div>
         <div className="actionMenu" id="actionMenu">
           {/* {this.exceptionMenu} */}
-          {/* <div className="actionItem" onClick={this.utilityMenu}>
+          <div className="actionItem" onClick={this.utilityMenu}>
             {_("Utility")}
-            <div
+            {/* <div
               className="subMenu"
               onClick={this.peripheralData.bind(this, "pptl")}
             >
               {_("PPTL Management")}
-            </div>
+            </div> */}
             <div
               className="subMenu"
               onClick={this.peripheralData.bind(this, "barcode_scanner")}
             >
               {_("Scanner Management")}
             </div>
-          </div> */}
+          </div>
           {/* {this.searchMenu}
           <div className={logoutClass} onClick={this.notifyTower}>
             {_("Call for Help")}

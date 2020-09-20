@@ -28,11 +28,11 @@ function getState() {
 
 var LoginPage = React.createClass({
   mixins: [LinkedStateMixin],
-  getInitialState: function() {
+  getInitialState: function () {
     return getState();
   },
 
-  componentWillMount: function() {
+  componentWillMount: function () {
     virtualKeyBoard_login = $('#username, #password').keyboard({
       layout: 'custom',
       customLayout: {
@@ -62,11 +62,11 @@ var LoginPage = React.createClass({
       reposition: true,
       alwaysOpen: false,
       initialFocus: true,
-      visible: function(e, keypressed, el) {
+      visible: function (e, keypressed, el) {
         el.value = '';
       },
 
-      accepted: function(e, keypressed, el) {
+      accepted: function (e, keypressed, el) {
         var usernameValue = document.getElementById('username').value;
         var passwordValue = document.getElementById('password').value;
         // if (
@@ -83,10 +83,10 @@ var LoginPage = React.createClass({
     });
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
 
     /* if enter key is hit from keyboard, do NOT call the API and vice-versa */
-    $('body').on('keypress', function(e) {
+    $('body').on('keypress', function (e) {
       if (e.which === 13) {
         var hiddenTextValue = document.getElementById('hiddenText').value;
         if (hiddenTextValue.trim()) {
@@ -97,7 +97,7 @@ var LoginPage = React.createClass({
     });
 
     /* Shifting focus to hiddenText if user clicks/taps on any other place other than input selectors */
-    $('body').on('click', function(e) {
+    $('body').on('click', function (e) {
       var currentFocusedElement = document.activeElement.tagName;
       if (currentFocusedElement === 'BODY') {
         if (self.refs.hiddenText) {
@@ -110,13 +110,13 @@ var LoginPage = React.createClass({
     loginstore.addChangeListener(this.onChange);
 
 
-    /* if user tries to log in by specifying any extraction_point */ 
+    /* if user tries to log in by specifying any extraction_point */
 
     //var currentUrl = "https://192.168.8.50/ext_ui/?blahblah=1";
     var sessionData = JSON.parse(sessionStorage.getItem("sessionData"));
     var currentUrl = window.location.href;
-    if(currentUrl.includes("extraction_point")){
-      if(sessionData !== null){
+    if (currentUrl.includes("extraction_point")) {
+      if (sessionData !== null) {
         CommonActions.changeLanguage(this.state.getCurrentLang);
       }
       console.log("========> On direct login to specific station point ====>");
@@ -127,16 +127,16 @@ var LoginPage = React.createClass({
       CommonActions.webSocketConnection(stationId);
       $("#loginBtn").prop("disabled", false);
     }
-    else if(sessionData != null){
+    else if (sessionData != null) {
       console.log("========> On page Refresh do auto login ====>");
-        var stationId = sessionData.data.stationId;
-        CommonActions.listSeats();
-        CommonActions.getScannerStatus();
-        CommonActions.setCurrentStationId(stationId);
-        CommonActions.webSocketConnection(stationId);
-        CommonActions.changeLanguage(this.state.getCurrentLang);
+      var stationId = sessionData.data.stationId;
+      CommonActions.listSeats();
+      CommonActions.getScannerStatus();
+      CommonActions.setCurrentStationId(stationId);
+      CommonActions.webSocketConnection(stationId);
+      CommonActions.changeLanguage(this.state.getCurrentLang);
     }
-    else{
+    else {
       console.log("========> fresh login ====>");
       $("#loginBtn").prop("disabled", true);
       // get list of Station Ids
@@ -148,17 +148,17 @@ var LoginPage = React.createClass({
         CommonActions.changeLanguage(this.state.getCurrentLang);
       }
     }
-    
+
 
     // <START> 
-    /*  condition to Auto login on page REFRESH, before session expiration */ 
+    /*  condition to Auto login on page REFRESH, before session expiration */
     // if(stationId){
     //   CommonActions.webSocketConnection(stationId)
     // }
     // <END>
 
-     // get list of Station Ids
-     //CommonActions.listSeats(); 
+    // get list of Station Ids
+    //CommonActions.listSeats(); 
 
     var self = this;
     virtualKeyBoard_login = $('#username, #password').keyboard({
@@ -191,11 +191,11 @@ var LoginPage = React.createClass({
       alwaysOpen: false,
       initialFocus: true,
 
-      visible: function(e, keypressed, el) {
+      visible: function (e, keypressed, el) {
         el.value = '';
       },
 
-      accepted: function(e, keypressed, el) {
+      accepted: function (e, keypressed, el) {
         var usernameValue = document.getElementById('username').value;
         var passwordValue = document.getElementById('password').value;
         // if (
@@ -211,23 +211,23 @@ var LoginPage = React.createClass({
       }
     });
   },
-  
-  onChange: function() {
+
+  onChange: function () {
     this.setState(getState());
   },
 
-  componentDidUpdate: function() {
+  componentDidUpdate: function () {
     if (this.refs.hiddenText) {
       this.refs.hiddenText.focus();
     }
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount: function () {
     mainstore.removeChangeListener(this.onChange);
     loginstore.removeChangeListener(this.onChange);
   },
 
-  handleLogin: function() {
+  handleLogin: function () {
     var _self = this;
     if (_seat_name == null) {
       _seat_name = this.refs.seat_name.value;
@@ -241,56 +241,56 @@ var LoginPage = React.createClass({
         //role: _role
       }
     };
-      utils.generateSessionId(data);
-      CommonActions.login(data);
+    utils.generateSessionId(data);
+    CommonActions.login(data);
   },
 
-  disableLoginButton: function() {
+  disableLoginButton: function () {
     $('#loginBtn').prop('disabled', true);
   },
-  changeLanguage: function() {
+  changeLanguage: function () {
     CommonActions.changeLanguage(this.refs.language.value);
     //this.disableLoginButton();
   },
-  removeNotify: function() {
+  removeNotify: function () {
     $('.errorNotify').css('display', 'none');
   },
 
-  onStationIdChange: function(){
-    if(this.refs.seat_name.value !== "0"){
+  onStationIdChange: function () {
+    if (this.refs.seat_name.value !== "0") {
       $("#loginBtn").prop("disabled", false);
       CommonActions.webSocketConnection(this.state.stationId);
     }
-    else{
+    else {
       $("#loginBtn").prop("disabled", true);
     }
-    
+
 
     //save the current station id
     CommonActions.setCurrentStationId(this.state.stationId);
   },
 
-  ChangeStationId: function(e){
-    this.setState({stationId: e.target.value}, this.onStationIdChange);
+  ChangeStationId: function (e) {
+    this.setState({ stationId: e.target.value }, this.onStationIdChange);
   },
 
-  render: function() {
+  render: function () {
     var isScannerLoginEnabled = (this.state.scannerStatus === 'true');
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
     if (this.state.stationList.length > 0) {
       var parseSeatID, ppsOption, showTiltButton;
-      
+
       /******** list of stations **********/
-          seatData = this.state.stationList.map(function(eachItem, index){
-            return(
-              <option key={'station' + index} value={eachItem}>
-              Station Id {eachItem}
-            </option>
-            );
-          })
-          seatData.unshift(<option key={'station'} value={0}>{_('Select Station Id')}</option>);
-       /***********************/
+      seatData = [1, 2, 3].map(function (eachItem, index) {
+        return (
+          <option key={'station' + index} value={eachItem}>
+            Station Id {eachItem}
+          </option>
+        );
+      })
+      seatData.unshift(<option key={'station'} value={0}>{_('Select Station Id')}</option>);
+      /***********************/
 
       // if (parseSeatID != null) {
       //   // ppsOption = (
@@ -300,18 +300,18 @@ var LoginPage = React.createClass({
       //   // );
       //   // showTiltButton = '';
       // } else {
-        _seat_name = null;
-        ppsOption = (
-          <select
-            value={_seat_name}
-            onChange={this.ChangeStationId}
-            className={false ? 'selectPPS error' : 'selectPPS'}
-            ref='seat_name'
-          >
-            {seatData}
-          </select>
-        );
-        showTiltButton = <span className='tiltButton' />;
+      _seat_name = null;
+      ppsOption = (
+        <select
+          value={_seat_name}
+          onChange={this.ChangeStationId}
+          className={false ? 'selectPPS error' : 'selectPPS'}
+          ref='seat_name'
+        >
+          {seatData}
+        </select>
+      );
+      showTiltButton = <span className='tiltButton' />;
       // }
     } else {
       ppsOption = (
@@ -496,8 +496,8 @@ var LoginPage = React.createClass({
                 </div>
               </div>
             ) : (
-              ''
-            )}
+                ''
+              )}
             <input
               type='text'
               id='hiddenText'
