@@ -27,7 +27,7 @@
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "jquery": "2.1.4",
-    "jquery-ui": "1.10.5",
+    "jquery-ui": "1.12.1",
     "virtual-keyboard": "1.25.11",
     "watchify": "^3.6.1"
   },
